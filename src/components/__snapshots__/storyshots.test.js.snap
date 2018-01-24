@@ -87,11 +87,11 @@ exports[`Storyshots Button primary 1`] = `
           className="Button "
           onClick={[Function]}
         >
-          <h4
+          <h5
             className="Button-label"
           >
             CLICK ME
-          </h4>
+          </h5>
         </div>
         <div
           data-radium={true}
@@ -350,11 +350,11 @@ exports[`Storyshots Button with lots of text 1`] = `
           className="Button "
           onClick={[Function]}
         >
-          <h4
+          <h5
             className="Button-label"
           >
             CLICK ME, CLICK ME, CLICK ME
-          </h4>
+          </h5>
         </div>
         <div
           data-radium={true}

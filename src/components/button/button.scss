@@ -10,7 +10,6 @@
   );
   border-radius: 4px;
   box-shadow: 0 1px 0 0 $buttonBoxShadow;
-  color: $buttonText;
   cursor: pointer;
   height: 50px;
   min-width: 200px;
@@ -18,7 +17,7 @@
   text-align: center;
 
   &-label {
-    font-weight: 500;
+    color: $buttonText;
     line-height: 50px;
     margin: 0;
   }

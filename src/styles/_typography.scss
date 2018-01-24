@@ -4,36 +4,38 @@
   color: $heading;
 }
 
-@mixin heading($fontSize, $margin) {
+@mixin heading($fontSize, $fontWeight, $margin) {
   @extend %heading;
 
   font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $fontSize;
   margin: $margin 0;
 }
 
 // Headings
 h1 {
-  @include heading(4rem, 2rem);
+  @include heading(4rem, 800, 2rem);
 }
 
 h2 {
-  @include heading(3rem, 1.5rem);
+  @include heading(3rem, 700, 1.5rem);
 }
 
 h3 {
-  @include heading(2rem, 1rem);
+  @include heading(2rem, 600, 1rem);
 }
 
 h4 {
-  @include heading(1.75rem, 1rem);
+  @include heading(1.75rem, 500, 1rem);
 }
 
 h5 {
-  @include heading(1.5rem, 1rem);
+  @include heading(1.5rem, 400, 1rem);
 }
 
 h6 {
-  @include heading(1.25rem, 1rem);
+  @include heading(1.25rem, 300, 1rem);
 }
 
 // Paragraphs
