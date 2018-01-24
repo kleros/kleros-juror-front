@@ -1,0 +1,54 @@
+@import '../../styles/_colors.scss';
+
+/* @define TextInput */
+.TextInput {
+  background: #fff;
+  border: 1px solid #dfe3e9;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 45px;
+  margin: 0.5rem;
+  position: relative;
+  width: 200px;
+
+  &.is-error {
+    border-color: $error;
+  }
+
+  &.is-valid {
+    border-color: $valid;
+  }
+
+  &-input {
+    background: none;
+    border: none;
+    height: 45px;
+    padding: 0 5px;
+    width: 199px;
+  }
+
+  &-placeholder {
+    color: $disabled;
+    left: 5px;
+    line-height: 45px;
+    pointer-events: none;
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+    transition: 0.2s all;
+
+    &.is-touched {
+      font-size: 8px;
+      line-height: 8px;
+      top: 5px;
+    }
+  }
+
+  &-error {
+    bottom: 0;
+    color: $error;
+    font-size: 8px;
+    left: 5px;
+    position: absolute;
+  }
+}

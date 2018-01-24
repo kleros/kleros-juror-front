@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+%heading {
+  color: $heading;
+}
+
+@mixin heading($fontSize, $margin) {
+  @extend %heading;
+
+  font-size: $fontSize;
+  margin: $margin 0;
+}
+
+// Headings
+h1 {
+  @include heading(4rem, 2rem);
+}
+
+h2 {
+  @include heading(3rem, 1.5rem);
+}
+
+h3 {
+  @include heading(2rem, 1rem);
+}
+
+h4 {
+  @include heading(1.75rem, 1rem);
+}
+
+h5 {
+  @include heading(1.5rem, 1rem);
+}
+
+h6 {
+  @include heading(1.25rem, 1rem);
+}
+
+// Paragraphs
+p {
+  font-size: 1rem;
+  line-height: 1.8rem;
+}

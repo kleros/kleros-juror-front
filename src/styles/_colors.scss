@@ -1,7 +1,21 @@
+// Bases
 $white: #fff;
 
+// States
+$valid: lightgreen;
+$error: darkred;
+$disabled: rgba(180, 180, 180, 50%);
+
+// Typography
+$text: #47525d;
+$heading: #3d464d;
+
+// Backgrounds
 $background: $white;
 
+/* Specifics */
+
+// Button
 $buttonGradientStart: #0059ab;
 $buttonGradientEnd: #0468c4;
 $buttonBoxShadow: #024e95;
