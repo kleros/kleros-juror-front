@@ -644,7 +644,7 @@ exports[`Storyshots Dispute Card appealable 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                10.13.2017
+                13.10.2017
               </small>
             </h6>
             <h5>
@@ -930,7 +930,7 @@ exports[`Storyshots Dispute Card resolved 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                10.25.2017
+                25.10.2017
               </small>
             </h6>
             <h5>
@@ -1216,7 +1216,7 @@ exports[`Storyshots Dispute Card waiting 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                10.1.2017
+                2.10.2017
               </small>
             </h6>
             <h5>

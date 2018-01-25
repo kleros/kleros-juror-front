@@ -1,9 +1,9 @@
 /**
- * Stringifies a date object in the preffered Kleros format, (7.12.2017).
+ * Stringifies a date object in the preffered Kleros format, (dd.mm.yyyy).
  * @export
  * @param {Date} date The date object
  * @returns {string} The formatted string
  */
 export function formatDateString(date) {
-  return date.toLocaleDateString().replace(/\//g, '.')
+  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
 }
