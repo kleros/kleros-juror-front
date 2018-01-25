@@ -16,7 +16,7 @@
   }
 
   &.is-valid {
-    border-color: $valid;
+    border-color: $success;
   }
 
   &-input {
@@ -35,7 +35,7 @@
     position: absolute;
     text-transform: uppercase;
     top: 0;
-    transition: 0.2s all;
+    transition: 0.2s font-size, 0.2s line-height, 0.2s top;
 
     &.is-touched {
       font-size: 8px;

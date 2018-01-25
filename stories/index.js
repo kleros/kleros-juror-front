@@ -1,4 +1,5 @@
 import './button'
+import './dispute-card'
 import './identicon'
 import './requires-meta-mask'
 import './text-input'

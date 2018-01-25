@@ -6,9 +6,14 @@ import './text-input.css'
 const TextInput = ({
   placeholder,
   input: { value, onChange },
-  meta: { valid, touched, error }
+  meta: { valid, touched, error },
+  className
 }) => (
-  <div className={`TextInput${error ? ' is-error' : valid ? ' is-valid' : ''}`}>
+  <div
+    className={`TextInput ${
+      error ? 'is-error' : valid ? 'is-valid' : ''
+    } ${className}`}
+  >
     <input
       className="TextInput-input"
       type="text"
@@ -42,7 +47,15 @@ TextInput.propTypes = {
     valid: PropTypes.bool,
     touched: PropTypes.bool,
     error: PropTypes.string
-  }).isRequired
+  }).isRequired,
+
+  // Modifiers
+  className: PropTypes.string
+}
+
+TextInput.defaultProps = {
+  // Modifiers
+  className: ''
 }
 
 export default TextInput

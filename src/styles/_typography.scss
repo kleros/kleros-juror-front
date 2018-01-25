@@ -9,37 +9,48 @@
 
   font-size: $fontSize;
   font-weight: $fontWeight;
-  line-height: $fontSize;
-  margin: $margin 0;
+  line-height: $fontSize + $margin / 2;
+  margin: 0 0 $margin 0;
 }
 
 // Headings
 h1 {
-  @include heading(4rem, 800, 2rem);
+  @include heading(2rem, 800, 1.4rem);
 }
 
 h2 {
-  @include heading(3rem, 700, 1.5rem);
+  @include heading(1.75rem, 700, 1.3rem);
 }
 
 h3 {
-  @include heading(2rem, 600, 1rem);
+  @include heading(1.5rem, 600, 1.2rem);
 }
 
 h4 {
-  @include heading(1.75rem, 500, 1rem);
+  @include heading(1.25rem, 500, 1.1rem);
 }
 
 h5 {
-  @include heading(1.5rem, 400, 1rem);
+  @include heading(1rem, 400, 1rem);
 }
 
 h6 {
-  @include heading(1.25rem, 300, 1rem);
+  @include heading(0.75rem, 300, 0.5rem);
 }
 
 // Paragraphs
 p {
-  font-size: 1rem;
+  font-size: 0.75rem;
   line-height: 1.8rem;
+}
+
+// Modifiers
+a {
+  color: $info;
+  cursor: pointer;
+}
+
+small {
+  color: $disabled;
+  font-size: 0.8rem;
 }

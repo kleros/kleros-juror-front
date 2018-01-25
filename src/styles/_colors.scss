@@ -2,13 +2,15 @@
 $white: #fff;
 
 // States
-$valid: lightgreen;
-$error: darkred;
-$disabled: rgba(180, 180, 180, 50%);
+$disabled: #77909d;
+$info: #337ab7;
+$warning: #f0ad4e;
+$success: #8dc572;
+$error: #be6464;
 
 // Typography
-$text: #47525d;
 $heading: #3d464d;
+$text: #47525d;
 
 // Backgrounds
 $background: $white;
