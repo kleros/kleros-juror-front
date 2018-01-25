@@ -1,5 +1,8 @@
 // Bases
-$white: #fff;
+$light: #fff;
+$dark: #3d464d;
+$dark2: #47525d;
+$dark3: #a3a2a5;
 
 // States
 $disabled: #77909d;
@@ -9,11 +12,12 @@ $success: #8dc572;
 $error: #be6464;
 
 // Typography
-$heading: #3d464d;
-$text: #47525d;
+$heading: $dark;
+$text: $dark2;
 
 // Backgrounds
-$background: $white;
+$background: $light;
+$darkBackground: $dark;
 
 /* Specifics */
 
@@ -21,4 +25,4 @@ $background: $white;
 $buttonGradientStart: #0059ab;
 $buttonGradientEnd: #0468c4;
 $buttonBoxShadow: #024e95;
-$buttonText: $white;
+$buttonText: $light;
