@@ -1,6 +1,8 @@
 @import '~normalize.css';
+@import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
 @import '../styles/_colors.scss';
 @import '../styles/_typography.scss';
+@import '../styles/_toastr.scss';
 
 * {
   box-sizing: border-box;
