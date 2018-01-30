@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 import Balance from '../containers/balance'
 
 import Initializer from './initializer'
+import GlobalComponents from './global-components'
 
 import './app.css'
 
@@ -25,6 +26,7 @@ const App = ({ store, history, testElement }) => (
           {testElement}
         </div>
       </ConnectedRouter>
+      <GlobalComponents />
     </Initializer>
   </Provider>
 )

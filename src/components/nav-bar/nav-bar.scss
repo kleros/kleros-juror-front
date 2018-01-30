@@ -1,0 +1,56 @@
+@import '../../styles/_colors.scss';
+
+/* @define NavBar */
+.NavBar {
+  align-items: center;
+  background: $darkBackground;
+  display: flex;
+  height: 70px;
+  padding: 0 15%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  &-logo {
+    height: 40px;
+    width: 40px;
+  }
+
+  &-tabs {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin: 0 50px 0 25px;
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &-tab {
+      color: $dark3;
+      font-size: 15px;
+      font-weight: 300;
+      padding: 0 25px;
+
+      &:hover,
+      &.is-active {
+        color: $light;
+      }
+    }
+  }
+
+  &-buttons {
+    margin-left: auto;
+
+    &-button {
+      background: $dark3;
+      border-radius: 18px;
+      cursor: pointer;
+      height: 36px;
+      width: 36px;
+
+      &:hover {
+        background: $light;
+      }
+    }
+  }
+}

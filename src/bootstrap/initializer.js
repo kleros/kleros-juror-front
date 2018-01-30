@@ -11,9 +11,12 @@ import { eth } from './dapp-api'
 
 class Initializer extends PureComponent {
   static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element.isRequired)
+    ]).isRequired,
     accounts: walletSelectors.accountsShape.isRequired,
-    fetchAccounts: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired
+    fetchAccounts: PropTypes.func.isRequired
   }
 
   state = { isWeb3Loaded: eth.accounts !== undefined }

@@ -1,0 +1,45 @@
+@import '../../styles/_colors.scss';
+
+/* @define DisputeCard */
+.DisputeCard {
+  background: $background;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+  height: 140px;
+  padding: 34px 30px;
+  position: relative;
+  width: 320px;
+
+  &-status {
+    border: 3px solid;
+    border-radius: 6px;
+    height: 12px;
+    left: 10px;
+    position: absolute;
+    top: 11px;
+    transition: 1s border-width;
+    width: 12px;
+
+    &:hover {
+      border-width: 6px;
+    }
+
+    &--waiting {
+      border-color: $warning;
+    }
+
+    &--appealable {
+      border-color: $success;
+    }
+
+    &--resolved {
+      border-color: $disabled;
+    }
+  }
+
+  &-oval {
+    border: 1px solid $disabled;
+    border-radius: 1px;
+    display: inline-block;
+    margin: 0.15rem 6px;
+  }
+}
