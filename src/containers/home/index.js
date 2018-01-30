@@ -4,39 +4,44 @@ import { connect } from 'react-redux'
 
 import * as walletActions from '../../actions/wallet'
 import * as walletSelectors from '../../reducers/wallet'
+import * as disputeActions from '../../actions/dispute'
+import * as disputeSelectors from '../../reducers/dispute'
 import { renderIf } from '../../utils/react-redux'
 import Identicon from '../../components/identicon'
 
-import './balance.css'
+import './home.css'
 
-class Balance extends PureComponent {
+class Home extends PureComponent {
   static propTypes = {
     balance: walletSelectors.balanceShape.isRequired,
-    fetchBalance: PropTypes.func.isRequired
+    disputes: disputeSelectors.disputesShape.isRequired,
+    fetchBalance: PropTypes.func.isRequired,
+    fetchDisputes: PropTypes.func.isRequired
   }
 
   componentDidMount() {
-    const { fetchBalance } = this.props
+    const { fetchBalance, fetchDisputes } = this.props
     fetchBalance()
+    fetchDisputes()
   }
 
   render() {
-    const { balance } = this.props
+    const { balance, disputes } = this.props
 
     return (
-      <div className="Balance">
-        <div className="Balance-message">
+      <div className="Home">
+        <div className="Home-message">
           <b>Hello CryptoWorld</b>
         </div>
         <br />
         <br />
-        <div className="Balance-message">
+        <div className="Home-message">
           {renderIf(
             [balance.loading],
             [balance.data],
             [balance.failedLoading],
             {
-              loading: 'Loading...',
+              loading: 'Loading balance...',
               done: (
                 <span>
                   Welcome <Identicon seed="Placeholder" />, You have{' '}
@@ -47,7 +52,7 @@ class Balance extends PureComponent {
                 <span>
                   There was an error fetching your balance. Make sure{' '}
                   <a
-                    className="Balance-message-link"
+                    className="Home-message-link"
                     href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
                   >
                     MetaMask
@@ -58,6 +63,23 @@ class Balance extends PureComponent {
             }
           )}
         </div>
+        <div className="Home-disputes">
+          {renderIf(
+            [disputes.loading],
+            [disputes.data],
+            [disputes.failedLoading],
+            {
+              loading: 'Loading disputes...',
+              done: (
+                <span>
+                  {disputes.data &&
+                    disputes.data.map(d => JSON.stringify(d, null, 2))}
+                </span>
+              ),
+              failed: <span>There was an error fetching your disputes.</span>
+            }
+          )}
+        </div>
       </div>
     )
   }
@@ -65,9 +87,11 @@ class Balance extends PureComponent {
 
 export default connect(
   state => ({
-    balance: state.wallet.balance
+    balance: state.wallet.balance,
+    disputes: state.dispute.disputes
   }),
   {
-    fetchBalance: walletActions.fetchBalance
+    fetchBalance: walletActions.fetchBalance,
+    fetchDisputes: disputeActions.fetchDisputes
   }
-)(Balance)
+)(Home)

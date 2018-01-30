@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { formatDateString } from '../../utils/date'
-import { STATUS_ENUM } from '../../constants/disputes'
+import { STATUS_ENUM } from '../../constants/dispute'
 
 import './dispute-card.css'
 

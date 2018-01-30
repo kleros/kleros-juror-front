@@ -5,12 +5,15 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Switch, Route } from 'react-router-dom'
 
-import Balance from '../containers/balance'
+import NavBar from '../components/nav-bar'
+import Home from '../containers/home'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
 
 import './app.css'
+
+const renderNavBar = () => <NavBar routes={[{ name: 'Home', to: '/' }]} />
 
 const App = ({ store, history, testElement }) => (
   <Provider store={store}>
@@ -20,8 +23,9 @@ const App = ({ store, history, testElement }) => (
           <Helmet>
             <title>Kleros Dapp</title>
           </Helmet>
+          <Route path="/" render={renderNavBar} />
           <Switch>
-            <Route exact path="/" component={Balance} />
+            <Route exact path="/" component={Home} />
           </Switch>
           {testElement}
         </div>
