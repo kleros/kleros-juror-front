@@ -6,7 +6,7 @@
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
     "selector-list-comma-newline-after": "always-multi-line",
-    "order/order": ["custom-properties", "declarations"],
+    "order/order": ["dollar-variables", "at-variables", "less-mixins", "custom-properties", "declarations", "at-rules", "rules"],
     "order/properties-alphabetical-order": true,
     "plugin/selector-bem-pattern": {
       "componentName": "^[A-Z][A-Za-z]+$",

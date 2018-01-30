@@ -7,10 +7,6 @@
   }
 
   .toastr {
-    &.rrt-success {
-      background-color: $success;
-    }
-
     $types: info warning success error;
     $colors: $info $warning $success $error;
 

@@ -20,10 +20,10 @@
     "cz": "git-cz",
     "start:js": "react-scripts start",
     "start:scss":
-      "yarn run build:scss && node-sass-chokidar ./src/ -o ./src/ --watch --recursive",
+      "yarn run build:scss && node-sass-chokidar ./src -o ./src --watch",
     "start:storybook": "start-storybook -p 9001 -c .storybook",
     "build:js": "react-scripts build",
-    "build:scss": "node-sass-chokidar ./src/ -o ./src/",
+    "build:scss": "node-sass-chokidar ./src -o ./src",
     "start": "npm-run-all -p start:scss start:js",
     "build": "npm-run-all build:scss build:js",
     "build:analyze": "source-map-explorer build/static/js/main.*",
