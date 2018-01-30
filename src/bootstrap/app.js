@@ -7,13 +7,18 @@ import { Switch, Route } from 'react-router-dom'
 
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
+import Disputes from '../containers/disputes'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
 
 import './app.css'
 
-const renderNavBar = () => <NavBar routes={[{ name: 'Home', to: '/' }]} />
+const renderNavBar = () => (
+  <NavBar
+    routes={[{ name: 'Home', to: '/' }, { name: 'Disputes', to: '/disputes' }]}
+  />
+)
 
 const App = ({ store, history, testElement }) => (
   <Provider store={store}>
@@ -26,6 +31,7 @@ const App = ({ store, history, testElement }) => (
           <Route path="/" render={renderNavBar} />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/disputes" component={Disputes} />
           </Switch>
           {testElement}
         </div>

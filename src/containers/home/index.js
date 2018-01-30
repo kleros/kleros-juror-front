@@ -42,10 +42,10 @@ class Home extends PureComponent {
             [balance.failedLoading],
             {
               loading: 'Loading balance...',
-              done: (
+              done: balance.data && (
                 <span>
                   Welcome <Identicon seed="Placeholder" />, You have{' '}
-                  {balance.data && balance.data.toString()} ETH.
+                  {balance.data.toString()} ETH.
                 </span>
               ),
               failed: (
@@ -63,18 +63,15 @@ class Home extends PureComponent {
             }
           )}
         </div>
-        <div className="Home-disputes">
+        <div className="Home-message">
           {renderIf(
             [disputes.loading],
             [disputes.data],
             [disputes.failedLoading],
             {
               loading: 'Loading disputes...',
-              done: (
-                <span>
-                  {disputes.data &&
-                    disputes.data.map(d => JSON.stringify(d, null, 2))}
-                </span>
+              done: disputes.data && (
+                <span>You have {disputes.data.length} disputes</span>
               ),
               failed: <span>There was an error fetching your disputes.</span>
             }
