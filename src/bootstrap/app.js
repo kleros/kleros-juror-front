@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import Disputes from '../containers/disputes'
+import PageNotFound from '../components/page-not-found'
 
 import Initializer from './initializer'
 import GlobalComponents from './global-components'
@@ -32,6 +33,7 @@ const App = ({ store, history, testElement }) => (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/disputes" component={Disputes} />
+            <Route component={PageNotFound} />
           </Switch>
           {testElement}
         </div>
