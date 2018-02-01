@@ -31,6 +31,7 @@ const NavBar = ({ routes }) => (
 )
 
 NavBar.propTypes = {
+  // State
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

@@ -1,5 +1,6 @@
 @import '~normalize.css';
 @import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
+@import '~react-table/react-table.css';
 @import '../styles/_colors.scss';
 @import '../styles/_typography.scss';
 @import '../styles/_animations.scss';
@@ -7,11 +8,12 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 html {
   color: $text;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 16px;
 }
 

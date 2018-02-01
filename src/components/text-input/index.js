@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import './text-input.css'
 
 const TextInput = ({
-  placeholder,
   input: { value, onChange },
   meta: { valid, touched, error },
+  placeholder,
   className
 }) => (
   <div
@@ -34,26 +34,29 @@ const TextInput = ({
 )
 
 TextInput.propTypes = {
-  // State
-  placeholder: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
-    .isRequired,
-
   // Redux Form
   input: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     onChange: PropTypes.func.isRequired
   }).isRequired,
   meta: PropTypes.shape({
     valid: PropTypes.bool,
     touched: PropTypes.bool,
     error: PropTypes.string
-  }).isRequired,
+  }),
+
+  // State
+  placeholder: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
+    .isRequired,
 
   // Modifiers
   className: PropTypes.string
 }
 
 TextInput.defaultProps = {
+  // Redux Form
+  meta: {},
+
   // Modifiers
   className: ''
 }

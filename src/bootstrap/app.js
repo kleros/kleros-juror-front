@@ -46,8 +46,6 @@ const App = ({ store, history, testElement }) => (
 App.propTypes = {
   // State
   store: PropTypes.shape({}).isRequired,
-
-  // Router
   history: PropTypes.shape({}).isRequired,
 
   // Testing

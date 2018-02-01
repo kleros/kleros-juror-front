@@ -693,11 +693,11 @@ exports[`Storyshots Dispute Card appealable 1`] = `
           }
         >
           <div
-            className="DisputeCard"
+            className="DisputeCard "
           >
             <div
-              className="DisputeCard-status DisputeCard-status--appealable "
-              data-tip="appealable"
+              className="StatusHint StatusHint--waiting DisputeCard-status"
+              data-tip="waiting"
               data-type="info"
             />
             <h6>
@@ -1010,10 +1010,10 @@ exports[`Storyshots Dispute Card resolved 1`] = `
           }
         >
           <div
-            className="DisputeCard"
+            className="DisputeCard "
           >
             <div
-              className="DisputeCard-status DisputeCard-status--resolved "
+              className="StatusHint StatusHint--resolved DisputeCard-status"
               data-tip="resolved"
               data-type="info"
             />
@@ -1327,10 +1327,10 @@ exports[`Storyshots Dispute Card waiting 1`] = `
           }
         >
           <div
-            className="DisputeCard"
+            className="DisputeCard "
           >
             <div
-              className="DisputeCard-status DisputeCard-status--waiting "
+              className="StatusHint StatusHint--waiting DisputeCard-status"
               data-tip="waiting"
               data-type="info"
             />
@@ -3335,6 +3335,1784 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
               >
                 MetaMask
               </a>
+            </div>
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Status Hint appealable 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            className="StatusHint StatusHint--waiting "
+            data-tip="waiting"
+            data-type="info"
+          />
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Status Hint resolved 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            className="StatusHint StatusHint--resolved "
+            data-tip="resolved"
+            data-type="info"
+          />
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Status Hint waiting 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            className="StatusHint StatusHint--waiting "
+            data-tip="waiting"
+            data-type="info"
+          />
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Table default 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            className="Table "
+          >
+            <div
+              className="Table-searchBar"
+            >
+              <div
+                className="TextInput  Table-searchBar-searchInput"
+              >
+                <input
+                  className="TextInput-input"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <div
+                  className="TextInput-placeholder"
+                >
+                  SEARCH
+                </div>
+              </div>
+            </div>
+            <div
+              className="ReactTable"
+              style={Object {}}
+            >
+              <div
+                className="rt-table"
+                style={undefined}
+              >
+                <div
+                  className="rt-thead -header"
+                  style={
+                    Object {
+                      "minWidth": "500px",
+                    }
+                  }
+                >
+                  <div
+                    className="rt-tr"
+                    style={undefined}
+                  >
+                    <div
+                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      onClick={[Function]}
+                      role="heading"
+                      style={
+                        Object {
+                          "flex": "220 0 auto",
+                          "maxWidth": null,
+                          "width": "220px",
+                        }
+                      }
+                    >
+                      <div
+                        className="rt-resizable-header-content"
+                      >
+                        Case Name
+                      </div>
+                      <div
+                        className="rt-resizer"
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      onClick={[Function]}
+                      role="heading"
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": null,
+                          "width": "100px",
+                        }
+                      }
+                    >
+                      <div
+                        className="rt-resizable-header-content"
+                      >
+                        Dispute ID
+                      </div>
+                      <div
+                        className="rt-resizer"
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      onClick={[Function]}
+                      role="heading"
+                      style={
+                        Object {
+                          "flex": "100 0 auto",
+                          "maxWidth": "110px",
+                          "width": "100px",
+                        }
+                      }
+                    >
+                      <div
+                        className="rt-resizable-header-content"
+                      >
+                        Deadline
+                      </div>
+                      <div
+                        className="rt-resizer"
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                      />
+                    </div>
+                    <div
+                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      onClick={[Function]}
+                      role="heading"
+                      style={
+                        Object {
+                          "flex": "80 0 auto",
+                          "maxWidth": "80px",
+                          "width": "80px",
+                        }
+                      }
+                    >
+                      <div
+                        className="rt-resizable-header-content"
+                      >
+                        Status
+                      </div>
+                      <div
+                        className="rt-resizer"
+                        onMouseDown={[Function]}
+                        onTouchStart={[Function]}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="rt-tbody"
+                  style={
+                    Object {
+                      "minWidth": "500px",
+                    }
+                  }
+                >
+                  <div
+                    className="rt-tr-group"
+                  >
+                    <div
+                      className="rt-tr -odd"
+                      style={undefined}
+                    >
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "220 0 auto",
+                            "maxWidth": null,
+                            "width": "220px",
+                          }
+                        }
+                      >
+                        <div
+                          className="CaseNameCell"
+                        >
+                          <div>
+                            [Blockies]
+                          </div>
+                          <div
+                            className="CaseNameCell-title"
+                          >
+                            <h5>
+                              Website Design 0
+                            </h5>
+                            <small>
+                              Unknown subcourt
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        #0
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": "110px",
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        2.10.2017
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "80 0 auto",
+                            "maxWidth": "80px",
+                            "width": "80px",
+                          }
+                        }
+                      >
+                        <div
+                          className="StatusHint StatusHint--waiting "
+                          data-tip="waiting"
+                          data-type="info"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="rt-tr-group"
+                  >
+                    <div
+                      className="rt-tr -even"
+                      style={undefined}
+                    >
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "220 0 auto",
+                            "maxWidth": null,
+                            "width": "220px",
+                          }
+                        }
+                      >
+                        <div
+                          className="CaseNameCell"
+                        >
+                          <div>
+                            [Blockies]
+                          </div>
+                          <div
+                            className="CaseNameCell-title"
+                          >
+                            <h5>
+                              Website Design 1
+                            </h5>
+                            <small>
+                              Unknown subcourt
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        #1
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": "110px",
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        2.10.2017
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "80 0 auto",
+                            "maxWidth": "80px",
+                            "width": "80px",
+                          }
+                        }
+                      >
+                        <div
+                          className="StatusHint StatusHint--waiting "
+                          data-tip="waiting"
+                          data-type="info"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="rt-tr-group"
+                  >
+                    <div
+                      className="rt-tr -odd"
+                      style={undefined}
+                    >
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "220 0 auto",
+                            "maxWidth": null,
+                            "width": "220px",
+                          }
+                        }
+                      >
+                        <div
+                          className="CaseNameCell"
+                        >
+                          <div>
+                            [Blockies]
+                          </div>
+                          <div
+                            className="CaseNameCell-title"
+                          >
+                            <h5>
+                              Website Design 2
+                            </h5>
+                            <small>
+                              Unknown subcourt
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        #2
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": "110px",
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        2.10.2017
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "80 0 auto",
+                            "maxWidth": "80px",
+                            "width": "80px",
+                          }
+                        }
+                      >
+                        <div
+                          className="StatusHint StatusHint--resolved "
+                          data-tip="resolved"
+                          data-type="info"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="rt-tr-group"
+                  >
+                    <div
+                      className="rt-tr -even"
+                      style={undefined}
+                    >
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "220 0 auto",
+                            "maxWidth": null,
+                            "width": "220px",
+                          }
+                        }
+                      >
+                        <div
+                          className="CaseNameCell"
+                        >
+                          <div>
+                            [Blockies]
+                          </div>
+                          <div
+                            className="CaseNameCell-title"
+                          >
+                            <h5>
+                              Website Design 3
+                            </h5>
+                            <small>
+                              Unknown subcourt
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": null,
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        #3
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "100 0 auto",
+                            "maxWidth": "110px",
+                            "width": "100px",
+                          }
+                        }
+                      >
+                        2.10.2017
+                      </div>
+                      <div
+                        className="rt-td"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "flex": "80 0 auto",
+                            "maxWidth": "80px",
+                            "width": "80px",
+                          }
+                        }
+                      >
+                        <div
+                          className="StatusHint StatusHint--resolved "
+                          data-tip="resolved"
+                          data-type="info"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="pagination-bottom"
+              >
+                <div
+                  className="-pagination"
+                  style={undefined}
+                >
+                  <div
+                    className="-previous"
+                  >
+                    <button
+                      className="-btn"
+                      disabled={true}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Previous
+                    </button>
+                  </div>
+                  <div
+                    className="-center"
+                  >
+                    <span
+                      className="-pageInfo"
+                    >
+                      Page
+                       
+                      <div
+                        className="-pageJump"
+                      >
+                        <input
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyPress={[Function]}
+                          type="number"
+                          value={1}
+                        />
+                      </div>
+                       
+                      of
+                       
+                      <span
+                        className="-totalPages"
+                      >
+                        1
+                      </span>
+                    </span>
+                    <span
+                      className="select-wrap -pageSizeOptions"
+                    >
+                      <select
+                        onChange={[Function]}
+                        value={7}
+                      >
+                        <option
+                          value={7}
+                        >
+                          7
+                           
+                          rows
+                        </option>
+                        <option
+                          value={14}
+                        >
+                          14
+                           
+                          rows
+                        </option>
+                        <option
+                          value={28}
+                        >
+                          28
+                           
+                          rows
+                        </option>
+                        <option
+                          value={56}
+                        >
+                          56
+                           
+                          rows
+                        </option>
+                        <option
+                          value={112}
+                        >
+                          112
+                           
+                          rows
+                        </option>
+                      </select>
+                    </span>
+                  </div>
+                  <div
+                    className="-next"
+                  >
+                    <button
+                      className="-btn"
+                      disabled={true}
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="-loading"
+              >
+                <div
+                  className="-loading-inner"
+                >
+                  Loading...
+                </div>
+              </div>
             </div>
           </div>
           <div

@@ -22,9 +22,9 @@ storiesOf('Text Input', module)
     'default',
     withState(
       {
-        placeholder: 'EMAIL',
         input: { value: '', onChange: null },
-        meta: { valid: undefined, touched: undefined, error: undefined }
+        meta: { valid: undefined, touched: undefined, error: undefined },
+        placeholder: 'EMAIL'
       },
       render
     )
@@ -33,9 +33,9 @@ storiesOf('Text Input', module)
     'touched',
     withState(
       {
-        placeholder: 'EMAIL',
         input: { value: '', onChange: null },
-        meta: { valid: undefined, touched: true, error: undefined }
+        meta: { valid: undefined, touched: true, error: undefined },
+        placeholder: 'EMAIL'
       },
       render
     )
@@ -44,9 +44,9 @@ storiesOf('Text Input', module)
     'valid',
     withState(
       {
-        placeholder: 'EMAIL',
         input: { value: '', onChange: null },
-        meta: { valid: true, touched: undefined, error: undefined }
+        meta: { valid: true, touched: undefined, error: undefined },
+        placeholder: 'EMAIL'
       },
       render
     )
@@ -55,13 +55,13 @@ storiesOf('Text Input', module)
     'error',
     withState(
       {
-        placeholder: 'EMAIL',
         input: { value: '', onChange: null },
         meta: {
           valid: undefined,
           touched: undefined,
           error: 'Please enter a valid email.'
-        }
+        },
+        placeholder: 'EMAIL'
       },
       render
     )

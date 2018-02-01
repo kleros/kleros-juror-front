@@ -22,25 +22,28 @@
   &-input {
     background: none;
     border: none;
-    height: 45px;
+    height: 100%;
+    outline: none;
     padding: 0 5px;
-    width: 199px;
+    width: 100%;
   }
 
   &-placeholder {
     color: $disabled;
     left: 5px;
-    line-height: 45px;
     pointer-events: none;
     position: absolute;
     text-transform: uppercase;
-    top: 0;
-    transition: 0.2s font-size, 0.2s line-height, 0.2s top;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.2s font-size, 0.2s transform, 0.2s top;
 
+    .TextInput-input:focus + &,
     &.is-touched {
       font-size: 8px;
       line-height: 8px;
       top: 5px;
+      transform: none;
     }
   }
 

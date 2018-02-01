@@ -1,1 +1,1 @@
-export const STATUS_ENUM = ['waiting', 'appealable', 'resolved']
+export const STATUS_ENUM = ['waiting', 'waiting', 'resolved', 'resolved']

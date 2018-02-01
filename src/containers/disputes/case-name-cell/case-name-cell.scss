@@ -1,0 +1,12 @@
+/* @define CaseNameCell */
+.CaseNameCell {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  padding-left: 26px;
+  width: 100%;
+
+  &-title {
+    margin-left: 20px;
+  }
+}

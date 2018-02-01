@@ -10,30 +10,9 @@
   width: 320px;
 
   &-status {
-    border: 3px solid;
-    border-radius: 6px;
-    height: 12px;
     left: 10px;
     position: absolute;
     top: 11px;
-    transition: 1s border-width;
-    width: 12px;
-
-    &:hover {
-      border-width: 6px;
-    }
-
-    &--waiting {
-      border-color: $warning;
-    }
-
-    &--appealable {
-      border-color: $success;
-    }
-
-    &--resolved {
-      border-color: $disabled;
-    }
   }
 
   &-oval {

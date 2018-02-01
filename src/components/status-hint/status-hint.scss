@@ -1,0 +1,26 @@
+@import '../../styles/_colors.scss';
+
+/* @define StatusHint */
+.StatusHint {
+  border: 3px solid;
+  border-radius: 6px;
+  height: 12px;
+  transition: 1s border-width;
+  width: 12px;
+
+  &:hover {
+    border-width: 6px;
+  }
+
+  &--waiting {
+    border-color: $warning;
+  }
+
+  &--appealable {
+    border-color: $success;
+  }
+
+  &--resolved {
+    border-color: $disabled;
+  }
+}
