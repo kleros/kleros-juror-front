@@ -20,7 +20,8 @@ html {
 html,
 body,
 #root,
-#router-root {
+#router-root,
+#scroll-root {
   border: 0;
   height: 100%;
   margin: 0;
@@ -29,9 +30,13 @@ body,
 }
 
 #router-root {
+  padding-top: 70px;
+}
+
+#scroll-root {
   background: $background;
   display: flex;
   flex-direction: column;
-  padding-top: 70px;
+  overflow: scroll;
   position: relative;
 }

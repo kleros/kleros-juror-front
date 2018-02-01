@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 import * as disputeActions from '../../actions/dispute'
 import * as disputeSelectors from '../../reducers/dispute'
 import { renderIf } from '../../utils/react-redux'
+import { formatDateString } from '../../utils/date'
+import Table from '../../components/table'
+import StatusHint from '../../components/status-hint'
+
+import CaseNameCell from './case-name-cell'
 
 import './disputes.css'
 
@@ -22,6 +27,36 @@ class Disputes extends Component {
   render() {
     const { disputes } = this.props
 
+    const table = (
+      <Table
+        columns={[
+          {
+            Header: 'Case Name',
+            minWidth: 220,
+            accessor: 'arbitrableContractTitle',
+            Cell: CaseNameCell
+          },
+          {
+            Header: 'Dispute ID',
+            accessor: 'id'
+          },
+          {
+            Header: 'Deadline',
+            maxWidth: 110,
+            accessor: 'deadline',
+            Cell: cell => formatDateString(cell.value)
+          },
+          {
+            Header: 'Status',
+            maxWidth: 80,
+            accessor: 'status',
+            Cell: cell => <StatusHint status={cell.value} />
+          }
+        ]}
+        loading={disputes.loading}
+        data={disputes.data}
+      />
+    )
     return (
       <div className="Disputes">
         {renderIf(
@@ -29,10 +64,8 @@ class Disputes extends Component {
           [disputes.data],
           [disputes.failedLoading],
           {
-            loading: 'Loading disputes...',
-            done: disputes.data && (
-              <span>You have {disputes.data.length} disputes</span>
-            ),
+            loading: table,
+            done: table,
             failed: <span>There was an error fetching your disputes.</span>
           }
         )}

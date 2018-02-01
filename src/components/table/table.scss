@@ -4,6 +4,7 @@
 // React Table
 .ReactTable {
   border: none;
+  max-height: calc(100% - 60px);
 
   // Header
   .rt-thead.-header {
@@ -83,6 +84,7 @@
 
 /* @define Table */
 .Table {
+  height: 100%;
   min-width: 650px;
 
   &-searchBar {
@@ -91,6 +93,7 @@
 
     &-searchInput {
       border: none;
+      border-radius: 0;
       height: 100%;
       margin: 0;
       width: 100%;

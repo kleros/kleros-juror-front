@@ -30,11 +30,13 @@ const App = ({ store, history, testElement }) => (
             <title>Kleros Dapp</title>
           </Helmet>
           <Route path="/" render={renderNavBar} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/disputes" component={Disputes} />
-            <Route component={PageNotFound} />
-          </Switch>
+          <div id="scroll-root">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/disputes" component={Disputes} />
+              <Route component={PageNotFound} />
+            </Switch>
+          </div>
           {testElement}
         </div>
       </ConnectedRouter>

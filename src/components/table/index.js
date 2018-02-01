@@ -13,7 +13,7 @@ class Table extends PureComponent {
     const { data } = this.props
     this.state = {
       searchInput: '',
-      filteredData: data
+      filteredData: data || []
     }
   }
 
@@ -21,12 +21,14 @@ class Table extends PureComponent {
     const { data } = this.props
     this.setState({
       searchInput: event.target.value,
-      filteredData: data.filter(obj => fuzzyObjSearch(event.target.value, obj))
+      filteredData: data
+        ? data.filter(obj => fuzzyObjSearch(event.target.value, obj))
+        : []
     })
   }
 
   render() {
-    const { className, ...rest } = this.props
+    const { data, className, ...rest } = this.props
     const { searchInput, filteredData } = this.state
 
     return (
@@ -40,7 +42,7 @@ class Table extends PureComponent {
         </div>
         <ReactTable
           // Number of rows
-          minRows={rest.data.length || 3}
+          minRows={(data && data.length) || 3}
           pageSizeOptions={[7, 14, 28, 56, 112]}
           defaultPageSize={7}
           // Indicators
