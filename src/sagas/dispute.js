@@ -1,7 +1,7 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects'
 
-import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
+import * as disputeActions from '../actions/dispute'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { receiveAction, errorAction } from '../utils/action'
 

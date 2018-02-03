@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects'
 
-import * as walletActions from '../actions/wallet'
 import * as walletSelectors from '../reducers/wallet'
+import * as walletActions from '../actions/wallet'
 import { eth } from '../bootstrap/dapp-api'
 import { errorAction } from '../utils/action'
 import { ETH_NO_ACCOUNTS } from '../constants/error'

@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import * as walletActions from '../../actions/wallet'
 import * as walletSelectors from '../../reducers/wallet'
-import * as disputeActions from '../../actions/dispute'
+import * as walletActions from '../../actions/wallet'
 import * as disputeSelectors from '../../reducers/dispute'
+import * as disputeActions from '../../actions/dispute'
 import { renderIf } from '../../utils/react-redux'
 import Identicon from '../../components/identicon'
 

@@ -4,7 +4,6 @@
 // React Table
 .ReactTable {
   border: none;
-  max-height: calc(100% - 60px);
 
   // Header
   .rt-thead.-header {
@@ -84,7 +83,9 @@
 
 /* @define Table */
 .Table {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
   min-width: 650px;
 
   &-searchBar {
