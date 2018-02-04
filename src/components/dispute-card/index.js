@@ -2,19 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { formatDateString } from '../../utils/date'
-import { STATUS_ENUM } from '../../constants/disputes'
+import StatusHint from '../status-hint'
 
 import './dispute-card.css'
 
 const DisputeCard = ({ status, subcourt, date, title, className }) => (
-  <div className="DisputeCard">
-    <div
-      className={`DisputeCard-status ${`DisputeCard-status--${
-        STATUS_ENUM[status]
-      }`} ${className}`}
-      data-tip={STATUS_ENUM[status]}
-      data-type="info"
-    />
+  <div className={`DisputeCard ${className}`}>
+    <StatusHint status={status} className="DisputeCard-status" />
     <h6>
       {subcourt}
       <small>

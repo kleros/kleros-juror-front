@@ -16,6 +16,12 @@
   padding: 0 20px;
   text-align: center;
 
+  &.is-disabled {
+    background: $disabled;
+    box-shadow: none;
+    cursor: initial;
+  }
+
   &-label {
     color: $buttonText;
     line-height: 50px;

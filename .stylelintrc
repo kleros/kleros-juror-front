@@ -16,7 +16,7 @@
         "combined":
           "^(.{componentName}(-{1,2}[a-z][A-Za-z]+)*|&)(.is-[a-z][A-Za-z]+)?$"
       },
-      "utilitySelectors": "^\\.util-[A-Za-z]+$"
+      "utilitySelectors": "^\\.form-[A-Za-z]+$"
     }
   }
 }

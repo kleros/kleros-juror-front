@@ -1,0 +1,11 @@
+@import '../../styles/_colors.scss';
+
+/* @define FormInfo */
+.FormInfo {
+  margin-bottom: 14px;
+  width: 100%;
+
+  &-text {
+    color: $dark2;
+  }
+}

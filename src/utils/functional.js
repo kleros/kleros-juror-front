@@ -26,3 +26,15 @@ export function objMap(
 
   return result
 }
+
+/**
+ * Tests whether at least one element in the object passes the test implemented by the provided function.
+ * @export
+ * @param {object} obj - The obj to map over.
+ * @param {object} func - The test function to call with (value, key).
+ * @returns {boolean} - True if the test passed, false otherwise.
+ */
+export function objSome(obj, func) {
+  for (const key of Object.keys(obj)) if (func(obj[key], key)) return true
+  return false
+}

@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import * as walletActions from '../actions/wallet'
 import * as walletSelectors from '../reducers/wallet'
-import { renderIf } from '../utils/react-redux'
+import * as walletActions from '../actions/wallet'
+import { renderIf } from '../utils/redux'
 import RequiresMetaMask from '../components/requires-meta-mask'
 
 import { eth } from './dapp-api'
@@ -31,13 +31,15 @@ class Initializer extends PureComponent {
     const { accounts, children } = this.props
 
     return renderIf(
-      [accounts.loading],
-      [accounts.data && accounts.data[0]],
-      [!isWeb3Loaded, accounts.failedLoading],
+      accounts,
       {
         loading: 'Loading accounts...',
         done: children,
-        failed: <RequiresMetaMask needsUnlock={isWeb3Loaded} />
+        failedLoading: <RequiresMetaMask needsUnlock={isWeb3Loaded} />
+      },
+      {
+        extraValues: [accounts.data && accounts.data[0]],
+        extraFailedValues: [!isWeb3Loaded]
       }
     )
   }

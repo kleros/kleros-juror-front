@@ -1,23 +1,28 @@
 @import '~normalize.css';
 @import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
+@import '~react-table/react-table.css';
 @import '../styles/_colors.scss';
 @import '../styles/_typography.scss';
+@import '../styles/_animations.scss';
 @import '../styles/_toastr.scss';
+@import '../styles/_form.scss';
 
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif !important;
 }
 
 html {
   color: $text;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 16px;
 }
 
 html,
 body,
 #root,
-#router-root {
+#router-root,
+#scroll-root {
   border: 0;
   height: 100%;
   margin: 0;
@@ -26,7 +31,13 @@ body,
 }
 
 #router-root {
+  padding-top: 70px;
+}
+
+#scroll-root {
   background: $background;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+  position: relative;
 }

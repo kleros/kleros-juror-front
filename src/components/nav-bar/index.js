@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-import logo from '../../../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
 
 import './nav-bar.css'
 
@@ -31,6 +31,7 @@ const NavBar = ({ routes }) => (
 )
 
 NavBar.propTypes = {
+  // State
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
