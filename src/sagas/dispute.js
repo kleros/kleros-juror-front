@@ -1,14 +1,14 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects'
 
-import * as walletSelectors from '../reducers/wallet'
 import * as disputeActions from '../actions/dispute'
+import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
-import { receiveAction, errorAction } from '../utils/action'
+import { action, errorAction } from '../utils/action'
 
 /**
  * Fetches the current wallet's disputes.
  */
-export function* fetchDisputes() {
+function* fetchDisputes() {
   try {
     const disputes = yield call(
       kleros.disputes.getDisputesForUser,
@@ -16,9 +16,9 @@ export function* fetchDisputes() {
       yield select(walletSelectors.getAccount)
     )
 
-    yield put(receiveAction(disputeActions.RECEIVE_DISPUTES, { disputes }))
+    yield put(action(disputeActions.disputes.RECEIVE, { disputes }))
   } catch (err) {
-    yield put(errorAction(disputeActions.FAIL_FETCH_DISPUTES, err))
+    yield put(errorAction(disputeActions.disputes.FAIL_FETCH, err))
   }
 }
 
@@ -27,5 +27,6 @@ export function* fetchDisputes() {
  * @export default disputeSaga
  */
 export default function* disputeSaga() {
-  yield takeLatest(disputeActions.FETCH_DISPUTES, fetchDisputes)
+  // Disputes
+  yield takeLatest(disputeActions.disputes.FETCH, fetchDisputes)
 }

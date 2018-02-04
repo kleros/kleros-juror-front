@@ -3,6 +3,7 @@ import { delay } from 'redux-saga'
 import { spawn, call, all } from 'redux-saga/effects'
 
 import walletSaga from './wallet'
+import arbitratorSaga from './arbitrator'
 import disputeSaga from './dispute'
 
 /**
@@ -30,7 +31,7 @@ export function makeRestartable(saga) {
   }
 }
 
-const rootSagas = [walletSaga, disputeSaga].map(makeRestartable)
+const rootSagas = [walletSaga, arbitratorSaga, disputeSaga].map(makeRestartable)
 
 /**
  * The root saga.

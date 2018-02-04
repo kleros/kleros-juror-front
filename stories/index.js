@@ -1,5 +1,6 @@
 import './button'
 import './dispute-card'
+import './form'
 import './identicon'
 import './nav-bar'
 import './page-not-found'

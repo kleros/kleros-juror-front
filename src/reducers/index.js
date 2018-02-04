@@ -4,6 +4,7 @@ import { reducer as form } from 'redux-form'
 import { reducer as toastr } from 'react-redux-toastr'
 
 import wallet from './wallet'
+import arbitrator from './arbitrator'
 import dispute from './dispute'
 
 // Export root reducer
@@ -12,5 +13,6 @@ export default combineReducers({
   form,
   toastr,
   wallet,
+  arbitrator,
   dispute
 })

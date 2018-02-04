@@ -90,7 +90,10 @@ function createFields({ UIKit, store }, formName, schema) {
         : null,
       props: {
         ...rawField.props,
-        placeholder: rawField.props ? rawField.props.placeholder : name
+        placeholder:
+          rawField.props && rawField.props.placeholder
+            ? rawField.props.placeholder
+            : name
       }
     }
     let Component = UIKit[field.type]
@@ -129,12 +132,9 @@ function createFields({ UIKit, store }, formName, schema) {
 function form(UIKitAndStore, formName, schema, reduxFormOptions) {
   const fields = createFields(UIKitAndStore, formName, schema)
   const Form = ({ formClassName, fieldsClassName, disabled }) => (
-    <form className={formClassName}>
+    <form className={`Form ${formClassName}`}>
       <fieldset className="Form-fieldset" disabled={disabled}>
-        <div
-          className={fieldsClassName}
-          style={{ display: 'flex', flexFlow: 'row wrap' }}
-        >
+        <div className={`Form-fieldset-fields ${fieldsClassName}`}>
           {fields}
         </div>
       </fieldset>

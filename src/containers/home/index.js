@@ -6,15 +6,18 @@ import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
-import { renderIf } from '../../utils/react-redux'
+import { renderIf } from '../../utils/redux'
 import Identicon from '../../components/identicon'
 
 import './home.css'
 
 class Home extends PureComponent {
   static propTypes = {
+    // State
     balance: walletSelectors.balanceShape.isRequired,
     disputes: disputeSelectors.disputesShape.isRequired,
+
+    // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
     fetchDisputes: PropTypes.func.isRequired
   }
@@ -36,46 +39,38 @@ class Home extends PureComponent {
         <br />
         <br />
         <div className="Home-message">
-          {renderIf(
-            [balance.loading],
-            [balance.data],
-            [balance.failedLoading],
-            {
-              loading: 'Loading balance...',
-              done: balance.data && (
-                <span>
-                  Welcome <Identicon seed="Placeholder" />, You have{' '}
-                  {balance.data.toString()} ETH.
-                </span>
-              ),
-              failed: (
-                <span>
-                  There was an error fetching your balance. Make sure{' '}
-                  <a
-                    className="Home-message-link"
-                    href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
-                  >
-                    MetaMask
-                  </a>{' '}
-                  is unlocked and refresh the page.
-                </span>
-              )
-            }
-          )}
+          {renderIf(balance, {
+            loading: 'Loading balance...',
+            done: balance.data && (
+              <span>
+                Welcome <Identicon seed="Placeholder" />, You have{' '}
+                {balance.data.toString()} ETH.
+              </span>
+            ),
+            failedLoading: (
+              <span>
+                There was an error fetching your balance. Make sure{' '}
+                <a
+                  className="Home-message-link"
+                  href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+                >
+                  MetaMask
+                </a>{' '}
+                is unlocked and refresh the page.
+              </span>
+            )
+          })}
         </div>
         <div className="Home-message">
-          {renderIf(
-            [disputes.loading],
-            [disputes.data],
-            [disputes.failedLoading],
-            {
-              loading: 'Loading disputes...',
-              done: disputes.data && (
-                <span>You have {disputes.data.length} disputes</span>
-              ),
-              failed: <span>There was an error fetching your disputes.</span>
-            }
-          )}
+          {renderIf(disputes, {
+            loading: 'Loading disputes...',
+            done: disputes.data && (
+              <span>You have {disputes.data.length} disputes</span>
+            ),
+            failedLoading: (
+              <span>There was an error fetching your disputes.</span>
+            )
+          })}
         </div>
       </div>
     )

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
-import { renderIf } from '../../utils/react-redux'
+import { renderIf } from '../../utils/redux'
 import { formatDateString } from '../../utils/date'
 import Table from '../../components/table'
 import StatusHint from '../../components/status-hint'
@@ -15,7 +15,10 @@ import './disputes.css'
 
 class Disputes extends Component {
   static propTypes = {
+    // State
     disputes: disputeSelectors.disputesShape.isRequired,
+
+    // Action Dispatchers
     fetchDisputes: PropTypes.func.isRequired
   }
 
@@ -59,16 +62,11 @@ class Disputes extends Component {
     )
     return (
       <div className="Disputes">
-        {renderIf(
-          [disputes.loading],
-          [disputes.data],
-          [disputes.failedLoading],
-          {
-            loading: table,
-            done: table,
-            failed: <span>There was an error fetching your disputes.</span>
-          }
-        )}
+        {renderIf(disputes, {
+          loading: table,
+          done: table,
+          failedLoading: <span>There was an error fetching your disputes.</span>
+        })}
       </div>
     )
   }

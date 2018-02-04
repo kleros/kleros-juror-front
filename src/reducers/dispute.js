@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types'
 
-import createReducer from '../utils/create-reducer'
-import { createShape } from '../utils/react-redux'
+import createReducer, { createResource } from '../utils/redux'
+
+// Shapes
+const {
+  shape: disputesShape,
+  initialState: disputesInitialState
+} = createResource(PropTypes.arrayOf(PropTypes.string))
+export { disputesShape }
 
 // Reducer
 export default createReducer({
-  disputes: {
-    loading: false,
-    data: null,
-    failedLoading: false
-  }
+  disputes: disputesInitialState
 })
 
 // Selectors
-
-// Shapes
-export const disputesShape = createShape(PropTypes.arrayOf(PropTypes.string))

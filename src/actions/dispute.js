@@ -1,7 +1,11 @@
-// Actions
-export const FETCH_DISPUTES = 'FETCH_DISPUTES'
-export const RECEIVE_DISPUTES = 'RECEIVE_DISPUTES'
-export const FAIL_FETCH_DISPUTES = 'FAIL_FETCH_DISPUTES'
+import { createActions } from '../utils/redux'
 
-// Action Creators
-export const fetchDisputes = () => ({ type: FETCH_DISPUTES })
+/* Actions */
+
+// Disputes
+export const disputes = createActions('DISPUTES')
+
+/* Action Creators */
+
+// Disputes
+export const fetchDisputes = () => ({ type: disputes.FETCH })

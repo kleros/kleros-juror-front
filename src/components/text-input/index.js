@@ -5,7 +5,7 @@ import './text-input.css'
 
 const TextInput = ({
   input: { value, onChange },
-  meta: { valid, touched, error },
+  meta: { touched, valid, error },
   placeholder,
   className
 }) => (
@@ -40,8 +40,8 @@ TextInput.propTypes = {
     onChange: PropTypes.func.isRequired
   }).isRequired,
   meta: PropTypes.shape({
-    valid: PropTypes.bool,
     touched: PropTypes.bool,
+    valid: PropTypes.bool,
     error: PropTypes.string
   }),
 

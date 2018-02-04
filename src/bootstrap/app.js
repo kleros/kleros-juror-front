@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import Disputes from '../containers/disputes'
+import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
 
 import Initializer from './initializer'
@@ -17,7 +18,11 @@ import './app.css'
 
 const renderNavBar = () => (
   <NavBar
-    routes={[{ name: 'Home', to: '/' }, { name: 'Disputes', to: '/disputes' }]}
+    routes={[
+      { name: 'Home', to: '/' },
+      { name: 'Disputes', to: '/disputes' },
+      { name: 'Testing Panel', to: '/testing-panel' }
+    ]}
   />
 )
 
@@ -34,6 +39,7 @@ const App = ({ store, history, testElement }) => (
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/disputes" component={Disputes} />
+              <Route exact path="/testing-panel" component={TestingPanel} />
               <Route component={PageNotFound} />
             </Switch>
           </div>

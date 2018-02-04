@@ -15,7 +15,7 @@ beforeEach(() => {
   integration = setupIntegrationTest({ router: { location: '/' } })
 })
 
-it('Renders and loads balance correctly.', async () => {
+it.skip('Renders and loads balance correctly.', async () => {
   const app = integration.mountApp()
   await flushPromises()
   app.update()
