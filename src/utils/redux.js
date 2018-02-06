@@ -39,7 +39,6 @@ export default function createReducer(initialState, reducerMap) {
         const resource = constantToCamelCase(
           action.type.slice(typePrefixLen + 1)
         )
-        console.log(resource)
         if (state[resource])
           newState = {
             ...newState,

@@ -1010,7 +1010,7 @@ exports[`Storyshots Dispute Card appealable 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                13.10.2017
+                13.10 at 5:36 pm
               </small>
             </h6>
             <h5>
@@ -1327,7 +1327,7 @@ exports[`Storyshots Dispute Card resolved 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                25.10.2017
+                25.10 at 7:23 am
               </small>
             </h6>
             <h5>
@@ -1644,7 +1644,7 @@ exports[`Storyshots Dispute Card waiting 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                2.10.2017
+                2.10 at 3:50 am
               </small>
             </h6>
             <h5>
@@ -5640,7 +5640,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10.2017
+                        2.10 at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -5721,7 +5721,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10.2017
+                        2.10 at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -5802,7 +5802,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10.2017
+                        2.10 at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -5883,7 +5883,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10.2017
+                        2.10 at 3:50 am
                       </div>
                       <div
                         className="rt-td"
