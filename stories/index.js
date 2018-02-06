@@ -1,3 +1,4 @@
+import './balance-pie-chart'
 import './button'
 import './dispute-card'
 import './form'
