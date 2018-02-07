@@ -6820,7 +6820,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-resizable-header-content"
                       >
-                        Dispute ID
+                        Subcourt
                       </div>
                       <div
                         className="rt-resizer"
@@ -6915,7 +6915,8 @@ exports[`Storyshots Table default 1`] = `
                               Website Design 0
                             </h5>
                             <small>
-                              Unknown subcourt
+                              #
+                              0
                             </small>
                           </div>
                         </div>
@@ -6931,7 +6932,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        #0
+                        Unknown subcourt
                       </div>
                       <div
                         className="rt-td"
@@ -6996,7 +6997,8 @@ exports[`Storyshots Table default 1`] = `
                               Website Design 1
                             </h5>
                             <small>
-                              Unknown subcourt
+                              #
+                              1
                             </small>
                           </div>
                         </div>
@@ -7012,7 +7014,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        #1
+                        Unknown subcourt
                       </div>
                       <div
                         className="rt-td"
@@ -7077,7 +7079,8 @@ exports[`Storyshots Table default 1`] = `
                               Website Design 2
                             </h5>
                             <small>
-                              Unknown subcourt
+                              #
+                              2
                             </small>
                           </div>
                         </div>
@@ -7093,7 +7096,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        #2
+                        Unknown subcourt
                       </div>
                       <div
                         className="rt-td"
@@ -7158,7 +7161,8 @@ exports[`Storyshots Table default 1`] = `
                               Website Design 3
                             </h5>
                             <small>
-                              Unknown subcourt
+                              #
+                              3
                             </small>
                           </div>
                         </div>
@@ -7174,7 +7178,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        #3
+                        Unknown subcourt
                       </div>
                       <div
                         className="rt-td"

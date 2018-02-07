@@ -40,8 +40,9 @@ class Disputes extends Component {
             Cell: CaseNameCell
           },
           {
-            Header: 'Dispute ID',
-            accessor: 'id'
+            id: 'subcourt',
+            Header: 'Subcourt',
+            accessor: () => 'Unknown subcourt'
           },
           {
             Header: 'Deadline',
