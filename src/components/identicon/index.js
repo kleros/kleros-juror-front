@@ -4,14 +4,20 @@ import Blockies from 'react-blockies'
 
 import './identicon.css'
 
-const Identicon = ({ size, scale, ...rest }) => (
-  <div className="Identicon" style={{ height: `${size * scale}px` }}>
-    <Blockies {...rest} size={size} scale={scale} />
-  </div>
-)
+const Identicon = ({ seed, size, scale, ...rest }) => {
+  const length = `${size * scale}px`
+  return (
+    <div className="Identicon" style={{ height: length, width: length }}>
+      <a href={`https://etherscan.io/address/${seed}`} target="_blank">
+        <Blockies {...rest} seed={seed} size={size} scale={scale} />
+      </a>
+    </div>
+  )
+}
 
 Identicon.propTypes = {
   // React Blockies
+  seed: PropTypes.number.isRequired,
   size: PropTypes.number,
   scale: PropTypes.number,
   ...Blockies.propTypes

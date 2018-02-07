@@ -11,7 +11,10 @@ const routes = [
 
 const render = routes => () => (
   <div style={{ width: '700px' }}>
-    <NavBar routes={routes} />
+    <NavBar
+      routes={routes}
+      accounts={{ loading: false, data: ['Placeholder'], failedLoading: false }}
+    />
   </div>
 )
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Switch, Route } from 'react-router-dom'
 
@@ -16,14 +16,17 @@ import GlobalComponents from './global-components'
 
 import './app.css'
 
-const renderNavBar = () => (
-  <NavBar
-    routes={[
-      { name: 'Home', to: '/' },
-      { name: 'Disputes', to: '/disputes' },
-      { name: 'Testing Panel', to: '/testing-panel' }
-    ]}
-  />
+const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
+  ({ accounts }) => (
+    <NavBar
+      routes={[
+        { name: 'Home', to: '/' },
+        { name: 'Disputes', to: '/disputes' },
+        { name: 'Testing Panel', to: '/testing-panel' }
+      ]}
+      accounts={accounts}
+    />
+  )
 )
 
 const App = ({ store, history, testElement }) => (
@@ -34,7 +37,7 @@ const App = ({ store, history, testElement }) => (
           <Helmet>
             <title>Kleros Dapp</title>
           </Helmet>
-          <Route path="/" render={renderNavBar} />
+          <Route path="/" component={ConnectedNavBar} />
           <div id="scroll-root">
             <Switch>
               <Route exact path="/" component={Home} />

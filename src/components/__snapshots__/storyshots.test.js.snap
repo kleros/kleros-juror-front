@@ -3634,7 +3634,11 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
               >
                 <div
                   className="NavBar-buttons-button"
-                />
+                >
+                  <div>
+                    [Blockies]
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -3988,7 +3992,11 @@ exports[`Storyshots Nav Bar with routes 1`] = `
               >
                 <div
                   className="NavBar-buttons-button"
-                />
+                >
+                  <div>
+                    [Blockies]
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -7,14 +7,12 @@
   cursor: pointer;
   height: 100px;
   position: relative;
-  width: 320px;
 
   &-message {
     height: 100px;
     overflow: hidden;
     padding: 26px 30px;
     text-overflow: ellipsis;
-    width: 320px;
 
     &:hover {
       background: #47cf73;
