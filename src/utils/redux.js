@@ -39,7 +39,6 @@ export default function createReducer(initialState, reducerMap) {
         const resource = constantToCamelCase(
           action.type.slice(typePrefixLen + 1)
         )
-        console.log(resource)
         if (state[resource])
           newState = {
             ...newState,
@@ -62,11 +61,11 @@ export default function createReducer(initialState, reducerMap) {
 }
 
 /**
- * Creates an initial state object with common loading/error props and a prop-types shape with common loading/error props.
+ * Creates an initial state object with common loading/error properties and its prop-types shape.
  * @export
- * @param {any} shape - The shape to use for the data prop.
- * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object.
- * @returns {object} - an object with the initial state object and a prop-types shape as properties.
+ * @param {any} shape - The prop-types shape to use for the data property.
+ * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object for specifying wether the resource can be created, updated, and/or deleted.
+ * @returns {object} { initialState, shape } - an object with the initial state object and its prop-types shape as properties.
  */
 export function createResource(
   shape,
@@ -123,10 +122,10 @@ export function createResource(
 }
 
 /**
- * Creates an object with common create/fetch/update/delete action constants for a given resource name.
+ * Creates an object with common create, fetch, update, and/or delete action constants for a given resource name.
  * @export
  * @param {any} resourceName - The name of the resource to create the actions for.
- * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object.
+ * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object for specifying wether the resource can be created, updated, and/or deleted.
  * @returns {object} - an object with the action constants as properties.
  */
 export function createActions(
@@ -147,18 +146,16 @@ export function createActions(
 }
 
 /**
- * Implements common rendering logic for loading and failures.
+ * Implements common rendering logic for resource objects.
  * @export
- * @param {array} shape - The shape whose data rendering depends on.
+ * @param {array} resource - The resource object whose data rendering depends on.
  * @param {object} renderables - Renderables to render depending on conditions.
- * @param {object} extraValues - Optional extra loading/data/failed values.
+ * @param {object} { extraLoadingValues, extraValues, extraFailedValues } = {} - Optional extra loading, data, and/or failed values.
  * @returns {any} - A react renderable.
  */
 export function renderIf(
-  shape,
+  resource,
   {
-    loadingExtra,
-    failedLoadingExtra,
     creating,
     loading,
     updating,
@@ -167,30 +164,32 @@ export function renderIf(
     failedCreating,
     failedLoading,
     failedUpdating,
-    failedDeleting
+    failedDeleting,
+    loadingExtra,
+    failedLoadingExtra
   },
   { extraLoadingValues, extraValues, extraFailedValues } = {}
 ) {
-  if (shape.failedCreating) return failedCreating || failedLoading
-  if (shape.failedLoading) return failedLoading
-  if (shape.failedUpdating) return failedUpdating || failedLoading
-  if (shape.failedDeleting) return failedDeleting || failedLoading
+  if (resource.failedCreating) return failedCreating || failedLoading
+  if (resource.failedLoading) return failedLoading
+  if (resource.failedUpdating) return failedUpdating || failedLoading
+  if (resource.failedDeleting) return failedDeleting || failedLoading
 
-  if (shape.creating) return creating || loading
-  if (shape.loading) return loading
-  if (shape.updating) return updating || loading
-  if (shape.deleting) return deleting || loading
+  if (resource.creating) return creating || loading
+  if (resource.loading) return loading
+  if (resource.updating) return updating || loading
+  if (resource.deleting) return deleting || loading
 
   if (extraFailedValues && extraFailedValues.some(v => v))
     return failedLoadingExtra || failedLoading
   if (extraLoadingValues && extraLoadingValues.some(v => v))
     return loadingExtra || loading
 
-  const shapeFailed = shape.data === null || shape.data === undefined
+  const resourceFailed = resource.data === null || resource.data === undefined
   const extraFailed =
     !extraValues || !extraValues.every(v => v !== null && v !== undefined)
-  if (shapeFailed && extraFailed)
-    return shapeFailed ? failedLoading : failedLoadingExtra
+  if (resourceFailed && extraFailed)
+    return resourceFailed ? failedLoading : failedLoadingExtra
 
   return done
 }

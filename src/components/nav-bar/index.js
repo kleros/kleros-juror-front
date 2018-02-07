@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
+import * as walletSelectors from '../../reducers/wallet'
+import { renderIf } from '../../utils/redux'
+import Identicon from '../../components/identicon'
 import logo from '../../assets/images/logo.png'
 
 import './nav-bar.css'
 
-const NavBar = ({ routes }) => (
+const NavBar = ({ routes, accounts }) => (
   <div className="NavBar">
     <a src="https://kleros.io">
       <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
@@ -25,7 +28,13 @@ const NavBar = ({ routes }) => (
       ))}
     </div>
     <div className="NavBar-buttons">
-      <div className="NavBar-buttons-button" />
+      <div className="NavBar-buttons-button">
+        {renderIf(accounts, {
+          loading: '...',
+          done: accounts.data && <Identicon seed={accounts.data[0]} size={9} />,
+          failedLoading: '...'
+        })}
+      </div>
     </div>
   </div>
 )
@@ -37,7 +46,8 @@ NavBar.propTypes = {
       name: PropTypes.string.isRequired,
       to: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired
+  ).isRequired,
+  accounts: walletSelectors.accountsShape.isRequired
 }
 
 export default NavBar

@@ -1,17 +1,40 @@
 /* @define Home */
 .Home {
-  background: #273142;
-  height: 100%;
+  padding: 43px 15% 76px;
 
-  &-message {
-    color: white;
-    font-size: 40px;
-    padding-top: 10%;
-    text-align: center;
+  &-stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 27px 0 -20px;
+    width: 100%;
 
-    &-link {
-      color: #999;
-      text-decoration: none;
+    &-block {
+      flex: 1;
+      margin-bottom: 20px;
+
+      &-content {
+        display: flex;
+
+        &-header {
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  &-separatorHeader {
+    margin-top: 50px;
+  }
+
+  &-cardList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -10px -10px 0;
+
+    &-card {
+      flex: 1 0 33.33%;
+      padding: 0 10px 10px 0;
     }
   }
 }

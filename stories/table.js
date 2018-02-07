@@ -8,7 +8,7 @@ import StatusHint from '../src/components/status-hint'
 
 const deadline = new Date(Date.now() - 1e10)
 const data = [0, 1, 2, 3].map(n => ({
-  id: `#${n}`,
+  id: n,
   arbitrableContractAddress: `${n}XXXXX`,
   arbitrableContractTitle: `Website Design ${n}`,
   status: n,
@@ -25,8 +25,9 @@ storiesOf('Table', module).add('default', () => (
         Cell: CaseNameCell
       },
       {
-        Header: 'Dispute ID',
-        accessor: 'id'
+        id: 'subcourt',
+        Header: 'Subcourt',
+        accessor: () => 'Unknown subcourt'
       },
       {
         Header: 'Deadline',
