@@ -8,13 +8,13 @@
 @import '../styles/_form.scss';
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: 'Roboto', sans-serif !important;
+  scroll-behavior: smooth !important;
 }
 
 html {
   color: $text;
-  font-family: 'Roboto', sans-serif !important;
   font-size: 16px;
 }
 

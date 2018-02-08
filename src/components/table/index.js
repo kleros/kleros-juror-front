@@ -20,9 +20,9 @@ class Table extends PureComponent {
   onSearchInputChange = event => {
     const { data } = this.props
     this.setState({
-      searchInput: event.target.value,
+      searchInput: event.currentTarget.value,
       filteredData: data
-        ? data.filter(obj => fuzzyObjSearch(event.target.value, obj))
+        ? data.filter(obj => fuzzyObjSearch(event.currentTarget.value, obj))
         : []
     })
   }

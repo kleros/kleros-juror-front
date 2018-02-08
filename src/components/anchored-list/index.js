@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import zenscroll from 'zenscroll'
 
 import './anchored-list.css'
 
@@ -25,11 +26,16 @@ class AnchoredList extends Component {
     this.setAnchorBottoms()
   }
 
-  getRef = ref => (this.ref = ref)
+  getRef = ref => {
+    this.scroller = zenscroll.createScroller(ref)
+    this.ref = ref
+  }
 
   getChildRef = ref => (this.childRefs = [...this.childRefs, ref])
 
   setAnchorBottoms = () =>
+    this.ref &&
+    this.childRefs.length &&
     this.setState({
       anchorBottoms: this.childRefs.map(childRef =>
         Math.max(
@@ -41,6 +47,32 @@ class AnchoredList extends Component {
         )
       )
     })
+
+  calcAnchorLeftAndOpacity = i => {
+    const defaultLeft = 44
+    const defaultOpacity = 1
+    const defaultLeftAndOpacity = {
+      left: `${defaultLeft}px`,
+      opacity: defaultOpacity
+    }
+    if (i === 0) return defaultLeftAndOpacity
+
+    const { anchorBottoms } = this.state
+    if (anchorBottoms[i - 1] !== anchorBottoms[i]) return defaultLeftAndOpacity
+
+    let count = i - 1 // Already counted the first one
+    while (count >= 0 && anchorBottoms[count - 1] === anchorBottoms[count])
+      count--
+    count = i - count
+
+    return {
+      left: `${defaultLeft - count * 8}px`,
+      opacity: defaultOpacity - count * 0.1
+    }
+  }
+
+  handleAnchorClick = event =>
+    this.scroller.to(this.childRefs[event.currentTarget.id])
 
   render() {
     const { items } = this.props
@@ -62,12 +94,15 @@ class AnchoredList extends Component {
             >
               {item.anchor && (
                 <div
+                  id={i}
                   className="AnchoredList-container-item-anchor"
                   style={{
-                    bottom: anchorBottoms[i]
+                    bottom: anchorBottoms[i],
+                    ...this.calcAnchorLeftAndOpacity(i)
                   }}
                   data-tip={item.anchor}
                   data-type="info"
+                  onClick={this.handleAnchorClick}
                 />
               )}
               {item.element}

@@ -1,5 +1,642 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Anchored List default 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "height": "400px",
+              }
+            }
+          >
+            <div
+              className="AnchoredList"
+              onScroll={[Function]}
+            >
+              <div
+                className="AnchoredList-container"
+              >
+                <div
+                  className="AnchoredList-container-margin"
+                />
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div>
+                    Dispute ID: 1000
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="1"
+                    data-type="info"
+                    id={1}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "28px",
+                        "opacity": 0.8,
+                      }
+                    }
+                  />
+                  <div>
+                    1
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="2"
+                    data-type="info"
+                    id={2}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "20px",
+                        "opacity": 0.7,
+                      }
+                    }
+                  />
+                  <div>
+                    2
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="3"
+                    data-type="info"
+                    id={3}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "12px",
+                        "opacity": 0.6,
+                      }
+                    }
+                  />
+                  <div>
+                    3
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="4"
+                    data-type="info"
+                    id={4}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "4px",
+                        "opacity": 0.5,
+                      }
+                    }
+                  />
+                  <div>
+                    4
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="5"
+                    data-type="info"
+                    id={5}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-4px",
+                        "opacity": 0.3999999999999999,
+                      }
+                    }
+                  />
+                  <div>
+                    5
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="6"
+                    data-type="info"
+                    id={6}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-12px",
+                        "opacity": 0.29999999999999993,
+                      }
+                    }
+                  />
+                  <div>
+                    6
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="7"
+                    data-type="info"
+                    id={7}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-20px",
+                        "opacity": 0.19999999999999996,
+                      }
+                    }
+                  />
+                  <div>
+                    7
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="8"
+                    data-type="info"
+                    id={8}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-28px",
+                        "opacity": 0.09999999999999998,
+                      }
+                    }
+                  />
+                  <div>
+                    8
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="9"
+                    data-type="info"
+                    id={9}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-36px",
+                        "opacity": 0,
+                      }
+                    }
+                  />
+                  <div>
+                    9
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="10"
+                    data-type="info"
+                    id={10}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-44px",
+                        "opacity": -0.10000000000000009,
+                      }
+                    }
+                  />
+                  <div>
+                    10
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="11"
+                    data-type="info"
+                    id={11}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-52px",
+                        "opacity": -0.20000000000000018,
+                      }
+                    }
+                  />
+                  <div>
+                    11
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="12"
+                    data-type="info"
+                    id={12}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-60px",
+                        "opacity": -0.30000000000000004,
+                      }
+                    }
+                  />
+                  <div>
+                    12
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="13"
+                    data-type="info"
+                    id={13}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-68px",
+                        "opacity": -0.40000000000000013,
+                      }
+                    }
+                  />
+                  <div>
+                    13
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="14"
+                    data-type="info"
+                    id={14}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-76px",
+                        "opacity": -0.5,
+                      }
+                    }
+                  />
+                  <div>
+                    14
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="15"
+                    data-type="info"
+                    id={15}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "-84px",
+                        "opacity": -0.6000000000000001,
+                      }
+                    }
+                  />
+                  <div>
+                    15
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Balance Pie Chart activated 1`] = `
 <div>
   <div

@@ -1,3 +1,4 @@
+import './anchored-list'
 import './balance-pie-chart'
 import './button'
 import './dispute-card'

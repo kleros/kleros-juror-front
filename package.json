@@ -70,7 +70,8 @@
     "react-tooltip": "^3.4.0",
     "redux": "^3.7.2",
     "redux-form": "^7.2.1",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "zenscroll": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.0.2",
