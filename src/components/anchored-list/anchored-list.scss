@@ -7,13 +7,13 @@
   overflow-y: scroll;
 
   &-container {
-    padding: 50px 150px 1px;
+    padding: 5% 10% 1px 13%;
     position: relative;
 
     &-margin {
       background: $light2;
       height: 100%;
-      left: 50px;
+      left: 5%;
       position: absolute;
       top: 0;
       width: 1px;
@@ -27,7 +27,6 @@
         border-radius: 6.5px;
         cursor: pointer;
         height: 13px;
-        left: 44px;
         position: absolute;
         width: 13px;
       }

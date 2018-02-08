@@ -4,7 +4,11 @@ import { connect } from 'react-redux'
 
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
+import { dateToString } from '../../utils/date'
 import AnchoredList from '../../components/anchored-list'
+import Identicon from '../../components/identicon'
+
+import Details from './details'
 
 import './dispute.css'
 
@@ -24,22 +28,46 @@ class Dispute extends PureComponent {
   }
 
   componentDidMount() {
-    const { fetchDispute } = this.props
-    fetchDispute()
+    const { match: { params: { disputeID } }, fetchDispute } = this.props
+    fetchDispute(disputeID)
   }
 
   render() {
-    const { match: { params: { disputeID } }, dispute } = this.props
-
+    const { dispute } = this.props
+    console.log(dispute)
     return (
       <div className="Dispute">
         <AnchoredList
           items={[
             {
               element: (
-                <div key={0}>
-                  {disputeID}: {dispute.data}
+                <div key={0} className="Dispute-header">
+                  <small>
+                    {dateToString(new Date(), {
+                      withTime: false
+                    })}
+                  </small>
+                  <div className="Dispute-header-title">
+                    <Identicon
+                      seed="Placeholder"
+                      size={12}
+                      className="Dispute-header-title-identicon"
+                    />
+                    <h3>Decision Summary for XYZ Case</h3>
+                  </div>
+                  <hr />
                 </div>
+              )
+            },
+            {
+              anchor: 'Details',
+              element: (
+                <Details
+                  date={new Date()}
+                  partyAAddress="Placeholder1"
+                  partyBAddress="Placeholder2"
+                  arbitrationFee={5}
+                />
               )
             },
             ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(n => ({

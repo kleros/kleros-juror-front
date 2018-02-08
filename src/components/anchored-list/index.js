@@ -49,10 +49,10 @@ class AnchoredList extends Component {
     })
 
   calcAnchorLeftAndOpacity = i => {
-    const defaultLeft = 44
+    const defaultLeft = -6
     const defaultOpacity = 1
     const defaultLeftAndOpacity = {
-      left: `${defaultLeft}px`,
+      left: `calc(5% + ${defaultLeft}px)`,
       opacity: defaultOpacity
     }
     if (i === 0) return defaultLeftAndOpacity
@@ -66,7 +66,7 @@ class AnchoredList extends Component {
     count = i - count
 
     return {
-      left: `${defaultLeft - count * 8}px`,
+      left: `calc(5% + ${defaultLeft - count * 8}px)`,
       opacity: defaultOpacity - count * 0.1
     }
   }

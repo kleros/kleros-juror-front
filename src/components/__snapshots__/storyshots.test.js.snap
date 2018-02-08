@@ -121,7 +121,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "28px",
+                        "left": "calc(5% + -22px)",
                         "opacity": 0.8,
                       }
                     }
@@ -142,7 +142,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "20px",
+                        "left": "calc(5% + -30px)",
                         "opacity": 0.7,
                       }
                     }
@@ -163,7 +163,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "12px",
+                        "left": "calc(5% + -38px)",
                         "opacity": 0.6,
                       }
                     }
@@ -184,7 +184,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "4px",
+                        "left": "calc(5% + -46px)",
                         "opacity": 0.5,
                       }
                     }
@@ -205,7 +205,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-4px",
+                        "left": "calc(5% + -54px)",
                         "opacity": 0.3999999999999999,
                       }
                     }
@@ -226,7 +226,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-12px",
+                        "left": "calc(5% + -62px)",
                         "opacity": 0.29999999999999993,
                       }
                     }
@@ -247,7 +247,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-20px",
+                        "left": "calc(5% + -70px)",
                         "opacity": 0.19999999999999996,
                       }
                     }
@@ -268,7 +268,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-28px",
+                        "left": "calc(5% + -78px)",
                         "opacity": 0.09999999999999998,
                       }
                     }
@@ -289,7 +289,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-36px",
+                        "left": "calc(5% + -86px)",
                         "opacity": 0,
                       }
                     }
@@ -310,7 +310,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-44px",
+                        "left": "calc(5% + -94px)",
                         "opacity": -0.10000000000000009,
                       }
                     }
@@ -331,7 +331,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-52px",
+                        "left": "calc(5% + -102px)",
                         "opacity": -0.20000000000000018,
                       }
                     }
@@ -352,7 +352,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-60px",
+                        "left": "calc(5% + -110px)",
                         "opacity": -0.30000000000000004,
                       }
                     }
@@ -373,7 +373,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-68px",
+                        "left": "calc(5% + -118px)",
                         "opacity": -0.40000000000000013,
                       }
                     }
@@ -394,7 +394,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-76px",
+                        "left": "calc(5% + -126px)",
                         "opacity": -0.5,
                       }
                     }
@@ -415,7 +415,7 @@ exports[`Storyshots Anchored List default 1`] = `
                     style={
                       Object {
                         "bottom": undefined,
-                        "left": "-84px",
+                        "left": "calc(5% + -134px)",
                         "opacity": -0.6000000000000001,
                       }
                     }

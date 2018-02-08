@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { formatDateString } from '../../utils/date'
+import { dateToString } from '../../utils/date'
 import StatusHint from '../status-hint'
 
 import './dispute-card.css'
@@ -13,7 +13,7 @@ const DisputeCard = ({ status, subcourt, date, title, className }) => (
       {subcourt}
       <small>
         <span className="DisputeCard-oval" />
-        {formatDateString(date)}
+        {dateToString(date, { withYear: false })}
       </small>
     </h6>
     <h5>

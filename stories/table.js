@@ -1,18 +1,18 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { formatDateString } from '../src/utils/date'
+import { dateToString } from '../src/utils/date'
 import Table from '../src/components/table'
 import CaseNameCell from '../src/containers/disputes/case-name-cell'
 import StatusHint from '../src/components/status-hint'
 
 const deadline = new Date(Date.now() - 1e10)
 const data = [0, 1, 2, 3].map(n => ({
-  id: n,
+  disputeId: n,
   arbitrableContractAddress: `${n}XXXXX`,
-  arbitrableContractTitle: `Website Design ${n}`,
-  status: n,
-  deadline
+  description: `Website Design ${n}`,
+  deadline,
+  status: n
 }))
 
 storiesOf('Table', module).add('default', () => (
@@ -21,7 +21,7 @@ storiesOf('Table', module).add('default', () => (
       {
         Header: 'Case Name',
         minWidth: 220,
-        accessor: 'arbitrableContractTitle',
+        accessor: 'description',
         Cell: CaseNameCell
       },
       {
@@ -33,7 +33,7 @@ storiesOf('Table', module).add('default', () => (
         Header: 'Deadline',
         maxWidth: 110,
         accessor: 'deadline',
-        Cell: cell => formatDateString(cell.value)
+        Cell: cell => dateToString(cell.value, { withYear: false })
       },
       {
         Header: 'Status',

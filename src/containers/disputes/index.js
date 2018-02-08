@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
 import { renderIf } from '../../utils/redux'
-import { formatDateString } from '../../utils/date'
+import { dateToString } from '../../utils/date'
 import Table from '../../components/table'
 import StatusHint from '../../components/status-hint'
 
@@ -36,7 +36,7 @@ class Disputes extends PureComponent {
           {
             Header: 'Case Name',
             minWidth: 220,
-            accessor: 'arbitrableContractTitle',
+            accessor: 'description',
             Cell: CaseNameCell
           },
           {
@@ -48,7 +48,7 @@ class Disputes extends PureComponent {
             Header: 'Deadline',
             maxWidth: 110,
             accessor: 'deadline',
-            Cell: cell => formatDateString(cell.value)
+            Cell: cell => dateToString(cell.value, { withYear: false })
           },
           {
             Header: 'Status',

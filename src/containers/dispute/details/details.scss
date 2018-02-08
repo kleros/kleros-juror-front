@@ -1,0 +1,26 @@
+/* @define Details */
+.Details {
+  &-table {
+    display: flex;
+    flex-direction: column;
+
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+
+      &-column {
+        align-items: center;
+        display: flex;
+        margin-right: 20px;
+
+        &-text {
+          margin: 2.5px 0;
+        }
+
+        &-identicon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
