@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -13,9 +13,9 @@ import CaseNameCell from './case-name-cell'
 
 import './disputes.css'
 
-class Disputes extends Component {
+class Disputes extends PureComponent {
   static propTypes = {
-    // State
+    // Redux State
     disputes: disputeSelectors.disputesShape.isRequired,
 
     // Action Dispatchers

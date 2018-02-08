@@ -16,7 +16,7 @@ import './home.css'
 
 class Home extends PureComponent {
   static propTypes = {
-    // State
+    // Redux State
     accounts: walletSelectors.accountsShape.isRequired,
     balance: walletSelectors.balanceShape.isRequired,
     PNKBalance: arbitratorSelectors.PNKBalanceShape.isRequired,

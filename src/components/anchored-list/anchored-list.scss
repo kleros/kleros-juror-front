@@ -1,0 +1,36 @@
+@import '../../styles/_colors.scss';
+
+/* @define AnchoredList */
+.AnchoredList {
+  background: $light;
+  max-height: 100%;
+  overflow-y: scroll;
+
+  &-container {
+    padding: 50px 150px 1px;
+    position: relative;
+
+    &-margin {
+      background: $light2;
+      height: 100%;
+      left: 50px;
+      position: absolute;
+      top: 0;
+      width: 1px;
+    }
+
+    &-item {
+      margin-bottom: 50px;
+
+      &-anchor {
+        background: $dark3;
+        border-radius: 6.5px;
+        cursor: pointer;
+        height: 13px;
+        left: 44px;
+        position: absolute;
+        width: 13px;
+      }
+    }
+  }
+}

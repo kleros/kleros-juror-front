@@ -9,7 +9,7 @@ import logo from '../../assets/images/logo.png'
 
 import './nav-bar.css'
 
-const NavBar = ({ routes, accounts }) => (
+const NavBar = ({ accounts, routes }) => (
   <div className="NavBar">
     <a src="https://kleros.io">
       <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
@@ -40,14 +40,16 @@ const NavBar = ({ routes, accounts }) => (
 )
 
 NavBar.propTypes = {
+  // Redux State
+  accounts: walletSelectors.accountsShape.isRequired,
+
   // State
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       to: PropTypes.string.isRequired
     }).isRequired
-  ).isRequired,
-  accounts: walletSelectors.accountsShape.isRequired
+  ).isRequired
 }
 
 export default NavBar

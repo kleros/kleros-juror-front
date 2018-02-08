@@ -4,8 +4,10 @@ import { createActions } from '../utils/redux'
 
 // Disputes
 export const disputes = createActions('DISPUTES')
+export const dispute = createActions('DISPUTE')
 
 /* Action Creators */
 
 // Disputes
 export const fetchDisputes = () => ({ type: disputes.FETCH })
+export const fetchDispute = () => ({ type: dispute.FETCH })

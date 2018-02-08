@@ -7,11 +7,16 @@ const {
   shape: disputesShape,
   initialState: disputesInitialState
 } = createResource(PropTypes.arrayOf(PropTypes.string))
-export { disputesShape }
+const {
+  shape: disputeShape,
+  initialState: disputeInitialState
+} = createResource(PropTypes.arrayOf(PropTypes.string))
+export { disputesShape, disputeShape }
 
 // Reducer
 export default createReducer({
-  disputes: disputesInitialState
+  disputes: disputesInitialState,
+  dispute: disputeInitialState
 })
 
 // Selectors
