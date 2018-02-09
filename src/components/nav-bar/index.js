@@ -20,8 +20,8 @@ const NavBar = ({ accounts, routes }) => (
           key={r.to}
           className="NavBar-tabs-tab"
           activeClassName="is-active"
-          exact
           to={r.to}
+          exact={r.to === '/'}
         >
           {r.name}
         </NavLink>

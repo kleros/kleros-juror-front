@@ -1,0 +1,24 @@
+/* @define LabelValueGroup */
+.LabelValueGroup {
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-column {
+      align-items: center;
+      display: flex;
+      margin-right: 10px;
+
+      &-text {
+        margin: 2.5px 0;
+      }
+
+      &-identicon {
+        margin-right: 5px;
+      }
+    }
+  }
+}

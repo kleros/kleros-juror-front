@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { dateToString } from '../../../utils/date'
-import Identicon from '../../../components/identicon'
+import LabelValueGroup from '../../../components/label-value-group'
 
 import './evidence.css'
 
@@ -12,14 +12,11 @@ const Evidence = ({ date, partyAddress, URIs }) => (
       {dateToString(date, { withTime: false, numericMonth: false })}
     </small>
     <h4>Evidence Submitted</h4>
-    <div className="Evidence-submittedBy">
-      <Identicon
-        seed={partyAddress}
-        size={6}
-        className="Evidence-submittedBy-identicon"
-      />
-      <p className="Evidence-submittedBy-text">{partyAddress}</p>
-    </div>
+    <LabelValueGroup
+      items={[
+        { label: 'By', value: partyAddress, identiconSeed: partyAddress }
+      ]}
+    />
     {URIs.map(URI => (
       <div key={URI} className="Evidence-file">
         <a href={URI} target="_blank">
@@ -32,6 +29,7 @@ const Evidence = ({ date, partyAddress, URIs }) => (
 )
 
 Evidence.propTypes = {
+  // State
   date: PropTypes.instanceOf(Date).isRequired,
   partyAddress: PropTypes.string.isRequired,
   URIs: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired

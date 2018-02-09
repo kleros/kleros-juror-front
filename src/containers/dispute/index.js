@@ -10,6 +10,7 @@ import Identicon from '../../components/identicon'
 
 import Details from './details'
 import Evidence from './evidence'
+import Ruling from './ruling'
 
 import './dispute.css'
 
@@ -86,10 +87,18 @@ class Dispute extends PureComponent {
                 />
               )
             },
-            ...[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(n => ({
-              anchor: n.toString(),
-              element: <div key={n}>4</div>
-            }))
+            {
+              anchor: 'Ruling',
+              element: (
+                <Ruling
+                  key={3}
+                  date={new Date()}
+                  votesForPartyA={33}
+                  votesForPartyB={78}
+                  netPNK={10}
+                />
+              )
+            }
           ]}
         />
       </div>

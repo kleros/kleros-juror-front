@@ -38,7 +38,7 @@ const App = ({ store, history, testElement }) => (
           <Helmet>
             <title>Kleros Dapp</title>
           </Helmet>
-          <Route path="/" component={ConnectedNavBar} />
+          <Route exact path="*" component={ConnectedNavBar} />
           <div id="scroll-root">
             <Switch>
               <Route exact path="/" component={Home} />
