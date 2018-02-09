@@ -9,6 +9,7 @@ import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 
 import Details from './details'
+import Evidence from './evidence'
 
 import './dispute.css'
 
@@ -63,6 +64,7 @@ class Dispute extends PureComponent {
               anchor: 'Details',
               element: (
                 <Details
+                  key={1}
                   date={new Date()}
                   partyAAddress="Placeholder1"
                   partyBAddress="Placeholder2"
@@ -70,7 +72,21 @@ class Dispute extends PureComponent {
                 />
               )
             },
-            ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(n => ({
+            {
+              anchor: 'Evidence',
+              element: (
+                <Evidence
+                  key={2}
+                  date={new Date()}
+                  partyAddress="Placeholder1"
+                  URIs={[
+                    'awdwad/adwd/awdawd/awdawd/file1.png',
+                    'awdwad/adwd/awdawd/awdawd/file2.png'
+                  ]}
+                />
+              )
+            },
+            ...[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(n => ({
               anchor: n.toString(),
               element: <div key={n}>4</div>
             }))

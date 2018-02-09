@@ -18,7 +18,7 @@ const Details = ({ date, partyAAddress, partyBAddress, arbitrationFee }) => (
         { label: 'Party B', identicon: true, value: partyAAddress },
         { label: 'Arbitration Fee', value: `${arbitrationFee} PNK` }
       ].map(r => (
-        <div className="Details-table-row">
+        <div key={r.label} className="Details-table-row">
           <div className="Details-table-row-column">
             <p className="Details-table-row-column-text">
               <small>{r.label}:</small>

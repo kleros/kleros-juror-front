@@ -1,0 +1,20 @@
+/* @define Evidence */
+.Evidence {
+  &-submittedBy {
+    align-items: center;
+    display: flex;
+
+    &-identicon {
+      margin-right: 5px;
+    }
+
+    &-text {
+      margin: 2.5px 0;
+    }
+  }
+
+  &-file {
+    font-size: 0.8rem;
+    margin: 15px 0 15px 15px;
+  }
+}
