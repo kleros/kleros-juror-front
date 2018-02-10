@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import zenscroll from 'zenscroll'
 
 import './anchored-list.css'
 
-class AnchoredList extends Component {
+class AnchoredList extends PureComponent {
   static propTypes = {
     // State
     items: PropTypes.arrayOf(
