@@ -1,14 +1,14 @@
 /* eslint-disable global-require */
 import { applyMiddleware, compose, createStore } from 'redux'
-import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 
 import rootReducer from '../reducers'
 import rootSaga from '../sagas'
 
-let sagaMiddleware
 let store
+let sagaMiddleware
 let rootSagaTask
 
 /**
@@ -21,8 +21,8 @@ export default function configureStore(
   initialState = {},
   { dispatchSpy } = {}
 ) {
-  const history = createHistory()
   sagaMiddleware = createSagaMiddleware()
+  const history = createHistory()
   const enhancers = []
   const middleware = []
   const composeEnhancers =
@@ -31,12 +31,13 @@ export default function configureStore(
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       : compose
 
+  // Development Tools
   if (process.env.NODE_ENV === 'development') {
     const reduxImmutableState = require('redux-immutable-state-invariant')
       .default
     const reduxUnhandledAction = require('redux-unhandled-action').default
-    middleware.push(reduxImmutableState())
     middleware.push(
+      reduxImmutableState(),
       reduxUnhandledAction(action =>
         console.error(
           `${action} didn't lead to creation of a new state object`,
@@ -46,6 +47,7 @@ export default function configureStore(
     )
   }
 
+  // Testing Tools
   if (dispatchSpy) {
     middleware.push(store => next => action => {
       dispatchSpy(action)
@@ -53,7 +55,7 @@ export default function configureStore(
     })
   }
 
-  middleware.push(routerMiddleware(history), sagaMiddleware)
+  middleware.push(sagaMiddleware, routerMiddleware(history))
   enhancers.unshift(applyMiddleware(...middleware))
   store = createStore(rootReducer, initialState, composeEnhancers(...enhancers))
   rootSagaTask = sagaMiddleware.run(rootSaga)
