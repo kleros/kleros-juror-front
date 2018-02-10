@@ -11,9 +11,9 @@ import { required, number } from './validation'
 jest.mock('..', () => ({}))
 
 let integration = {
+  dispatchSpy: null,
   store: null,
   history: null,
-  dispatchSpy: null,
   mountApp: null
 }
 

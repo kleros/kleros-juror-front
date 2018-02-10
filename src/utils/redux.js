@@ -20,7 +20,6 @@ const actionTypePrefixMap = {
 
 /**
  * Util that makes creating reducers easier.
- * @export default createReducer
  * @param {object} initialState - The initial state for the reducer.
  * @param {object} reducerMap - A map of action type string constants to functions that return a slice of state.
  * @returns {function} - A reducer function.
@@ -62,10 +61,9 @@ export default function createReducer(initialState, reducerMap) {
 
 /**
  * Creates an initial state object with common loading/error properties and its prop-types shape.
- * @export
- * @param {any} shape - The prop-types shape to use for the data property.
- * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object for specifying wether the resource can be created, updated, and/or deleted.
- * @returns {object} { initialState, shape } - an object with the initial state object and its prop-types shape as properties.
+ * @param {object} shape - The prop-types shape to use for the data property.
+ * @param {{ withCreate: boolean, withUpdate: boolean, withDelete: boolean }} [options={ withCreate: false, withUpdate: false, withDelete: false }] - Options object for specifying wether the resource can be created, updated, and/or deleted.
+ * @returns {{ initialState: object, shape: object }} - an object with the initial state object and its prop-types shape as properties.
  */
 export function createResource(
   shape,
@@ -123,9 +121,8 @@ export function createResource(
 
 /**
  * Creates an object with common create, fetch, update, and/or delete action constants for a given resource name.
- * @export
- * @param {any} resourceName - The name of the resource to create the actions for.
- * @param {object} { withCreate = false, withUpdate = false, withDelete = false } = {} - Options object for specifying wether the resource can be created, updated, and/or deleted.
+ * @param {string} resourceName - The name of the resource to create the actions for.
+ * @param {{ withCreate: boolean, withUpdate: boolean, withDelete: boolean }} [options={ withCreate: false, withUpdate: false, withDelete: false }] - Options object for specifying wether the resource can be created, updated, and/or deleted.
  * @returns {object} - an object with the action constants as properties.
  */
 export function createActions(
@@ -147,10 +144,9 @@ export function createActions(
 
 /**
  * Implements common rendering logic for resource objects.
- * @export
- * @param {array} resource - The resource object whose data rendering depends on.
- * @param {object} renderables - Renderables to render depending on conditions.
- * @param {object} { extraLoadingValues, extraValues, extraFailedValues } = {} - Optional extra loading, data, and/or failed values.
+ * @param {object} resource - The resource object whose data rendering depends on.
+ * @param {object} renderables - Object with renderables to render depending on conditions.
+ * @param {{ extraLoadingValues: any[], extraValues: any[], extraFailedValues: any[] }} [extraValues={}] - Optional extra loading, data, and/or failed values.
  * @returns {any} - A react renderable.
  */
 export function renderIf(

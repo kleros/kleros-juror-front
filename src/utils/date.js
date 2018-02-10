@@ -1,10 +1,9 @@
 import { MONTHS_ENUM, ORDINAL_INDICATOR_ENUM } from '../constants/date'
 
 /**
- * Stringifies a date object in the preffered Kleros format, (dd.mm.yyyy).
- * @export
- * @param {Date} date The date object
- * @returns {string} The formatted string
+ * Stringifies a date object into the preffered Kleros format, (dd.mm.yyyy).
+ * @param {object} date - The date object.
+ * @returns {string} - The formatted string.
  */
 export function dateToString(
   date,

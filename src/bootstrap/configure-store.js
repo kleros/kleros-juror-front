@@ -13,10 +13,9 @@ let rootSagaTask
 
 /**
  * Sets up the redux store.
- * @export default configureStore
- * @param {object} [initialState={}] The initial state for the redux store, defaults to an empty object.
- * @param {object} { dispatchSpy } Parameters necessary to setup integration tests.
- * @returns {object} An object with the store and the history objects.
+ * @param {object} [initialState={}] - The initial state for the redux store, defaults to an empty object.
+ * @param {{ dispatchSpy: function }} [integrationTestParams=[]] - Parameters necessary to setup integration tests.
+ * @returns {{ store: object, history: object }} - An object with the store and the history objects.
  */
 export default function configureStore(
   initialState = {},

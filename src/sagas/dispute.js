@@ -24,7 +24,6 @@ function* fetchDisputes() {
 
 /**
  * The root of the dispute saga.
- * @export default disputeSaga
  */
 export default function* disputeSaga() {
   // Disputes

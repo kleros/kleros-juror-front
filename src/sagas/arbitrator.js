@@ -101,7 +101,6 @@ function* passPeriod() {
 
 /**
  * The root of the arbitrator saga.
- * @export default arbitratorSaga
  */
 export default function* arbitratorSaga() {
   // PNK Balance
