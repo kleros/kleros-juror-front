@@ -10,14 +10,14 @@
       flex-flow: row wrap;
     }
   }
-}
 
-/* @define utilities */
-.form-noMargins {
-  margin: 0;
-}
+  // Utils
+  &-noMargins {
+    margin: 0;
+  }
 
-.form-noSideMargins {
-  margin-left: 0;
-  margin-right: 0;
+  &-noSideMargins {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
