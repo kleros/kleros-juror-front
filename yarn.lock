@@ -6543,9 +6543,9 @@ kleros-interaction@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.8.tgz#84e6db47126b9782687ea332e4cee5120d2efa50"
 
-kleros-js-scripts@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/kleros-js-scripts/-/kleros-js-scripts-0.1.1.tgz#8e05ef8856a5c846793dc619d401cb2e4595df06"
+kleros-js-scripts@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/kleros-js-scripts/-/kleros-js-scripts-0.1.2.tgz#afd26bc1139013419801b7c5b60f0b6e28a81d8a"
   dependencies:
     "@commitlint/cli" "^6.1.0"
     "@commitlint/config-conventional" "^6.1.0"
