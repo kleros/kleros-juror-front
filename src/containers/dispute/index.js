@@ -8,9 +8,9 @@ import { dateToString } from '../../utils/date'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 
-import Details from './details'
-import Evidence from './evidence'
-import Ruling from './ruling'
+import Details from './components/details'
+import Evidence from './components/evidence'
+import Ruling from './components/ruling'
 
 import './dispute.css'
 

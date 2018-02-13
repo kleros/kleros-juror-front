@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { dateToString } from '../../../utils/date'
-import LabelValueGroup from '../../../components/label-value-group'
+import { dateToString } from '../../../../utils/date'
+import LabelValueGroup from '../../../../components/label-value-group'
 
 import './details.css'
 

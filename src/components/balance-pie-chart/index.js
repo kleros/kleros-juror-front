@@ -10,7 +10,7 @@ const BalancePieChart = ({ type, balance, total, size }) => (
         key: 1,
         color: type === 'activated' ? '#0059ab' : '#47525d'
       },
-      { value: total, key: 2, color: '#fff' }
+      { value: total - balance, key: 2, color: '#fff' }
     ]}
     startAngle={270}
     lengthAngle={type === 'activated' ? 360 : -360}

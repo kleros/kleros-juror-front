@@ -9,7 +9,7 @@ import { dateToString } from '../../utils/date'
 import Table from '../../components/table'
 import StatusHint from '../../components/status-hint'
 
-import CaseNameCell from './case-name-cell'
+import CaseNameCell from './components/case-name-cell'
 
 import './disputes.css'
 

@@ -736,11 +736,11 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
               width="100%"
             >
               <path
-                d="M 49.99999999999999 25 A 25 25 0 0 1 71.65063509461096 37.499999999999986"
+                d="M 49.99999999999999 25 A 25 25 0 0 1 73.77641290737884 42.27457514062631"
                 fill="none"
                 stroke="#0059ab"
-                strokeDasharray={26.17993877991494}
-                strokeDashoffset={26.17993877991494}
+                strokeDasharray={31.41592653589793}
+                strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -750,11 +750,11 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
                 }
               />
               <path
-                d="M 71.65063509461096 37.499999999999986 A 25 25 0 1 1 49.999999999999986 25"
+                d="M 73.77641290737884 42.27457514062631 A 25 25 0 1 1 49.999999999999986 25"
                 fill="none"
                 stroke="#fff"
-                strokeDasharray={130.89969389957471}
-                strokeDashoffset={130.89969389957471}
+                strokeDasharray={125.66370614359172}
+                strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -1074,11 +1074,11 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
               width="100%"
             >
               <path
-                d="M 49.99999999999999 25 A 25 25 0 0 0 41.44949641685828 73.49231551964772"
+                d="M 49.99999999999999 25 A 25 25 0 1 0 73.77641290737884 42.27457514062632"
                 fill="none"
                 stroke="#47525d"
-                strokeDasharray={69.81317007977319}
-                strokeDashoffset={69.81317007977319}
+                strokeDasharray={125.66370614359172}
+                strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -1088,11 +1088,11 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
                 }
               />
               <path
-                d="M 41.44949641685828 73.49231551964772 A 25 25 0 1 0 50 25"
+                d="M 73.77641290737884 42.27457514062632 A 25 25 0 0 0 50 25"
                 fill="none"
                 stroke="#fff"
-                strokeDasharray={87.26646259971648}
-                strokeDashoffset={87.26646259971648}
+                strokeDasharray={31.41592653589793}
+                strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -1402,7 +1402,7 @@ exports[`Storyshots Button disabled 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME
             </h5>
@@ -1706,7 +1706,7 @@ exports[`Storyshots Button primary 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME
             </h5>
@@ -2010,7 +2010,7 @@ exports[`Storyshots Button with lots of text 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME, CLICK ME, CLICK ME
             </h5>
@@ -9887,7 +9887,7 @@ exports[`Storyshots Toast confirm 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -10191,7 +10191,7 @@ exports[`Storyshots Toast error 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -10495,7 +10495,7 @@ exports[`Storyshots Toast info 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -10799,7 +10799,7 @@ exports[`Storyshots Toast message 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -11103,7 +11103,7 @@ exports[`Storyshots Toast success 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -11407,7 +11407,7 @@ exports[`Storyshots Toast warning 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>

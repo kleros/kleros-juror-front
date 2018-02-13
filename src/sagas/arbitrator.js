@@ -20,7 +20,7 @@ function* fetchPNKBalance() {
       action(arbitratorActions.PNKBalance.RECEIVE, {
         PNKBalance: {
           tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens,
+          activatedTokens: Number(activatedTokens), // TODO: Fix on API side
           lockedTokens: Number(lockedTokens) // TODO: Fix on API side
         }
       })
@@ -48,7 +48,7 @@ function* buyPNK({ payload: { amount } }) {
       action(arbitratorActions.PNKBalance.RECEIVE_UPDATED, {
         PNKBalance: {
           tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens,
+          activatedTokens: Number(activatedTokens), // TODO: Fix on API side,
           lockedTokens: Number(lockedTokens) // TODO: Fix on API side
         }
       })
@@ -76,7 +76,7 @@ function* activatePNK({ payload: { amount } }) {
       action(arbitratorActions.PNKBalance.RECEIVE_UPDATED, {
         PNKBalance: {
           tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens,
+          activatedTokens: Number(activatedTokens), // TODO: Fix on API side
           lockedTokens: Number(lockedTokens) // TODO: Fix on API side
         }
       })

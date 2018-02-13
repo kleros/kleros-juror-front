@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import { dateToString } from '../src/utils/date'
 import Table from '../src/components/table'
-import CaseNameCell from '../src/containers/disputes/case-name-cell'
+import CaseNameCell from '../src/containers/disputes/components/case-name-cell'
 import StatusHint from '../src/components/status-hint'
 
 const deadline = new Date(Date.now() - 1e10)

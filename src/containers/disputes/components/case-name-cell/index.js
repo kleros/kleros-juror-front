@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Identicon from '../../../components/identicon'
+import Identicon from '../../../../components/identicon'
 
 import './case-name-cell.css'
 
