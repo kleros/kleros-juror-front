@@ -49,7 +49,7 @@ export default function configureStore(
 
   // Testing Tools
   if (dispatchSpy) {
-    middleware.push(store => next => action => {
+    middleware.push(_store => next => action => {
       dispatchSpy(action)
       return next(action)
     })

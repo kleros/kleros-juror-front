@@ -2313,8 +2313,8 @@ exports[`Storyshots Dispute Card appealable 1`] = `
             className="DisputeCard "
           >
             <div
-              className="StatusHint StatusHint--waiting DisputeCard-status"
-              data-tip="waiting"
+              className="StatusHint StatusHint--appealable DisputeCard-status"
+              data-tip="appealable"
               data-type="info"
             />
             <h6>
@@ -6860,8 +6860,8 @@ exports[`Storyshots Status Hint appealable 1`] = `
           }
         >
           <div
-            className="StatusHint StatusHint--waiting "
-            data-tip="waiting"
+            className="StatusHint StatusHint--appealable "
+            data-tip="appealable"
             data-type="info"
           />
           <div
@@ -7905,6 +7905,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -odd"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -7924,17 +7925,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/0"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 0
-                            </h5>
-                            <small>
-                              #
-                              0
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 0
+                              </h5>
+                              <small>
+                                #
+                                0
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -7987,6 +7993,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -even"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -8006,17 +8013,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/1"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 1
-                            </h5>
-                            <small>
-                              #
-                              1
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 1
+                              </h5>
+                              <small>
+                                #
+                                1
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -8057,8 +8069,8 @@ exports[`Storyshots Table default 1`] = `
                         }
                       >
                         <div
-                          className="StatusHint StatusHint--waiting "
-                          data-tip="waiting"
+                          className="StatusHint StatusHint--appealable "
+                          data-tip="appealable"
                           data-type="info"
                         />
                       </div>
@@ -8069,6 +8081,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -odd"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -8088,17 +8101,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/2"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 2
-                            </h5>
-                            <small>
-                              #
-                              2
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 2
+                              </h5>
+                              <small>
+                                #
+                                2
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -8151,6 +8169,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -even"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -8170,17 +8189,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/3"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 3
-                            </h5>
-                            <small>
-                              #
-                              3
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 3
+                              </h5>
+                              <small>
+                                #
+                                3
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -8221,8 +8245,8 @@ exports[`Storyshots Table default 1`] = `
                         }
                       >
                         <div
-                          className="StatusHint StatusHint--resolved "
-                          data-tip="resolved"
+                          className="StatusHint StatusHint--waiting "
+                          data-tip="waiting"
                           data-type="info"
                         />
                       </div>

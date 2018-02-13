@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import Identicon from '../../../../components/identicon'
 
@@ -10,10 +11,12 @@ const CaseNameCell = ({
 }) => (
   <div className="CaseNameCell">
     <Identicon seed={arbitrableContractAddress} size={12} />
-    <div className="CaseNameCell-title">
-      <h5>{description}</h5>
-      <small>#{disputeId}</small>
-    </div>
+    <Link to={`/disputes/${disputeId}`}>
+      <div className="CaseNameCell-title">
+        <h5>{description}</h5>
+        <small>#{disputeId}</small>
+      </div>
+    </Link>
   </div>
 )
 

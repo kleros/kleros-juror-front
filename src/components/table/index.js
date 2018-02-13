@@ -17,18 +17,35 @@ class Table extends PureComponent {
     }
   }
 
-  onSearchInputChange = event => {
+  componentWillReceiveProps(nextProps) {
     const { data } = this.props
+    const { nextData } = nextProps
+    if (data !== nextData) this.filterData(nextProps)
+  }
+
+  filterData = (props = this.props) => {
+    const { data } = props
+    const { searchInput } = this.state
     this.setState({
-      searchInput: event.currentTarget.value,
       filteredData: data
-        ? data.filter(obj => fuzzyObjSearch(event.currentTarget.value, obj))
+        ? data.filter(obj => fuzzyObjSearch(searchInput, obj))
         : []
     })
   }
 
+  onSearchInputChange = event => {
+    this.setState({ searchInput: event.currentTarget.value }, this.filterData)
+  }
+
+  getTrProps = () => {
+    const { onRowClick } = this.props
+    return {
+      onClick: onRowClick
+    }
+  }
+
   render() {
-    const { data, className, ...rest } = this.props
+    const { data: _data, className, ...rest } = this.props
     const { searchInput, filteredData } = this.state
 
     return (
@@ -41,17 +58,19 @@ class Table extends PureComponent {
           />
         </div>
         <ReactTable
-          // Number of rows
-          minRows={(data && data.length) || 3}
+          // Number of Rows
+          minRows={filteredData.length || 3}
           pageSizeOptions={[7, 14, 28, 56, 112]}
           defaultPageSize={7}
           // Indicators
           loadingText="Loading..."
           noDataText="No data."
+          // Row Props
+          getTrProps={this.getTrProps}
+          // Data
+          data={filteredData}
           // Rest
           {...rest}
-          // Rest overwrites
-          data={filteredData}
         />
       </div>
     )
@@ -64,6 +83,9 @@ Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
   ...ReactTable.propTypes,
 
+  // Handlers
+  onRowClick: PropTypes.func,
+
   // Modifiers
   className: PropTypes.string
 }
@@ -72,6 +94,9 @@ Table.defaultProps = {
   // React Table
   columns: [],
   data: [],
+
+  // Handlers
+  onRowClick: null,
 
   // Modifiers
   className: ''

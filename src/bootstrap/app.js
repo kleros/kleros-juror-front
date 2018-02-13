@@ -49,9 +49,9 @@ const App = ({ store, history, testElement }) => (
             </Switch>
           </div>
           {testElement}
+          <Route exact path="*" component={GlobalComponents} />
         </div>
       </ConnectedRouter>
-      <GlobalComponents />
     </Initializer>
   </Provider>
 )

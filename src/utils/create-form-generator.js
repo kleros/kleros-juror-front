@@ -70,7 +70,7 @@ const validateIf = (validate, valueKey) => (val, allVals, ...rest) => {
  * @param {object} schema  - The schema to use.
  * @returns {object[]} - An array of field react elements.
  */
-function createFields({ UIKit, store }, formName, schema) {
+function createFields({ UIKit }, formName, schema) {
   return objMap(schema, (rawField, fieldKey) => {
     const name = camelToTitleCase(fieldKey)
     const field = {
@@ -235,10 +235,10 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
 
     render() {
       const {
-        onSubmit,
-        destroy,
-        onPageChange,
-        backHandlerRef,
+        onSubmit: _onSubmit,
+        destroy: _destroy,
+        onPageChange: _onPageChange,
+        backHandlerRef: _backHandlerRef,
         className,
         disabled,
         ...rest
@@ -255,9 +255,9 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
           >
             <div key={key} style={{ position: 'relative' }}>
               <Form
-                {...rest}
                 disabled={disabled}
                 onSubmit={this.handleSubmit}
+                {...rest}
               />
             </div>
           </ReactCSSTransitionGroup>

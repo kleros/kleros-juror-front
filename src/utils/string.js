@@ -12,7 +12,7 @@ export function constantToCamelCase(str, { capitalizeFirst = false } = {}) {
   return (capitalizeFirst
     ? newStr[0].toUpperCase() + newStr.slice(1)
     : newStr
-  ).replace(/\$(.+?)\$/g, (m, p1) => p1.toUpperCase())
+  ).replace(/\$(.+?)\$/g, (_m, p1) => p1.toUpperCase())
 }
 
 /**
@@ -23,7 +23,7 @@ export function constantToCamelCase(str, { capitalizeFirst = false } = {}) {
 export function camelToTitleCase(str) {
   return str.replace(
     /(^[a-z])|([a-z][A-Z])|([A-Z][a-z])/g,
-    (m, p1, p2, p3) =>
+    (_m, p1, p2, p3) =>
       p1 ? p1.toUpperCase() : p2 ? p2[0] + ' ' + p2[1] : ' ' + p3
   )
 }
