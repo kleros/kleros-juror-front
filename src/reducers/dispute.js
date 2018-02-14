@@ -40,7 +40,7 @@ const {
 const {
   shape: disputeShape,
   initialState: disputeInitialState
-} = createResource(dispute)
+} = createResource(dispute, { withUpdate: true })
 export { disputesShape, disputeShape }
 
 // Reducer

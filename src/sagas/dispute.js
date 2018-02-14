@@ -49,11 +49,46 @@ function* fetchDispute({ payload: { disputeID } }) {
 }
 
 /**
+ * Votes on a dispute by dispute ID.
+ */
+function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
+  try {
+    yield put(action(disputeActions.dispute.UPDATE))
+
+    yield call(
+      kleros.disputes.submitVotesForDispute,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      ruling,
+      votes,
+      yield select(walletSelectors.getAccount)
+    )
+
+    const dispute = yield call(
+      kleros.disputes.getDataForDispute,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      yield select(walletSelectors.getAccount)
+    )
+
+    yield put(
+      action(disputeActions.dispute.RECEIVE_UPDATED, {
+        dispute
+      })
+    )
+  } catch (err) {
+    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
+  }
+}
+
+/**
  * The root of the dispute saga.
  */
 export default function* disputeSaga() {
   // Disputes
   yield takeLatest(disputeActions.disputes.FETCH, fetchDisputes)
+
   // Dispute
   yield takeLatest(disputeActions.dispute.FETCH, fetchDispute)
+  yield takeLatest(disputeActions.dispute.VOTE_ON, voteOnDispute)
 }

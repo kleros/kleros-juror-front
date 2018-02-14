@@ -3,10 +3,18 @@ import PropTypes from 'prop-types'
 
 import './button.css'
 
-const Button = ({ children, onClick, disabled, className, labelClassName }) => (
+const Button = ({
+  children,
+  onClick,
+  disabled,
+  className,
+  labelClassName,
+  ...rest
+}) => (
   <div
     className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     onClick={onClick}
+    {...rest}
   >
     <h5 className={`Button-label ${labelClassName}`}>{children}</h5>
   </div>

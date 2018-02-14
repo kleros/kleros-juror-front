@@ -8,6 +8,7 @@ import { renderIf } from '../../utils/redux'
 import { dateToString } from '../../utils/date'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
+import Button from '../../components/button'
 
 import Details from './components/details'
 import Evidence from './components/evidence'
@@ -27,12 +28,22 @@ class Dispute extends PureComponent {
     dispute: disputeSelectors.disputeShape.isRequired,
 
     // Action Dispatchers
-    fetchDispute: PropTypes.func.isRequired
+    fetchDispute: PropTypes.func.isRequired,
+    voteOnDispute: PropTypes.func.isRequired
   }
 
   componentDidMount() {
     const { match: { params: { disputeID } }, fetchDispute } = this.props
     fetchDispute(Number(disputeID))
+  }
+
+  handleVoteButtonClick = event => {
+    const { dispute, voteOnDispute } = this.props
+    voteOnDispute(
+      dispute.data.disputeId,
+      dispute.data.votes,
+      event.currentTarget.id
+    )
   }
 
   render() {
@@ -55,7 +66,7 @@ class Dispute extends PureComponent {
                       </small>
                       <div className="Dispute-header-title">
                         <Identicon
-                          seed="Placeholder"
+                          seed={dispute.data.arbitrableContractAddress}
                           size={12}
                           className="Dispute-header-title-identicon"
                         />
@@ -94,14 +105,31 @@ class Dispute extends PureComponent {
                   anchor: 'Ruling',
                   element: (
                     <Ruling
-                      key={3}
+                      key={2}
                       date={new Date()}
-                      votesForPartyA={33}
-                      votesForPartyB={78}
-                      netPNK={10}
+                      votesForPartyA={dispute.data.ruling}
+                      votesForPartyB={dispute.data.ruling}
+                      netPNK={0}
                     />
                   )
-                }
+                },
+                ...(dispute.data.hasRuled
+                  ? []
+                  : [
+                      {
+                        anchor: 'Vote',
+                        element: (
+                          <div key={3} className="Dispute-vote">
+                            <Button id={0} onClick={this.handleVoteButtonClick}>
+                              Vote for Party A
+                            </Button>
+                            <Button id={1} onClick={this.handleVoteButtonClick}>
+                              Vote for Party B
+                            </Button>
+                          </div>
+                        )
+                      }
+                    ])
               ]}
             />
           ),
@@ -113,5 +141,6 @@ class Dispute extends PureComponent {
 }
 
 export default connect(state => ({ dispute: state.dispute.dispute }), {
-  fetchDispute: disputeActions.fetchDispute
+  fetchDispute: disputeActions.fetchDispute,
+  voteOnDispute: disputeActions.voteOnDispute
 })(Dispute)
