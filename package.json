@@ -24,9 +24,6 @@
     "build": "npm-run-all build:scss build:js",
     "build:analyze": "source-map-explorer build/static/js/main.*"
   },
-  "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
-  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js",
@@ -36,29 +33,8 @@
       "!**/node_modules/**"
     ]
   },
-  "dependencies": {
-    "ethjs": "^0.3.3",
-    "ethjs-unit": "^0.1.6",
-    "history": "^4.7.2",
-    "kleros-api": "^0.0.55",
-    "normalize.css": "^7.0.0",
-    "react": "^16.2.0",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-blockies": "^1.2.2",
-    "react-dom": "^16.2.0",
-    "react-helmet": "^5.2.0",
-    "react-minimal-pie-chart": "^3.0.1",
-    "react-redux": "^5.0.6",
-    "react-redux-toastr": "^7.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.9",
-    "react-scripts": "1.1.0",
-    "react-table": "^6.7.6",
-    "react-tooltip": "^3.4.0",
-    "redux": "^3.7.2",
-    "redux-form": "^7.2.1",
-    "redux-saga": "^0.16.0",
-    "zenscroll": "^4.0.0"
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
   },
   "devDependencies": {
     "@dump247/storybook-state": "^1.2.1",
@@ -87,5 +63,29 @@
     "standard-version": "^4.3.0",
     "storybook-host": "^4.1.5",
     "timezone-mock": "^0.0.7"
+  },
+  "dependencies": {
+    "ethjs": "^0.3.3",
+    "ethjs-unit": "^0.1.6",
+    "history": "^4.7.2",
+    "kleros-api": "^0.0.55",
+    "normalize.css": "^7.0.0",
+    "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-blockies": "^1.2.2",
+    "react-dom": "^16.2.0",
+    "react-helmet": "^5.2.0",
+    "react-minimal-pie-chart": "^3.0.1",
+    "react-redux": "^5.0.6",
+    "react-redux-toastr": "^7.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.0",
+    "react-table": "^6.7.6",
+    "react-tooltip": "^3.4.0",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.1",
+    "redux-saga": "^0.16.0",
+    "zenscroll": "^4.0.0"
   }
 }
