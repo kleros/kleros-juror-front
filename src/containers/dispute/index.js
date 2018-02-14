@@ -79,17 +79,17 @@ class Dispute extends PureComponent {
                     />
                   )
                 },
-                {
+                ...dispute.data.evidence.map(e => ({
                   anchor: 'Evidence',
                   element: (
                     <Evidence
-                      key={2}
+                      key={e.url}
                       date={new Date()}
-                      partyAddress={dispute.data.partyA}
-                      URIs={dispute.data.evidence}
+                      partyAddress={e.submitter}
+                      URI={e.url}
                     />
                   )
-                },
+                })),
                 {
                   anchor: 'Ruling',
                   element: (

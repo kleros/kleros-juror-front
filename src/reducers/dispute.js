@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import createReducer, { createResource } from '../utils/redux'
 
-// Reusable Shapes
+// Base Shapes
 const dispute = PropTypes.shape({
   disputeId: PropTypes.number.isRequired,
   disputeState: PropTypes.number.isRequired,
@@ -16,7 +16,14 @@ const dispute = PropTypes.shape({
   partyA: PropTypes.string.isRequired,
   partyB: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  evidence: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  evidence: PropTypes.arrayOf(
+    PropTypes.shape({
+      submitter: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
   session: PropTypes.number.isRequired,
   isJuror: PropTypes.bool.isRequired,
   hasRuled: PropTypes.bool.isRequired,
