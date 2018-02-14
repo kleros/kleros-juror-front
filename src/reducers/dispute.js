@@ -8,21 +8,21 @@ const dispute = PropTypes.shape({
   disputeState: PropTypes.number.isRequired,
   disputeStatus: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
-  deadline: PropTypes.number.isRequired,
+  deadline: PropTypes.instanceOf(Date).isRequired,
   fee: PropTypes.number.isRequired,
-  arbitratorAddress: PropTypes.number.isRequired,
-  arbitrableContractAddress: PropTypes.number.isRequired,
+  arbitratorAddress: PropTypes.string.isRequired,
+  arbitrableContractAddress: PropTypes.string.isRequired,
   arbitrableContractStatus: PropTypes.number.isRequired,
-  partyA: PropTypes.number.isRequired,
-  partyB: PropTypes.number.isRequired,
-  email: PropTypes.number.isRequired,
+  partyA: PropTypes.string.isRequired,
+  partyB: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   evidence: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   session: PropTypes.number.isRequired,
   isJuror: PropTypes.bool.isRequired,
   hasRuled: PropTypes.bool.isRequired,
   votes: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   ruling: PropTypes.number.isRequired,
-  hash: PropTypes.number.isRequired
+  hash: PropTypes.string.isRequired
 })
 
 // Shapes

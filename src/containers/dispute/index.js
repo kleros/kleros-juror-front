@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
+import { renderIf } from '../../utils/redux'
 import { dateToString } from '../../utils/date'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
@@ -31,76 +32,81 @@ class Dispute extends PureComponent {
 
   componentDidMount() {
     const { match: { params: { disputeID } }, fetchDispute } = this.props
-    fetchDispute(disputeID)
+    fetchDispute(Number(disputeID))
   }
 
   render() {
     const { dispute } = this.props
-    console.log(dispute)
+
     return (
       <div className="Dispute">
-        <AnchoredList
-          items={[
-            {
-              element: (
-                <div key={0} className="Dispute-header">
-                  <small>
-                    {dateToString(new Date(), {
-                      withTime: false
-                    })}
-                  </small>
-                  <div className="Dispute-header-title">
-                    <Identicon
-                      seed="Placeholder"
-                      size={12}
-                      className="Dispute-header-title-identicon"
+        {renderIf(dispute, {
+          loading: 'Loading dispute...',
+          done: dispute.data && (
+            <AnchoredList
+              items={[
+                {
+                  element: (
+                    <div key={0} className="Dispute-header">
+                      <small>
+                        {dateToString(new Date(), {
+                          withTime: false
+                        })}
+                      </small>
+                      <div className="Dispute-header-title">
+                        <Identicon
+                          seed="Placeholder"
+                          size={12}
+                          className="Dispute-header-title-identicon"
+                        />
+                        <h3>
+                          Decision Summary for "{dispute.data.description}"
+                        </h3>
+                      </div>
+                      <hr />
+                    </div>
+                  )
+                },
+                {
+                  anchor: 'Details',
+                  element: (
+                    <Details
+                      key={1}
+                      date={new Date()}
+                      partyAAddress={dispute.data.partyA}
+                      partyBAddress={dispute.data.partyB}
+                      arbitrationFee={dispute.data.fee}
                     />
-                    <h3>Decision Summary for XYZ Case</h3>
-                  </div>
-                  <hr />
-                </div>
-              )
-            },
-            {
-              anchor: 'Details',
-              element: (
-                <Details
-                  key={1}
-                  date={new Date()}
-                  partyAAddress="Placeholder1"
-                  partyBAddress="Placeholder2"
-                  arbitrationFee={5}
-                />
-              )
-            },
-            {
-              anchor: 'Evidence',
-              element: (
-                <Evidence
-                  key={2}
-                  date={new Date()}
-                  partyAddress="Placeholder1"
-                  URIs={[
-                    'awdwad/adwd/awdawd/awdawd/file1.png',
-                    'awdwad/adwd/awdawd/awdawd/file2.png'
-                  ]}
-                />
-              )
-            },
-            {
-              anchor: 'Ruling',
-              element: (
-                <Ruling
-                  key={3}
-                  date={new Date()}
-                  votesForPartyA={33}
-                  votesForPartyB={78}
-                  netPNK={10}
-                />
-              )
-            }
-          ]}
-        />
+                  )
+                },
+                {
+                  anchor: 'Evidence',
+                  element: (
+                    <Evidence
+                      key={2}
+                      date={new Date()}
+                      partyAddress={dispute.data.partyA}
+                      URIs={dispute.data.evidence}
+                    />
+                  )
+                },
+                {
+                  anchor: 'Ruling',
+                  element: (
+                    <Ruling
+                      key={3}
+                      date={new Date()}
+                      votesForPartyA={33}
+                      votesForPartyB={78}
+                      netPNK={10}
+                    />
+                  )
+                }
+              ]}
+            />
+          ),
+          failed: 'Failed to fetch dispute.'
+        })}
       </div>
     )
   }

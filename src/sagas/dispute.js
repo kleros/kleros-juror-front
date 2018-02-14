@@ -16,9 +16,35 @@ function* fetchDisputes() {
       yield select(walletSelectors.getAccount)
     )
 
-    yield put(action(disputeActions.disputes.RECEIVE, { disputes }))
+    yield put(
+      action(disputeActions.disputes.RECEIVE, {
+        disputes: disputes.map(d => ({ ...d, deadline: new Date(d.deadline) }))
+      })
+    )
   } catch (err) {
     yield put(errorAction(disputeActions.disputes.FAIL_FETCH, err))
+  }
+}
+
+/**
+ * Fetches a dispute by dispute ID.
+ */
+function* fetchDispute({ payload: { disputeID } }) {
+  try {
+    const dispute = yield call(
+      kleros.disputes.getDataForDispute,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      yield select(walletSelectors.getAccount)
+    )
+
+    yield put(
+      action(disputeActions.dispute.RECEIVE, {
+        dispute: { ...dispute, deadline: new Date(dispute.deadline) }
+      })
+    )
+  } catch (err) {
+    yield put(errorAction(disputeActions.dispute.FAIL_FETCH, err))
   }
 }
 
@@ -28,4 +54,6 @@ function* fetchDisputes() {
 export default function* disputeSaga() {
   // Disputes
   yield takeLatest(disputeActions.disputes.FETCH, fetchDisputes)
+  // Dispute
+  yield takeLatest(disputeActions.dispute.FETCH, fetchDispute)
 }

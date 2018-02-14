@@ -10,4 +10,7 @@ export const dispute = createActions('DISPUTE')
 
 // Disputes
 export const fetchDisputes = () => ({ type: disputes.FETCH })
-export const fetchDispute = () => ({ type: dispute.FETCH })
+export const fetchDispute = disputeID => ({
+  type: dispute.FETCH,
+  payload: { disputeID }
+})
