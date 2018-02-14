@@ -1,15 +1,6 @@
-/*
-Sample form schema:
-{
-  username: { type: text, validation: validationFunc, props: {}, ...reduxFormFieldProps },
-  password: { type: date, validation: validationFunc, props: {}, ...reduxFormFieldProps }
-}
-
-We should extend this schema as needed to take advantage of all the redux-form features.
-Docs URL: http://redux-form.com/6.8.0/docs/api/Field.md/
-*/
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {
   reduxForm,
   Field,
@@ -18,7 +9,6 @@ import {
   submit,
   destroy
 } from 'redux-form'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux'
 
 import { objMap } from './functional'
@@ -75,12 +65,12 @@ const validateIf = (validate, valueKey) => (val, allVals, ...rest) => {
 
 /**
  * Generate fields for a `redux-form` from a schema.
- * @param {{UIKit: object, store: object}} - An object with a map of field types to react components and the redux store.
+ * @param {{ UIKit: object, store: object }} UIKitAndStore - An object with a map of field types to react components and the redux store.
  * @param {string} formName - The name of the form.
  * @param {object} schema  - The schema to use.
- * @returns {array} - An array of field react elements.
+ * @returns {object[]} - An array of field react elements.
  */
-function createFields({ UIKit, store }, formName, schema) {
+function createFields({ UIKit }, formName, schema) {
   return objMap(schema, (rawField, fieldKey) => {
     const name = camelToTitleCase(fieldKey)
     const field = {
@@ -245,10 +235,10 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
 
     render() {
       const {
-        onSubmit,
-        destroy,
-        onPageChange,
-        backHandlerRef,
+        onSubmit: _onSubmit,
+        destroy: _destroy,
+        onPageChange: _onPageChange,
+        backHandlerRef: _backHandlerRef,
         className,
         disabled,
         ...rest
@@ -265,9 +255,9 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
           >
             <div key={key} style={{ position: 'relative' }}>
               <Form
-                {...rest}
                 disabled={disabled}
                 onSubmit={this.handleSubmit}
+                {...rest}
               />
             </div>
           </ReactCSSTransitionGroup>
@@ -312,11 +302,10 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
 }
 
 /**
- * Creates a form generator function that uses the passed in UIKit to render fields.
- * @export default createFormGenerator
+ * Creates a form generator function that uses the passed in UI-Kit to render fields.
  * @param {object} UIKit - A map of field types to react components.
  * @param {object} store - The redux store.
- * @returns {object} - An object with a form generator function and a wizard form generator function.
+ * @returns {{ form: function, wizardForm: function }} - An object with a form generator function and a wizard form generator function.
  */
 export default function createFormGenerator(UIKit, store) {
   return {

@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom'
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import Disputes from '../containers/disputes'
+import Dispute from '../containers/dispute'
 import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
 
@@ -37,19 +38,20 @@ const App = ({ store, history, testElement }) => (
           <Helmet>
             <title>Kleros Dapp</title>
           </Helmet>
-          <Route path="/" component={ConnectedNavBar} />
+          <Route exact path="*" component={ConnectedNavBar} />
           <div id="scroll-root">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/disputes" component={Disputes} />
+              <Route exact path="/disputes/:disputeID" component={Dispute} />
               <Route exact path="/testing-panel" component={TestingPanel} />
               <Route component={PageNotFound} />
             </Switch>
           </div>
           {testElement}
+          <Route exact path="*" component={GlobalComponents} />
         </div>
       </ConnectedRouter>
-      <GlobalComponents />
     </Initializer>
   </Provider>
 )

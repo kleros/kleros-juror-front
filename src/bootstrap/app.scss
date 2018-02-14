@@ -7,17 +7,20 @@
 @import '../styles/_toastr.scss';
 @import '../styles/_form.scss';
 
+// Global Overrides
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: 'Roboto', sans-serif !important;
+  scroll-behavior: smooth !important;
 }
 
+// Document Root
 html {
   color: $text;
-  font-family: 'Roboto', sans-serif !important;
   font-size: 16px;
 }
 
+// App Containers
 html,
 body,
 #root,
@@ -30,14 +33,23 @@ body,
   width: 100%;
 }
 
+// React Router Root
 #router-root {
   padding-top: 70px;
 }
 
+// Scroll Root
 #scroll-root {
   background: $background;
   display: flex;
   flex-direction: column;
   overflow: scroll;
   position: relative;
+}
+
+/* Element Overrides */
+
+// Horizontal Rule
+hr {
+  border: 1px solid #e6ebed;
 }

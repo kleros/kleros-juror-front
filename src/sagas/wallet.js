@@ -42,7 +42,6 @@ export function* fetchBalance() {
 
 /**
  * The root of the wallet saga.
- * @export default walletSaga
  */
 export default function* walletSaga() {
   // Accounts

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 import './button.css'
 
-const Button = ({ children, onClick, disabled, className }) => (
+const Button = ({ children, onClick, disabled, className, labelClassName }) => (
   <div
     className={`Button ${disabled ? 'is-disabled' : ''} ${className}`}
     onClick={onClick}
   >
-    <h5 className="Button-label">{children}</h5>
+    <h5 className={`Button-label ${labelClassName}`}>{children}</h5>
   </div>
 )
 
@@ -22,13 +22,15 @@ Button.propTypes = {
 
   // Modifiers
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  labelClassName: PropTypes.string
 }
 
 Button.defaultProps = {
   // Modifiers
   disabled: false,
-  className: ''
+  className: '',
+  labelClassName: ''
 }
 
 export default Button

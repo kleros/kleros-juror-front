@@ -35,7 +35,6 @@ const rootSagas = [walletSaga, arbitratorSaga, disputeSaga].map(makeRestartable)
 
 /**
  * The root saga.
- * @export default rootSaga
  */
 export default function* rootSaga() {
   yield all(rootSagas.map(saga => spawn(saga)))

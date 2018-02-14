@@ -9,7 +9,7 @@ import 'jest-enzyme'
 configure({ adapter: new Adapter() })
 
 // Mock Modules
-jest.mock('./components/identicon', () => props => <div>[Blockies]</div>)
+jest.mock('./components/identicon', () => () => <div>[Blockies]</div>)
 
 // Mock Time
 timezoneMock.register('UTC')

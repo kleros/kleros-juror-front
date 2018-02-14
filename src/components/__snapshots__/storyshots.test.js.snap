@@ -1,5 +1,642 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Storyshots Anchored List default 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "height": "400px",
+              }
+            }
+          >
+            <div
+              className="AnchoredList"
+              onScroll={[Function]}
+            >
+              <div
+                className="AnchoredList-container"
+              >
+                <div
+                  className="AnchoredList-container-margin"
+                />
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div>
+                    Dispute ID: 1000
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="1"
+                    data-type="info"
+                    id={1}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -22px)",
+                        "opacity": 0.8,
+                      }
+                    }
+                  />
+                  <div>
+                    1
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="2"
+                    data-type="info"
+                    id={2}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -30px)",
+                        "opacity": 0.7,
+                      }
+                    }
+                  />
+                  <div>
+                    2
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="3"
+                    data-type="info"
+                    id={3}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -38px)",
+                        "opacity": 0.6,
+                      }
+                    }
+                  />
+                  <div>
+                    3
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="4"
+                    data-type="info"
+                    id={4}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -46px)",
+                        "opacity": 0.5,
+                      }
+                    }
+                  />
+                  <div>
+                    4
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="5"
+                    data-type="info"
+                    id={5}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -54px)",
+                        "opacity": 0.3999999999999999,
+                      }
+                    }
+                  />
+                  <div>
+                    5
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="6"
+                    data-type="info"
+                    id={6}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -62px)",
+                        "opacity": 0.29999999999999993,
+                      }
+                    }
+                  />
+                  <div>
+                    6
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="7"
+                    data-type="info"
+                    id={7}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -70px)",
+                        "opacity": 0.19999999999999996,
+                      }
+                    }
+                  />
+                  <div>
+                    7
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="8"
+                    data-type="info"
+                    id={8}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -78px)",
+                        "opacity": 0.09999999999999998,
+                      }
+                    }
+                  />
+                  <div>
+                    8
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="9"
+                    data-type="info"
+                    id={9}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -86px)",
+                        "opacity": 0,
+                      }
+                    }
+                  />
+                  <div>
+                    9
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="10"
+                    data-type="info"
+                    id={10}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -94px)",
+                        "opacity": -0.10000000000000009,
+                      }
+                    }
+                  />
+                  <div>
+                    10
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="11"
+                    data-type="info"
+                    id={11}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -102px)",
+                        "opacity": -0.20000000000000018,
+                      }
+                    }
+                  />
+                  <div>
+                    11
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="12"
+                    data-type="info"
+                    id={12}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -110px)",
+                        "opacity": -0.30000000000000004,
+                      }
+                    }
+                  />
+                  <div>
+                    12
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="13"
+                    data-type="info"
+                    id={13}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -118px)",
+                        "opacity": -0.40000000000000013,
+                      }
+                    }
+                  />
+                  <div>
+                    13
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="14"
+                    data-type="info"
+                    id={14}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -126px)",
+                        "opacity": -0.5,
+                      }
+                    }
+                  />
+                  <div>
+                    14
+                  </div>
+                </div>
+                <div
+                  className="AnchoredList-container-item"
+                >
+                  <div
+                    className="AnchoredList-container-item-anchor"
+                    data-tip="15"
+                    data-type="info"
+                    id={15}
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "bottom": undefined,
+                        "left": "calc(5% + -134px)",
+                        "opacity": -0.6000000000000001,
+                      }
+                    }
+                  />
+                  <div>
+                    15
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`Storyshots Balance Pie Chart activated 1`] = `
 <div>
   <div
@@ -99,11 +736,11 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
               width="100%"
             >
               <path
-                d="M 49.99999999999999 25 A 25 25 0 0 1 71.65063509461096 37.499999999999986"
+                d="M 49.99999999999999 25 A 25 25 0 0 1 73.77641290737884 42.27457514062631"
                 fill="none"
                 stroke="#0059ab"
-                strokeDasharray={26.17993877991494}
-                strokeDashoffset={26.17993877991494}
+                strokeDasharray={31.41592653589793}
+                strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -113,11 +750,11 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
                 }
               />
               <path
-                d="M 71.65063509461096 37.499999999999986 A 25 25 0 1 1 49.999999999999986 25"
+                d="M 73.77641290737884 42.27457514062631 A 25 25 0 1 1 49.999999999999986 25"
                 fill="none"
                 stroke="#fff"
-                strokeDasharray={130.89969389957471}
-                strokeDashoffset={130.89969389957471}
+                strokeDasharray={125.66370614359172}
+                strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -437,11 +1074,11 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
               width="100%"
             >
               <path
-                d="M 49.99999999999999 25 A 25 25 0 0 0 41.44949641685828 73.49231551964772"
+                d="M 49.99999999999999 25 A 25 25 0 1 0 73.77641290737884 42.27457514062632"
                 fill="none"
                 stroke="#47525d"
-                strokeDasharray={69.81317007977319}
-                strokeDashoffset={69.81317007977319}
+                strokeDasharray={125.66370614359172}
+                strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -451,11 +1088,11 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
                 }
               />
               <path
-                d="M 41.44949641685828 73.49231551964772 A 25 25 0 1 0 50 25"
+                d="M 73.77641290737884 42.27457514062632 A 25 25 0 0 0 50 25"
                 fill="none"
                 stroke="#fff"
-                strokeDasharray={87.26646259971648}
-                strokeDashoffset={87.26646259971648}
+                strokeDasharray={31.41592653589793}
+                strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
@@ -765,7 +1402,7 @@ exports[`Storyshots Button disabled 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME
             </h5>
@@ -1069,7 +1706,7 @@ exports[`Storyshots Button primary 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME
             </h5>
@@ -1373,7 +2010,7 @@ exports[`Storyshots Button with lots of text 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               CLICK ME, CLICK ME, CLICK ME
             </h5>
@@ -1676,8 +2313,8 @@ exports[`Storyshots Dispute Card appealable 1`] = `
             className="DisputeCard "
           >
             <div
-              className="StatusHint StatusHint--waiting DisputeCard-status"
-              data-tip="waiting"
+              className="StatusHint StatusHint--appealable DisputeCard-status"
+              data-tip="appealable"
               data-type="info"
             />
             <h6>
@@ -3229,6 +3866,385 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
         >
           <div>
             [Blockies]
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": undefined,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": "auto",
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": -19,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "auto",
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 5,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 0,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": -19,
+                "position": "absolute",
+                "right": "auto",
+                "top": "auto",
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 5,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": "auto",
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+          <div
+            data-radium={true}
+            style={
+              Object {
+                "bottom": -19,
+                "height": 20,
+                "left": "auto",
+                "position": "absolute",
+                "right": -19,
+                "top": undefined,
+                "width": 20,
+              }
+            }
+          >
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": "auto",
+                  "left": 5,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <div
+              data-radium={true}
+              style={
+                Object {
+                  "borderRight": "solid 1px rgba(0, 0, 0, 0.1)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": "auto",
+                  "top": 5,
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+    >
+      
+    </div>
+    <span
+      aria-live="assertive"
+      className="redux-toastr"
+    >
+      <span>
+        <div
+          className="top-left"
+          style={Object {}}
+        />
+        <div
+          className="top-right"
+          style={Object {}}
+        />
+        <div
+          className="top-center"
+          style={Object {}}
+        />
+        <div
+          className="bottom-left"
+          style={Object {}}
+        />
+        <div
+          className="bottom-right"
+          style={Object {}}
+        />
+        <div
+          className="bottom-center"
+          style={Object {}}
+        />
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Label Value Group default 1`] = `
+<div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "rgb(255, 255, 255)",
+        "bottom": 0,
+        "display": "flex",
+        "flexDirection": "column",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "borderBottom": "solid 1px rgba(0, 0, 0, 0.1)",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "marginTop": 15,
+          "paddingBottom": 15,
+          "paddingTop": 2,
+        }
+      }
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "color": "rgba(0, 0, 0, 0.6)",
+            "fontSize": 20,
+            "fontWeight": 200,
+            "margin": 0,
+            "padding": 0,
+          }
+        }
+      >
+        Kleros UI-Kit
+      </h2>
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "boxSizing": "border-box",
+          "flex": 1,
+          "margin": 50,
+          "position": "relative",
+        }
+      }
+    >
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "display": "flex",
+            "flexDirection": "column",
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "border": "solid 1px rgba(0, 0, 0, 0.0)",
+              "boxSizing": "border-box",
+              "height": "auto",
+              "position": "relative",
+              "width": "auto",
+            }
+          }
+        >
+          <div
+            className="LabelValueGroup"
+          >
+            <div
+              className="LabelValueGroup-item"
+            >
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  <small>
+                    Party A
+                    :
+                  </small>
+                </p>
+              </div>
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <div>
+                  [Blockies]
+                </div>
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  Placeholder 1
+                </p>
+              </div>
+            </div>
+            <div
+              className="LabelValueGroup-item"
+            >
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  <small>
+                    Party B
+                    :
+                  </small>
+                </p>
+              </div>
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <div>
+                  [Blockies]
+                </div>
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  Placeholder 2
+                </p>
+              </div>
+            </div>
+            <div
+              className="LabelValueGroup-item"
+            >
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  <small>
+                    Arbitration Fee
+                    :
+                  </small>
+                </p>
+              </div>
+              <div
+                className="LabelValueGroup-item-column"
+              >
+                <p
+                  className="LabelValueGroup-item-column-text"
+                >
+                  10 PNK
+                </p>
+              </div>
+            </div>
           </div>
           <div
             data-radium={true}
@@ -5844,8 +6860,8 @@ exports[`Storyshots Status Hint appealable 1`] = `
           }
         >
           <div
-            className="StatusHint StatusHint--waiting "
-            data-tip="waiting"
+            className="StatusHint StatusHint--appealable "
+            data-tip="appealable"
             data-type="info"
           />
           <div
@@ -6889,6 +7905,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -odd"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -6908,17 +7925,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/0"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 0
-                            </h5>
-                            <small>
-                              #
-                              0
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 0
+                              </h5>
+                              <small>
+                                #
+                                0
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -6971,6 +7993,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -even"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -6990,17 +8013,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/1"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 1
-                            </h5>
-                            <small>
-                              #
-                              1
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 1
+                              </h5>
+                              <small>
+                                #
+                                1
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -7041,8 +8069,8 @@ exports[`Storyshots Table default 1`] = `
                         }
                       >
                         <div
-                          className="StatusHint StatusHint--waiting "
-                          data-tip="waiting"
+                          className="StatusHint StatusHint--appealable "
+                          data-tip="appealable"
                           data-type="info"
                         />
                       </div>
@@ -7053,6 +8081,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -odd"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -7072,17 +8101,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/2"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 2
-                            </h5>
-                            <small>
-                              #
-                              2
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 2
+                              </h5>
+                              <small>
+                                #
+                                2
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -7135,6 +8169,7 @@ exports[`Storyshots Table default 1`] = `
                   >
                     <div
                       className="rt-tr -even"
+                      onClick={null}
                       style={undefined}
                     >
                       <div
@@ -7154,17 +8189,22 @@ exports[`Storyshots Table default 1`] = `
                           <div>
                             [Blockies]
                           </div>
-                          <div
-                            className="CaseNameCell-title"
+                          <a
+                            href="/disputes/3"
+                            onClick={[Function]}
                           >
-                            <h5>
-                              Website Design 3
-                            </h5>
-                            <small>
-                              #
-                              3
-                            </small>
-                          </div>
+                            <div
+                              className="CaseNameCell-title"
+                            >
+                              <h5>
+                                Website Design 3
+                              </h5>
+                              <small>
+                                #
+                                3
+                              </small>
+                            </div>
+                          </a>
                         </div>
                       </div>
                       <div
@@ -7205,8 +8245,8 @@ exports[`Storyshots Table default 1`] = `
                         }
                       >
                         <div
-                          className="StatusHint StatusHint--resolved "
-                          data-tip="resolved"
+                          className="StatusHint StatusHint--waiting "
+                          data-tip="waiting"
                           data-type="info"
                         />
                       </div>
@@ -8871,7 +9911,7 @@ exports[`Storyshots Toast confirm 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -9175,7 +10215,7 @@ exports[`Storyshots Toast error 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -9479,7 +10519,7 @@ exports[`Storyshots Toast info 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -9783,7 +10823,7 @@ exports[`Storyshots Toast message 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -10087,7 +11127,7 @@ exports[`Storyshots Toast success 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>
@@ -10391,7 +11431,7 @@ exports[`Storyshots Toast warning 1`] = `
             onClick={[Function]}
           >
             <h5
-              className="Button-label"
+              className="Button-label "
             >
               TOAST
             </h5>

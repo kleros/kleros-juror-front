@@ -1,20 +1,30 @@
+import { MONTHS_ENUM, ORDINAL_INDICATOR_ENUM } from '../constants/date'
+
 /**
- * Stringifies a date object in the preffered Kleros format, (dd.mm.yyyy).
- * @export
- * @param {Date} date The date object
- * @returns {string} The formatted string
+ * Stringifies a date object into the preffered Kleros format, (dd.mm.yyyy).
+ * @param {object} date - The date object.
+ * @returns {string} - The formatted string.
  */
-export function formatDateString(
+export function dateToString(
   date,
-  { withYear = false, withTime = true } = {}
+  { withYear = true, withTime = true, numericMonth = true } = {}
 ) {
   const day = date.getDate()
-  const month = date.getMonth() + 1
+  const month = date.getMonth()
   const year = date.getFullYear()
 
-  const dateString = [day, month, withYear === true ? year : null]
-    .filter(v => v)
-    .join('.')
+  let dateString
+  if (numericMonth)
+    dateString = [day, month + 1, withYear === true ? year : null]
+      .filter(v => v)
+      .join('.')
+  else {
+    const dayStr = day.toString()
+    dateString = `${MONTHS_ENUM[month]} ${day}${
+      ORDINAL_INDICATOR_ENUM[dayStr[dayStr.length - 1]]
+    }${withYear === true ? `, ${year}` : ''}`
+  }
+
   if (!withTime) return dateString
 
   let hours = date.getHours()

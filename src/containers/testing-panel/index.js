@@ -104,7 +104,7 @@ class TestingPanel extends PureComponent {
 }
 
 TestingPanel.propTypes = {
-  // State
+  // Redux State
   PNKBalance: arbitratorSelectors.PNKBalanceShape.isRequired,
   arbitratorData: arbitratorSelectors.arbitratorDataShape.isRequired,
 

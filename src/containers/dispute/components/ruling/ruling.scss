@@ -1,0 +1,59 @@
+@import '../../../../styles/_colors.scss';
+
+%outcomeBlock {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* @define Ruling */
+.Ruling {
+  &-outcome {
+    align-items: center;
+    border: 1px solid rgba(163, 162, 165, 0.15);
+    border-radius: 2px;
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    height: 91px;
+    margin-bottom: 20px;
+
+    &-party {
+      border-left: 13px solid $dark;
+      border-right: 1px solid transparentize($dark3, 0.78);
+
+      @extend %outcomeBlock;
+
+      &--positive {
+        border-left-color: $success;
+      }
+
+      &--negative {
+        border-left-color: $error;
+      }
+    }
+
+    &-netPNK {
+      @extend %outcomeBlock;
+
+      &-label {
+        margin: 0 8px 0 0;
+      }
+    }
+  }
+
+  &-netPNK {
+    &--positive {
+      color: $success;
+    }
+
+    &--negative {
+      color: $error;
+    }
+  }
+}
