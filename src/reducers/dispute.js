@@ -21,7 +21,7 @@ const dispute = PropTypes.shape({
   disputeState: PropTypes.number.isRequired,
   disputeStatus: PropTypes.number.isRequired,
   voteCounters: PropTypes.number.isRequired,
-  appealsRepartitionedPNK: PropTypes.number.isRequired,
+  PNKRepartitions: PropTypes.number.isRequired,
 
   // Store Data
   description: PropTypes.string.isRequired,
