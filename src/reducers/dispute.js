@@ -4,17 +4,27 @@ import createReducer, { createResource } from '../utils/redux'
 
 // Base Shapes
 const dispute = PropTypes.shape({
-  disputeId: PropTypes.number.isRequired,
-  disputeState: PropTypes.number.isRequired,
-  disputeStatus: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  deadline: PropTypes.instanceOf(Date).isRequired,
-  fee: PropTypes.number.isRequired,
-  arbitratorAddress: PropTypes.string.isRequired,
+  // Arbitrable Contract Data
+  hash: PropTypes.string.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
   arbitrableContractStatus: PropTypes.number.isRequired,
+  arbitratorAddress: PropTypes.string.isRequired,
   partyA: PropTypes.string.isRequired,
   partyB: PropTypes.string.isRequired,
+
+  // Dispute Data
+  disputeId: PropTypes.number.isRequired,
+  session: PropTypes.number.isRequired,
+  numberOfAppeals: PropTypes.number.isRequired,
+  fee: PropTypes.number.isRequired,
+  deadline: PropTypes.instanceOf(Date).isRequired,
+  disputeState: PropTypes.number.isRequired,
+  disputeStatus: PropTypes.number.isRequired,
+  voteCounters: PropTypes.number.isRequired,
+  netPNK: PropTypes.number.isRequired,
+
+  // Store Data
+  description: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   evidence: PropTypes.arrayOf(
     PropTypes.shape({
@@ -24,12 +34,10 @@ const dispute = PropTypes.shape({
       url: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  session: PropTypes.number.isRequired,
   isJuror: PropTypes.bool.isRequired,
-  hasRuled: PropTypes.bool.isRequired,
   votes: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-  ruling: PropTypes.number.isRequired,
-  hash: PropTypes.string.isRequired
+  hasRuled: PropTypes.bool.isRequired,
+  ruling: PropTypes.number.isRequired
 })
 
 // Shapes
