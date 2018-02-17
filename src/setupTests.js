@@ -9,7 +9,8 @@ import 'jest-enzyme'
 configure({ adapter: new Adapter() })
 
 // Mock Modules
-jest.mock('./components/identicon', () => () => <div>[Blockies]</div>)
+jest.mock('./components/icosahedron', () => () => <div>[Icosahedron]</div>)
+jest.mock('./components/identicon', () => () => <div>[Identicon]</div>)
 
 // Mock Time
 timezoneMock.register('UTC')

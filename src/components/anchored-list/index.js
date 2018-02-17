@@ -23,32 +23,10 @@ class AnchoredList extends PureComponent {
   childRefs = []
 
   componentDidMount() {
-    this.setAnchorBottoms()
+    this.handleScroll()
   }
 
-  getRef = ref => {
-    this.scroller = zenscroll.createScroller(ref)
-    this.ref = ref
-  }
-
-  getChildRef = ref => (this.childRefs = [...this.childRefs, ref])
-
-  setAnchorBottoms = () =>
-    this.ref &&
-    this.childRefs.length &&
-    this.setState({
-      anchorBottoms: this.childRefs.map(childRef =>
-        Math.max(
-          this.ref.scrollHeight -
-            this.ref.clientHeight -
-            this.ref.scrollTop +
-            15,
-          this.ref.scrollHeight - childRef.offsetTop - 15
-        )
-      )
-    })
-
-  calcAnchorLeftAndOpacity = i => {
+  calcAnchorLeftAndOpacity(i) {
     const defaultLeft = -6
     const defaultOpacity = 1
     const defaultLeftAndOpacity = {
@@ -71,6 +49,28 @@ class AnchoredList extends PureComponent {
     }
   }
 
+  getRef = ref => {
+    this.scroller = zenscroll.createScroller(ref)
+    this.ref = ref
+  }
+
+  getChildRef = ref => (this.childRefs = [...this.childRefs, ref])
+
+  handleScroll = () =>
+    this.ref &&
+    this.childRefs.length &&
+    this.setState({
+      anchorBottoms: this.childRefs.map(childRef =>
+        Math.max(
+          this.ref.scrollHeight -
+            this.ref.clientHeight -
+            this.ref.scrollTop +
+            15,
+          this.ref.scrollHeight - childRef.offsetTop - 15
+        )
+      )
+    })
+
   handleAnchorClick = event =>
     this.scroller.to(this.childRefs[event.currentTarget.id])
 
@@ -82,7 +82,7 @@ class AnchoredList extends PureComponent {
       <div
         ref={this.getRef}
         className="AnchoredList"
-        onScroll={this.setAnchorBottoms}
+        onScroll={this.handleScroll}
       >
         <div className="AnchoredList-container">
           <div className="AnchoredList-container-margin" />

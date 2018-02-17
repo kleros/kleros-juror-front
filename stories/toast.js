@@ -10,13 +10,13 @@ class Component extends PureComponent {
     type: PropTypes.string.isRequired
   }
 
-  onButtonClick = () => {
+  handleButtonClick = () => {
     const { type } = this.props
     toastr[type]('The Title', 'The message.')
   }
 
   render() {
-    return <Button onClick={this.onButtonClick}>TOAST</Button>
+    return <Button onClick={this.handleButtonClick}>TOAST</Button>
   }
 }
 const render = type => () => <Component type={type} />

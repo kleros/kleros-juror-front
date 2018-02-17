@@ -87,6 +87,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.2.1",
     "redux-saga": "^0.16.0",
+    "three": "^0.90.0",
     "zenscroll": "^4.0.0"
   }
 }

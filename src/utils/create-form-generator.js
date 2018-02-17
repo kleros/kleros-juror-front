@@ -188,19 +188,15 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
       destroy()
     }
 
-    onPageChange = formData => {
-      const { onPageChange } = this.props
+    nextPage(formData) {
       const { page } = this.state
-      if (onPageChange)
-        onPageChange(
-          {
-            currentPage: page,
-            hasPrevPage: page !== 0,
-            hasNextPage: page !== pages.length - 1,
-            totalPages: pages.length
-          },
-          formData
-        )
+      const nextPage = page < lastPageIndex ? page + 1 : page
+      this.setState(
+        {
+          page: nextPage
+        },
+        () => this.onPageChange(formData)
+      )
     }
 
     previousPage = () => {
@@ -214,15 +210,19 @@ function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
       )
     }
 
-    nextPage = formData => {
+    onPageChange = formData => {
+      const { onPageChange } = this.props
       const { page } = this.state
-      const nextPage = page < lastPageIndex ? page + 1 : page
-      this.setState(
-        {
-          page: nextPage
-        },
-        () => this.onPageChange(formData)
-      )
+      if (onPageChange)
+        onPageChange(
+          {
+            currentPage: page,
+            hasPrevPage: page !== 0,
+            hasNextPage: page !== pages.length - 1,
+            totalPages: pages.length
+          },
+          formData
+        )
     }
 
     handleSubmit = formData => {

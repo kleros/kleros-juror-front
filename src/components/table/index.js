@@ -33,15 +33,15 @@ class Table extends PureComponent {
     })
   }
 
-  onSearchInputChange = event => {
-    this.setState({ searchInput: event.currentTarget.value }, this.filterData)
-  }
-
   getTrProps = () => {
     const { onRowClick } = this.props
     return {
       onClick: onRowClick
     }
+  }
+
+  handleSearchInputChange = event => {
+    this.setState({ searchInput: event.currentTarget.value }, this.filterData)
   }
 
   render() {
@@ -52,7 +52,10 @@ class Table extends PureComponent {
       <div className={`Table ${className}`}>
         <div className="Table-searchBar">
           <TextInput
-            input={{ value: searchInput, onChange: this.onSearchInputChange }}
+            input={{
+              value: searchInput,
+              onChange: this.handleSearchInputChange
+            }}
             placeholder="SEARCH"
             className="Table-searchBar-searchInput"
           />
