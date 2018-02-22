@@ -6,6 +6,7 @@ import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import { renderIf } from '../../utils/redux'
 import { camelToTitleCase } from '../../utils/string'
+import Icosahedron from '../../components/icosahedron'
 import Button from '../../components/button'
 import { PERIOD_ENUM } from '../../constants/arbitrator'
 
@@ -45,7 +46,7 @@ class TestingPanel extends PureComponent {
       <div className="TestingPanel">
         <div className="TestingPanel-form">
           {renderIf(PNKBalance, {
-            loading: 'Loading PNK balance...',
+            loading: <Icosahedron />,
             done: PNKBalance.data && (
               <div>
                 <BuyPNKForm
@@ -71,7 +72,7 @@ class TestingPanel extends PureComponent {
         </div>
         <div className="TestingPanel-form">
           {renderIf(arbitratorData, {
-            loading: 'Loading current period...',
+            loading: <Icosahedron />,
             done: arbitratorData.data && (
               <div>
                 <PassPeriodForm

@@ -4,29 +4,21 @@ import * as THREE from 'three'
 
 import icosahedron from '../../assets/models/icosahedron'
 
+import './icosahedron.css'
+
 class Icosahedron extends PureComponent {
   static propTypes = {
-    size: PropTypes.number
+    size: PropTypes.number,
+    loading: PropTypes.bool
   }
 
   static defaultProps = {
-    size: 100
+    size: 100,
+    loading: null
   }
 
   // Loader
   static loader = new THREE.ObjectLoader()
-
-  // Lights
-  static ambientLight = new THREE.AmbientLight('0xffffff', 0.25) // Ambient
-  static keyLight = new THREE.DirectionalLight( // Key
-    new THREE.Color('hsl(30, 100%, 75%)'),
-    1.0
-  )
-  static fillLight = new THREE.DirectionalLight( // Fill
-    new THREE.Color('hsl(240, 100%, 75%)'),
-    0.75
-  )
-  static backLight = new THREE.DirectionalLight('0xffffff', 1.0) // Back
 
   // Inclination and base speeds
   static inclination = Math.PI / 8
@@ -65,11 +57,26 @@ class Icosahedron extends PureComponent {
     // Add container to the scene
     this.scene.add(this.spinContainer)
 
+    // Create lights
+    const ambientLight = new THREE.AmbientLight('0xffffff', 0.25) // Ambient
+    const keyLight = new THREE.DirectionalLight( // Key
+      new THREE.Color('hsl(30, 100%, 75%)'),
+      1.0
+    )
+    const fillLight = new THREE.DirectionalLight( // Fill
+      new THREE.Color('hsl(240, 100%, 75%)'),
+      0.75
+    )
+    const backLight = new THREE.DirectionalLight('0xffffff', 1.0) // Back
+    keyLight.position.set(-100, 0, 100)
+    fillLight.position.set(100, 0, 100)
+    backLight.position.set(100, 0, -100).normalize()
+
     // Add lights to the scene
-    this.scene.add(Icosahedron.ambientLight)
-    this.scene.add(Icosahedron.keyLight)
-    this.scene.add(Icosahedron.fillLight)
-    this.scene.add(Icosahedron.backLight)
+    this.scene.add(ambientLight)
+    this.scene.add(keyLight)
+    this.scene.add(fillLight)
+    this.scene.add(backLight)
 
     // Create renderer and set size
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
@@ -105,12 +112,18 @@ class Icosahedron extends PureComponent {
   }
 
   render() {
-    return <div ref={this.getRef} />
+    const { loading } = this.props
+    const loadingNotDefined = loading === null
+
+    return (
+      <div
+        ref={this.getRef}
+        className={`Icosahedron ${
+          loadingNotDefined ? '' : 'Icosahedron--absolute'
+        } ${loadingNotDefined || loading ? '' : 'is-hidden'}`}
+      />
+    )
   }
 }
-
-Icosahedron.keyLight.position.set(-100, 0, 100)
-Icosahedron.fillLight.position.set(100, 0, 100)
-Icosahedron.backLight.position.set(100, 0, -100).normalize()
 
 export default Icosahedron

@@ -8657,14 +8657,8 @@ exports[`Storyshots Table default 1`] = `
                   </div>
                 </div>
               </div>
-              <div
-                className="-loading"
-              >
-                <div
-                  className="-loading-inner"
-                >
-                  Loading...
-                </div>
+              <div>
+                [Icosahedron]
               </div>
             </div>
           </div>

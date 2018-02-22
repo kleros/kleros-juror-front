@@ -6,6 +6,7 @@ import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
 import { renderIf } from '../../utils/redux'
 import { dateToString } from '../../utils/date'
+import Icosahedron from '../../components/icosahedron'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 import Button from '../../components/button'
@@ -52,7 +53,7 @@ class Dispute extends PureComponent {
     return (
       <div className="Dispute">
         {renderIf(dispute, {
-          loading: 'Loading dispute...',
+          loading: <Icosahedron />,
           done: dispute.data && (
             <AnchoredList
               items={[

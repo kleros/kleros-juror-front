@@ -6,6 +6,7 @@ import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
 import { renderIf } from '../utils/redux'
 import RequiresMetaMask from '../components/requires-meta-mask'
+import Icosahedron from '../components/icosahedron'
 
 import { eth } from './dapp-api'
 
@@ -38,7 +39,7 @@ class Initializer extends PureComponent {
     return renderIf(
       accounts,
       {
-        loading: 'Loading accounts...',
+        loading: <Icosahedron />,
         done: children,
         failedLoading: <RequiresMetaMask needsUnlock={isWeb3Loaded} />
       },

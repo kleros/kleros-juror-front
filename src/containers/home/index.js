@@ -8,6 +8,7 @@ import * as walletActions from '../../actions/wallet'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import { renderIf } from '../../utils/redux'
+import Icosahedron from '../../components/icosahedron'
 import Identicon from '../../components/identicon'
 import BalancePieChart from '../../components/balance-pie-chart'
 import Button from '../../components/button'
@@ -87,21 +88,21 @@ class Home extends PureComponent {
         <div className="Home-stats">
           <div className="Home-stats-block">
             {renderIf(accounts, {
-              loading: 'Loading account...',
+              loading: <Icosahedron />,
               done: (
                 <div className="Home-stats-block-content">
                   <Identicon seed={accounts.data[0]} size={20} />
                   <div className="Home-stats-block-content-header">
                     <h5>{accounts.data[0].slice(0, 7)}...</h5>
                     {renderIf(PNKBalance, {
-                      loading: '...',
+                      loading: <Icosahedron />,
                       done: PNKBalance.data && (
                         <h6>{PNKBalance.data.tokenBalance} PNK</h6>
                       ),
                       failedLoading: '...'
                     })}
                     {renderIf(balance, {
-                      loading: '...',
+                      loading: <Icosahedron />,
                       done: <h6>{balance.data} ETH</h6>,
                       failedLoading: '...'
                     })}
@@ -113,7 +114,7 @@ class Home extends PureComponent {
           </div>
           <div className="Home-stats-block">
             {renderIf(PNKBalance, {
-              loading: '...',
+              loading: <Icosahedron />,
               done: PNKBalance.data && (
                 <div className="Home-stats-block-content">
                   <BalancePieChart
@@ -150,7 +151,7 @@ class Home extends PureComponent {
           </div>
           <div className="Home-stats-block">
             {renderIf(PNKBalance, {
-              loading: '...',
+              loading: <Icosahedron />,
               done: PNKBalance.data && (
                 <div className="Home-stats-block-content">
                   <BalancePieChart
