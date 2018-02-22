@@ -7,7 +7,7 @@ import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
-import { renderIf } from '../../utils/redux'
+import { RenderIf } from '../../utils/redux'
 import Icosahedron from '../../components/icosahedron'
 import Identicon from '../../components/identicon'
 import BalancePieChart from '../../components/balance-pie-chart'
@@ -87,87 +87,99 @@ class Home extends PureComponent {
         <h4>Welcome to Kleros!</h4>
         <div className="Home-stats">
           <div className="Home-stats-block">
-            {renderIf(accounts, {
-              loading: <Icosahedron />,
-              done: (
+            <RenderIf
+              resource={accounts}
+              loading={<Icosahedron />}
+              done={
                 <div className="Home-stats-block-content">
                   <Identicon seed={accounts.data[0]} size={20} />
                   <div className="Home-stats-block-content-header">
                     <h5>{accounts.data[0].slice(0, 7)}...</h5>
-                    {renderIf(PNKBalance, {
-                      loading: <Icosahedron />,
-                      done: PNKBalance.data && (
-                        <h6>{PNKBalance.data.tokenBalance} PNK</h6>
-                      ),
-                      failedLoading: '...'
-                    })}
-                    {renderIf(balance, {
-                      loading: <Icosahedron />,
-                      done: <h6>{balance.data} ETH</h6>,
-                      failedLoading: '...'
-                    })}
+                    <RenderIf
+                      resource={PNKBalance}
+                      loading={<Icosahedron />}
+                      done={
+                        PNKBalance.data && (
+                          <h6>{PNKBalance.data.tokenBalance} PNK</h6>
+                        )
+                      }
+                      failedLoading="..."
+                    />
+                    <RenderIf
+                      resource={balance}
+                      loading={<Icosahedron />}
+                      done={<h6>{balance.data} ETH</h6>}
+                      failedLoading="..."
+                    />
                   </div>
                 </div>
-              ),
-              failedLoading: 'There was an error fetching your account.'
-            })}
+              }
+              failedLoading="There was an error fetching your account."
+            />
           </div>
           <div className="Home-stats-block">
-            {renderIf(PNKBalance, {
-              loading: <Icosahedron />,
-              done: PNKBalance.data && (
-                <div className="Home-stats-block-content">
-                  <BalancePieChart
-                    type="activated"
-                    balance={PNKBalance.data.activatedTokens}
-                    total={PNKBalance.data.tokenBalance}
-                    size={80}
-                  />
-                  <div className="Home-stats-block-content-header">
-                    <h5>
-                      Activated{renderIf(arbitratorData, {
-                        loading: null,
-                        done:
-                          arbitratorData.data &&
-                          PERIOD_ENUM[arbitratorData.data.period] ===
-                            'activation' ? (
-                            <Button
-                              onClick={this.handleActivateButtonClick}
-                              className="Home-stats-block-content-header-activateButton"
-                              labelClassName="Home-stats-block-content-header-activateButton-label"
-                            >
-                              +
-                            </Button>
-                          ) : null,
-                        error: null
-                      })}
-                    </h5>
-                    <h6>{PNKBalance.data.activatedTokens} PNK</h6>
+            <RenderIf
+              resource={PNKBalance}
+              loading={<Icosahedron />}
+              done={
+                PNKBalance.data && (
+                  <div className="Home-stats-block-content">
+                    <BalancePieChart
+                      type="activated"
+                      balance={PNKBalance.data.activatedTokens}
+                      total={PNKBalance.data.tokenBalance}
+                      size={80}
+                    />
+                    <div className="Home-stats-block-content-header">
+                      <h5>
+                        Activated<RenderIf
+                          resource={arbitratorData}
+                          loading={null}
+                          done={
+                            arbitratorData.data &&
+                            PERIOD_ENUM[arbitratorData.data.period] ===
+                              'activation' && (
+                              <Button
+                                onClick={this.handleActivateButtonClick}
+                                className="Home-stats-block-content-header-activateButton"
+                                labelClassName="Home-stats-block-content-header-activateButton-label"
+                              >
+                                +
+                              </Button>
+                            )
+                          }
+                        />
+                      </h5>
+                      <h6>{PNKBalance.data.activatedTokens} PNK</h6>
+                    </div>
                   </div>
-                </div>
-              ),
-              failedLoading: '...'
-            })}
+                )
+              }
+              failedLoading="..."
+            />
           </div>
           <div className="Home-stats-block">
-            {renderIf(PNKBalance, {
-              loading: <Icosahedron />,
-              done: PNKBalance.data && (
-                <div className="Home-stats-block-content">
-                  <BalancePieChart
-                    type="locked"
-                    balance={PNKBalance.data.lockedTokens}
-                    total={PNKBalance.data.tokenBalance}
-                    size={80}
-                  />
-                  <div className="Home-stats-block-content-header">
-                    <h5>Locked</h5>
-                    <h6>{PNKBalance.data.lockedTokens} PNK</h6>
+            <RenderIf
+              resource={PNKBalance}
+              loading={<Icosahedron />}
+              done={
+                PNKBalance.data && (
+                  <div className="Home-stats-block-content">
+                    <BalancePieChart
+                      type="locked"
+                      balance={PNKBalance.data.lockedTokens}
+                      total={PNKBalance.data.tokenBalance}
+                      size={80}
+                    />
+                    <div className="Home-stats-block-content-header">
+                      <h5>Locked</h5>
+                      <h6>{PNKBalance.data.lockedTokens} PNK</h6>
+                    </div>
                   </div>
-                </div>
-              ),
-              failedLoading: '...'
-            })}
+                )
+              }
+              failedLoading="..."
+            />
           </div>
         </div>
         <div className="Home-separatorHeader">

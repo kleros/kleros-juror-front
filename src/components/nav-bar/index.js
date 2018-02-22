@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
 import * as walletSelectors from '../../reducers/wallet'
-import { renderIf } from '../../utils/redux'
+import { RenderIf } from '../../utils/redux'
 import Identicon from '../../components/identicon'
 import logo from '../../assets/images/logo.png'
 
@@ -29,11 +29,12 @@ const NavBar = ({ accounts, routes }) => (
     </div>
     <div className="NavBar-buttons">
       <div className="NavBar-buttons-button">
-        {renderIf(accounts, {
-          loading: '...',
-          done: accounts.data && <Identicon seed={accounts.data[0]} size={9} />,
-          failedLoading: '...'
-        })}
+        <RenderIf
+          resource={accounts}
+          loading="..."
+          done={accounts.data && <Identicon seed={accounts.data[0]} size={9} />}
+          failedLoading="..."
+        />
       </div>
     </div>
   </div>

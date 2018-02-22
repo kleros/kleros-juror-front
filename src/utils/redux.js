@@ -191,3 +191,39 @@ export function renderIf(
 
   return done
 }
+
+// Component version of `renderIf`
+export const RenderIf = ({
+  resource,
+  creating,
+  loading,
+  updating,
+  deleting,
+  done,
+  failedCreating,
+  failedLoading,
+  failedUpdating,
+  failedDeleting,
+  loadingExtra,
+  failedLoadingExtra,
+  extraLoadingValues,
+  extraValues,
+  extraFailedValues
+}) =>
+  renderIf(
+    resource,
+    {
+      creating,
+      loading,
+      updating,
+      deleting,
+      done,
+      failedCreating,
+      failedLoading,
+      failedUpdating,
+      failedDeleting,
+      loadingExtra,
+      failedLoadingExtra
+    },
+    { extraLoadingValues, extraValues, extraFailedValues }
+  )

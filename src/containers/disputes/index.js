@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
-import { renderIf } from '../../utils/redux'
+import { RenderIf } from '../../utils/redux'
 
 import DisputesTable from './components/disputes-table'
 
@@ -30,11 +30,12 @@ class Disputes extends PureComponent {
     const table = <DisputesTable disputes={disputes} />
     return (
       <div className="Disputes">
-        {renderIf(disputes, {
-          loading: table,
-          done: table,
-          failedLoading: <span>There was an error fetching your disputes.</span>
-        })}
+        <RenderIf
+          resource={disputes}
+          loading={table}
+          done={table}
+          failedLoading="There was an error fetching your disputes."
+        />
       </div>
     )
   }

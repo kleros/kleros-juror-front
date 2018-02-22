@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import { renderIf } from '../utils/redux'
+import { RenderIf } from '../utils/redux'
 import RequiresMetaMask from '../components/requires-meta-mask'
 import Icosahedron from '../components/icosahedron'
 
@@ -36,17 +36,15 @@ class Initializer extends PureComponent {
     const { isWeb3Loaded } = this.state
     const { accounts, children } = this.props
 
-    return renderIf(
-      accounts,
-      {
-        loading: <Icosahedron />,
-        done: children,
-        failedLoading: <RequiresMetaMask needsUnlock={isWeb3Loaded} />
-      },
-      {
-        extraValues: [accounts.data && accounts.data[0]],
-        extraFailedValues: [!isWeb3Loaded]
-      }
+    return (
+      <RenderIf
+        resource={accounts}
+        loading={<Icosahedron />}
+        done={children}
+        failedLoading={<RequiresMetaMask needsUnlock={isWeb3Loaded} />}
+        extraValues={[accounts.data && accounts.data[0]]}
+        extraFailedValues={[!isWeb3Loaded]}
+      />
     )
   }
 }

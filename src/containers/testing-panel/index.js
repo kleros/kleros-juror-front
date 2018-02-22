@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
-import { renderIf } from '../../utils/redux'
+import { RenderIf } from '../../utils/redux'
 import { camelToTitleCase } from '../../utils/string'
 import Icosahedron from '../../components/icosahedron'
 import Button from '../../components/button'
@@ -45,59 +45,65 @@ class TestingPanel extends PureComponent {
     return (
       <div className="TestingPanel">
         <div className="TestingPanel-form">
-          {renderIf(PNKBalance, {
-            loading: <Icosahedron />,
-            done: PNKBalance.data && (
-              <div>
-                <BuyPNKForm
-                  enableReinitialize
-                  initialValues={{
-                    rate: `Rate: 1 ETH = 1 PNK Balance: ${
-                      PNKBalance.data.tokenBalance
-                    }`
-                  }}
-                  onSubmit={buyPNK}
-                />
-                <Button
-                  onClick={submitBuyPNKForm}
-                  disabled={buyPNKFormIsInvalid}
-                  className="TestingPanel-form-button"
-                >
-                  BUY NOW
-                </Button>
-              </div>
-            ),
-            failedLoading: 'There was an error fetching your PNK balance.'
-          })}
+          <RenderIf
+            resource={PNKBalance}
+            loading={<Icosahedron />}
+            done={
+              PNKBalance.data && (
+                <div>
+                  <BuyPNKForm
+                    enableReinitialize
+                    initialValues={{
+                      rate: `Rate: 1 ETH = 1 PNK Balance: ${
+                        PNKBalance.data.tokenBalance
+                      }`
+                    }}
+                    onSubmit={buyPNK}
+                  />
+                  <Button
+                    onClick={submitBuyPNKForm}
+                    disabled={buyPNKFormIsInvalid}
+                    className="TestingPanel-form-button"
+                  >
+                    BUY NOW
+                  </Button>
+                </div>
+              )
+            }
+            failedLoading="There was an error fetching your PNK balance."
+          />
         </div>
         <div className="TestingPanel-form">
-          {renderIf(arbitratorData, {
-            loading: <Icosahedron />,
-            done: arbitratorData.data && (
-              <div>
-                <PassPeriodForm
-                  enableReinitialize
-                  initialValues={{
-                    currentPeriod: `Current Period: ${camelToTitleCase(
-                      PERIOD_ENUM[arbitratorData.data.period]
-                    )}`,
-                    currentSession: `Current Session: ${
-                      arbitratorData.data.session
-                    }`
-                  }}
-                  onSubmit={passPeriod}
-                />
-                <Button
-                  onClick={submitPassPeriodForm}
-                  disabled={passPeriodFormIsInvalid}
-                  className="TestingPanel-form-button TestingPanel-form-button--nextPeriod"
-                >
-                  NEXT PERIOD
-                </Button>
-              </div>
-            ),
-            failedLoading: 'There was an error fetching the arbitrator data.'
-          })}
+          <RenderIf
+            resource={arbitratorData}
+            loading={<Icosahedron />}
+            done={
+              arbitratorData.data && (
+                <div>
+                  <PassPeriodForm
+                    enableReinitialize
+                    initialValues={{
+                      currentPeriod: `Current Period: ${camelToTitleCase(
+                        PERIOD_ENUM[arbitratorData.data.period]
+                      )}`,
+                      currentSession: `Current Session: ${
+                        arbitratorData.data.session
+                      }`
+                    }}
+                    onSubmit={passPeriod}
+                  />
+                  <Button
+                    onClick={submitPassPeriodForm}
+                    disabled={passPeriodFormIsInvalid}
+                    className="TestingPanel-form-button TestingPanel-form-button--nextPeriod"
+                  >
+                    NEXT PERIOD
+                  </Button>
+                </div>
+              )
+            }
+            failedLoading="There was an error fetching the arbitrator data."
+          />
         </div>
       </div>
     )
