@@ -36,7 +36,6 @@ export default function createReducer(initialState, reducerMap) {
       const typePrefixLen = typePrefix.length
       const actionTypePrefix = action.type.slice(0, typePrefixLen)
       if (typePrefix === actionTypePrefix) {
-        setTimeout(ReactTooltip.rebuild, 1000) // Attach Tooltips
         const resource = constantToCamelCase(
           action.type.slice(typePrefixLen + 1)
         )
@@ -56,6 +55,8 @@ export default function createReducer(initialState, reducerMap) {
         break
       }
     }
+
+    if (state !== newState) setTimeout(ReactTooltip.rebuild, 1000) // Attach Tooltips
 
     return newState
   }
