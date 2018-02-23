@@ -1,6 +1,6 @@
 import unit from 'ethjs-unit'
 
-import { takeLatest, call, put, select } from 'redux-saga/effects'
+import { takeLatest, select, call, put } from 'redux-saga/effects'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'

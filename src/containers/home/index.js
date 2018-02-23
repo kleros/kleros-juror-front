@@ -5,6 +5,8 @@ import { toastr } from 'react-redux-toastr'
 
 import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
+import * as notificationSelectors from '../../reducers/notification'
+import * as notificationActions from '../../actions/notification'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import { RenderIf } from '../../utils/redux'
@@ -29,11 +31,13 @@ class Home extends PureComponent {
     // Redux State
     accounts: walletSelectors.accountsShape.isRequired,
     balance: walletSelectors.balanceShape.isRequired,
+    notifications: notificationSelectors.notificationsShape.isRequired,
     PNKBalance: arbitratorSelectors.PNKBalanceShape.isRequired,
     arbitratorData: arbitratorSelectors.arbitratorDataShape.isRequired,
 
     // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
+    fetchNotifications: PropTypes.func.isRequired,
     fetchPNKBalance: PropTypes.func.isRequired,
     activatePNK: PropTypes.func.isRequired,
     fetchArbitratorData: PropTypes.func.isRequired,
@@ -44,8 +48,14 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const { fetchBalance, fetchPNKBalance, fetchArbitratorData } = this.props
+    const {
+      fetchBalance,
+      fetchNotifications,
+      fetchPNKBalance,
+      fetchArbitratorData
+    } = this.props
     fetchBalance()
+    fetchNotifications()
     fetchPNKBalance()
     fetchArbitratorData()
   }
@@ -80,7 +90,13 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { accounts, balance, PNKBalance, arbitratorData } = this.props
+    const {
+      accounts,
+      balance,
+      notifications,
+      PNKBalance,
+      arbitratorData
+    } = this.props
 
     return (
       <div className="Home">
@@ -186,21 +202,19 @@ class Home extends PureComponent {
           <h4>Notifications</h4>
         </div>
         <div className="Home-cardList">
-          <div className="Home-cardList-card">
-            <NotificationCard message="This is a notification card." />
-          </div>
-          <div className="Home-cardList-card">
-            <NotificationCard message="This is a notification card." />
-          </div>
-          <div className="Home-cardList-card">
-            <NotificationCard message="This is a notification card." />
-          </div>
-          <div className="Home-cardList-card">
-            <NotificationCard message="This is a notification card." />
-          </div>
-          <div className="Home-cardList-card">
-            <NotificationCard message="This is a notification card." />
-          </div>
+          <RenderIf
+            resource={notifications}
+            loading={<Icosahedron />}
+            done={
+              notifications.data &&
+              notifications.data.map(n => (
+                <div className="Home-cardList-card">
+                  <NotificationCard message={n.message} />
+                </div>
+              ))
+            }
+            failedLoading="There was an error fetching your notifications..."
+          />
         </div>
         <div className="Home-separatorHeader">
           <h4>Pending Actions</h4>
@@ -256,12 +270,14 @@ export default connect(
   state => ({
     accounts: state.wallet.accounts,
     balance: state.wallet.balance,
+    notifications: state.notification.notifications,
     PNKBalance: state.arbitrator.PNKBalance,
     arbitratorData: state.arbitrator.arbitratorData,
     activatePNKFormIsInvalid: getActivatePNKFormIsInvalid(state)
   }),
   {
     fetchBalance: walletActions.fetchBalance,
+    fetchNotifications: notificationActions.fetchNotifications,
     fetchPNKBalance: arbitratorActions.fetchPNKBalance,
     activatePNK: arbitratorActions.activatePNK,
     fetchArbitratorData: arbitratorActions.fetchArbitratorData,

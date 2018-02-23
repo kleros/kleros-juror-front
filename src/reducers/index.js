@@ -4,6 +4,7 @@ import { reducer as toastr } from 'react-redux-toastr'
 import { reducer as form } from 'redux-form'
 
 import wallet from './wallet'
+import notification from './notification'
 import arbitrator from './arbitrator'
 import dispute from './dispute'
 
@@ -13,6 +14,7 @@ export default combineReducers({
   toastr,
   form,
   wallet,
+  notification,
   arbitrator,
   dispute
 })
