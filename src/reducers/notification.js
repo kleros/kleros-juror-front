@@ -22,6 +22,16 @@ export default createReducer(
         ...state.notifications,
         data: [...state.notifications.data, action.payload.notification]
       }
+    }),
+    [notificationActions.notification.RECEIVE_UPDATED]: (state, action) => ({
+      ...state,
+      notifications: {
+        ...state.notifications,
+        data: action.payload.notifications
+      }
     })
   }
 )
+
+// Selectors
+export const getNotifications = state => state.notification.notifications

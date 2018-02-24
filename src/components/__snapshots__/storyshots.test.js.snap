@@ -5618,6 +5618,7 @@ exports[`Storyshots Notification Card default 1`] = `
             </div>
             <div
               className="NotificationCard-dismiss"
+              id=""
               onClick={[Function]}
             >
               x
@@ -5928,6 +5929,7 @@ exports[`Storyshots Notification Card with lots of text 1`] = `
             </div>
             <div
               className="NotificationCard-dismiss"
+              id=""
               onClick={[Function]}
             >
               x

@@ -38,6 +38,7 @@ class Home extends PureComponent {
     // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
     fetchNotifications: PropTypes.func.isRequired,
+    dismissNotification: PropTypes.func.isRequired,
     fetchPNKBalance: PropTypes.func.isRequired,
     activatePNK: PropTypes.func.isRequired,
     fetchArbitratorData: PropTypes.func.isRequired,
@@ -87,6 +88,14 @@ class Home extends PureComponent {
       okText: 'Close',
       disableCancel: true
     })
+  }
+
+  handleNotificationCardDismissClick = event => {
+    const { notifications, dismissNotification } = this.props
+    const { txHash, logIndex } = notifications.data.find(
+      n => (n._id = event.currentTarget.id)
+    )
+    dismissNotification(txHash, logIndex)
   }
 
   render() {
@@ -208,8 +217,13 @@ class Home extends PureComponent {
             done={
               notifications.data &&
               notifications.data.map(n => (
-                <div className="Home-cardList-card">
-                  <NotificationCard message={n.message} />
+                <div key={n._id} className="Home-cardList-card">
+                  <NotificationCard
+                    id={n._id}
+                    message={n.message}
+                    to={`/disputes/${n.data.disputeId}`}
+                    onDismissClick={this.handleNotificationCardDismissClick}
+                  />
                 </div>
               ))
             }
@@ -270,7 +284,7 @@ export default connect(
   state => ({
     accounts: state.wallet.accounts,
     balance: state.wallet.balance,
-    notifications: state.notification.notifications,
+    notifications: notificationSelectors.getNotifications(state),
     PNKBalance: state.arbitrator.PNKBalance,
     arbitratorData: state.arbitrator.arbitratorData,
     activatePNKFormIsInvalid: getActivatePNKFormIsInvalid(state)
@@ -278,6 +292,7 @@ export default connect(
   {
     fetchBalance: walletActions.fetchBalance,
     fetchNotifications: notificationActions.fetchNotifications,
+    dismissNotification: notificationActions.dismissNotification,
     fetchPNKBalance: arbitratorActions.fetchPNKBalance,
     activatePNK: arbitratorActions.activatePNK,
     fetchArbitratorData: arbitratorActions.fetchArbitratorData,
