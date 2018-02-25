@@ -13,6 +13,9 @@ export const notification = {
   DISMISS: 'DISMISS_NOTIFICATION'
 }
 
+// Pending Actions
+export const pendingActions = createActions('PENDING_ACTIONS')
+
 /* Action Creators */
 
 // Notifications
@@ -23,3 +26,6 @@ export const dismissNotification = (txHash, logIndex) => ({
   type: notification.DISMISS,
   payload: { txHash, logIndex }
 })
+
+// Pending Actions
+export const fetchPendingActions = () => ({ type: pendingActions.FETCH })

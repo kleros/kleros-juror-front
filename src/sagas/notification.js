@@ -101,6 +101,26 @@ function* dismissNotification({ payload: { txHash, logIndex } }) {
 }
 
 /**
+ * Fetches the current account's pending actions.
+ */
+function* fetchPendingActions() {
+  try {
+    const account = yield select(walletSelectors.getAccount)
+    const pendingActions = yield call(
+      kleros.notifications.getStatefulNotifications,
+      ARBITRATOR_ADDRESS,
+      account
+    )
+    console.log(pendingActions)
+    yield put(
+      action(notificationActions.pendingActions.RECEIVE, { pendingActions })
+    )
+  } catch (err) {
+    yield put(errorAction(notificationActions.pendingActions.FAIL_FETCH, err))
+  }
+}
+
+/**
  * The root of the notification saga.
  */
 export default function* notificationSaga() {
@@ -114,5 +134,11 @@ export default function* notificationSaga() {
   yield takeLatest(
     notificationActions.notification.DISMISS,
     dismissNotification
+  )
+
+  // Pending Actions
+  yield takeLatest(
+    notificationActions.pendingActions.FETCH,
+    fetchPendingActions
   )
 }
