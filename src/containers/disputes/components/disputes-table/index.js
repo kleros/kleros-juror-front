@@ -16,7 +16,7 @@ const columns = [
   {
     id: 'subcourt',
     Header: 'Subcourt',
-    accessor: () => 'Unknown subcourt'
+    accessor: () => 'General Court'
   },
   {
     Header: 'Deadline',

@@ -111,7 +111,7 @@ function* fetchPendingActions() {
       ARBITRATOR_ADDRESS,
       account
     )
-    console.log(pendingActions)
+
     yield put(
       action(notificationActions.pendingActions.RECEIVE, { pendingActions })
     )

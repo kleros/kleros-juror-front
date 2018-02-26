@@ -28,7 +28,7 @@ export function dateToString(
   if (!withTime) return dateString
 
   let hours = date.getHours()
-  const minutes = date.getMinutes()
+  const minutes = String(date.getMinutes()).padStart(2, '0')
   const amOrPm = hours >= 12 ? 'pm' : 'am'
   hours = amOrPm === 'pm' ? hours % 12 || 12 : hours
 

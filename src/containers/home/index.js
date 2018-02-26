@@ -32,6 +32,7 @@ class Home extends PureComponent {
     accounts: walletSelectors.accountsShape.isRequired,
     balance: walletSelectors.balanceShape.isRequired,
     notifications: notificationSelectors.notificationsShape.isRequired,
+    pendingActions: notificationSelectors.pendingActionsShape.isRequired,
     PNKBalance: arbitratorSelectors.PNKBalanceShape.isRequired,
     arbitratorData: arbitratorSelectors.arbitratorDataShape.isRequired,
 
@@ -106,6 +107,7 @@ class Home extends PureComponent {
       accounts,
       balance,
       notifications,
+      pendingActions,
       PNKBalance,
       arbitratorData
     } = this.props
@@ -237,46 +239,27 @@ class Home extends PureComponent {
           <h4>Pending Actions</h4>
         </div>
         <div className="Home-cardList">
-          <div className="Home-cardList-card">
-            <DisputeCard
-              status={0}
-              subcourt="SUBCOURT"
-              date={new Date(Date.now() - 1e10)}
-              title="Unknown Website Owner Claims Services Were Not Delivered"
-            />
-          </div>
-          <div className="Home-cardList-card">
-            <DisputeCard
-              status={0}
-              subcourt="SUBCOURT"
-              date={new Date(Date.now() - 1e10)}
-              title="Unknown Website Owner Claims Services Were Not Delivered"
-            />
-          </div>
-          <div className="Home-cardList-card">
-            <DisputeCard
-              status={0}
-              subcourt="SUBCOURT"
-              date={new Date(Date.now() - 1e10)}
-              title="Unknown Website Owner Claims Services Were Not Delivered"
-            />
-          </div>
-          <div className="Home-cardList-card">
-            <DisputeCard
-              status={0}
-              subcourt="SUBCOURT"
-              date={new Date(Date.now() - 1e10)}
-              title="Unknown Website Owner Claims Services Were Not Delivered"
-            />
-          </div>
-          <div className="Home-cardList-card">
-            <DisputeCard
-              status={0}
-              subcourt="SUBCOURT"
-              date={new Date(Date.now() - 1e10)}
-              title="Unknown Website Owner Claims Services Were Not Delivered"
-            />
-          </div>
+          <RenderIf
+            resource={pendingActions}
+            loading={<Icosahedron />}
+            done={
+              pendingActions.data &&
+              pendingActions.data.map(p => (
+                <div
+                  key={p.message + p.data.disputeId}
+                  className="Home-cardList-card"
+                >
+                  <DisputeCard
+                    status={0}
+                    subcourt="GENERAL COURT"
+                    date={new Date()}
+                    title={p.message}
+                  />
+                </div>
+              ))
+            }
+            failedLoading="There was an error fetching your notifications..."
+          />
         </div>
       </div>
     )
@@ -288,6 +271,7 @@ export default connect(
     accounts: state.wallet.accounts,
     balance: state.wallet.balance,
     notifications: notificationSelectors.getNotifications(state),
+    pendingActions: state.notification.pendingActions,
     PNKBalance: state.arbitrator.PNKBalance,
     arbitratorData: state.arbitrator.arbitratorData,
     activatePNKFormIsInvalid: getActivatePNKFormIsInvalid(state)
