@@ -104,20 +104,21 @@ class Dispute extends PureComponent {
                       />
                     )
                   })),
-                  {
-                    anchor: 'Ruling',
-                    element: (
-                      <Ruling
-                        key={2}
-                        date={new Date()}
-                        votesForPartyA={dispute.data.ruling}
-                        votesForPartyB={dispute.data.ruling}
-                        netPNK={0}
-                      />
-                    )
-                  },
                   ...(dispute.data.hasRuled
-                    ? []
+                    ? [
+                        {
+                          anchor: 'Ruling',
+                          element: (
+                            <Ruling
+                              key={2}
+                              date={new Date()}
+                              votesForPartyA={dispute.data.voteCounters[0][1]}
+                              votesForPartyB={dispute.data.voteCounters[0][2]}
+                              netPNK={dispute.data.netPNK}
+                            />
+                          )
+                        }
+                      ]
                     : [
                         {
                           anchor: 'Vote',

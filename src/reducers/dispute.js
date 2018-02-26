@@ -20,8 +20,10 @@ const dispute = PropTypes.shape({
   deadline: PropTypes.instanceOf(Date).isRequired,
   disputeState: PropTypes.number.isRequired,
   disputeStatus: PropTypes.number.isRequired,
-  voteCounters: PropTypes.number.isRequired,
-  PNKRepartitions: PropTypes.number.isRequired,
+  voteCounters: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
+  ).isRequired,
+  netPNK: PropTypes.number.isRequired,
 
   // Store Data
   description: PropTypes.string.isRequired,
