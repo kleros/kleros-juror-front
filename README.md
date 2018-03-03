@@ -17,7 +17,8 @@
 ## Get Started
 
 1. Clone this repo.
-2. Install and set up the MetaMask chrome extension.
+2a. Install and set up the MetaMask chrome extension.
+2b. To set up MetaMask, select an appropriate (test or production) network and create a DEN password.
 3. Create a .env file in the root of the repo.
 
 ```sh
