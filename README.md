@@ -16,9 +16,10 @@
 
 ## Get Started
 
-1. Clone this repo.
-2. Install and set up the MetaMask chrome extension.
-3. Create a .env file in the root of the repo.
+1. Clone this repo.  
+2. Install and set up the MetaMask chrome extension.  
+3. To set up MetaMask, select an appropriate (test or production) network and create a DEN password.  
+4. Create a .env file in the root of the repo.  
 
 ```sh
 # Development
@@ -32,7 +33,7 @@ REACT_APP_PROD_STORE_PROVIDER=<provider>
 REACT_APP_PROD_ARBITRATOR_ADDRESS=<address>
 ```
 
-4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.  
 
 ## Other Scripts
 
