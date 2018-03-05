@@ -18,9 +18,10 @@
 
 1. Clone this repo.
 2. Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
-3. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+3. Configure MetaMask on the Kovan Test Network.
+4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
 
-## Other Scripts
+## Scripts
 
 * `yarn run prettify` - Apply prettier to the entire project.
 * `yarn run lint` - Lint the entire project.
