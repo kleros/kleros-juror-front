@@ -3,6 +3,9 @@ import { delay } from 'redux-saga'
 import { spawn, call, all } from 'redux-saga/effects'
 
 import walletSaga from './wallet'
+import notificationSaga from './notification'
+import arbitratorSaga from './arbitrator'
+import disputeSaga from './dispute'
 
 /**
  * Makes a saga restart after an uncaught error.
@@ -29,11 +32,15 @@ export function makeRestartable(saga) {
   }
 }
 
-const rootSagas = [walletSaga].map(makeRestartable)
+const rootSagas = [
+  walletSaga,
+  notificationSaga,
+  arbitratorSaga,
+  disputeSaga
+].map(makeRestartable)
 
 /**
  * The root saga.
- * @export default rootSaga
  */
 export default function* rootSaga() {
   yield all(rootSagas.map(saga => spawn(saga)))

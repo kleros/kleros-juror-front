@@ -1,0 +1,19 @@
+.redux-toastr {
+  .top-center {
+    margin-left: 0;
+    padding: 0;
+    transform: translateX(-50%);
+    width: 70%;
+  }
+
+  .toastr {
+    $types: info warning success error;
+    $colors: $info $warning $success $error;
+
+    @for $i from 1 through length($types) {
+      &.rrt-#{nth($types, $i)} {
+        background-color: nth($colors, $i);
+      }
+    }
+  }
+}

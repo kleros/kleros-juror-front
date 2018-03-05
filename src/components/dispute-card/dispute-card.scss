@@ -1,0 +1,25 @@
+@import '../../styles/_colors.scss';
+
+/* @define DisputeCard */
+.DisputeCard {
+  background: $light;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+  height: 140px;
+  overflow: hidden;
+  padding: 34px 30px;
+  position: relative;
+  text-overflow: ellipsis;
+
+  &-status {
+    left: 10px;
+    position: absolute;
+    top: 11px;
+  }
+
+  &-oval {
+    border: 1px solid $disabled;
+    border-radius: 1px;
+    display: inline-block;
+    margin: 0.15rem 6px;
+  }
+}

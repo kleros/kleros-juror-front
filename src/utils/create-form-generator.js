@@ -1,19 +1,18 @@
-/*
-Sample form schema:
-{
-  username: { type: text, validation: validationFunc, props: {}, ...reduxFormFieldProps },
-  password: { type: date, validation: validationFunc, props: {}, ...reduxFormFieldProps }
-}
-
-We should extend this schema as needed to take advantage of all the redux-form features.
-Docs URL: http://redux-form.com/6.8.0/docs/api/Field.md/
-*/
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { reduxForm, Field, formValues, isInvalid, submit } from 'redux-form'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import {
+  reduxForm,
+  Field,
+  formValues,
+  isInvalid,
+  submit,
+  destroy
+} from 'redux-form'
+import { connect } from 'react-redux'
 
 import { objMap } from './functional'
-import { camelToTitleCase } from './strings'
+import { camelToTitleCase } from './string'
 
 // Validation Helpers
 const validatorNamer = name => v =>
@@ -66,12 +65,12 @@ const validateIf = (validate, valueKey) => (val, allVals, ...rest) => {
 
 /**
  * Generate fields for a `redux-form` from a schema.
- * @param {{UIKit: object, store: object}} - An object with a map of field types to react components and the redux store.
+ * @param {{ UIKit: object, store: object }} UIKitAndStore - An object with a map of field types to react components and the redux store.
  * @param {string} formName - The name of the form.
  * @param {object} schema  - The schema to use.
- * @returns {object} - An array of field react elements.
+ * @returns {object[]} - An array of field react elements.
  */
-function createFields({ UIKit, store }, formName, schema) {
+function createFields({ UIKit }, formName, schema) {
   return objMap(schema, (rawField, fieldKey) => {
     const name = camelToTitleCase(fieldKey)
     const field = {
@@ -81,7 +80,10 @@ function createFields({ UIKit, store }, formName, schema) {
         : null,
       props: {
         ...rawField.props,
-        placeholder: rawField.props ? rawField.props.placeholder : name
+        placeholder:
+          rawField.props && rawField.props.placeholder
+            ? rawField.props.placeholder
+            : name
       }
     }
     let Component = UIKit[field.type]
@@ -115,17 +117,14 @@ function createFields({ UIKit, store }, formName, schema) {
  * @param {string} formName - The name of the form.
  * @param {object} schema  - The schema to use.
  * @param {object} reduxFormOptions - Optional options object for `redux-form`.
- * @returns {object} - The generate form react element.
+ * @returns {object} - The form react element.
  */
 function form(UIKitAndStore, formName, schema, reduxFormOptions) {
   const fields = createFields(UIKitAndStore, formName, schema)
-  const Form = ({ containerClassName, className, disabled }) => (
-    <form className={containerClassName}>
+  const Form = ({ formClassName, fieldsClassName, disabled }) => (
+    <form className={`Form ${formClassName}`}>
       <fieldset className="Form-fieldset" disabled={disabled}>
-        <div
-          className={className}
-          style={{ display: 'flex', flexFlow: 'row wrap' }}
-        >
+        <div className={`Form-fieldset-fields ${fieldsClassName}`}>
           {fields}
         </div>
       </fieldset>
@@ -134,15 +133,15 @@ function form(UIKitAndStore, formName, schema, reduxFormOptions) {
 
   Form.propTypes = {
     // Modifiers
-    containerClassName: PropTypes.string,
-    className: PropTypes.string,
+    formClassName: PropTypes.string,
+    fieldsClassName: PropTypes.string,
     disabled: PropTypes.bool
   }
 
   Form.defaultProps = {
     // Modifiers
-    containerClassName: '',
-    className: '',
+    formClassName: '',
+    fieldsClassName: '',
     disabled: false
   }
 
@@ -153,15 +152,164 @@ function form(UIKitAndStore, formName, schema, reduxFormOptions) {
   }
 }
 
-// T O D O: wizard form and form partials
+/**
+ * Generate a redux wizard form from a schema.
+ * @param {object} UIKitAndStore - An object with a map of field types to react components and the redux store.
+ * @param {string} formName - The name of the form.
+ * @param {object} schema  - The schema to use.
+ * @param {object} reduxFormOptions - Optional options object for `redux-form`.
+ * @returns {object} - The form react element.
+ */
+function wizardForm(UIKitAndStore, formName, schema, reduxFormOptions) {
+  const pages = objMap(schema, pageSchema =>
+    form(UIKitAndStore, formName, pageSchema, {
+      ...reduxFormOptions,
+      destroyOnUnmount: false,
+      forceUnregisterOnUnmount: true
+    })
+  )
+  const lastPageIndex = pages.length - 1
+
+  class WizardForm extends PureComponent {
+    constructor(props) {
+      super(props)
+      this.state = {
+        page: 0
+      }
+
+      const { backHandlerRef } = this.props
+      if (backHandlerRef) backHandlerRef(this.previousPage)
+
+      this.onPageChange()
+    }
+
+    componentWillUnmount() {
+      const { destroy } = this.props
+      destroy()
+    }
+
+    nextPage(formData) {
+      const { page } = this.state
+      const nextPage = page < lastPageIndex ? page + 1 : page
+      this.setState(
+        {
+          page: nextPage
+        },
+        () => this.onPageChange(formData)
+      )
+    }
+
+    previousPage = () => {
+      const { page } = this.state
+      const nextPage = page > 0 ? page - 1 : page
+      this.setState(
+        {
+          page: nextPage
+        },
+        this.onPageChange
+      )
+    }
+
+    onPageChange = formData => {
+      const { onPageChange } = this.props
+      const { page } = this.state
+      if (onPageChange)
+        onPageChange(
+          {
+            currentPage: page,
+            hasPrevPage: page !== 0,
+            hasNextPage: page !== pages.length - 1,
+            totalPages: pages.length
+          },
+          formData
+        )
+    }
+
+    handleSubmit = formData => {
+      const { page } = this.state
+      if (page !== lastPageIndex) return this.nextPage()
+
+      const { onSubmit } = this.props
+      onSubmit(formData)
+    }
+
+    render() {
+      const {
+        onSubmit: _onSubmit,
+        destroy: _destroy,
+        onPageChange: _onPageChange,
+        backHandlerRef: _backHandlerRef,
+        className,
+        disabled,
+        ...rest
+      } = this.props
+      const { page } = this.state
+      const key = page
+      const { Form } = pages[key]
+      return (
+        <div className={className}>
+          <ReactCSSTransitionGroup
+            transitionName="carousel"
+            transitionEnterTimeout={800}
+            transitionLeave={false}
+          >
+            <div key={key} style={{ position: 'relative' }}>
+              <Form
+                disabled={disabled}
+                onSubmit={this.handleSubmit}
+                {...rest}
+              />
+            </div>
+          </ReactCSSTransitionGroup>
+        </div>
+      )
+    }
+  }
+
+  WizardForm.propTypes = {
+    // Redux Form
+    onSubmit: PropTypes.func.isRequired,
+    destroy: PropTypes.func.isRequired,
+
+    // Handlers
+    onPageChange: PropTypes.func,
+
+    // Handler Refs
+    backHandlerRef: PropTypes.func,
+
+    // Modifiers
+    className: PropTypes.string,
+    disabled: PropTypes.bool
+  }
+
+  WizardForm.defaultProps = {
+    // Handlers
+    onPageChange: null,
+
+    // Handler Refs
+    backHandlerRef: null,
+
+    // Modifiers
+    className: '',
+    disabled: false
+  }
+
+  return {
+    Form: connect(null, { destroy: () => destroy(formName) })(WizardForm),
+    isInvalid: isInvalid(formName),
+    submit: () => submit(formName)
+  }
+}
 
 /**
- * Creates a form generator function that uses the passed in UIKit to render fields.
- * @export default createFormGenerator
+ * Creates a form generator function that uses the passed in UI-Kit to render fields.
  * @param {object} UIKit - A map of field types to react components.
  * @param {object} store - The redux store.
- * @returns {function} - A form generator function.
+ * @returns {{ form: function, wizardForm: function }} - An object with a form generator function and a wizard form generator function.
  */
 export default function createFormGenerator(UIKit, store) {
-  return (...args) => form({ UIKit, store }, ...args)
+  return {
+    form: (...args) => form({ UIKit, store }, ...args),
+    wizardForm: (...args) => wizardForm({ UIKit, store }, ...args)
+  }
 }

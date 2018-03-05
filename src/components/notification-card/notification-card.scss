@@ -1,0 +1,29 @@
+@import '../../styles/_colors.scss';
+
+/* @define NotificationCard */
+.NotificationCard {
+  background: $light;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  height: 100px;
+  position: relative;
+
+  &-message {
+    color: $text;
+    height: 100px;
+    overflow: hidden;
+    padding: 26px 30px;
+    text-overflow: ellipsis;
+
+    &:hover {
+      background: #47cf73;
+      color: $light;
+    }
+  }
+
+  &-dismiss {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+  }
+}

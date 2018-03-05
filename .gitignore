@@ -3,28 +3,25 @@
 # Dependencies
 /node_modules/
 
+# Styles
+/src/**/*.css
+
 # Testing
 /coverage/
 
-# Production
-/build/
-
-# Docs
+# Documentation
 /docs/
 
-# Env Vars
-/.env
-
-# Misc
-/.DS_Store
+# Production
+/build/
 
 # Logs
 /yarn-debug.log*
 /yarn-error.log*
 
-# Styles
-/src/**/*.css
-
 # Editors
 /.vscode/
 /.idea/*
+
+# Misc
+/.DS_Store

@@ -1,12 +1,12 @@
 import unit from 'ethjs-unit'
 
-import { takeLatest, call, put, select } from 'redux-saga/effects'
+import { takeLatest, select, call, put } from 'redux-saga/effects'
 
-import * as walletActions from '../actions/wallet'
 import * as walletSelectors from '../reducers/wallet'
+import * as walletActions from '../actions/wallet'
 import { eth } from '../bootstrap/dapp-api'
-import { receiveAction, errorAction } from '../utils/actions'
-import { ETH_NO_ACCOUNTS } from '../constants/errors'
+import { action, errorAction } from '../utils/action'
+import { ETH_NO_ACCOUNTS } from '../constants/error'
 
 /**
  * Fetches the current wallet's accounts.
@@ -16,9 +16,9 @@ export function* fetchAccounts() {
     const accounts = yield call(eth.accounts)
     if (!accounts[0]) throw new Error(ETH_NO_ACCOUNTS)
 
-    yield put(receiveAction(walletActions.RECEIVE_ACCOUNTS, { accounts }))
+    yield put(action(walletActions.accounts.RECEIVE, { accounts }))
   } catch (err) {
-    yield put(errorAction(walletActions.FAIL_FETCH_ACCOUNTS, err))
+    yield put(errorAction(walletActions.accounts.FAIL_FETCH, err))
   }
 }
 
@@ -31,20 +31,22 @@ export function* fetchBalance() {
     const balance = yield call(eth.getBalance, account)
 
     yield put(
-      receiveAction(walletActions.RECEIVE_BALANCE, {
+      action(walletActions.balance.RECEIVE, {
         balance: unit.fromWei(balance, 'ether')
       })
     )
   } catch (err) {
-    yield put(errorAction(walletActions.FAIL_FETCH_BALANCE, err))
+    yield put(errorAction(walletActions.balance.FAIL_FETCH, err))
   }
 }
 
 /**
  * The root of the wallet saga.
- * @export default walletSaga
  */
 export default function* walletSaga() {
-  yield takeLatest(walletActions.FETCH_ACCOUNTS, fetchAccounts)
-  yield takeLatest(walletActions.FETCH_BALANCE, fetchBalance)
+  // Accounts
+  yield takeLatest(walletActions.accounts.FETCH, fetchAccounts)
+
+  // Balance
+  yield takeLatest(walletActions.balance.FETCH, fetchBalance)
 }

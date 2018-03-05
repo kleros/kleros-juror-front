@@ -1,0 +1,53 @@
+/* @define Home */
+.Home {
+  padding: 43px 15% 76px;
+
+  &-stats {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 27px 0 -20px;
+    width: 100%;
+
+    &-block {
+      flex: 1;
+      margin-bottom: 20px;
+
+      &-content {
+        display: flex;
+
+        &-header {
+          margin: auto;
+
+          &-activateButton {
+            display: inline-block;
+            height: 20px;
+            margin-left: 5px;
+            min-width: 20px;
+            padding: 0;
+            width: 20px;
+
+            &-label {
+              line-height: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-separatorHeader {
+    margin-top: 50px;
+  }
+
+  &-cardList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -10px -10px 0;
+
+    &-card {
+      flex: 1 0 33.33%;
+      padding: 0 10px 10px 0;
+    }
+  }
+}

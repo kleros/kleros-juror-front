@@ -1,0 +1,9 @@
+@import '../../styles/_colors.scss';
+
+/* @define FormHeader */
+.FormHeader {
+  border-bottom: 1px solid $dark3;
+  margin: 0 -30px 29px;
+  padding: 28px 30px;
+  width: calc(100% + 60px);
+}

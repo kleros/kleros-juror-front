@@ -1,0 +1,20 @@
+/* @define TestingPanel */
+.TestingPanel {
+  display: flex;
+  padding: 16px 15%;
+
+  &-form {
+    flex: 1;
+    min-height: 275px;
+
+    &-button {
+      margin-left: 40px;
+      margin-top: 20px;
+      width: 120px;
+
+      &--nextPeriod {
+        margin-top: 25px;
+      }
+    }
+  }
+}

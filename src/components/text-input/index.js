@@ -1,41 +1,64 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './text-input.css'
+
 const TextInput = ({
-  placeholder,
   input: { value, onChange },
-  meta: { valid, touched, error },
-  ...rest
+  meta: { touched, valid, error },
+  placeholder,
+  className
 }) => (
-  <div className="TextInput" {...rest}>
+  <div
+    className={`TextInput ${
+      error ? 'is-error' : valid ? 'is-valid' : ''
+    } ${className}`}
+  >
     <input
-      className="input"
+      className="TextInput-input"
       type="text"
-      placeholder={placeholder}
       value={value}
       onChange={onChange}
-      {...rest}
     />
-    {/* T O D O: Display meta data */}
-    {console.log(`valid: ${valid}`, `touched: ${touched}`, `error: ${error}`)}
+    {placeholder && (
+      <div
+        className={`TextInput-placeholder${
+          touched || value ? ' is-touched' : ''
+        }`}
+      >
+        {placeholder}
+      </div>
+    )}
+    {error && <div className="TextInput-error">{error}</div>}
   </div>
 )
 
 TextInput.propTypes = {
+  // Redux Form
+  input: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    onChange: PropTypes.func.isRequired
+  }).isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.bool,
+    valid: PropTypes.bool,
+    error: PropTypes.string
+  }),
+
   // State
   placeholder: PropTypes.oneOfType([PropTypes.element, PropTypes.string])
     .isRequired,
 
+  // Modifiers
+  className: PropTypes.string
+}
+
+TextInput.defaultProps = {
   // Redux Form
-  input: PropTypes.shape({
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    onChange: PropTypes.func
-  }).isRequired,
-  meta: PropTypes.shape({
-    valid: PropTypes.bool,
-    touched: PropTypes.bool,
-    error: PropTypes.string
-  }).isRequired
+  meta: {},
+
+  // Modifiers
+  className: ''
 }
 
 export default TextInput
