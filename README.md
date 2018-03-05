@@ -14,7 +14,7 @@
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
 </p>
 
-*Please consult https://github.com/kleros/kleros.md for overarching guidelines!*
+*Please consult https://github.com/kleros/kleros.md for kleros-wide guidelines!*
 
 ## Get Started
 
