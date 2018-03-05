@@ -14,11 +14,14 @@
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
 </p>
 
+*Please consult https://github.com/kleros/kleros.md for overarching guidelines!*
+
 ## Get Started
 
-1. Clone this repo.
-2. Install and set up the MetaMask chrome extension.
-3. Create a .env file in the root of the repo.
+1. Clone this repo.  
+2. Install and set up the MetaMask chrome extension.  
+3. To set up MetaMask, select an appropriate (test or production) network and create a DEN password.  
+4. Create a .env file in the root of the repo.  
 
 ```sh
 # Development
@@ -32,7 +35,7 @@ REACT_APP_PROD_STORE_PROVIDER=<provider>
 REACT_APP_PROD_ARBITRATOR_ADDRESS=<address>
 ```
 
-4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+5. Run `yarn` to install dependencies and then `yarn start` to start the dev server.  
 
 ## Other Scripts
 
