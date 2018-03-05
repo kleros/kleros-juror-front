@@ -14,11 +14,28 @@
   <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen Friendly"></a>
 </p>
 
+*Please consult https://github.com/kleros/kleros.md for kleros-wide guidelines!*
+
 ## Get Started
 
-1. Clone this repo.
-2. Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
-3. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
+1. Clone this repo.  
+2. Install and set up the MetaMask chrome extension.  
+3. To set up MetaMask, select an appropriate (test or production) network and create a DEN password.  
+4. Create an '.env' file in the root of the repo.  
+
+```sh
+# Development
+REACT_APP_DEV_ETHEREUM_PROVIDER=http://localhost:8545
+REACT_APP_DEV_STORE_PROVIDER=https://kleros.in
+REACT_APP_DEV_ARBITRATOR_ADDRESS=<address>
+
+# Production
+REACT_APP_PROD_ETHEREUM_PROVIDER=<provider>
+REACT_APP_PROD_STORE_PROVIDER=<provider>
+REACT_APP_PROD_ARBITRATOR_ADDRESS=<address>
+```
+
+5. Run `yarn` to install dependencies and then `yarn start` to start the dev server.  
 
 ## Other Scripts
 
