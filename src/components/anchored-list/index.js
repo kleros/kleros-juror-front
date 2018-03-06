@@ -8,10 +8,13 @@ class AnchoredList extends PureComponent {
   static propTypes = {
     // State
     items: PropTypes.arrayOf(
-      PropTypes.shape({
-        anchor: PropTypes.string,
-        element: PropTypes.element.isRequired
-      }).isRequired
+      PropTypes.oneOfType([
+        PropTypes.shape({
+          anchor: PropTypes.string,
+          element: PropTypes.element.isRequired
+        }),
+        PropTypes.bool
+      ]).isRequired
     ).isRequired
   }
 
@@ -86,7 +89,7 @@ class AnchoredList extends PureComponent {
       >
         <div className="AnchoredList-container">
           <div className="AnchoredList-container-margin" />
-          {items.map((item, i) => (
+          {items.filter(i => i).map((item, i) => (
             <div
               key={item.element.key}
               ref={this.getChildRef}

@@ -19,10 +19,17 @@ const columns = [
     accessor: () => 'General Court'
   },
   {
+    id: 'deadline',
     Header: 'Deadline',
     maxWidth: 110,
-    accessor: 'deadline',
-    Cell: cell => dateToString(cell.value, { withYear: false })
+    accessor: d =>
+      (d.latestAppealForJuror &&
+        d.appealRulings[d.latestAppealForJuror].deadline) ||
+      null,
+    Cell: cell =>
+      cell.value === null
+        ? 'None'
+        : dateToString(cell.value, { withYear: false })
   },
   {
     Header: 'Status',

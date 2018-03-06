@@ -5,7 +5,6 @@ import createReducer, { createResource } from '../utils/redux'
 // Base Shapes
 const dispute = PropTypes.shape({
   // Arbitrable Contract Data
-  hash: PropTypes.string.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
   arbitrableContractStatus: PropTypes.number.isRequired,
   arbitratorAddress: PropTypes.string.isRequired,
@@ -14,32 +13,47 @@ const dispute = PropTypes.shape({
 
   // Dispute Data
   disputeId: PropTypes.number.isRequired,
-  session: PropTypes.number.isRequired,
+  firstSession: PropTypes.number.isRequired,
+  lastSession: PropTypes.number.isRequired,
   numberOfAppeals: PropTypes.number.isRequired,
-  fee: PropTypes.number.isRequired,
-  deadline: PropTypes.instanceOf(Date).isRequired,
   disputeState: PropTypes.number.isRequired,
   disputeStatus: PropTypes.number.isRequired,
-  voteCounters: PropTypes.arrayOf(
-    PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
+  appealJuror: PropTypes.arrayOf(
+    PropTypes.shape({
+      fee: PropTypes.number.isRequired,
+      draws: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+      canRule: PropTypes.bool.isRequired
+    }).isRequired
   ).isRequired,
-  netPNK: PropTypes.number.isRequired,
+  appealRulings: PropTypes.arrayOf(
+    PropTypes.shape({
+      voteCounter: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+      deadline: PropTypes.number.isRequired,
+      ruledAt: PropTypes.number.isRequired,
+      ruling: PropTypes.number.isRequired
+    }).isRequired
+  ).isRequired,
 
   // Store Data
   description: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   evidence: PropTypes.arrayOf(
     PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      submittedAt: PropTypes.number.isRequired,
       submitter: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  isJuror: PropTypes.bool.isRequired,
-  votes: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-  hasRuled: PropTypes.bool.isRequired,
-  ruling: PropTypes.number.isRequired
+  netPNK: PropTypes.number.isRequired,
+  appealCreatedAt: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  appealDeadlines: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  appealRuledAt: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+
+  // Derived Data
+  latestAppealForJuror: PropTypes.number.isRequired
 })
 
 // Shapes

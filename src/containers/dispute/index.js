@@ -10,6 +10,7 @@ import Icosahedron from '../../components/icosahedron'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 import Button from '../../components/button'
+import { EVENT_TYPE_ENUM } from '../../constants/dispute'
 
 import Details from './components/details'
 import Evidence from './components/evidence'
@@ -49,7 +50,7 @@ class Dispute extends PureComponent {
 
   render() {
     const { dispute } = this.props
-
+    const today = new Date()
     return (
       <div className="Dispute">
         <RenderIf
@@ -63,7 +64,7 @@ class Dispute extends PureComponent {
                     element: (
                       <div key={0} className="Dispute-header">
                         <small>
-                          {dateToString(new Date(), {
+                          {dateToString(today, {
                             withTime: false
                           })}
                         </small>
@@ -85,61 +86,74 @@ class Dispute extends PureComponent {
                     anchor: 'Details',
                     element: (
                       <Details
-                        key={1}
-                        date={new Date()}
+                        key={dispute.data.appealCreatedAt[0] || 1}
+                        date={dispute.data.appealCreatedAt[0] || today}
                         partyAAddress={dispute.data.partyA}
                         partyBAddress={dispute.data.partyB}
-                        arbitrationFee={dispute.data.fee}
+                        arbitrationFee={dispute.data.appealJuror[0].fee}
                       />
                     )
                   },
-                  ...dispute.data.evidence.map(e => ({
-                    anchor: 'Evidence',
-                    element: (
-                      <Evidence
-                        key={e.url}
-                        date={new Date()}
-                        partyAddress={e.submitter}
-                        URI={e.url}
-                      />
-                    )
-                  })),
-                  ...(dispute.data.hasRuled
-                    ? [
-                        {
+                  ...dispute.data.events.map(e => {
+                    switch (e.type) {
+                      case EVENT_TYPE_ENUM[0]:
+                        return {
+                          anchor: 'Appeal',
+                          element: (
+                            <Details
+                              key={e.date}
+                              date={e.date}
+                              partyAAddress={dispute.data.partyA}
+                              partyBAddress={dispute.data.partyB}
+                              arbitrationFee={e.fee}
+                            />
+                          )
+                        }
+                      case EVENT_TYPE_ENUM[1]:
+                        return {
+                          anchor: 'Evidence',
+                          element: (
+                            <Evidence
+                              key={e.date + e.url}
+                              date={e.date}
+                              partyAddress={e.submitter}
+                              URI={e.url}
+                            />
+                          )
+                        }
+                      case EVENT_TYPE_ENUM[2]:
+                        return {
                           anchor: 'Ruling',
                           element: (
                             <Ruling
-                              key={2}
-                              date={new Date()}
-                              votesForPartyA={dispute.data.voteCounters[0][1]}
-                              votesForPartyB={dispute.data.voteCounters[0][2]}
+                              key={e.date}
+                              date={e.date}
+                              votesForPartyA={e.voteCounter[0]}
+                              votesForPartyB={e.voteCounter[1]}
                               netPNK={dispute.data.netPNK}
                             />
                           )
                         }
-                      ]
-                    : [
-                        {
-                          anchor: 'Vote',
-                          element: (
-                            <div key={3} className="Dispute-vote">
-                              <Button
-                                id={0}
-                                onClick={this.handleVoteButtonClick}
-                              >
-                                Vote for Party A
-                              </Button>
-                              <Button
-                                id={1}
-                                onClick={this.handleVoteButtonClick}
-                              >
-                                Vote for Party B
-                              </Button>
-                            </div>
-                          )
-                        }
-                      ])
+                      default:
+                        return null
+                    }
+                  }),
+                  dispute.data.appealJuror[dispute.data.numberOfAppeals]
+                    .canRule && [
+                    {
+                      anchor: 'Vote',
+                      element: (
+                        <div key={today} className="Dispute-vote">
+                          <Button id={0} onClick={this.handleVoteButtonClick}>
+                            Vote for Party A
+                          </Button>
+                          <Button id={1} onClick={this.handleVoteButtonClick}>
+                            Vote for Party B
+                          </Button>
+                        </div>
+                      )
+                    }
+                  ]
                 ]}
               />
             )

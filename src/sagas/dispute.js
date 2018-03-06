@@ -4,6 +4,48 @@ import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { action, errorAction } from '../utils/action'
+import { EVENT_TYPE_ENUM } from '../constants/dispute'
+
+// Parsers
+const parseDispute = d => {
+  // Find the latest appeal where the juror is drawn
+  let latestAppealForJuror = null
+  for (let i = d.appealJuror.length - 1; i >= 0; i--) {
+    if (d.appealJuror[i].canRule) {
+      latestAppealForJuror = i
+      break
+    }
+  }
+
+  // Build array of appeals, evidence submissions, and rulings as events
+  let events = [
+    ...d.appealJuror.slice(1).map((a, i) => ({
+      ...a,
+      type: EVENT_TYPE_ENUM[0],
+      date: new Date(d.appealCreatedAt[i])
+    })),
+    ...d.evidence.map(e => ({
+      ...e,
+      type: EVENT_TYPE_ENUM[1],
+      date: new Date(e.submittedAt)
+    })),
+    ...d.appealJuror.slice(1).map(a => ({
+      ...a,
+      type: EVENT_TYPE_ENUM[2],
+      date: new Date(a.ruledAt)
+    }))
+  ]
+  events = events.sort((a, b) => (a.data <= b.date ? -1 : 1))
+
+  return {
+    ...d,
+    appealCreatedAt: d.appealCreatedAt.map(Date),
+    appealDeadlines: d.appealDeadlines.map(Date),
+    appealRuledAt: d.appealRuledAt.map(Date),
+    latestAppealForJuror,
+    events
+  }
+}
 
 /**
  * Fetches the current wallet's disputes.
@@ -18,7 +60,7 @@ function* fetchDisputes() {
 
     yield put(
       action(disputeActions.disputes.RECEIVE, {
-        disputes: disputes.map(d => ({ ...d, deadline: new Date(d.deadline) }))
+        disputes: disputes.map(parseDispute)
       })
     )
   } catch (err) {
@@ -39,9 +81,7 @@ function* fetchDispute({ payload: { disputeID } }) {
     )
 
     yield put(
-      action(disputeActions.dispute.RECEIVE, {
-        dispute: { ...dispute, deadline: new Date(dispute.deadline) }
-      })
+      action(disputeActions.dispute.RECEIVE, { dispute: parseDispute(dispute) })
     )
   } catch (err) {
     yield put(errorAction(disputeActions.dispute.FAIL_FETCH, err))
