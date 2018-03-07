@@ -69,7 +69,7 @@
     "ethjs": "^0.3.3",
     "ethjs-unit": "^0.1.6",
     "history": "^4.7.2",
-    "kleros-api": "^0.0.64",
+    "kleros-api": "^0.0.66",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",

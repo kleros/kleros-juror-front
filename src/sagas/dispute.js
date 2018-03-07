@@ -29,7 +29,7 @@ const parseDispute = d => {
       type: EVENT_TYPE_ENUM[1],
       date: new Date(e.submittedAt)
     })),
-    ...d.appealJuror.slice(1).map(a => ({
+    ...d.appealRulings.map(a => ({
       ...a,
       type: EVENT_TYPE_ENUM[2],
       date: new Date(a.ruledAt)
