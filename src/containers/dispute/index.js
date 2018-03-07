@@ -43,7 +43,7 @@ class Dispute extends PureComponent {
     const { dispute, voteOnDispute } = this.props
     voteOnDispute(
       dispute.data.disputeId,
-      dispute.data.votes,
+      dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
       event.currentTarget.id
     )
   }
@@ -139,21 +139,19 @@ class Dispute extends PureComponent {
                     }
                   }),
                   dispute.data.appealJuror[dispute.data.numberOfAppeals]
-                    .canRule && [
-                    {
-                      anchor: 'Vote',
-                      element: (
-                        <div key={today} className="Dispute-vote">
-                          <Button id={0} onClick={this.handleVoteButtonClick}>
-                            Vote for Party A
-                          </Button>
-                          <Button id={1} onClick={this.handleVoteButtonClick}>
-                            Vote for Party B
-                          </Button>
-                        </div>
-                      )
-                    }
-                  ]
+                    .canRule && {
+                    anchor: 'Vote',
+                    element: (
+                      <div key={today} className="Dispute-vote">
+                        <Button id={0} onClick={this.handleVoteButtonClick}>
+                          Vote for Party A
+                        </Button>
+                        <Button id={1} onClick={this.handleVoteButtonClick}>
+                          Vote for Party B
+                        </Button>
+                      </div>
+                    )
+                  }
                 ]}
               />
             )
