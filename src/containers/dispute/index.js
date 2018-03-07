@@ -43,7 +43,7 @@ class Dispute extends PureComponent {
     const { dispute, voteOnDispute } = this.props
     voteOnDispute(
       dispute.data.disputeId,
-      dispute.data.appealJuror[0].draws,
+      dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
       event.currentTarget.id
     )
   }
