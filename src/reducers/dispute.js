@@ -20,6 +20,7 @@ const dispute = PropTypes.shape({
   disputeStatus: PropTypes.number.isRequired,
   appealJuror: PropTypes.arrayOf(
     PropTypes.shape({
+      createdAt: PropTypes.number.isRequired,
       fee: PropTypes.number.isRequired,
       draws: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
       canRule: PropTypes.bool.isRequired
@@ -47,10 +48,10 @@ const dispute = PropTypes.shape({
       url: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,
-  netPNK: PropTypes.number.isRequired,
   appealCreatedAt: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   appealDeadlines: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   appealRuledAt: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+  netPNK: PropTypes.number.isRequired,
 
   // Derived Data
   latestAppealForJuror: PropTypes.number.isRequired

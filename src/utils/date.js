@@ -1,4 +1,4 @@
-import { MONTHS_ENUM, ORDINAL_INDICATOR_ENUM } from '../constants/date'
+import * as dateConstants from '../constants/date'
 
 /**
  * Stringifies a date object into the preffered Kleros format, (dd.mm.yyyy).
@@ -20,8 +20,8 @@ export function dateToString(
       .join('.')
   else {
     const dayStr = day.toString()
-    dateString = `${MONTHS_ENUM[month]} ${day}${
-      ORDINAL_INDICATOR_ENUM[dayStr[dayStr.length - 1]]
+    dateString = `${dateConstants.MONTHS_ENUM[month]} ${day}${
+      dateConstants.ORDINAL_INDICATOR_ENUM[dayStr[dayStr.length - 1]]
     }${withYear === true ? `, ${year}` : ''}`
   }
 

@@ -10,7 +10,7 @@ import Icosahedron from '../../components/icosahedron'
 import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 import Button from '../../components/button'
-import { EVENT_TYPE_ENUM } from '../../constants/dispute'
+import * as disputeConstants from '../../constants/dispute'
 
 import Details from './components/details'
 import Evidence from './components/evidence'
@@ -96,7 +96,7 @@ class Dispute extends PureComponent {
                   },
                   ...dispute.data.events.map(e => {
                     switch (e.type) {
-                      case EVENT_TYPE_ENUM[0]:
+                      case disputeConstants.EVENT_TYPE_ENUM[0]:
                         return {
                           anchor: 'Appeal',
                           element: (
@@ -109,7 +109,7 @@ class Dispute extends PureComponent {
                             />
                           )
                         }
-                      case EVENT_TYPE_ENUM[1]:
+                      case disputeConstants.EVENT_TYPE_ENUM[1]:
                         return {
                           anchor: 'Evidence',
                           element: (
@@ -121,7 +121,7 @@ class Dispute extends PureComponent {
                             />
                           )
                         }
-                      case EVENT_TYPE_ENUM[2]:
+                      case disputeConstants.EVENT_TYPE_ENUM[2]:
                         return {
                           anchor: 'Ruling',
                           element: (

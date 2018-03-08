@@ -8,7 +8,7 @@ import { RenderIf } from '../../utils/redux'
 import { camelToTitleCase } from '../../utils/string'
 import Icosahedron from '../../components/icosahedron'
 import Button from '../../components/button'
-import { PERIOD_ENUM } from '../../constants/arbitrator'
+import * as arbitratorConstants from '../../constants/arbitrator'
 
 import {
   BuyPNKForm,
@@ -84,7 +84,9 @@ class TestingPanel extends PureComponent {
                     enableReinitialize
                     initialValues={{
                       currentPeriod: `Current Period: ${camelToTitleCase(
-                        PERIOD_ENUM[arbitratorData.data.period]
+                        arbitratorConstants.PERIOD_ENUM[
+                          arbitratorData.data.period
+                        ]
                       )}`,
                       currentSession: `Current Session: ${
                         arbitratorData.data.session

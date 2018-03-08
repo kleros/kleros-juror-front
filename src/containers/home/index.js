@@ -16,7 +16,7 @@ import BalancePieChart from '../../components/balance-pie-chart'
 import Button from '../../components/button'
 import NotificationCard from '../../components/notification-card'
 import DisputeCard from '../../components/dispute-card'
-import { PERIOD_ENUM } from '../../constants/arbitrator'
+import * as arbitratorConstants from '../../constants/arbitrator'
 
 import {
   ActivatePNKForm,
@@ -167,8 +167,9 @@ class Home extends PureComponent {
                           loading={null}
                           done={
                             arbitratorData.data &&
-                            PERIOD_ENUM[arbitratorData.data.period] ===
-                              'activation' && (
+                            arbitratorConstants.PERIOD_ENUM[
+                              arbitratorData.data.period
+                            ] === 'activation' && (
                               <Button
                                 onClick={this.handleActivateButtonClick}
                                 className="Home-stats-block-content-header-activateButton"

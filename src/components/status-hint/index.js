@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { STATUS_ENUM } from '../../constants/dispute'
+import * as disputeConstants from '../../constants/dispute'
 
 import './status-hint.css'
 
 const StatusHint = ({ status, className }) => (
   <div
     className={`StatusHint ${`StatusHint--${
-      STATUS_ENUM[status]
+      disputeConstants.STATUS_ENUM[status]
     }`} ${className}`}
-    data-tip={STATUS_ENUM[status]}
+    data-tip={disputeConstants.STATUS_ENUM[status]}
     data-type="info"
   />
 )

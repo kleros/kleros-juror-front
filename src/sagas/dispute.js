@@ -4,7 +4,7 @@ import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { action, errorAction } from '../utils/action'
-import { EVENT_TYPE_ENUM } from '../constants/dispute'
+import * as disputeConstants from '../constants/dispute'
 
 // Parsers
 const parseDispute = d => {
@@ -21,17 +21,17 @@ const parseDispute = d => {
   let events = [
     ...d.appealJuror.slice(1).map((a, i) => ({
       ...a,
-      type: EVENT_TYPE_ENUM[0],
+      type: disputeConstants.EVENT_TYPE_ENUM[0],
       date: new Date(d.appealCreatedAt[i])
     })),
     ...d.evidence.map(e => ({
       ...e,
-      type: EVENT_TYPE_ENUM[1],
+      type: disputeConstants.EVENT_TYPE_ENUM[1],
       date: new Date(e.submittedAt)
     })),
     ...d.appealRulings.map(a => ({
       ...a,
-      type: EVENT_TYPE_ENUM[2],
+      type: disputeConstants.EVENT_TYPE_ENUM[2],
       date: new Date(a.ruledAt)
     }))
   ]
