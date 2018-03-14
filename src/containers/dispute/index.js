@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { RenderIf } from 'lessdux'
 
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
-import { RenderIf } from '../../utils/redux'
 import { dateToString } from '../../utils/date'
 import Icosahedron from '../../components/icosahedron'
 import AnchoredList from '../../components/anchored-list'

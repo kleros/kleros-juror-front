@@ -1,6 +1,6 @@
-import { addDecorator, configure } from '@storybook/react'
-import { host } from 'storybook-host'
 import React from 'react'
+import { configure, addDecorator } from '@storybook/react'
+import { host } from 'storybook-host'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'

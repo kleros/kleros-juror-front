@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { RenderIf } from 'lessdux'
 
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import { RenderIf } from '../utils/redux'
 import RequiresMetaMask from '../components/requires-meta-mask'
 import Icosahedron from '../components/icosahedron'
 

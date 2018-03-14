@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
+import createReducer, { createResource } from 'lessdux'
 
 import * as notificationActions from '../actions/notification'
-import createReducer, { createResource } from '../utils/redux'
 
 // Shapes
 const {

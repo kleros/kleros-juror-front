@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
+import { RenderIf } from 'lessdux'
 
 import * as walletSelectors from '../../reducers/wallet'
-import { RenderIf } from '../../utils/redux'
 import Identicon from '../../components/identicon'
 import logo from '../../assets/images/logo.png'
 

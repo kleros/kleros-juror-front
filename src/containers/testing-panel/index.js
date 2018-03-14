@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { RenderIf } from 'lessdux'
 
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
-import { RenderIf } from '../../utils/redux'
 import { camelToTitleCase } from '../../utils/string'
 import Icosahedron from '../../components/icosahedron'
 import Button from '../../components/button'
