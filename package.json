@@ -1,6 +1,6 @@
 {
   "name": "kleros-juror-front",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The front end for Kleros jurors.",
   "keywords": ["blockchain", "ethereum", "dapp", "frontend"],
   "repository": "https://github.com/kleros/kleros-juror-front",
