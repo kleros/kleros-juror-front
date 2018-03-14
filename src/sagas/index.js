@@ -22,6 +22,7 @@ export function makeRestartable(saga) {
           `Unexpected root saga termination. The root sagas are supposed to be sagas that live during the whole app lifetime! ${saga}`
         )
       } catch (err) {
+        /* istanbul ignore if  */
         if (process.env.NODE_ENV !== 'test')
           console.info(
             'Saga error, the saga will be restarted after 3 seconds.',
