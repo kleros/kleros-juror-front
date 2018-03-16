@@ -723,7 +723,12 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
         >
           <div
             className={undefined}
-            style={undefined}
+            style={
+              Object {
+                "height": 80,
+                "width": 80,
+              }
+            }
           >
             <svg
               height="100%"
@@ -1061,7 +1066,12 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
         >
           <div
             className={undefined}
-            style={undefined}
+            style={
+              Object {
+                "height": 80,
+                "width": 80,
+              }
+            }
           >
             <svg
               height="100%"
@@ -8083,6 +8093,7 @@ exports[`Storyshots Table default 1`] = `
             >
               <div
                 className="rt-table"
+                role="grid"
                 style={undefined}
               >
                 <div
@@ -8095,12 +8106,13 @@ exports[`Storyshots Table default 1`] = `
                 >
                   <div
                     className="rt-tr"
+                    role="row"
                     style={undefined}
                   >
                     <div
                       className="rt-th  rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
-                      role="heading"
+                      role="columnheader"
                       style={
                         Object {
                           "flex": "220 0 auto",
@@ -8108,6 +8120,7 @@ exports[`Storyshots Table default 1`] = `
                           "width": "220px",
                         }
                       }
+                      tabIndex="-1"
                     >
                       <div
                         className="rt-resizable-header-content"
@@ -8123,7 +8136,7 @@ exports[`Storyshots Table default 1`] = `
                     <div
                       className="rt-th  rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
-                      role="heading"
+                      role="columnheader"
                       style={
                         Object {
                           "flex": "100 0 auto",
@@ -8131,6 +8144,7 @@ exports[`Storyshots Table default 1`] = `
                           "width": "100px",
                         }
                       }
+                      tabIndex="-1"
                     >
                       <div
                         className="rt-resizable-header-content"
@@ -8146,7 +8160,7 @@ exports[`Storyshots Table default 1`] = `
                     <div
                       className="rt-th  rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
-                      role="heading"
+                      role="columnheader"
                       style={
                         Object {
                           "flex": "100 0 auto",
@@ -8154,6 +8168,7 @@ exports[`Storyshots Table default 1`] = `
                           "width": "100px",
                         }
                       }
+                      tabIndex="-1"
                     >
                       <div
                         className="rt-resizable-header-content"
@@ -8169,7 +8184,7 @@ exports[`Storyshots Table default 1`] = `
                     <div
                       className="rt-th  rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
-                      role="heading"
+                      role="columnheader"
                       style={
                         Object {
                           "flex": "80 0 auto",
@@ -8177,6 +8192,7 @@ exports[`Storyshots Table default 1`] = `
                           "width": "80px",
                         }
                       }
+                      tabIndex="-1"
                     >
                       <div
                         className="rt-resizable-header-content"
@@ -8201,15 +8217,18 @@ exports[`Storyshots Table default 1`] = `
                 >
                   <div
                     className="rt-tr-group"
+                    role="rowgroup"
                   >
                     <div
                       className="rt-tr -odd"
                       onClick={null}
+                      role="row"
                       style={undefined}
                     >
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "220 0 auto",
@@ -8245,6 +8264,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8258,6 +8278,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8271,6 +8292,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "80 0 auto",
@@ -8289,15 +8311,18 @@ exports[`Storyshots Table default 1`] = `
                   </div>
                   <div
                     className="rt-tr-group"
+                    role="rowgroup"
                   >
                     <div
                       className="rt-tr -even"
                       onClick={null}
+                      role="row"
                       style={undefined}
                     >
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "220 0 auto",
@@ -8333,6 +8358,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8346,6 +8372,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8359,6 +8386,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "80 0 auto",
@@ -8377,15 +8405,18 @@ exports[`Storyshots Table default 1`] = `
                   </div>
                   <div
                     className="rt-tr-group"
+                    role="rowgroup"
                   >
                     <div
                       className="rt-tr -odd"
                       onClick={null}
+                      role="row"
                       style={undefined}
                     >
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "220 0 auto",
@@ -8421,6 +8452,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8434,6 +8466,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8447,6 +8480,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "80 0 auto",
@@ -8465,15 +8499,18 @@ exports[`Storyshots Table default 1`] = `
                   </div>
                   <div
                     className="rt-tr-group"
+                    role="rowgroup"
                   >
                     <div
                       className="rt-tr -even"
                       onClick={null}
+                      role="row"
                       style={undefined}
                     >
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "220 0 auto",
@@ -8509,6 +8546,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8522,6 +8560,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "100 0 auto",
@@ -8535,6 +8574,7 @@ exports[`Storyshots Table default 1`] = `
                       <div
                         className="rt-td"
                         onClick={[Function]}
+                        role="gridcell"
                         style={
                           Object {
                             "flex": "80 0 auto",

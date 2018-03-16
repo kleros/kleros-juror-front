@@ -1,9 +1,9 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects'
+import { takeLatest, call, select } from 'redux-saga/effects'
 
 import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
-import { action, errorAction } from '../utils/action'
+import { fetchSaga, updateSaga } from '../utils/saga'
 import * as disputeConstants from '../constants/dispute'
 
 // Parsers
@@ -49,144 +49,97 @@ const parseDispute = d => {
 
 /**
  * Fetches the current wallet's disputes.
+ * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  try {
-    const disputes = yield call(
-      kleros.disputes.getDisputesForUser,
-      ARBITRATOR_ADDRESS,
-      yield select(walletSelectors.getAccount)
-    )
-
-    yield put(
-      action(disputeActions.disputes.RECEIVE, {
-        disputes: disputes.map(parseDispute)
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(disputeActions.disputes.FAIL_FETCH, err))
-  }
+  return (yield call(
+    kleros.disputes.getDisputesForUser,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )).map(parseDispute)
 }
 
 /**
  * Fetches a dispute.
+ * @returns {object} - The dispute.
  */
 function* fetchDispute({ payload: { disputeID } }) {
-  try {
-    const dispute = yield call(
+  return parseDispute(
+    yield call(
       kleros.disputes.getDataForDispute,
       ARBITRATOR_ADDRESS,
       disputeID,
       yield select(walletSelectors.getAccount)
     )
-
-    yield put(
-      action(disputeActions.dispute.RECEIVE, { dispute: parseDispute(dispute) })
-    )
-  } catch (err) {
-    yield put(errorAction(disputeActions.dispute.FAIL_FETCH, err))
-  }
+  )
 }
 
 /**
  * Votes on a dispute.
+ * @returns {object} - The updated dispute.
  */
 function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
-  try {
-    yield put(action(disputeActions.dispute.UPDATE))
+  const account = yield select(walletSelectors.getAccount)
 
-    const account = yield select(walletSelectors.getAccount)
+  yield call(
+    kleros.disputes.submitVotesForDispute,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    ruling,
+    votes,
+    account
+  )
 
-    yield call(
-      kleros.disputes.submitVotesForDispute,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      ruling,
-      votes,
-      account
-    )
-
-    const dispute = yield call(
-      kleros.disputes.getDataForDispute,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      account
-    )
-
-    yield put(
-      action(disputeActions.dispute.RECEIVE_UPDATED, {
-        dispute
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.disputes.getDataForDispute,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    account
+  )
 }
 
 /**
  * Repartitions the tokens at stake in a dispute.
+ * @returns {object} - The updated dispute.
  */
 function* repartitionTokens({ payload: { disputeID } }) {
-  try {
-    yield put(action(disputeActions.dispute.UPDATE))
+  const account = yield select(walletSelectors.getAccount)
 
-    const account = yield select(walletSelectors.getAccount)
+  yield call(
+    kleros.arbitrator.repartitionJurorTokens,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    account
+  )
 
-    yield call(
-      kleros.arbitrator.repartitionJurorTokens,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      account
-    )
-
-    const dispute = yield call(
-      kleros.disputes.getDataForDispute,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      account
-    )
-
-    yield put(
-      action(disputeActions.dispute.RECEIVE_UPDATED, {
-        dispute
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.disputes.getDataForDispute,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    account
+  )
 }
 
 /**
  * Executes a dispute's ruling.
+ * @returns {object} - The updated dispute.
  */
 function* executeRuling({ payload: { disputeID } }) {
-  try {
-    yield put(action(disputeActions.dispute.UPDATE))
+  const account = yield select(walletSelectors.getAccount)
 
-    const account = yield select(walletSelectors.getAccount)
+  yield call(
+    kleros.arbitrator.executeRuling,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    account
+  )
 
-    yield call(
-      kleros.arbitrator.executeRuling,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      account
-    )
-
-    const dispute = yield call(
-      kleros.disputes.getDataForDispute,
-      ARBITRATOR_ADDRESS,
-      disputeID,
-      account
-    )
-
-    yield put(
-      action(disputeActions.dispute.RECEIVE_UPDATED, {
-        dispute
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.disputes.getDataForDispute,
+    ARBITRATOR_ADDRESS,
+    disputeID,
+    account
+  )
 }
 
 /**
@@ -194,11 +147,36 @@ function* executeRuling({ payload: { disputeID } }) {
  */
 export default function* disputeSaga() {
   // Disputes
-  yield takeLatest(disputeActions.disputes.FETCH, fetchDisputes)
+  yield takeLatest(
+    disputeActions.disputes.FETCH,
+    fetchSaga,
+    disputeActions.disputes,
+    fetchDisputes
+  )
 
   // Dispute
-  yield takeLatest(disputeActions.dispute.FETCH, fetchDispute)
-  yield takeLatest(disputeActions.dispute.VOTE_ON, voteOnDispute)
-  yield takeLatest(disputeActions.dispute.REPARTITION_TOKENS, repartitionTokens)
-  yield takeLatest(disputeActions.dispute.EXECUTE_RULING, executeRuling)
+  yield takeLatest(
+    disputeActions.dispute.FETCH,
+    fetchSaga,
+    disputeActions.dispute,
+    fetchDispute
+  )
+  yield takeLatest(
+    disputeActions.dispute.VOTE_ON,
+    updateSaga,
+    disputeActions.dispute,
+    voteOnDispute
+  )
+  yield takeLatest(
+    disputeActions.dispute.REPARTITION_TOKENS,
+    updateSaga,
+    disputeActions.dispute,
+    repartitionTokens
+  )
+  yield takeLatest(
+    disputeActions.dispute.EXECUTE_RULING,
+    updateSaga,
+    disputeActions.dispute,
+    executeRuling
+  )
 }

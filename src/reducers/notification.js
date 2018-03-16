@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import createReducer, { createResource } from 'lessdux'
 
-import * as notificationActions from '../actions/notification'
-
 // Shapes
 const {
   shape: notificationsShape,
@@ -31,28 +29,10 @@ const {
 export { notificationsShape, pendingActionsShape }
 
 // Reducer
-export default createReducer(
-  {
-    notifications: notificationsInitialState,
-    pendingActions: pendingActionsInitialState
-  },
-  {
-    [notificationActions.notification.RECEIVE]: (state, action) => ({
-      ...state,
-      notifications: {
-        ...state.notifications,
-        data: [...state.notifications.data, action.payload.notification]
-      }
-    }),
-    [notificationActions.notification.RECEIVE_UPDATED]: (state, action) => ({
-      ...state,
-      notifications: {
-        ...state.notifications,
-        data: action.payload.notifications
-      }
-    })
-  }
-)
+export default createReducer({
+  notifications: notificationsInitialState,
+  pendingActions: pendingActionsInitialState
+})
 
 // Selectors
 export const getNotifications = state => state.notification.notifications

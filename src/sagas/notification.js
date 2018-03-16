@@ -10,18 +10,18 @@ import {
   put
 } from 'redux-saga/effects'
 
-import * as notificationSelectors from '../reducers/notification'
 import * as notificationActions from '../actions/notification'
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
-import { action, errorAction } from '../utils/action'
+import { action } from '../utils/action'
+import { fetchSaga, updateSaga } from '../utils/saga'
 
 /**
  * Listens for push notifications.
  */
 function* pushNotificationsListener() {
-  // Start after fetching whole list of notifications
+  // Start after fetching all notifications
   while (yield take(notificationActions.notifications.FETCH)) {
     const account = yield select(walletSelectors.getAccount) // Current account
 
@@ -44,7 +44,12 @@ function* pushNotificationsListener() {
 
       // Put new notification
       yield put(
-        action(notificationActions.notification.RECEIVE, { notification })
+        action(notificationActions.notification.RECEIVE, {
+          collectionMod: {
+            collection: notificationActions.notifications.self,
+            resource: notification
+          }
+        })
       )
     }
 
@@ -55,69 +60,42 @@ function* pushNotificationsListener() {
 
 /**
  * Fetches the current account's notifications.
+ * @returns {object[]} - The notifications.
  */
 function* fetchNotifications() {
-  try {
-    const account = yield select(walletSelectors.getAccount)
-    const notifications = yield call(
-      kleros.notifications.getUnreadNotifications,
-      account
-    )
-
-    yield put(
-      action(notificationActions.notifications.RECEIVE, { notifications })
-    )
-  } catch (err) {
-    yield put(errorAction(notificationActions.notifications.FAIL_FETCH, err))
-  }
+  return yield call(
+    kleros.notifications.getUnreadNotifications,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
  * Dismisses a notification.
+ * @returns {object[]} - The updated notifications list.
  */
 function* dismissNotification({ payload: { txHash, logIndex } }) {
-  try {
-    yield put(action(notificationActions.notification.UPDATE))
-
-    yield call(
-      kleros.notifications.markNotificationAsRead,
-      yield select(walletSelectors.getAccount),
-      txHash,
-      logIndex
-    )
-
-    const notifications = (yield select(
-      notificationSelectors.getNotifications
-    )).data.filter(n => n.txHash !== txHash || n.logIndex !== logIndex)
-
-    yield put(
-      action(notificationActions.notification.RECEIVE_UPDATED, {
-        notifications
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(notificationActions.notification.FAIL_UPDATE, err))
+  yield call(
+    kleros.notifications.markNotificationAsRead,
+    yield select(walletSelectors.getAccount),
+    txHash,
+    logIndex
+  )
+  return {
+    collection: notificationActions.notifications.self,
+    find: n => n.txHash === txHash && n.logIndex === logIndex
   }
 }
 
 /**
  * Fetches the current account's pending actions.
+ * @returns {object[]} - The pending actions.
  */
 function* fetchPendingActions() {
-  try {
-    const account = yield select(walletSelectors.getAccount)
-    const pendingActions = yield call(
-      kleros.notifications.getStatefulNotifications,
-      ARBITRATOR_ADDRESS,
-      account
-    )
-
-    yield put(
-      action(notificationActions.pendingActions.RECEIVE, { pendingActions })
-    )
-  } catch (err) {
-    yield put(errorAction(notificationActions.pendingActions.FAIL_FETCH, err))
-  }
+  return yield call(
+    kleros.notifications.getStatefulNotifications,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
@@ -128,17 +106,26 @@ export default function* notificationSaga() {
   yield fork(pushNotificationsListener)
 
   // Notifications
-  yield takeLatest(notificationActions.notifications.FETCH, fetchNotifications)
+  yield takeLatest(
+    notificationActions.notifications.FETCH,
+    fetchSaga,
+    notificationActions.notifications,
+    fetchNotifications
+  )
 
   // Notification
   yield takeLatest(
     notificationActions.notification.DISMISS,
+    updateSaga,
+    notificationActions.notification,
     dismissNotification
   )
 
   // Pending Actions
   yield takeLatest(
     notificationActions.pendingActions.FETCH,
+    fetchSaga,
+    notificationActions.pendingActions,
     fetchPendingActions
   )
 }

@@ -1,130 +1,66 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects'
+import { takeLatest, call, select } from 'redux-saga/effects'
 
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
-import { action, errorAction } from '../utils/action'
+import { fetchSaga, updateSaga } from '../utils/saga'
 
 /**
  * Fetches the PNK balance for the current wallet.
+ * @returns {object} - The PNK balance.
  */
 function* fetchPNKBalance() {
-  try {
-    const { tokenBalance, activatedTokens, lockedTokens } = yield call(
-      kleros.arbitrator.getPNKBalance,
-      ARBITRATOR_ADDRESS,
-      yield select(walletSelectors.getAccount)
-    )
-
-    yield put(
-      action(arbitratorActions.PNKBalance.RECEIVE, {
-        PNKBalance: {
-          tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens: Number(activatedTokens), // TODO: Fix on API side
-          lockedTokens: Number(lockedTokens) // TODO: Fix on API side
-        }
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(arbitratorActions.PNKBalance.FAIL_FETCH, err))
-  }
+  return yield call(
+    kleros.arbitrator.getPNKBalance,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
  * Buys PNK for the current wallet.
+ * @returns {object} - The update PNK balance.
  */
 function* buyPNK({ payload: { amount } }) {
-  try {
-    yield put(action(arbitratorActions.PNKBalance.UPDATE))
-
-    const { tokenBalance, activatedTokens, lockedTokens } = yield call(
-      kleros.arbitrator.buyPNK,
-      amount,
-      ARBITRATOR_ADDRESS,
-      yield select(walletSelectors.getAccount)
-    )
-
-    yield put(
-      action(arbitratorActions.PNKBalance.RECEIVE_UPDATED, {
-        PNKBalance: {
-          tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens: Number(activatedTokens), // TODO: Fix on API side,
-          lockedTokens: Number(lockedTokens) // TODO: Fix on API side
-        }
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(arbitratorActions.PNKBalance.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.arbitrator.buyPNK,
+    amount,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
  * Activates PNK for the current wallet.
+ * @returns {object} - The updated PNK balance.
  */
 function* activatePNK({ payload: { amount } }) {
-  try {
-    yield put(action(arbitratorActions.PNKBalance.UPDATE))
-
-    const { tokenBalance, activatedTokens, lockedTokens } = yield call(
-      kleros.arbitrator.activatePNK,
-      amount,
-      ARBITRATOR_ADDRESS,
-      yield select(walletSelectors.getAccount)
-    )
-
-    yield put(
-      action(arbitratorActions.PNKBalance.RECEIVE_UPDATED, {
-        PNKBalance: {
-          tokenBalance: Number(tokenBalance), // TODO: Fix on API side
-          activatedTokens: Number(activatedTokens), // TODO: Fix on API side
-          lockedTokens: Number(lockedTokens) // TODO: Fix on API side
-        }
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(arbitratorActions.PNKBalance.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.arbitrator.activatePNK,
+    amount,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
  * Fetches the arbitrator's data.
+ * @returns {object} - The arbitrator data.
  */
 function* fetchArbitratorData() {
-  try {
-    const arbitratorData = yield call(
-      kleros.arbitrator.getData,
-      ARBITRATOR_ADDRESS
-    )
-
-    yield put(
-      action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
-    )
-  } catch (err) {
-    yield put(errorAction(arbitratorActions.arbitratorData.FAIL_FETCH, err))
-  }
+  return yield call(kleros.arbitrator.getData, ARBITRATOR_ADDRESS)
 }
 
 /**
  * Passes the arbitrator's period.
+ * @returns {object} - The updated arbitrator data.
  */
 function* passPeriod() {
-  try {
-    yield put(action(arbitratorActions.arbitratorData.UPDATE))
-
-    const arbitratorData = yield call(
-      kleros.arbitrator.passPeriod,
-      ARBITRATOR_ADDRESS,
-      yield select(walletSelectors.getAccount)
-    )
-
-    yield put(
-      action(arbitratorActions.arbitratorData.RECEIVE_UPDATED, {
-        arbitratorData
-      })
-    )
-  } catch (err) {
-    yield put(errorAction(arbitratorActions.arbitratorData.FAIL_UPDATE, err))
-  }
+  return yield call(
+    kleros.arbitrator.passPeriod,
+    ARBITRATOR_ADDRESS,
+    yield select(walletSelectors.getAccount)
+  )
 }
 
 /**
@@ -132,11 +68,36 @@ function* passPeriod() {
  */
 export default function* arbitratorSaga() {
   // PNK Balance
-  yield takeLatest(arbitratorActions.PNKBalance.FETCH, fetchPNKBalance)
-  yield takeLatest(arbitratorActions.PNKBalance.BUY, buyPNK)
-  yield takeLatest(arbitratorActions.PNKBalance.ACTIVATE, activatePNK)
+  yield takeLatest(
+    arbitratorActions.PNKBalance.FETCH,
+    fetchSaga,
+    arbitratorActions.PNKBalance,
+    fetchPNKBalance
+  )
+  yield takeLatest(
+    arbitratorActions.PNKBalance.BUY,
+    updateSaga,
+    arbitratorActions.PNKBalance,
+    buyPNK
+  )
+  yield takeLatest(
+    arbitratorActions.PNKBalance.ACTIVATE,
+    updateSaga,
+    arbitratorActions.PNKBalance,
+    activatePNK
+  )
 
   // Arbitrator Data
-  yield takeLatest(arbitratorActions.arbitratorData.FETCH, fetchArbitratorData)
-  yield takeLatest(arbitratorActions.arbitratorData.PASS_PERIOD, passPeriod)
+  yield takeLatest(
+    arbitratorActions.arbitratorData.FETCH,
+    fetchSaga,
+    arbitratorActions.arbitratorData,
+    fetchArbitratorData
+  )
+  yield takeLatest(
+    arbitratorActions.arbitratorData.PASS_PERIOD,
+    updateSaga,
+    arbitratorActions.arbitratorData,
+    passPeriod
+  )
 }
