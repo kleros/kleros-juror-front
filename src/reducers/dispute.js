@@ -30,7 +30,9 @@ const dispute = PropTypes.shape({
       voteCounter: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
       deadline: PropTypes.number.isRequired,
       ruledAt: PropTypes.number.isRequired,
-      ruling: PropTypes.number.isRequired
+      ruling: PropTypes.number.isRequired,
+      canRepartition: PropTypes.bool.isRequired,
+      canExecute: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,
 

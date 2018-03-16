@@ -31,7 +31,9 @@ class Dispute extends PureComponent {
 
     // Action Dispatchers
     fetchDispute: PropTypes.func.isRequired,
-    voteOnDispute: PropTypes.func.isRequired
+    voteOnDispute: PropTypes.func.isRequired,
+    repartitionTokens: PropTypes.func.isRequired,
+    executeRuling: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -46,6 +48,16 @@ class Dispute extends PureComponent {
       dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
       event.currentTarget.id
     )
+  }
+
+  handleRepartitionButtonClick = () => {
+    const { dispute, repartitionTokens } = this.props
+    repartitionTokens(dispute.data.disputeId)
+  }
+
+  handleExecuteButtonClick = () => {
+    const { dispute, executeRuling } = this.props
+    executeRuling(dispute.data.disputeId)
   }
 
   render() {
@@ -138,20 +150,47 @@ class Dispute extends PureComponent {
                         return null
                     }
                   }),
-                  dispute.data.appealJuror[dispute.data.numberOfAppeals]
-                    .canRule && {
-                    anchor: 'Vote',
-                    element: (
-                      <div key={today} className="Dispute-vote">
-                        <Button id={0} onClick={this.handleVoteButtonClick}>
-                          Vote for Party A
-                        </Button>
-                        <Button id={1} onClick={this.handleVoteButtonClick}>
-                          Vote for Party B
-                        </Button>
-                      </div>
-                    )
-                  }
+                  dispute.data.appealJuror[dispute.data.numberOfAppeals].canRule
+                    ? {
+                        anchor: 'Vote',
+                        element: (
+                          <div key={today} className="Dispute-action">
+                            <Button id={0} onClick={this.handleVoteButtonClick}>
+                              Vote for Party A
+                            </Button>
+                            <Button id={1} onClick={this.handleVoteButtonClick}>
+                              Vote for Party B
+                            </Button>
+                          </div>
+                        )
+                      }
+                    : dispute.data.appealRulings[dispute.data.numberOfAppeals]
+                        .canRepartition
+                      ? {
+                          anchor: 'Repartition Tokens',
+                          element: (
+                            <div key={today} className="Dispute-action">
+                              <Button
+                                onClick={this.handleRepartitionButtonClick}
+                              >
+                                Repartition Tokens
+                              </Button>
+                            </div>
+                          )
+                        }
+                      : dispute.data.appealRulings[dispute.data.numberOfAppeals]
+                          .canExecute
+                        ? {
+                            anchor: 'Execute Ruling',
+                            element: (
+                              <div key={today} className="Dispute-action">
+                                <Button onClick={this.handleExecuteButtonClick}>
+                                  Execute Ruling
+                                </Button>
+                              </div>
+                            )
+                          }
+                        : null
                 ]}
               />
             )
@@ -165,5 +204,7 @@ class Dispute extends PureComponent {
 
 export default connect(state => ({ dispute: state.dispute.dispute }), {
   fetchDispute: disputeActions.fetchDispute,
-  voteOnDispute: disputeActions.voteOnDispute
+  voteOnDispute: disputeActions.voteOnDispute,
+  repartitionTokens: disputeActions.repartitionTokens,
+  executeRuling: disputeActions.executeRuling
 })(Dispute)

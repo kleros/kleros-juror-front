@@ -69,7 +69,7 @@ function* fetchDisputes() {
 }
 
 /**
- * Fetches a dispute by dispute ID.
+ * Fetches a dispute.
  */
 function* fetchDispute({ payload: { disputeID } }) {
   try {
@@ -89,11 +89,13 @@ function* fetchDispute({ payload: { disputeID } }) {
 }
 
 /**
- * Votes on a dispute by dispute ID.
+ * Votes on a dispute.
  */
 function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   try {
     yield put(action(disputeActions.dispute.UPDATE))
+
+    const account = yield select(walletSelectors.getAccount)
 
     yield call(
       kleros.disputes.submitVotesForDispute,
@@ -101,14 +103,80 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
       disputeID,
       ruling,
       votes,
-      yield select(walletSelectors.getAccount)
+      account
     )
 
     const dispute = yield call(
       kleros.disputes.getDataForDispute,
       ARBITRATOR_ADDRESS,
       disputeID,
-      yield select(walletSelectors.getAccount)
+      account
+    )
+
+    yield put(
+      action(disputeActions.dispute.RECEIVE_UPDATED, {
+        dispute
+      })
+    )
+  } catch (err) {
+    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
+  }
+}
+
+/**
+ * Repartitions the tokens at stake in a dispute.
+ */
+function* repartitionTokens({ payload: { disputeID } }) {
+  try {
+    yield put(action(disputeActions.dispute.UPDATE))
+
+    const account = yield select(walletSelectors.getAccount)
+
+    yield call(
+      kleros.arbitrator.repartitionJurorTokens,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      account
+    )
+
+    const dispute = yield call(
+      kleros.disputes.getDataForDispute,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      account
+    )
+
+    yield put(
+      action(disputeActions.dispute.RECEIVE_UPDATED, {
+        dispute
+      })
+    )
+  } catch (err) {
+    yield put(errorAction(disputeActions.dispute.FAIL_UPDATE, err))
+  }
+}
+
+/**
+ * Executes a dispute's ruling.
+ */
+function* executeRuling({ payload: { disputeID } }) {
+  try {
+    yield put(action(disputeActions.dispute.UPDATE))
+
+    const account = yield select(walletSelectors.getAccount)
+
+    yield call(
+      kleros.arbitrator.executeRuling,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      account
+    )
+
+    const dispute = yield call(
+      kleros.disputes.getDataForDispute,
+      ARBITRATOR_ADDRESS,
+      disputeID,
+      account
     )
 
     yield put(
@@ -131,4 +199,6 @@ export default function* disputeSaga() {
   // Dispute
   yield takeLatest(disputeActions.dispute.FETCH, fetchDispute)
   yield takeLatest(disputeActions.dispute.VOTE_ON, voteOnDispute)
+  yield takeLatest(disputeActions.dispute.REPARTITION_TOKENS, repartitionTokens)
+  yield takeLatest(disputeActions.dispute.EXECUTE_RULING, executeRuling)
 }
