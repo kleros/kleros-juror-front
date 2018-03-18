@@ -1,10 +1,31 @@
 @import '~normalize.css';
+@import '~react-redux-toastr/lib/css/react-redux-toastr.min.css';
+@import '~react-table/react-table.css';
+@import '~create-redux-form/animations/carousel.css';
 @import '../styles/_colors.scss';
+@import '../styles/_typography.scss';
+@import '../styles/_toastr.scss';
+@import '../styles/_form.scss';
 
+// Global Overrides
+* {
+  box-sizing: border-box !important;
+  font-family: 'Roboto', sans-serif !important;
+  scroll-behavior: smooth !important;
+}
+
+// Document Root
+html {
+  color: $text;
+  font-size: 16px;
+}
+
+// App Containers
 html,
 body,
 #root,
-#router-root {
+#router-root,
+#scroll-root {
   border: 0;
   height: 100%;
   margin: 0;
@@ -12,9 +33,23 @@ body,
   width: 100%;
 }
 
+// React Router Root
 #router-root {
+  padding-top: 70px;
+}
+
+// Scroll Root
+#scroll-root {
   background: $background;
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
+  overflow: scroll;
+  position: relative;
+}
+
+/* Element Overrides */
+
+// Horizontal Rule
+hr {
+  border: 1px solid #e6ebed;
 }

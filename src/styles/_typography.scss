@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+%heading {
+  color: $heading;
+}
+
+@mixin heading($fontSize, $fontWeight) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: ceil(2 * $fontSize) / 2;
+  margin: 0 0 (ceil(2 * $fontSize) / 4) 0;
+
+  @extend %heading;
+}
+
+// Headings
+h1 {
+  @include heading(2rem, 800);
+}
+
+h2 {
+  @include heading(1.75rem, 700);
+}
+
+h3 {
+  @include heading(1.5rem, 600);
+}
+
+h4 {
+  @include heading(1.25rem, 500);
+}
+
+h5 {
+  @include heading(1rem, 400);
+}
+
+h6 {
+  @include heading(0.75rem, 300);
+}
+
+// Paragraphs
+p {
+  font-size: 0.75rem;
+  line-height: 1.8rem;
+}
+
+// Modifiers
+a {
+  color: $info;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+small {
+  color: $disabled;
+  font-size: 0.8rem;
+}

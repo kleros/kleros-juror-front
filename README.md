@@ -3,47 +3,37 @@
 </p>
 
 <p align="center">
-  <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
   <a href="https://travis-ci.org/kleros/kleros-juror-front"><img src="https://travis-ci.org/kleros/kleros-juror-front.svg?branch=master" alt="Build Status"></a>
-  <a href="https://david-dm.org/kleros/kleros-dapp-boilerplate"><img src="https://david-dm.org/kleros/kleros-juror-front.svg" alt="Dependencies"></a>
-  <a href="https://david-dm.org/kleros/kleros-dapp-boilerplate?type=dev"><img src="https://david-dm.org/kleros/kleros-dapp-boilerplate/dev-status.svg" alt="Dev Dependencies"></a>
-  <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="Tested with Jest"></a>
   <a href="https://coveralls.io/github/kleros/kleros-juror-front?branch=master"><img src="https://coveralls.io/repos/github/kleros/kleros-juror-front/badge.svg?branch=master" alt="Coverage Status"></a>
+  <a href="https://david-dm.org/kleros/kleros-juror-front"><img src="https://david-dm.org/kleros/kleros-juror-front.svg" alt="Dependencies"></a>
+  <a href="https://david-dm.org/kleros/kleros-juror-front?type=dev"><img src="https://david-dm.org/kleros/kleros-juror-front/dev-status.svg" alt="Dev Dependencies"></a>
+  <a href="https://github.com/facebook/jest"><img src="https://img.shields.io/badge/tested_with-jest-99424f.svg" alt="Tested with Jest"></a>
+  <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
+  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
   <a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a>
   <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen Friendly"></a>
-  <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier"></a>
 </p>
 
 ## Get Started
 
-1. Clone this repo.
-2. Install and set up the MetaMask chrome extension.
-3. Create a .env file in the root of the repo.
+1.  Clone this repo.
+2.  Install and set up the [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en) chrome extension.
+3.  Configure MetaMask on the Kovan Test Network.
+4.  Run `yarn` to install dependencies and then `yarn start` to start the dev server.
 
-```sh
-# Development
-REACT_APP_DEV_ETHEREUM_PROVIDER=http://localhost:8545
-REACT_APP_DEV_STORE_PROVIDER=https://kleros.in
-REACT_APP_DEV_ARBITRATOR_ADDRESS=<address>
+## Scripts
 
-# Production
-REACT_APP_PROD_ETHEREUM_PROVIDER=<provider>
-REACT_APP_PROD_STORE_PROVIDER=<provider>
-REACT_APP_PROD_ARBITRATOR_ADDRESS=<address>
-```
-
-4. Run `yarn` to install dependencies and then `yarn start` to start the dev server.
-
-## Other Scripts
-
-* `yarn run prettify` - Applies prettier to the entire project.
-* `yarn run lint` - Lints the entire project.
-* `yarn run lint:fix` - Fixes fixable linting errors.
-* `yarn test` - Runs the jest test suites + storyshots.
-* `yarn run storybook` - Starts the storybook.
-* `yarn run cz` - Runs commitizen.
-* `yarn run build` - Creates a production build.
-* `yarn run build:analyze` - Analyzes the production build using source-map-explorer.
+* `yarn run prettify` - Apply prettier to the entire project.
+* `yarn run lint:scss` - Lint the entire project's .scss files.
+* `yarn run lint:js` - Lint the entire project's .js files.
+* `yarn run lint:scss --fix` - Fix fixable linting errors in .scss files.
+* `yarn run lint:js --fix` - Fix fixable linting errors in .js files.
+* `yarn run lint` - Lint the entire project's .scss and .js files.
+* `yarn test` - Run the jest test suites + storyshots.
+* `yarn run storybook` - Start the storybook.
+* `yarn run cz` - Run commitizen.
+* `yarn run build` - Create a production build.
+* `yarn run build:analyze` - Analyze the production build using source-map-explorer.
 
 ## Testing
 
