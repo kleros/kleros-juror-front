@@ -258,6 +258,7 @@ class Home extends PureComponent {
                   <DisputeCard
                     status={0}
                     subcourt="GENERAL COURT"
+                    disputeID={p.data.disputeId}
                     date={new Date()}
                     title={p.message}
                   />
