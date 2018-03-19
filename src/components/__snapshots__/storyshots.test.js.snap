@@ -4871,7 +4871,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
               className="NavBar"
             >
               <a
-                src="https://kleros.io"
+                href="https://kleros.io"
               >
                 <img
                   alt="Kleros Logo"
@@ -5283,7 +5283,7 @@ exports[`Storyshots Nav Bar with routes 1`] = `
               className="NavBar"
             >
               <a
-                src="https://kleros.io"
+                href="https://kleros.io"
               >
                 <img
                   alt="Kleros Logo"
