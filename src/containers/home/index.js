@@ -65,7 +65,13 @@ class Home extends PureComponent {
     fetchArbitratorData()
   }
 
-  handleActivateFormButtonClick = () => {
+  handleActivatePNKFormSubmit = formData => {
+    const { activatePNK } = this.props
+    toastr.removeByType('message')
+    activatePNK(formData)
+  }
+
+  handleActivatePNKFormButtonClick = () => {
     const { activatePNKFormIsInvalid, submitActivatePNKForm } = this.props
     if (activatePNKFormIsInvalid)
       return toastr.error('A valid amount is required.')
@@ -74,23 +80,22 @@ class Home extends PureComponent {
   }
 
   handleActivateButtonClick = () => {
-    toastr.confirm(null, {
+    toastr.message('Activate PNK', {
+      id: 'activatePNKToastr',
       component: () => {
-        const { activatePNKFormIsInvalid, activatePNK } = this.props
+        const { activatePNKFormIsInvalid } = this.props
         return (
           <div>
-            <ActivatePNKForm onSubmit={activatePNK} />
+            <ActivatePNKForm onSubmit={this.handleActivatePNKFormSubmit} />
             <Button
-              onClick={this.handleActivateFormButtonClick}
+              onClick={this.handleActivatePNKFormButtonClick}
               disabled={activatePNKFormIsInvalid}
             >
               Activate
             </Button>
           </div>
         )
-      },
-      okText: 'Close',
-      disableCancel: true
+      }
     })
   }
 

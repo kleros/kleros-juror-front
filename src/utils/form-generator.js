@@ -6,6 +6,6 @@ import FormInfo from '../components/form-info'
 import TextInput from '../components/text-input'
 
 export const { form, wizardForm } = createReduxForm(
-  { header: FormHeader, info: FormInfo, text: TextInput, number: TextInput },
+  { header: FormHeader, info: FormInfo, text: TextInput },
   store
 )
