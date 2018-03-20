@@ -18,14 +18,14 @@ class Table extends PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(prevProps) {
+    const { data: prevData } = prevProps
     const { data } = this.props
-    const { nextData } = nextProps
-    if (data !== nextData) this.filterData(nextProps)
+    if (prevData !== data) this.filterData()
   }
 
-  filterData = (props = this.props) => {
-    const { data } = props
+  filterData = () => {
+    const { data } = this.props
     const { searchInput } = this.state
     this.setState({
       filteredData: data
