@@ -10,6 +10,7 @@ const FormHeader = ({ title }) => (
 )
 
 FormHeader.propTypes = {
+  // State
   title: PropTypes.string.isRequired
 }
 
