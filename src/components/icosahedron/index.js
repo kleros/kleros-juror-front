@@ -14,6 +14,7 @@ class Icosahedron extends PureComponent {
   }
 
   static defaultProps = {
+    // State
     size: 100,
     loading: null
   }

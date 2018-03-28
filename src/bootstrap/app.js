@@ -66,6 +66,7 @@ App.propTypes = {
 }
 
 App.defaultProps = {
+  // Testing
   testElement: null
 }
 

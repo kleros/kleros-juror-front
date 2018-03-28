@@ -66,6 +66,7 @@ Ruling.propTypes = {
 }
 
 Ruling.defaultProps = {
+  // State
   date: null
 }
 
