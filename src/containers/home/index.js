@@ -11,6 +11,7 @@ import * as notificationActions from '../../actions/notification'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import Icosahedron from '../../components/icosahedron'
+import LoadingBar from '../../components/loading-bar'
 import Identicon from '../../components/identicon'
 import BalancePieChart from '../../components/balance-pie-chart'
 import Button from '../../components/button'
@@ -124,7 +125,7 @@ class Home extends PureComponent {
           <div className="Home-stats-block">
             <RenderIf
               resource={accounts}
-              loading={<Icosahedron />}
+              loading={<LoadingBar />}
               done={
                 <div className="Home-stats-block-content">
                   <Identicon seed={accounts.data[0]} size={20} />
@@ -132,7 +133,7 @@ class Home extends PureComponent {
                     <h5>{accounts.data[0].slice(0, 7)}...</h5>
                     <RenderIf
                       resource={PNKBalance}
-                      loading={<Icosahedron />}
+                      loading={<LoadingBar />}
                       done={
                         PNKBalance.data && (
                           <h6>{PNKBalance.data.tokenBalance} PNK</h6>
@@ -142,7 +143,7 @@ class Home extends PureComponent {
                     />
                     <RenderIf
                       resource={balance}
-                      loading={<Icosahedron />}
+                      loading={<LoadingBar />}
                       done={<h6>{balance.data} ETH</h6>}
                       failedLoading="..."
                     />
@@ -155,7 +156,7 @@ class Home extends PureComponent {
           <div className="Home-stats-block">
             <RenderIf
               resource={PNKBalance}
-              loading={<Icosahedron />}
+              loading={<LoadingBar />}
               done={
                 PNKBalance.data && (
                   <div className="Home-stats-block-content">
@@ -197,7 +198,7 @@ class Home extends PureComponent {
           <div className="Home-stats-block">
             <RenderIf
               resource={PNKBalance}
-              loading={<Icosahedron />}
+              loading={<LoadingBar />}
               done={
                 PNKBalance.data && (
                   <div className="Home-stats-block-content">
