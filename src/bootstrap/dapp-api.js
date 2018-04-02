@@ -15,4 +15,6 @@ else eth = new Eth.HttpProvider(ETHEREUM_PROVIDER)
 
 const kleros = new Kleros(eth.currentProvider, STORE_PROVIDER)
 
+console.log('ARBITRATOR: ', ARBITRATOR_ADDRESS)
+
 export { eth, kleros, ETHEREUM_PROVIDER, STORE_PROVIDER, ARBITRATOR_ADDRESS }
