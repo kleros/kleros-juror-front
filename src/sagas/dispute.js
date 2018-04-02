@@ -32,10 +32,10 @@ const parseDispute = d => {
     ...d.appealRulings.map(a => ({
       ...a,
       type: disputeConstants.EVENT_TYPE_ENUM[2],
-      date: new Date(a.ruledAt)
+      date: a.ruledAt ? new Date(a.ruledAt) : null
     }))
   ]
-  events = events.sort((a, b) => (a.data <= b.date ? -1 : 1))
+  events = events.sort((a, b) => (a.data <= b.date || a.data !== null ? -1 : 1))
 
   return {
     ...d,

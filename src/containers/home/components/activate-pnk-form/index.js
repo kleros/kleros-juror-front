@@ -6,12 +6,12 @@ export const {
   isInvalid: getActivatePNKFormIsInvalid,
   submit: submitActivatePNKForm
 } = form('activatePNKForm', {
-  header: {
-    type: 'header',
-    props: { title: 'ACTIVATE PNK' }
-  },
   amount: {
     type: 'text',
-    validate: [required, number]
+    validate: [required, number],
+    props: {
+      type: 'number',
+      className: 'Form-fullWidth'
+    }
   }
 })

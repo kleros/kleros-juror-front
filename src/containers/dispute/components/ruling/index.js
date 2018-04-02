@@ -11,7 +11,9 @@ const Ruling = ({ date, votesForPartyA, votesForPartyB, netPNK }) => {
   return (
     <div className="Ruling">
       <small>
-        {dateToString(date, { withTime: false, numericMonth: false })}
+        {date === null
+          ? 'In Progress'
+          : dateToString(date, { withTime: false, numericMonth: false })}
       </small>
       <h4>Ruling</h4>
       <div className="Ruling-outcome">
@@ -57,10 +59,15 @@ const Ruling = ({ date, votesForPartyA, votesForPartyB, netPNK }) => {
 
 Ruling.propTypes = {
   // State
-  date: PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date),
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired
+}
+
+Ruling.defaultProps = {
+  // State
+  date: null
 }
 
 export default Ruling

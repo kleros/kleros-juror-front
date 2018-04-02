@@ -1,3 +1,5 @@
+import { toastr } from 'react-redux-toastr'
+
 import { call, put } from 'redux-saga/effects'
 
 import { action as _action, errorAction } from './action'
@@ -18,6 +20,7 @@ export function* fetchSaga(resourceActions, saga, action) {
       })
     )
   } catch (err) {
+    toastr.error('', err.message.slice(0, 100))
     yield put(errorAction(resourceActions.FAIL_FETCH, err))
   }
 }
@@ -40,6 +43,7 @@ export function* updateSaga(resourceActions, saga, action) {
       })
     )
   } catch (err) {
+    toastr.error('', err.message.slice(0, 100))
     yield put(errorAction(resourceActions.FAIL_UPDATE, err))
   }
 }

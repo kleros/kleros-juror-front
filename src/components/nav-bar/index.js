@@ -11,7 +11,7 @@ import './nav-bar.css'
 
 const NavBar = ({ accounts, routes }) => (
   <div className="NavBar">
-    <a src="https://kleros.io">
+    <a href="https://kleros.io">
       <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
     </a>
     <div className="NavBar-tabs">

@@ -129,7 +129,9 @@ class Dispute extends PureComponent {
                               key={e.date + e.url}
                               date={e.date}
                               partyAddress={e.submitter}
-                              URI={e.url}
+                              title={e.name}
+                              description={e.description}
+                              URL={e.url}
                             />
                           )
                         }

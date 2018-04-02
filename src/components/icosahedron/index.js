@@ -8,11 +8,13 @@ import './icosahedron.css'
 
 class Icosahedron extends PureComponent {
   static propTypes = {
+    // State
     size: PropTypes.number,
     loading: PropTypes.bool
   }
 
   static defaultProps = {
+    // State
     size: 100,
     loading: null
   }

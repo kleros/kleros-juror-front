@@ -10,6 +10,7 @@ const FormInfo = ({ input: { value } }) => (
 )
 
 FormInfo.propTypes = {
+  // Redux Form
   input: PropTypes.shape({ value: PropTypes.string.isRequired }).isRequired
 }
 

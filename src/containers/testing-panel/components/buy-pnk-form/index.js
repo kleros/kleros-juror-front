@@ -17,6 +17,7 @@ export const {
     type: 'text',
     validate: [required, number],
     props: {
+      type: 'number',
       className: 'Form-noMargins'
     }
   }

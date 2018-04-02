@@ -20,12 +20,12 @@ import './app.css'
 const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
   ({ accounts }) => (
     <NavBar
+      accounts={accounts}
       routes={[
         { name: 'Home', to: '/' },
         { name: 'Disputes', to: '/disputes' },
         { name: 'Testing Panel', to: '/testing-panel' }
       ]}
-      accounts={accounts}
     />
   )
 )
@@ -66,6 +66,7 @@ App.propTypes = {
 }
 
 App.defaultProps = {
+  // Testing
   testElement: null
 }
 

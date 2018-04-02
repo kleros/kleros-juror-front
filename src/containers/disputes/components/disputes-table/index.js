@@ -22,10 +22,7 @@ const columns = [
     id: 'deadline',
     Header: 'Deadline',
     maxWidth: 110,
-    accessor: d =>
-      (d.latestAppealForJuror &&
-        d.appealRulings[d.latestAppealForJuror].deadline) ||
-      null,
+    accessor: d => d.appealRulings[d.numberOfAppeals].deadline || null,
     Cell: cell =>
       cell.value === null
         ? 'None'

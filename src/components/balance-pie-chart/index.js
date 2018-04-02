@@ -20,6 +20,7 @@ const BalancePieChart = ({ type, balance, total, size }) => (
 )
 
 BalancePieChart.propTypes = {
+  // State
   type: PropTypes.oneOf(['activated', 'locked']).isRequired,
   balance: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,

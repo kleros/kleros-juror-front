@@ -20,9 +20,7 @@ addDecorator(
 
 // Integration Wrapper
 const store = createStore(
-  combineReducers({
-    toastr
-  }),
+  combineReducers({ toastr }),
   applyMiddleware(store => next => action => {
     console.log(action)
     return next(action)
