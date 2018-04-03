@@ -4,7 +4,7 @@ import zenscroll from 'zenscroll'
 
 import './anchored-list.css'
 
-class AnchoredList extends PureComponent {
+export default class AnchoredList extends PureComponent {
   static propTypes = {
     // State
     items: PropTypes.arrayOf(
@@ -116,5 +116,3 @@ class AnchoredList extends PureComponent {
     )
   }
 }
-
-export default AnchoredList

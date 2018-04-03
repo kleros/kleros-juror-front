@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 
 import logo from '../assets/logo.png'
 
+import DataProvenance from './containers/data-provenance'
+
 import './chain-view.css'
 
-class ChainView extends Component {
+export default class ChainView extends Component {
+  static tabs = [{ name: 'Data Provenance', Component: DataProvenance }]
+
   state = {
-    isOpen: false
+    isOpen: false,
+    toggledTabName: null
   }
 
   handleToggleClick = () => {
@@ -15,8 +20,14 @@ class ChainView extends Component {
     }))
   }
 
+  handleTabToggleClick = ({ currentTarget: { id } }) => {
+    this.setState(prevState => ({
+      toggledTabName: prevState.toggledTabName === id ? null : id
+    }))
+  }
+
   render() {
-    const { isOpen } = this.state
+    const { isOpen, toggledTabName } = this.state
 
     return (
       <div className="ChainView">
@@ -31,11 +42,35 @@ class ChainView extends Component {
           />
         </div>
         <div className={`ChainView-panel ${isOpen ? 'is-open' : ''}`}>
-          Hello
+          <h2 className="ChainView-panel-title">ChainView</h2>
+          {ChainView.tabs.map(t => {
+            const isToggled = toggledTabName === t.name
+            return (
+              <div className="ChainView-panel-tab">
+                <h3
+                  id={t.name}
+                  className="ChainView-panel-tab-title"
+                  onClick={this.handleTabToggleClick}
+                >
+                  {t.name}
+                  <div
+                    className={`ChainView-panel-tab-title-toggle ${
+                      isToggled ? 'is-toggled' : ''
+                    }`}
+                  >
+                    >
+                  </div>
+                </h3>
+                {isToggled && (
+                  <div className="ChainView-panel-tab-content">
+                    <t.Component />
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
     )
   }
 }
-
-export default ChainView
