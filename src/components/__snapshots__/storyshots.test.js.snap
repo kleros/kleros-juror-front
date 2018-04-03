@@ -4868,13 +4868,13 @@ exports[`Storyshots Loading Bar default 1`] = `
             }
           >
             <div
-              class="LoadingBar"
+              className="LoadingBar"
             >
               <div
                 className="LoadingBar-bar"
               >
                 <div
-                  class="LoadingBar-bar-progress"
+                  className="LoadingBar-bar-progress"
                 />
               </div>
             </div>

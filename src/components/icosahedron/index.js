@@ -1,10 +1,15 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import * as THREE from 'three'
+import OBJLoader from 'three-obj-loader'
+import MTLLoader from 'three-mtl-loader'
 
 import icosahedron from '../../assets/models/icosahedron'
+import icosahedronMaterials from '../../assets/models/icosahedron-materials'
 
 import './icosahedron.css'
+
+OBJLoader(THREE)
 
 class Icosahedron extends PureComponent {
   static propTypes = {
@@ -20,7 +25,8 @@ class Icosahedron extends PureComponent {
   }
 
   // Loader
-  static loader = new THREE.ObjectLoader()
+  static THREE = THREE
+  static loader = new Icosahedron.THREE.OBJLoader()
 
   // Inclination and base speeds
   static inclination = Math.PI / 8
@@ -43,33 +49,34 @@ class Icosahedron extends PureComponent {
 
     // Load model into a container for spinning and set up for pivot
     const object = Icosahedron.loader.parse(icosahedron)
+    object.scale.set(0.004, 0.004, 0.004)
     object.position.y = 1
     object.rotation.x = -0.4
-    this.spinContainer = new THREE.Object3D()
+    this.spinContainer = new Icosahedron.THREE.Object3D()
     this.spinContainer.add(object)
 
     // Create camera and set up for pivot
-    this.camera = new THREE.PerspectiveCamera(45, 1, 1, 1000)
+    this.camera = new Icosahedron.THREE.PerspectiveCamera(45, 1, 1, 1000)
     this.camera.position.y = 1
     this.camera.position.z = 4
 
     // Create scene
-    this.scene = new THREE.Scene()
+    this.scene = new Icosahedron.THREE.Scene()
 
     // Add container to the scene
     this.scene.add(this.spinContainer)
 
     // Create lights
-    const ambientLight = new THREE.AmbientLight('0xffffff', 0.25) // Ambient
-    const keyLight = new THREE.DirectionalLight( // Key
-      new THREE.Color('hsl(30, 100%, 75%)'),
+    const ambientLight = new Icosahedron.THREE.AmbientLight('0xffffff', 0.25) // Ambient
+    const keyLight = new Icosahedron.THREE.DirectionalLight( // Key
+      new Icosahedron.THREE.Color('hsl(30, 100%, 75%)'),
       1.0
     )
-    const fillLight = new THREE.DirectionalLight( // Fill
-      new THREE.Color('hsl(240, 100%, 75%)'),
+    const fillLight = new Icosahedron.THREE.DirectionalLight( // Fill
+      new Icosahedron.THREE.Color('hsl(240, 100%, 75%)'),
       0.75
     )
-    const backLight = new THREE.DirectionalLight('0xffffff', 1.0) // Back
+    const backLight = new Icosahedron.THREE.DirectionalLight('0xffffff', 1.0) // Back
     keyLight.position.set(-100, 0, 100)
     fillLight.position.set(100, 0, 100)
     backLight.position.set(100, 0, -100).normalize()
@@ -81,7 +88,10 @@ class Icosahedron extends PureComponent {
     this.scene.add(backLight)
 
     // Create renderer and set size
-    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    this.renderer = new Icosahedron.THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true
+    })
     this.renderer.setSize(size, size)
   }
 
@@ -127,5 +137,8 @@ class Icosahedron extends PureComponent {
     )
   }
 }
+
+// Set materials
+Icosahedron.loader.setMaterials(new MTLLoader().parse(icosahedronMaterials))
 
 export default Icosahedron
