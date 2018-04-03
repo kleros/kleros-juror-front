@@ -1,0 +1,50 @@
+@import '../styles/_colors.scss';
+
+/* @define ChainView */
+.ChainView {
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px;
+  z-index: 1000;
+
+  &-panel {
+    background: $light;
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.15);
+    height: 100%;
+    left: 100%;
+    position: absolute;
+    top: 0;
+    transition: left 0.5s;
+    width: 100%;
+
+    &.is-open {
+      left: 0;
+    }
+  }
+
+  &-toggle {
+    cursor: pointer;
+    left: calc(100% - 45px);
+    position: absolute;
+    top: 5px;
+    transition: left 0.5s;
+
+    &:hover:not(.is-open) {
+      left: calc(90% - 45px);
+
+      & + .ChainView-panel {
+        left: 90%;
+      }
+    }
+
+    &.is-open {
+      left: -45px;
+    }
+
+    &-image {
+      width: 40px;
+    }
+  }
+}

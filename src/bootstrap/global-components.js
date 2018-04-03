@@ -1,24 +1,19 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import ReduxToastr from 'react-redux-toastr'
 
-export default class GlobalComponents extends PureComponent {
-  componentDidUpdate() {
-    ReactTooltip.rebuild()
-  }
+import ChainView from '../chainstrap'
 
-  render() {
-    return (
-      <div>
-        <ReactTooltip />
-        <ReduxToastr
-          timeOut={0}
-          position="top-center"
-          transitionIn="bounceInDown"
-          transitionOut="bounceOutUp"
-          progressBar
-        />
-      </div>
-    )
-  }
-}
+export default () => (
+  <div>
+    <ChainView />
+    <ReactTooltip />
+    <ReduxToastr
+      timeOut={0}
+      position="top-center"
+      transitionIn="bounceInDown"
+      transitionOut="bounceOutUp"
+      progressBar
+    />
+  </div>
+)
