@@ -127,28 +127,30 @@ class Home extends PureComponent {
               resource={accounts}
               loading={<LoadingBar />}
               done={
-                <div className="Home-stats-block-content">
-                  <Identicon seed={accounts.data[0]} size={20} />
-                  <div className="Home-stats-block-content-header">
-                    <h5>{accounts.data[0].slice(0, 7)}...</h5>
-                    <RenderIf
-                      resource={PNKBalance}
-                      loading={<LoadingBar />}
-                      done={
-                        PNKBalance.data && (
-                          <h6>{PNKBalance.data.tokenBalance} PNK</h6>
-                        )
-                      }
-                      failedLoading="..."
-                    />
-                    <RenderIf
-                      resource={balance}
-                      loading={<LoadingBar />}
-                      done={<h6>{balance.data} ETH</h6>}
-                      failedLoading="..."
-                    />
+                accounts.data && (
+                  <div className="Home-stats-block-content">
+                    <Identicon seed={accounts.data[0]} size={20} />
+                    <div className="Home-stats-block-content-header">
+                      <h5>{accounts.data[0].slice(0, 7)}...</h5>
+                      <RenderIf
+                        resource={PNKBalance}
+                        loading={<LoadingBar />}
+                        done={
+                          PNKBalance.data && (
+                            <h6>{PNKBalance.data.tokenBalance} PNK</h6>
+                          )
+                        }
+                        failedLoading="..."
+                      />
+                      <RenderIf
+                        resource={balance}
+                        loading={<LoadingBar />}
+                        done={<h6>{balance.data} ETH</h6>}
+                        failedLoading="..."
+                      />
+                    </div>
                   </div>
-                </div>
+                )
               }
               failedLoading="There was an error fetching your account."
             />

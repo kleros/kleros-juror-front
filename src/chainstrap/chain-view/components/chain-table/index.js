@@ -33,7 +33,7 @@ ChainTable.propTypes = {
   columns: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      accessor: PropTypes.string.isRequired,
+      accessor: PropTypes.string,
       Component: PropTypes.func
     }).isRequired
   ).isRequired,

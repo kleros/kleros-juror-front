@@ -1,8 +1,21 @@
 /* eslint-disable global-require */
 import { applyMiddleware, compose, createStore } from 'redux'
+import { createProvider, connect as _connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 
 import rootReducer from '../reducers'
+
+export const Provider = createProvider('chainView')
+export const connect = (
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps,
+  options
+) =>
+  _connect(mapStateToProps, mapDispatchToProps, mergeProps, {
+    storeKey: 'chainView',
+    ...options
+  })
 
 let store
 
