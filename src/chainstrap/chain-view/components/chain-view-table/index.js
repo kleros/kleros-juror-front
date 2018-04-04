@@ -6,12 +6,16 @@ import './chain-view-table.css'
 const ChainViewTable = ({ columns, data }) => (
   <div className="ChainViewTable">
     <div className="ChainViewTable-row ChainViewTable-row--header">
-      {columns.map(c => <div className="ChainViewTable-row-col">{c.name}</div>)}
+      {columns.map(c => (
+        <div key={c.name} className="ChainViewTable-row-col">
+          {c.name}
+        </div>
+      ))}
     </div>
     {data.map(d => (
-      <div className="ChainViewTable-row">
+      <div key={d.id} className="ChainViewTable-row">
         {columns.map(c => (
-          <div className="ChainViewTable-row-col">
+          <div key={c.name} className="ChainViewTable-row-col">
             {c.Component ? (
               <c.Component value={c.accessor ? d[c.accessor] : d} />
             ) : (

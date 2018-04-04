@@ -51,6 +51,7 @@ class DataProvenance extends PureComponent {
           ]}
           data={[
             {
+              id: '0xfff',
               name: 'Arbitrator',
               address: '0xfff',
               visible: false,
