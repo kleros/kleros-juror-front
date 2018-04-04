@@ -1,5 +1,5 @@
-import reducer from './reducers'
 import ChainView from './chain-view'
 
-export { reducer }
+export * from './actions'
+export { default as ShortHash } from './components/short-hash'
 export default ChainView

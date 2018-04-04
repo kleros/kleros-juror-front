@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import ChainViewTable from '../../components/chain-view-table'
+import ChainTable from '../../components/chain-table'
 import Address from '../../components/address'
 import TogglableIcon from '../../components/togglable-icon'
 import ExploreInEtherscan from '../../components/explore-in-etherscan'
@@ -15,7 +15,7 @@ class DataProvenance extends PureComponent {
   render() {
     return (
       <div className="DataProvenance">
-        <ChainViewTable
+        <ChainTable
           columns={[
             {
               name: 'Contract',
