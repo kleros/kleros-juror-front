@@ -68,6 +68,9 @@
     "timezone-mock": "^0.0.7"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/fontawesome-free-solid": "^5.0.9",
+    "@fortawesome/react-fontawesome": "^0.0.18",
     "create-redux-form": "^0.1.2",
     "ethjs": "^0.3.3",
     "history": "^4.7.2",
@@ -77,6 +80,7 @@
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-blockies": "^1.2.2",
+    "react-color": "^2.14.0",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-minimal-pie-chart": "^3.0.1",

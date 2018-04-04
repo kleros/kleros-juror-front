@@ -1,30 +1,27 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 import logo from '../assets/logo.png'
+import '../styles/fontawesome'
 
 import DataProvenance from './containers/data-provenance'
 
 import './chain-view.css'
 
-export default class ChainView extends Component {
-  static tabs = [{ name: 'Data Provenance', Component: DataProvenance }]
-
+export default class ChainView extends PureComponent {
   state = {
     isOpen: false,
     toggledTabName: null
   }
 
-  handleToggleClick = () => {
+  handleToggleClick = () =>
     this.setState(prevState => ({
       isOpen: !prevState.isOpen
     }))
-  }
 
-  handleTabToggleClick = ({ currentTarget: { id } }) => {
+  handleTabToggleClick = ({ currentTarget: { id } }) =>
     this.setState(prevState => ({
       toggledTabName: prevState.toggledTabName === id ? null : id
     }))
-  }
 
   render() {
     const { isOpen, toggledTabName } = this.state
@@ -43,11 +40,11 @@ export default class ChainView extends Component {
         </div>
         <div className={`ChainView-panel ${isOpen ? 'is-open' : ''}`}>
           <h2 className="ChainView-panel-title">ChainView</h2>
-          {ChainView.tabs.map(t => {
+          {[{ name: 'Data Provenance', Component: DataProvenance }].map(t => {
             const isToggled = toggledTabName === t.name
             return (
               <div className="ChainView-panel-tab">
-                <h3
+                <h4
                   id={t.name}
                   className="ChainView-panel-tab-title"
                   onClick={this.handleTabToggleClick}
@@ -60,7 +57,7 @@ export default class ChainView extends Component {
                   >
                     >
                   </div>
-                </h3>
+                </h4>
                 {isToggled && (
                   <div className="ChainView-panel-tab-content">
                     <t.Component />

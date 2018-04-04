@@ -16,7 +16,7 @@ const Identicon = ({ seed, size, scale, className, ...rest }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Blockies {...rest} seed={seed} size={size} scale={scale} />
+        <Blockies seed={seed} size={size} scale={scale} {...rest} />
       </a>
     </div>
   )

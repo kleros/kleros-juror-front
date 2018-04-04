@@ -1,0 +1,14 @@
+/* @define ColorPicker */
+.ColorPicker {
+  position: relative;
+
+  &-icon {
+    cursor: pointer;
+  }
+
+  &-picker {
+    position: absolute !important;
+    right: 10px;
+    top: 30px;
+  }
+}

@@ -1,0 +1,24 @@
+@import '../../../styles/_colors.scss';
+
+/* @define Address */
+.Address {
+  align-items: center;
+  display: flex;
+  font-size: 0.5rem;
+
+  &-text {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 5px;
+
+    &-name {
+      font-size: 0.7rem;
+    }
+
+    &-address {
+      color: $dark3;
+    }
+  }
+}
