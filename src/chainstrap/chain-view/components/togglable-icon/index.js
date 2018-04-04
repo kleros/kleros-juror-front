@@ -4,16 +4,19 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import './togglable-icon.css'
 
-const TogglableIcon = ({ on, off, value, onClick }) => (
+const TogglableIcon = ({ id, on, off, value, onClick }) => (
   <FontAwesomeIcon
-    className="TogglableIcon"
     icon={value ? on : off}
+    className="TogglableIcon"
+    id={id}
+    data-value={value}
     onClick={onClick}
   />
 )
 
 TogglableIcon.propTypes = {
   // State
+  id: PropTypes.string.isRequired,
   on: PropTypes.string.isRequired,
   off: PropTypes.string.isRequired,
   value: PropTypes.bool.isRequired,

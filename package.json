@@ -94,6 +94,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.2.3",
     "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
     "three": "^0.90.0",
     "three-mtl-loader": "^1.0.2",
     "three-obj-loader": "^1.1.3",

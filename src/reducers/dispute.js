@@ -74,5 +74,3 @@ export default createReducer({
   disputes: disputesInitialState,
   dispute: disputeInitialState
 })
-
-// Selectors

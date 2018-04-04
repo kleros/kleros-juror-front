@@ -74,8 +74,8 @@ export default class AnchoredList extends PureComponent {
       )
     })
 
-  handleAnchorClick = event =>
-    this.scroller.to(this.childRefs[event.currentTarget.id])
+  handleAnchorClick = ({ currentTarget: { id } }) =>
+    this.scroller.to(this.childRefs[id])
 
   render() {
     const { items } = this.props

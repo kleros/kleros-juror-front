@@ -100,11 +100,9 @@ class Home extends PureComponent {
     })
   }
 
-  handleNotificationCardDismissClick = event => {
+  handleNotificationCardDismissClick = ({ currentTarget: { id } }) => {
     const { notifications, dismissNotification } = this.props
-    const { txHash, logIndex } = notifications.data.find(
-      n => (n._id = event.currentTarget.id)
-    )
+    const { txHash, logIndex } = notifications.data.find(n => (n._id = id))
     dismissNotification(txHash, logIndex)
   }
 
@@ -280,7 +278,7 @@ export default connect(
   state => ({
     accounts: state.wallet.accounts,
     balance: state.wallet.balance,
-    notifications: notificationSelectors.getNotifications(state),
+    notifications: state.notification.notifications,
     pendingActions: state.notification.pendingActions,
     PNKBalance: state.arbitrator.PNKBalance,
     arbitratorData: state.arbitrator.arbitratorData,

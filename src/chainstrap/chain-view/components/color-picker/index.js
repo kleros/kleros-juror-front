@@ -8,6 +8,7 @@ import './color-picker.css'
 class ColorPicker extends PureComponent {
   static propTypes = {
     // State
+    id: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
 
     // Handlers
@@ -22,6 +23,11 @@ class ColorPicker extends PureComponent {
     this.setState(prevState => ({
       isOpen: !prevState.isOpen
     }))
+
+  handleOnChangeComplete = color => {
+    const { id, onSelect } = this.props
+    onSelect(id, color)
+  }
 
   render() {
     const { value, onSelect } = this.props
@@ -40,7 +46,7 @@ class ColorPicker extends PureComponent {
             className="ColorPicker-picker"
             triangle="top-right"
             color={value}
-            onChangeComplete={onSelect}
+            onChangeComplete={this.handleOnChangeComplete}
           />
         )}
       </div>

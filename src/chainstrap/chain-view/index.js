@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ReactTooltip from 'react-tooltip'
 
+import * as contractActions from '../actions/contract'
+
 import configureStore, { Provider } from './bootstrap/configure-store'
 import { eth } from './bootstrap/dapp-api'
 import RequiresMetaMask from './components/requires-meta-mask'
@@ -35,10 +37,16 @@ export default class ChainView extends PureComponent {
   }
 
   async componentDidMount() {
-    const { receiveAccounts } = this.props
+    const { receiveAccounts, initialContracts } = this.props
+
     const accounts = await eth.accounts()
     receiveAccounts && receiveAccounts(accounts)
     this.setState({ loading: false, needsUnlock: !accounts || !accounts[0] })
+
+    initialContracts &&
+      initialContracts.forEach(c =>
+        store.dispatch(contractActions.addContract(c))
+      )
   }
 
   handleToggleClick = () =>

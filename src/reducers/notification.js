@@ -34,6 +34,3 @@ export default createReducer({
   notifications: notificationsInitialState,
   pendingActions: pendingActionsInitialState
 })
-
-// Selectors
-export const getNotifications = state => state.notification.notifications

@@ -16,6 +16,7 @@ import Dispute from '../containers/dispute'
 import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
 
+import { ARBITRATOR_ADDRESS } from './dapp-api'
 import GlobalComponents from './global-components'
 
 import './app.css'
@@ -38,7 +39,10 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
 
 const App = ({ store, history, testElement }) => (
   <Provider store={store}>
-    <ChainView receiveAccounts={receiveAccounts}>
+    <ChainView
+      receiveAccounts={receiveAccounts}
+      initialContracts={[{ name: 'Arbitrator', address: ARBITRATOR_ADDRESS }]}
+    >
       <ConnectedRouter history={history}>
         <div id="router-root">
           <Helmet>
