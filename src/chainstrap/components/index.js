@@ -1,3 +1,4 @@
-import ShortHash from './short-hash'
+import ChainData from './chain-data'
+import ChainHash from './chain-hash'
 
-export { ShortHash }
+export { ChainData, ChainHash }

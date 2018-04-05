@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { toastr } from 'react-redux-toastr'
 import { RenderIf } from 'lessdux'
 
+import { ChainData, ChainHash } from '../../chainstrap'
+import { ARBITRATOR_ADDRESS } from '../../bootstrap/dapp-api'
 import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as notificationSelectors from '../../reducers/notification'
@@ -129,13 +131,21 @@ class Home extends PureComponent {
                   <div className="Home-stats-block-content">
                     <Identicon seed={accounts.data[0]} size={20} />
                     <div className="Home-stats-block-content-header">
-                      <h5>{accounts.data[0].slice(0, 7)}...</h5>
+                      <h5>
+                        <ChainData address={accounts.data[0]}>
+                          <ChainHash>{accounts.data[0]}</ChainHash>
+                        </ChainData>
+                      </h5>
                       <RenderIf
                         resource={PNKBalance}
                         loading={<LoadingBar />}
                         done={
                           PNKBalance.data && (
-                            <h6>{PNKBalance.data.tokenBalance} PNK</h6>
+                            <h6>
+                              <ChainData address={ARBITRATOR_ADDRESS}>
+                                {PNKBalance.data.tokenBalance} PNK
+                              </ChainData>
+                            </h6>
                           )
                         }
                         failedLoading="..."
@@ -143,7 +153,13 @@ class Home extends PureComponent {
                       <RenderIf
                         resource={balance}
                         loading={<LoadingBar />}
-                        done={<h6>{balance.data} ETH</h6>}
+                        done={
+                          <h6>
+                            <ChainData address={accounts.data[0]}>
+                              {balance.data} ETH
+                            </ChainData>
+                          </h6>
+                        }
                         failedLoading="..."
                       />
                     </div>
@@ -187,7 +203,11 @@ class Home extends PureComponent {
                           }
                         />
                       </h5>
-                      <h6>{PNKBalance.data.activatedTokens} PNK</h6>
+                      <h6>
+                        <ChainData address={ARBITRATOR_ADDRESS}>
+                          {PNKBalance.data.activatedTokens} PNK
+                        </ChainData>
+                      </h6>
                     </div>
                   </div>
                 )
@@ -210,7 +230,11 @@ class Home extends PureComponent {
                     />
                     <div className="Home-stats-block-content-header">
                       <h5>Locked</h5>
-                      <h6>{PNKBalance.data.lockedTokens} PNK</h6>
+                      <h6>
+                        <ChainData address={ARBITRATOR_ADDRESS}>
+                          {PNKBalance.data.lockedTokens} PNK
+                        </ChainData>
+                      </h6>
                     </div>
                   </div>
                 )

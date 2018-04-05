@@ -18,7 +18,7 @@ export const store = configureStore()
 export default class ChainView extends PureComponent {
   static propTypes = {
     // State
-    children: PropTypes.element.isRequired,
+    children: PropTypes.node.isRequired,
 
     // Handlers
     receiveAccounts: PropTypes.func
@@ -41,12 +41,20 @@ export default class ChainView extends PureComponent {
 
     const accounts = await eth.accounts()
     receiveAccounts && receiveAccounts(accounts)
-    this.setState({ loading: false, needsUnlock: !accounts || !accounts[0] })
+
+    accounts &&
+      accounts.forEach((a, i) =>
+        store.dispatch(
+          contractActions.addContract({ name: `Account ${i + 1}`, address: a })
+        )
+      )
 
     initialContracts &&
       initialContracts.forEach(c =>
         store.dispatch(contractActions.addContract(c))
       )
+
+    this.setState({ loading: false, needsUnlock: !accounts || !accounts[0] })
   }
 
   handleToggleClick = () =>

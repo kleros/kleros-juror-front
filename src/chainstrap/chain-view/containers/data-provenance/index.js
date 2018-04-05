@@ -48,12 +48,12 @@ class DataProvenance extends PureComponent {
             },
             {
               name: 'Set Visibility',
-              Component: ({ value: { address, visibility } }) => (
+              Component: ({ value: { address, visible } }) => (
                 <TogglableIcon
                   id={address}
                   on="eye"
                   off="eye-slash"
-                  value={visibility}
+                  value={visible}
                   onClick={this.handleToggleVisibilityClick}
                 />
               )
