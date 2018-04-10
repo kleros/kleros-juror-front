@@ -58,11 +58,11 @@
           position: absolute;
           right: 30px;
           top: 50%;
-          transform: translateY(-50%);
+          transform: translateY(-50%) rotate(270deg);
           transition: transform 0.1s;
 
           &.is-toggled {
-            transform: translateY(-50%) rotate(90deg);
+            transform: translateY(-50%);
           }
         }
       }

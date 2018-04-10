@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import ReactTooltip from 'react-tooltip'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import { connect } from '../../bootstrap/configure-store'
 import * as tooltipSelectors from '../../reducers/tooltip'
@@ -114,7 +115,7 @@ class ChainView extends PureComponent {
             />
           </div>
           <div className={`ChainView-panel ${isOpen ? 'is-open' : ''}`}>
-            <h2 className="ChainView-panel-title">ChainView</h2>
+            <h3 className="ChainView-panel-title">ChainView</h3>
             {[{ name: 'Data Provenance', Component: DataProvenance }].map(t => {
               const isToggled = toggledTabName === t.name
               return (
@@ -132,7 +133,7 @@ class ChainView extends PureComponent {
                         isToggled ? 'is-toggled' : ''
                       }`}
                     >
-                      >
+                      <FontAwesomeIcon icon="caret-down" />
                     </div>
                   </h4>
                   {isToggled && (
