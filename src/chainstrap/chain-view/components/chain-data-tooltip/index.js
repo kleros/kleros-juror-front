@@ -1,44 +1,65 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
+import * as tooltipSelectors from '../../reducers/tooltip'
 import { objMap } from '../../../utils/functional'
 
 import './chain-data-tooltip.css'
 
 const ChainDataTooltip = ({
-  data: { contractName, contractAddress, functionSignature, parameters }
+  data: { contractName, contractAddress, functionSignature, parameters },
+  onOpenChainViewClick
 }) => (
   <div className="ChainDataTooltip">
     <h5 className="ChainDataTooltip-contractName">{contractName}</h5>
-    <div className="ChainDataTooltip-label">Address: {contractAddress}</div>
-    <div className="ChainDataTooltip-label">Function: {functionSignature}</div>
     <div className="ChainDataTooltip-label">
-      Parameters:{' '}
-      {objMap(parameters, (val, key) => (
-        <div className="ChainDataTooltip-label-parameter">
-          {key} = {val}
-        </div>
-      ))}
+      <b>Address:</b> {contractAddress}
     </div>
+    {functionSignature && (
+      <div className="ChainDataTooltip-label">
+        <b>Function:</b> {functionSignature}
+      </div>
+    )}
+    {parameters && (
+      <div className="ChainDataTooltip-label">
+        <b>Parameters:</b>{' '}
+        {objMap(parameters, (val, key) => (
+          <div key={key} className="ChainDataTooltip-label-parameter">
+            {key} = {val}
+          </div>
+        ))}
+      </div>
+    )}
     <div className="ChainDataTooltip-buttons">
-      <div className="ChainDataTooltip-buttons-button">
+      <a
+        href={`https://etherscan.io/address/${contractAddress}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ChainDataTooltip-buttons-button"
+      >
         <div className="ChainDataTooltip-buttons-button-icon">
           <FontAwesomeIcon icon="search" />
         </div>
         <div>
           EXPLORE IN<br />ETHERSCAN
         </div>
-      </div>
-      <div className="ChainDataTooltip-buttons-button">
-        <div className="ChainDataTooltip-buttons-button-icon">
-          <FontAwesomeIcon icon="copy" />
+      </a>
+      <CopyToClipboard text={contractAddress}>
+        <div className="ChainDataTooltip-buttons-button">
+          <div className="ChainDataTooltip-buttons-button-icon">
+            <FontAwesomeIcon icon="copy" />
+          </div>
+          <div>
+            COPY<br />ADDRESS
+          </div>
         </div>
-        <div>
-          COPY<br />ADDRESS
-        </div>
-      </div>
-      <div className="ChainDataTooltip-buttons-button">
+      </CopyToClipboard>
+      <div
+        onClick={onOpenChainViewClick}
+        className="ChainDataTooltip-buttons-button"
+      >
         <div>
           OPEN IN<br />CHAINVIEW
         </div>
@@ -48,12 +69,11 @@ const ChainDataTooltip = ({
 )
 
 ChainDataTooltip.propTypes = {
-  data: PropTypes.shape({
-    contractName: PropTypes.string.isRequired,
-    contractAddress: PropTypes.string.isRequired,
-    functionSignature: PropTypes.string.isRequired,
-    parameters: PropTypes.objectOf(PropTypes.string.isRequired).isRequired
-  }).isRequired
+  // State
+  data: tooltipSelectors.chainDataShape.isRequired,
+
+  // Callbacks
+  onOpenChainViewClick: PropTypes.func.isRequired
 }
 
 export default ChainDataTooltip

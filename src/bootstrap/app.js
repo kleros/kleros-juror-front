@@ -15,13 +15,14 @@ import Disputes from '../containers/disputes'
 import Dispute from '../containers/dispute'
 import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
+import * as chainViewConstants from '../constants/chain-view'
 
 import { ARBITRATOR_ADDRESS } from './dapp-api'
 import GlobalComponents from './global-components'
 
 import './app.css'
 
-const receiveAccounts = accounts =>
+const handleReceiveAccounts = accounts =>
   appStore.dispatch(walletActions.receiveAccounts(accounts))
 
 const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
@@ -40,8 +41,13 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
 const App = ({ store, history, testElement }) => (
   <Provider store={store}>
     <ChainView
-      receiveAccounts={receiveAccounts}
-      initialContracts={[{ name: 'Arbitrator', address: ARBITRATOR_ADDRESS }]}
+      onReceiveAccounts={handleReceiveAccounts}
+      initialContracts={[
+        {
+          name: chainViewConstants.KLEROS_POC_NAME,
+          address: ARBITRATOR_ADDRESS
+        }
+      ]}
     >
       <ConnectedRouter history={history}>
         <div id="router-root">

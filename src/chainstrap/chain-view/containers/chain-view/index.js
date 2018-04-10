@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import ReactTooltip from 'react-tooltip'
 
 import { connect } from '../../bootstrap/configure-store'
+import * as tooltipSelectors from '../../reducers/tooltip'
 import * as contractActions from '../../../actions/contract'
 import { eth } from '../../bootstrap/dapp-api'
 import RequiresMetaMask from '../../components/requires-meta-mask'
@@ -14,6 +15,9 @@ import './chain-view.css'
 
 class ChainView extends PureComponent {
   static propTypes = {
+    // Redux State
+    chainData: tooltipSelectors.chainDataShape,
+
     // Action Dispatchers
     addContract: PropTypes.func.isRequired,
 
@@ -32,16 +36,19 @@ class ChainView extends PureComponent {
       }).isRequired
     ),
 
-    // Handlers
-    receiveAccounts: PropTypes.func
+    // Callbacks
+    onReceiveAccounts: PropTypes.func
   }
 
   static defaultProps = {
+    // Redux State
+    chainData: null,
+
     // State
     initialContracts: null,
 
-    // Handlers
-    receiveAccounts: null
+    // Callbacks
+    onReceiveAccounts: null
   }
 
   state = {
@@ -52,10 +59,10 @@ class ChainView extends PureComponent {
   }
 
   async componentDidMount() {
-    const { addContract, initialContracts, receiveAccounts } = this.props
+    const { addContract, initialContracts, onReceiveAccounts } = this.props
 
     const accounts = await eth.accounts()
-    receiveAccounts && receiveAccounts(accounts)
+    onReceiveAccounts && onReceiveAccounts(accounts)
 
     accounts &&
       accounts.forEach((a, i) =>
@@ -77,8 +84,11 @@ class ChainView extends PureComponent {
       toggledTabName: prevState.toggledTabName === id ? null : id
     }))
 
+  handleOpenChainViewClick = () =>
+    this.setState({ isOpen: true, toggledTabName: 'Data Provenance' })
+
   render() {
-    const { children } = this.props
+    const { chainData, children } = this.props
     const { loading, needsUnlock, isOpen, toggledTabName } = this.state
 
     // Web3 not loaded
@@ -139,23 +149,20 @@ class ChainView extends PureComponent {
           id="chainViewChainData"
           class="ChainDataTooltip"
           effect="solid"
-          offset={{ left: '-50%' }}
-          delayHide={1500}
+          delayHide={1000}
         >
-          <ChainDataTooltip
-            data={{
-              contractName: 'Arbitrator',
-              contractAddress: '0x123123123',
-              functionSignature: 'getBalanceOf(address _tokenOwner)',
-              parameters: { tokenOwner: '0x123134124' }
-            }}
-          />
+          {chainData && (
+            <ChainDataTooltip
+              data={chainData}
+              onOpenChainViewClick={this.handleOpenChainViewClick}
+            />
+          )}
         </ReactTooltip>
       </div>
     )
   }
 }
 
-export default connect(null, { addContract: contractActions.addContract })(
-  ChainView
-)
+export default connect(state => ({ chainData: state.tooltip.chainData }), {
+  addContract: contractActions.addContract
+})(ChainView)

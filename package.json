@@ -81,6 +81,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-blockies": "^1.2.2",
     "react-color": "^2.14.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-minimal-pie-chart": "^3.0.1",

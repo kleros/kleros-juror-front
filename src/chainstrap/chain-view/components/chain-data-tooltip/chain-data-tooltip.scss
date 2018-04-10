@@ -4,10 +4,32 @@
 .ChainDataTooltip {
   background-color: transparentize($dark4, 0.1) !important;
   border-radius: 6px !important;
-  max-width: 320px;
+  max-width: 320px !important;
   opacity: 1 !important;
   padding: 8px !important;
   pointer-events: initial !important;
+
+  &.place {
+    // stylelint-disable-next-line plugin/selector-bem-pattern
+    &-top::after {
+      border-top-color: transparentize($dark4, 0.1) !important;
+    }
+
+    // stylelint-disable-next-line plugin/selector-bem-pattern
+    &-right::after {
+      border-right-color: transparentize($dark4, 0.1) !important;
+    }
+
+    // stylelint-disable-next-line plugin/selector-bem-pattern
+    &-bottom::after {
+      border-bottom-color: transparentize($dark4, 0.1) !important;
+    }
+
+    // stylelint-disable-next-line plugin/selector-bem-pattern
+    &-left::after {
+      border-left-color: transparentize($dark4, 0.1) !important;
+    }
+  }
 
   // stylelint-disable-next-line plugin/selector-bem-pattern
   * {
@@ -21,10 +43,11 @@
   &-label {
     font-size: 0.7rem;
     font-weight: 300;
-    margin: 3px;
+    line-height: 1rem;
+    margin: 7px;
 
     &-parameter {
-      margin: 6px 12px;
+      margin: 3px 12px;
     }
   }
 
@@ -33,18 +56,29 @@
     display: flex;
     font-size: 0.6rem;
     margin: 20px -16px -16px -16px;
+    user-select: none;
 
     &-button {
       align-items: center;
       border-right: 1px solid $light;
+      color: $light;
       cursor: pointer;
       display: flex;
       flex: 1;
       justify-content: center;
       padding: 5px;
 
+      &:first-child {
+        border-radius: 0 0 0 6px;
+      }
+
       &:last-child {
+        border-radius: 0 0 6px 0;
         border-right: none;
+      }
+
+      &:hover {
+        background: $dark4 !important;
       }
 
       &-icon {

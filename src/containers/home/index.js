@@ -20,6 +20,7 @@ import Button from '../../components/button'
 import NotificationCard from '../../components/notification-card'
 import DisputeCard from '../../components/dispute-card'
 import * as arbitratorConstants from '../../constants/arbitrator'
+import * as chainViewConstants from '../../constants/chain-view'
 
 import {
   ActivatePNKForm,
@@ -132,7 +133,12 @@ class Home extends PureComponent {
                     <Identicon seed={accounts.data[0]} size={20} />
                     <div className="Home-stats-block-content-header">
                       <h5>
-                        <ChainData address={accounts.data[0]}>
+                        <ChainData
+                          contractName={
+                            chainViewConstants.WALLET_ACCOUNT_1_NAME
+                          }
+                          contractAddress={accounts.data[0]}
+                        >
                           <ChainHash>{accounts.data[0]}</ChainHash>
                         </ChainData>
                       </h5>
@@ -142,7 +148,16 @@ class Home extends PureComponent {
                         done={
                           PNKBalance.data && (
                             <h6>
-                              <ChainData address={ARBITRATOR_ADDRESS}>
+                              <ChainData
+                                contractName={
+                                  chainViewConstants.KLEROS_POC_NAME
+                                }
+                                contractAddress={ARBITRATOR_ADDRESS}
+                                functionSignature={
+                                  chainViewConstants.KLEROS_POC_JURORS_SIG
+                                }
+                                parameters={{ address: accounts.data[0] }}
+                              >
                                 {PNKBalance.data.tokenBalance} PNK
                               </ChainData>
                             </h6>
@@ -155,7 +170,12 @@ class Home extends PureComponent {
                         loading={<LoadingBar />}
                         done={
                           <h6>
-                            <ChainData address={accounts.data[0]}>
+                            <ChainData
+                              contractName={
+                                chainViewConstants.WALLET_ACCOUNT_1_NAME
+                              }
+                              contractAddress={accounts.data[0]}
+                            >
                               {balance.data} ETH
                             </ChainData>
                           </h6>
@@ -204,7 +224,14 @@ class Home extends PureComponent {
                         />
                       </h5>
                       <h6>
-                        <ChainData address={ARBITRATOR_ADDRESS}>
+                        <ChainData
+                          contractName={chainViewConstants.KLEROS_POC_NAME}
+                          contractAddress={ARBITRATOR_ADDRESS}
+                          functionSignature={
+                            chainViewConstants.KLEROS_POC_JURORS_SIG
+                          }
+                          parameters={{ address: accounts.data[0] }}
+                        >
                           {PNKBalance.data.activatedTokens} PNK
                         </ChainData>
                       </h6>
@@ -231,7 +258,14 @@ class Home extends PureComponent {
                     <div className="Home-stats-block-content-header">
                       <h5>Locked</h5>
                       <h6>
-                        <ChainData address={ARBITRATOR_ADDRESS}>
+                        <ChainData
+                          contractName={chainViewConstants.KLEROS_POC_NAME}
+                          contractAddress={ARBITRATOR_ADDRESS}
+                          functionSignature={
+                            chainViewConstants.KLEROS_POC_JURORS_SIG
+                          }
+                          parameters={{ address: accounts.data[0] }}
+                        >
                           {PNKBalance.data.lockedTokens} PNK
                         </ChainData>
                       </h6>
