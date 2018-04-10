@@ -30,7 +30,7 @@ class ColorPicker extends PureComponent {
   }
 
   render() {
-    const { value, onSelect } = this.props
+    const { value } = this.props
     const { isOpen } = this.state
 
     return (

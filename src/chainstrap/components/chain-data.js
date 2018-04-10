@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import { connect } from '../chain-view/bootstrap/configure-store'
 
 const ChainData = ({ children, visible, color }) =>
-  visible ? <span style={{ color: color }}>{children}</span> : children
+  visible ? (
+    <span style={{ color: color }} data-tip data-for="chainViewChainData">
+      {children}
+    </span>
+  ) : (
+    children
+  )
 
 ChainData.propTypes = {
   // State

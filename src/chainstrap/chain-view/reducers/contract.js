@@ -24,7 +24,7 @@ export default createReducer(
       ...state,
       [contract.address]: {
         id: contract.address,
-        visible: false,
+        visible: true,
         color: '#ff0000',
         ...contract
       }
