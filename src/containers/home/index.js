@@ -124,70 +124,57 @@ class Home extends PureComponent {
         <h4>Welcome to Kleros!</h4>
         <div className="Home-stats">
           <div className="Home-stats-block">
-            <RenderIf
-              resource={accounts}
-              loading={<LoadingBar />}
-              done={
-                accounts.data && (
-                  <div className="Home-stats-block-content">
-                    <Identicon seed={accounts.data[0]} size={20} />
-                    <div className="Home-stats-block-content-header">
-                      <h5>
+            <div className="Home-stats-block-content">
+              <Identicon seed={accounts.data[0]} size={20} />
+              <div className="Home-stats-block-content-header">
+                <h5>
+                  <ChainData
+                    contractName={chainViewConstants.WALLET_ACCOUNT_1_NAME}
+                    contractAddress={accounts.data[0]}
+                  >
+                    <ChainHash>{accounts.data[0]}</ChainHash>
+                  </ChainData>
+                </h5>
+                <RenderIf
+                  resource={PNKBalance}
+                  loading={<LoadingBar />}
+                  done={
+                    PNKBalance.data && (
+                      <h6>
                         <ChainData
-                          contractName={
-                            chainViewConstants.WALLET_ACCOUNT_1_NAME
+                          contractName={chainViewConstants.KLEROS_POC_NAME}
+                          contractAddress={ARBITRATOR_ADDRESS}
+                          functionSignature={
+                            chainViewConstants.KLEROS_POC_JURORS_SIG
                           }
-                          contractAddress={accounts.data[0]}
+                          parameters={chainViewConstants.KLEROS_POC_JURORS_PARAMS(
+                            accounts.data[0]
+                          )}
                         >
-                          <ChainHash>{accounts.data[0]}</ChainHash>
+                          {PNKBalance.data.tokenBalance} PNK
                         </ChainData>
-                      </h5>
-                      <RenderIf
-                        resource={PNKBalance}
-                        loading={<LoadingBar />}
-                        done={
-                          PNKBalance.data && (
-                            <h6>
-                              <ChainData
-                                contractName={
-                                  chainViewConstants.KLEROS_POC_NAME
-                                }
-                                contractAddress={ARBITRATOR_ADDRESS}
-                                functionSignature={
-                                  chainViewConstants.KLEROS_POC_JURORS_SIG
-                                }
-                                parameters={{ address: accounts.data[0] }}
-                              >
-                                {PNKBalance.data.tokenBalance} PNK
-                              </ChainData>
-                            </h6>
-                          )
-                        }
-                        failedLoading="..."
-                      />
-                      <RenderIf
-                        resource={balance}
-                        loading={<LoadingBar />}
-                        done={
-                          <h6>
-                            <ChainData
-                              contractName={
-                                chainViewConstants.WALLET_ACCOUNT_1_NAME
-                              }
-                              contractAddress={accounts.data[0]}
-                            >
-                              {balance.data} ETH
-                            </ChainData>
-                          </h6>
-                        }
-                        failedLoading="..."
-                      />
-                    </div>
-                  </div>
-                )
-              }
-              failedLoading="There was an error fetching your account."
-            />
+                      </h6>
+                    )
+                  }
+                  failedLoading="..."
+                />
+                <RenderIf
+                  resource={balance}
+                  loading={<LoadingBar />}
+                  done={
+                    <h6>
+                      <ChainData
+                        contractName={chainViewConstants.WALLET_ACCOUNT_1_NAME}
+                        contractAddress={accounts.data[0]}
+                      >
+                        {balance.data} ETH
+                      </ChainData>
+                    </h6>
+                  }
+                  failedLoading="..."
+                />
+              </div>
+            </div>
           </div>
           <div className="Home-stats-block">
             <RenderIf
@@ -230,7 +217,9 @@ class Home extends PureComponent {
                           functionSignature={
                             chainViewConstants.KLEROS_POC_JURORS_SIG
                           }
-                          parameters={{ address: accounts.data[0] }}
+                          parameters={chainViewConstants.KLEROS_POC_JURORS_PARAMS(
+                            accounts.data[0]
+                          )}
                         >
                           {PNKBalance.data.activatedTokens} PNK
                         </ChainData>
@@ -264,7 +253,9 @@ class Home extends PureComponent {
                           functionSignature={
                             chainViewConstants.KLEROS_POC_JURORS_SIG
                           }
-                          parameters={{ address: accounts.data[0] }}
+                          parameters={chainViewConstants.KLEROS_POC_JURORS_PARAMS(
+                            accounts.data[0]
+                          )}
                         >
                           {PNKBalance.data.lockedTokens} PNK
                         </ChainData>

@@ -8,7 +8,9 @@ export const chainDataShape = PropTypes.shape({
   contractName: PropTypes.string.isRequired,
   contractAddress: PropTypes.string.isRequired,
   functionSignature: PropTypes.string,
-  parameters: PropTypes.objectOf(PropTypes.string.isRequired)
+  parameters: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+  )
 })
 
 // Reducer

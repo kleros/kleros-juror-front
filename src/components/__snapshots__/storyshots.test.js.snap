@@ -8563,29 +8563,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        <div
-                          className="CaseNameCell"
-                        >
-                          <div>
-                            [Identicon]
-                          </div>
-                          <a
-                            href="/disputes/0"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="CaseNameCell-title"
-                            >
-                              <h5>
-                                Website Design 0
-                              </h5>
-                              <small>
-                                #
-                                0
-                              </small>
-                            </div>
-                          </a>
-                        </div>
+                        Website Design 0
                       </div>
                       <div
                         className="rt-td"
@@ -8657,29 +8635,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        <div
-                          className="CaseNameCell"
-                        >
-                          <div>
-                            [Identicon]
-                          </div>
-                          <a
-                            href="/disputes/1"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="CaseNameCell-title"
-                            >
-                              <h5>
-                                Website Design 1
-                              </h5>
-                              <small>
-                                #
-                                1
-                              </small>
-                            </div>
-                          </a>
-                        </div>
+                        Website Design 1
                       </div>
                       <div
                         className="rt-td"
@@ -8751,29 +8707,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        <div
-                          className="CaseNameCell"
-                        >
-                          <div>
-                            [Identicon]
-                          </div>
-                          <a
-                            href="/disputes/2"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="CaseNameCell-title"
-                            >
-                              <h5>
-                                Website Design 2
-                              </h5>
-                              <small>
-                                #
-                                2
-                              </small>
-                            </div>
-                          </a>
-                        </div>
+                        Website Design 2
                       </div>
                       <div
                         className="rt-td"
@@ -8845,29 +8779,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        <div
-                          className="CaseNameCell"
-                        >
-                          <div>
-                            [Identicon]
-                          </div>
-                          <a
-                            href="/disputes/3"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="CaseNameCell-title"
-                            >
-                              <h5>
-                                Website Design 3
-                              </h5>
-                              <small>
-                                #
-                                3
-                              </small>
-                            </div>
-                          </a>
-                        </div>
+                        Website Design 3
                       </div>
                       <div
                         className="rt-td"

@@ -16,13 +16,21 @@ class ChainData extends PureComponent {
     contractName: PropTypes.string.isRequired,
     contractAddress: PropTypes.string.isRequired,
     functionSignature: PropTypes.string,
-    parameters: PropTypes.objectOf(PropTypes.string.isRequired)
+    parameters: PropTypes.objectOf(
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+    ),
+
+    // Modifiers
+    style: PropTypes.shape({})
   }
 
   static defaultProps = {
     // State
     functionSignature: null,
-    parameters: null
+    parameters: null,
+
+    // Modifiers
+    style: null
   }
 
   handleMouseEnter = () => {
@@ -42,14 +50,14 @@ class ChainData extends PureComponent {
   }
 
   render() {
-    const { children, visible, color } = this.props
+    const { children, visible, color, style } = this.props
 
     return visible ? (
       <span
         onMouseEnter={this.handleMouseEnter}
         data-tip=""
         data-for="chainViewChainData"
-        style={{ color: color }}
+        style={{ ...style, color: color }}
       >
         {children}
       </span>

@@ -3,15 +3,13 @@ import { storiesOf } from '@storybook/react'
 
 import { dateToString } from '../src/utils/date'
 import Table from '../src/components/table'
-import CaseNameCell from '../src/containers/disputes/components/case-name-cell'
 import StatusHint from '../src/components/status-hint'
 
 const columns = [
   {
     Header: 'Case Name',
     minWidth: 220,
-    accessor: 'description',
-    Cell: CaseNameCell
+    accessor: 'description'
   },
   {
     id: 'subcourt',
