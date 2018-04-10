@@ -10,8 +10,6 @@ import TogglableIcon from '../../components/togglable-icon'
 import ExploreInEtherscan from '../../components/explore-in-etherscan'
 import ColorPicker from '../../components/color-picker'
 
-import './data-provenance.css'
-
 class DataProvenance extends PureComponent {
   static propTypes = {
     // Redux State

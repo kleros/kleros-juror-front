@@ -121,7 +121,9 @@ class ChainView extends PureComponent {
                 <div key={t.name} className="ChainView-panel-tab">
                   <h4
                     id={t.name}
-                    className="ChainView-panel-tab-title"
+                    className={`ChainView-panel-tab-title ${
+                      isToggled ? 'is-toggled' : ''
+                    }`}
                     onClick={this.handleTabToggleClick}
                   >
                     {t.name}
@@ -134,7 +136,11 @@ class ChainView extends PureComponent {
                     </div>
                   </h4>
                   {isToggled && (
-                    <div className="ChainView-panel-tab-content">
+                    <div
+                      className={`ChainView-panel-tab-content ${
+                        isToggled ? 'is-toggled' : ''
+                      }`}
+                    >
                       <t.Component />
                     </div>
                   )}

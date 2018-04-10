@@ -46,6 +46,14 @@
         position: relative;
         user-select: none;
 
+        &:hover {
+          background: transparentize($primary, 0.93);
+        }
+
+        &.is-toggled {
+          background: transparentize($primary, 0.88);
+        }
+
         &-toggle {
           position: absolute;
           right: 30px;
@@ -62,6 +70,10 @@
       &-content {
         border-bottom: 1px solid $light3;
         padding: 10px 20px;
+
+        &.is-toggled {
+          background: transparentize($primary, 0.98);
+        }
       }
     }
   }
