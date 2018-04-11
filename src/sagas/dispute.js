@@ -1,13 +1,23 @@
 import { takeLatest, call, select } from 'redux-saga/effects'
 
+import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { fetchSaga, updateSaga } from '../utils/saga'
 import * as disputeConstants from '../constants/dispute'
+import * as chainViewConstants from '../constants/chain-view'
 
 // Parsers
 const parseDispute = d => {
+  // Add arbitrable contract to ChainView
+  addContract({
+    name: chainViewConstants.ARBITRABLE_CONTRACT_NAME,
+    address: d.arbitrableContractAddress,
+    visible: false,
+    color: chainViewConstants.ARBITRABLE_CONTRACT_COLOR
+  })
+
   // Find the latest appeal where the juror is drawn
   let latestAppealForJuror = null
   for (let i = d.appealJuror.length - 1; i >= 0; i--) {

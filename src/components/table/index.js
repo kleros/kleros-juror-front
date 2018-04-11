@@ -41,8 +41,8 @@ class Table extends PureComponent {
     }
   }
 
-  handleSearchInputChange = event => {
-    this.setState({ searchInput: event.currentTarget.value }, this.filterData)
+  handleSearchInputChange = ({ currentTarget: { value } }) => {
+    this.setState({ searchInput: value }, this.filterData)
   }
 
   render() {

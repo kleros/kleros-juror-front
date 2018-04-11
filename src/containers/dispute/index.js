@@ -41,12 +41,12 @@ class Dispute extends PureComponent {
     fetchDispute(Number(disputeID))
   }
 
-  handleVoteButtonClick = event => {
+  handleVoteButtonClick = ({ currentTarget: { id } }) => {
     const { dispute, voteOnDispute } = this.props
     voteOnDispute(
       dispute.data.disputeId,
       dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
-      event.currentTarget.id
+      id
     )
   }
 
@@ -103,6 +103,10 @@ class Dispute extends PureComponent {
                         partyAAddress={dispute.data.partyA}
                         partyBAddress={dispute.data.partyB}
                         arbitrationFee={dispute.data.appealJuror[0].fee}
+                        arbitrableContractAddress={
+                          dispute.data.arbitrableContractAddress
+                        }
+                        disputeID={dispute.data.disputeId}
                       />
                     )
                   },
@@ -118,6 +122,10 @@ class Dispute extends PureComponent {
                               partyAAddress={dispute.data.partyA}
                               partyBAddress={dispute.data.partyB}
                               arbitrationFee={e.fee}
+                              arbitrableContractAddress={
+                                dispute.data.arbitrableContractAddress
+                              }
+                              disputeID={dispute.data.disputeId}
                             />
                           )
                         }
@@ -132,6 +140,10 @@ class Dispute extends PureComponent {
                               title={e.name}
                               description={e.description}
                               URL={e.url}
+                              arbitrableContractAddress={
+                                dispute.data.arbitrableContractAddress
+                              }
+                              isPartyA={e.submitter === dispute.data.partyA}
                             />
                           )
                         }
@@ -145,6 +157,8 @@ class Dispute extends PureComponent {
                               votesForPartyA={e.voteCounter[0]}
                               votesForPartyB={e.voteCounter[1]}
                               netPNK={dispute.data.netPNK}
+                              disputeID={dispute.data.disputeId}
+                              appeals={dispute.data.numberOfAppeals}
                             />
                           )
                         }

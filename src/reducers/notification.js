@@ -13,8 +13,9 @@ const {
       logIndex: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
       data: PropTypes.shape({
-        disputeId: PropTypes.number.isRequired,
-        arbitratorAddress: PropTypes.string.isRequired
+        // TODO
+        disputeId: PropTypes.number,
+        arbitratorAddress: PropTypes.string
       }).isRequired,
       _id: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired,
@@ -25,7 +26,7 @@ const {
 const {
   shape: pendingActionsShape,
   initialState: pendingActionsInitialState
-} = createResource(PropTypes.arrayOf(PropTypes.shape({})))
+} = createResource(PropTypes.arrayOf(PropTypes.shape({}))) // TODO
 export { notificationsShape, pendingActionsShape }
 
 // Reducer
@@ -33,6 +34,3 @@ export default createReducer({
   notifications: notificationsInitialState,
   pendingActions: pendingActionsInitialState
 })
-
-// Selectors
-export const getNotifications = state => state.notification.notifications

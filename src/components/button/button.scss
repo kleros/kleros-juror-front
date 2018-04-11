@@ -3,13 +3,9 @@
 /* @define Button */
 .Button {
   // stylelint-disable-next-line declaration-colon-newline-after
-  background: linear-gradient(
-    0deg,
-    $buttonGradientStart 0%,
-    $buttonGradientEnd 100%
-  );
+  background: linear-gradient(0deg, $primary 0%, $primary 100%);
   border-radius: 4px;
-  box-shadow: 0 1px 0 0 $buttonBoxShadow;
+  box-shadow: 0 1px 0 0 $primary;
   cursor: pointer;
   height: 50px;
   min-width: 200px;
@@ -23,7 +19,7 @@
   }
 
   &-label {
-    color: $buttonText;
+    color: $light;
     line-height: 50px;
     margin: 0;
   }

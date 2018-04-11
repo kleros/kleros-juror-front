@@ -3,7 +3,7 @@
 /* @define NavBar */
 .NavBar {
   align-items: center;
-  background: $darkBackground;
+  background: $dark3;
   display: flex;
   height: 70px;
   padding: 0 15%;
@@ -26,8 +26,7 @@
     white-space: nowrap;
 
     &-tab {
-      color: $dark3;
-      font-size: 15px;
+      color: $light3;
       font-weight: 300;
       padding: 0 25px;
 

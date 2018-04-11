@@ -4,17 +4,14 @@ import zenscroll from 'zenscroll'
 
 import './anchored-list.css'
 
-class AnchoredList extends PureComponent {
+export default class AnchoredList extends PureComponent {
   static propTypes = {
     // State
     items: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.shape({
-          anchor: PropTypes.string,
-          element: PropTypes.element.isRequired
-        }),
-        PropTypes.bool
-      ]).isRequired
+      PropTypes.shape({
+        anchor: PropTypes.string,
+        element: PropTypes.element.isRequired
+      })
     ).isRequired
   }
 
@@ -74,8 +71,8 @@ class AnchoredList extends PureComponent {
       )
     })
 
-  handleAnchorClick = event =>
-    this.scroller.to(this.childRefs[event.currentTarget.id])
+  handleAnchorClick = ({ currentTarget: { id } }) =>
+    this.scroller.to(this.childRefs[id])
 
   render() {
     const { items } = this.props
@@ -116,5 +113,3 @@ class AnchoredList extends PureComponent {
     )
   }
 }
-
-export default AnchoredList

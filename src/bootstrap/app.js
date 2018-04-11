@@ -5,17 +5,25 @@ import { Provider, connect } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Switch, Route } from 'react-router-dom'
 
+import appStore from '..'
+
+import * as walletActions from '../actions/wallet'
+import ChainView from '../chainstrap'
 import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import Disputes from '../containers/disputes'
 import Dispute from '../containers/dispute'
 import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
+import * as chainViewConstants from '../constants/chain-view'
 
-import Initializer from './initializer'
+import { ARBITRATOR_ADDRESS } from './dapp-api'
 import GlobalComponents from './global-components'
 
 import './app.css'
+
+const handleReceiveAccounts = accounts =>
+  appStore.dispatch(walletActions.receiveAccounts(accounts))
 
 const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
   ({ accounts }) => (
@@ -32,7 +40,17 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
 
 const App = ({ store, history, testElement }) => (
   <Provider store={store}>
-    <Initializer>
+    <ChainView
+      onReceiveAccounts={handleReceiveAccounts}
+      initialContracts={[
+        {
+          name: chainViewConstants.KLEROS_POC_NAME,
+          address: ARBITRATOR_ADDRESS,
+          visible: false,
+          color: chainViewConstants.KLEROS_POC_COLOR
+        }
+      ]}
+    >
       <ConnectedRouter history={history}>
         <div id="router-root">
           <Helmet>
@@ -52,7 +70,7 @@ const App = ({ store, history, testElement }) => (
           <Route exact path="*" component={GlobalComponents} />
         </div>
       </ConnectedRouter>
-    </Initializer>
+    </ChainView>
   </Provider>
 )
 

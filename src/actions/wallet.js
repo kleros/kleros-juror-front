@@ -12,6 +12,10 @@ export const balance = createActions('BALANCE')
 
 // Accounts
 export const fetchAccounts = () => ({ type: accounts.FETCH })
+export const receiveAccounts = _accounts => ({
+  type: accounts.RECEIVE,
+  payload: { accounts: _accounts }
+})
 
 // Balance
 export const fetchBalance = () => ({ type: balance.FETCH })

@@ -10,7 +10,6 @@ const columns = [
   {
     Header: 'Case Name',
     minWidth: 220,
-    accessor: 'description',
     Cell: CaseNameCell
   },
   {
