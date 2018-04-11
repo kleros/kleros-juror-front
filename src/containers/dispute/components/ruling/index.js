@@ -9,7 +9,14 @@ import * as chainViewConstants from '../../../../constants/chain-view'
 
 import './ruling.css'
 
-const Ruling = ({ date, votesForPartyA, votesForPartyB, netPNK }) => {
+const Ruling = ({
+  date,
+  votesForPartyA,
+  votesForPartyB,
+  netPNK,
+  disputeID,
+  appeals
+}) => {
   const inProgress = date === null
   const won = netPNK >= 0
   return (
@@ -41,8 +48,44 @@ const Ruling = ({ date, votesForPartyA, votesForPartyB, netPNK }) => {
       )}
       <LabelValueGroup
         items={[
-          { label: 'Votes for Party A', value: votesForPartyA },
-          { label: 'Votes for Party B', value: votesForPartyB },
+          {
+            label: 'Votes for Party A',
+            value: (
+              <ChainData
+                contractName={chainViewConstants.KLEROS_POC_NAME}
+                contractAddress={ARBITRATOR_ADDRESS}
+                functionSignature={
+                  chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
+                }
+                parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
+                  disputeID,
+                  appeals,
+                  1
+                )}
+              >
+                {votesForPartyA}
+              </ChainData>
+            )
+          },
+          {
+            label: 'Votes for Party B',
+            value: (
+              <ChainData
+                contractName={chainViewConstants.KLEROS_POC_NAME}
+                contractAddress={ARBITRATOR_ADDRESS}
+                functionSignature={
+                  chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
+                }
+                parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
+                  disputeID,
+                  appeals,
+                  2
+                )}
+              >
+                {votesForPartyB}
+              </ChainData>
+            )
+          },
           {
             label: 'PNK Redistribution',
             value: (
@@ -68,7 +111,9 @@ Ruling.propTypes = {
   date: PropTypes.instanceOf(Date),
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
-  netPNK: PropTypes.number.isRequired
+  netPNK: PropTypes.number.isRequired,
+  disputeID: PropTypes.number.isRequired,
+  appeals: PropTypes.number.isRequired
 }
 
 Ruling.defaultProps = {

@@ -67,7 +67,12 @@ class ChainView extends PureComponent {
 
     accounts &&
       accounts.forEach((a, i) =>
-        addContract({ name: `Account ${i + 1}`, address: a })
+        addContract({
+          name: `Account ${i + 1}`,
+          address: a,
+          visible: false,
+          color: '#ff9900'
+        })
       )
 
     initialContracts && initialContracts.forEach(c => addContract(c))

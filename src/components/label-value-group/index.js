@@ -34,11 +34,7 @@ LabelValueGroup.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
-      value: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string,
-        PropTypes.element
-      ]).isRequired,
+      value: PropTypes.node.isRequired,
       identiconSeed: PropTypes.string
     }).isRequired
   ).isRequired

@@ -7,6 +7,7 @@ export const WALLET_NAME = 'Account'
 
 // Meta Data
 export const KLEROS_POC_NAME = 'Arbitrator'
+export const KLEROS_POC_COLOR = '#cc00cc'
 
 // Functions
 export const KLEROS_POC_JURORS_SIG =
@@ -39,6 +40,7 @@ export const KLEROS_POC_GET_VOTE_COUNT_PARAMS = (
 
 // Meta Data
 export const ARBITRABLE_CONTRACT_NAME = 'Arbitrable Contract'
+export const ARBITRABLE_CONTRACT_COLOR = '#015a53'
 
 // Functions
 export const ARBITRABLE_CONTRACT_PARTY_A_SIG =

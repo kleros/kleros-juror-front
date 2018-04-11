@@ -8,13 +8,10 @@ export default class AnchoredList extends PureComponent {
   static propTypes = {
     // State
     items: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.shape({
-          anchor: PropTypes.string,
-          element: PropTypes.element.isRequired
-        }),
-        PropTypes.bool
-      ]).isRequired
+      PropTypes.shape({
+        anchor: PropTypes.string,
+        element: PropTypes.element.isRequired
+      })
     ).isRequired
   }
 
