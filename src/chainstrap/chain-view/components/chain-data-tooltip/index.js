@@ -9,7 +9,13 @@ import { objMap } from '../../../utils/functional'
 import './chain-data-tooltip.css'
 
 const ChainDataTooltip = ({
-  data: { contractName, contractAddress, functionSignature, parameters },
+  data: {
+    contractName,
+    contractAddress,
+    functionSignature,
+    parameters,
+    estimatedGas
+  },
   onOpenChainViewClick
 }) => (
   <div className="ChainDataTooltip">
@@ -30,6 +36,11 @@ const ChainDataTooltip = ({
             {key} = {val}
           </div>
         ))}
+      </div>
+    )}
+    {estimatedGas && (
+      <div className="ChainDataTooltip-label">
+        <b>Estimated Gas:</b> {estimatedGas}
       </div>
     )}
     <div className="ChainDataTooltip-buttons">

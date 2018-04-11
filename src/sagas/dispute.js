@@ -14,7 +14,6 @@ const parseDispute = d => {
   addContract({
     name: chainViewConstants.ARBITRABLE_CONTRACT_NAME,
     address: d.arbitrableContractAddress,
-    visible: false,
     color: chainViewConstants.ARBITRABLE_CONTRACT_COLOR
   })
 

@@ -10,7 +10,8 @@ export const chainDataShape = PropTypes.shape({
   functionSignature: PropTypes.string,
   parameters: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
-  )
+  ),
+  estimatedGas: PropTypes.number
 })
 
 // Reducer

@@ -10,7 +10,7 @@ import TogglableIcon from '../../components/togglable-icon'
 import ExploreInEtherscan from '../../components/explore-in-etherscan'
 import ColorPicker from '../../components/color-picker'
 
-class DataProvenance extends PureComponent {
+class Transactions extends PureComponent {
   static propTypes = {
     // Redux State
     contracts: PropTypes.arrayOf(contractSelectors.contractShape.isRequired)
@@ -25,7 +25,7 @@ class DataProvenance extends PureComponent {
     currentTarget: { id, dataset: { value } }
   }) => {
     const { setContractVisibility } = this.props
-    setContractVisibility(id, value !== 'true', true)
+    setContractVisibility(id, value !== 'true', false)
   }
 
   handleSelectColor = (id, color) => {
@@ -37,7 +37,7 @@ class DataProvenance extends PureComponent {
     const { contracts } = this.props
 
     return (
-      <div className="DataProvenance">
+      <div className="Transactions">
         <ChainTable
           columns={[
             {
@@ -46,12 +46,12 @@ class DataProvenance extends PureComponent {
             },
             {
               name: 'Set Visibility',
-              Component: ({ value: { address, visibleDataProvenance } }) => (
+              Component: ({ value: { address, visibleTransactions } }) => (
                 <TogglableIcon
                   id={address}
                   on="eye"
                   off="eye-slash"
-                  value={visibleDataProvenance}
+                  value={visibleTransactions}
                   onClick={this.handleToggleVisibilityClick}
                 />
               )
@@ -87,4 +87,4 @@ export default connect(
     setContractVisibility: contractActions.setContractVisibility,
     setContractColor: contractActions.setContractColor
   }
-)(DataProvenance)
+)(Transactions)

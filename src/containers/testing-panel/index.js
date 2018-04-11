@@ -128,12 +128,25 @@ class TestingPanel extends PureComponent {
                           }}
                           onSubmit={buyPNK}
                         />
+
                         <Button
                           onClick={submitBuyPNKForm}
                           disabled={buyPNKFormIsInvalid}
                           className="TestingPanel-form-button"
                         >
-                          BUY NOW
+                          <ChainData
+                            contractName={chainViewConstants.KLEROS_POC_NAME}
+                            contractAddress={ARBITRATOR_ADDRESS}
+                            functionSignature={
+                              chainViewConstants.KLEROS_POC_BUY_PINAKION_SIG
+                            }
+                            parameters={chainViewConstants.KLEROS_POC_BUY_PINAKION_PARAMS()}
+                            estimatedGas={
+                              chainViewConstants.KLEROS_POC_BUY_PINAKION_GAS
+                            }
+                          >
+                            BUY NOW
+                          </ChainData>
                         </Button>
                       </div>
                     )
@@ -192,12 +205,25 @@ class TestingPanel extends PureComponent {
                     }}
                     onSubmit={passPeriod}
                   />
+
                   <Button
                     onClick={submitPassPeriodForm}
                     disabled={passPeriodFormIsInvalid}
                     className="TestingPanel-form-button TestingPanel-form-button--nextPeriod"
                   >
-                    NEXT PERIOD
+                    <ChainData
+                      contractName={chainViewConstants.KLEROS_POC_NAME}
+                      contractAddress={ARBITRATOR_ADDRESS}
+                      functionSignature={
+                        chainViewConstants.KLEROS_POC_PASS_PERIOD_SIG
+                      }
+                      parameters={chainViewConstants.KLEROS_POC_PASS_PERIOD_PARAMS()}
+                      estimatedGas={
+                        chainViewConstants.KLEROS_POC_PASS_PERIOD_GAS
+                      }
+                    >
+                      NEXT PERIOD
+                    </ChainData>
                   </Button>
                 </div>
               )
