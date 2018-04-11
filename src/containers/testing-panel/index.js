@@ -99,9 +99,7 @@ class TestingPanel extends PureComponent {
                               <span>
                                 <b>ETH Balance:</b>{' '}
                                 <ChainData
-                                  contractName={
-                                    chainViewConstants.WALLET_ACCOUNT_1_NAME
-                                  }
+                                  contractName={chainViewConstants.WALLET_NAME}
                                   contractAddress={accounts.data[0]}
                                 >
                                   {balance.data}

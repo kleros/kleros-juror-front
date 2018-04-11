@@ -129,7 +129,7 @@ class Home extends PureComponent {
               <div className="Home-stats-block-content-header">
                 <h5>
                   <ChainData
-                    contractName={chainViewConstants.WALLET_ACCOUNT_1_NAME}
+                    contractName={chainViewConstants.WALLET_NAME}
                     contractAddress={accounts.data[0]}
                   >
                     <ChainHash>{accounts.data[0]}</ChainHash>
@@ -164,7 +164,7 @@ class Home extends PureComponent {
                   done={
                     <h6>
                       <ChainData
-                        contractName={chainViewConstants.WALLET_ACCOUNT_1_NAME}
+                        contractName={chainViewConstants.WALLET_NAME}
                         contractAddress={accounts.data[0]}
                       >
                         {balance.data} ETH

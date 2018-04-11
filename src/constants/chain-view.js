@@ -1,7 +1,7 @@
 /* Wallet */
 
 // Meta Data
-export const WALLET_ACCOUNT_1_NAME = 'Account 1'
+export const WALLET_NAME = 'Account'
 
 /* KlerosPOC */
 
@@ -22,3 +22,29 @@ export const KLEROS_POC_PERIOD_PARAMS = () => undefined
 
 export const KLEROS_POC_SESSION_SIG = 'session() public view returns(uint256)'
 export const KLEROS_POC_SESSION_PARAMS = () => undefined
+
+export const KLEROS_POC_GET_VOTE_COUNT_SIG =
+  'getVoteCount(uint256 _disputeID, uint256 _appeals, uint256 _choice) public view returns(uint256 voteCount)'
+export const KLEROS_POC_GET_VOTE_COUNT_PARAMS = (
+  disputeID,
+  appeals,
+  choice
+) => ({
+  'uint256 _disputeID': disputeID,
+  'uint256 _appeals': appeals,
+  'uint256 _choice': choice
+})
+
+/* Arbitrable Contract */
+
+// Meta Data
+export const ARBITRABLE_CONTRACT_NAME = 'Arbitrable Contract'
+
+// Functions
+export const ARBITRABLE_CONTRACT_PARTY_A_SIG =
+  'partyA() public view returns(address)'
+export const ARBITRABLE_CONTRACT_PARTY_A_PARAMS = () => undefined
+
+export const ARBITRABLE_CONTRACT_PARTY_B_SIG =
+  'partyB() public view returns(address)'
+export const ARBITRABLE_CONTRACT_PARTY_B_PARAMS = () => undefined
