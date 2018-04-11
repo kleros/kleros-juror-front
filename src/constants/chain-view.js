@@ -9,7 +9,7 @@ export const WALLET_NAME = 'Account'
 export const KLEROS_POC_NAME = 'Arbitrator'
 export const KLEROS_POC_COLOR = '#cc00cc'
 
-// Functions
+// Views
 export const KLEROS_POC_JURORS_SIG =
   'jurors(address) public view returns(uint256 balance, uint256 atStake, uint256 lastSession, uint256 segmentStart, uint256 segmentEnd)'
 export const KLEROS_POC_JURORS_PARAMS = _ => ({ 'address _': _ })
@@ -36,13 +36,52 @@ export const KLEROS_POC_GET_VOTE_COUNT_PARAMS = (
   'uint256 _choice': choice
 })
 
+// Transactions
+export const KLEROS_POC_BUY_PINAKION_SIG = 'buyPinakion() public payable'
+export const KLEROS_POC_BUY_PINAKION_PARAMS = () => undefined
+export const KLEROS_POC_BUY_PINAKION_GAS = 44232
+
+export const KLEROS_POC_PASS_PERIOD_SIG = 'passPeriod() public'
+export const KLEROS_POC_PASS_PERIOD_PARAMS = () => undefined
+export const KLEROS_POC_PASS_PERIOD_GAS = 77076
+
+export const KLEROS_POC_ACTIVATE_TOKENS_SIG =
+  'activateTokens(uint256 _value) public'
+export const KLEROS_POC_ACTIVATE_TOKENS_PARAMS = () => ({
+  'uint256 _value': '?'
+})
+export const KLEROS_POC_ACTIVATE_TOKENS_GAS = 77076
+
+export const KLEROS_POC_VOTE_RULING_SIG =
+  'voteRuling(uint256 _disputeID, uint256 _ruling, uint256[] _draws) public'
+export const KLEROS_POC_VOTE_RULING_PARAMS = () => ({
+  'uint256 _disputeID': '?',
+  'uint256 _ruling': '?',
+  'uint256[] _draws': '?'
+})
+export const KLEROS_POC_VOTE_RULING_GAS = 77076
+
+export const KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_SIG =
+  'oneShotTokenRepartition(uint256 _disputeID) public'
+export const KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_PARAMS = () => ({
+  'uint256 _disputeID': '?'
+})
+export const KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_GAS = 77076
+
+export const KLEROS_POC_EXECUTE_RULING_SIG =
+  'executeRuling(uint256 disputeID) public'
+export const KLEROS_POC_EXECUTE_RULING_PARAMS = () => ({
+  'uint256 disputeID': '?'
+})
+export const KLEROS_POC_EXECUTE_RULING_GAS = 77076
+
 /* Arbitrable Contract */
 
 // Meta Data
 export const ARBITRABLE_CONTRACT_NAME = 'Arbitrable Contract'
 export const ARBITRABLE_CONTRACT_COLOR = '#015a53'
 
-// Functions
+// Views
 export const ARBITRABLE_CONTRACT_PARTY_A_SIG =
   'partyA() public view returns(address)'
 export const ARBITRABLE_CONTRACT_PARTY_A_PARAMS = () => undefined

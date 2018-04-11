@@ -204,7 +204,21 @@ class Home extends PureComponent {
                                 className="Home-stats-block-content-header-activateButton"
                                 labelClassName="Home-stats-block-content-header-activateButton-label"
                               >
-                                +
+                                <ChainData
+                                  contractName={
+                                    chainViewConstants.KLEROS_POC_NAME
+                                  }
+                                  contractAddress={ARBITRATOR_ADDRESS}
+                                  functionSignature={
+                                    chainViewConstants.KLEROS_POC_ACTIVATE_TOKENS_SIG
+                                  }
+                                  parameters={chainViewConstants.KLEROS_POC_ACTIVATE_TOKENS_PARAMS()}
+                                  estimatedGas={
+                                    chainViewConstants.KLEROS_POC_ACTIVATE_TOKENS_GAS
+                                  }
+                                >
+                                  +
+                                </ChainData>
                               </Button>
                             )
                           }

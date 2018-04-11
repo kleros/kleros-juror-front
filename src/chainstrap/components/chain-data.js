@@ -11,14 +11,16 @@ class ChainData extends PureComponent {
 
     // State
     children: PropTypes.node.isRequired,
-    visible: PropTypes.bool.isRequired,
+    visibleDataProvenance: PropTypes.bool.isRequired,
     color: PropTypes.string.isRequired,
+    visibleTransactions: PropTypes.bool.isRequired,
     contractName: PropTypes.string.isRequired,
     contractAddress: PropTypes.string.isRequired,
     functionSignature: PropTypes.string,
     parameters: PropTypes.objectOf(
       PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
     ),
+    estimatedGas: PropTypes.number,
 
     // Modifiers
     style: PropTypes.shape({})
@@ -28,6 +30,7 @@ class ChainData extends PureComponent {
     // State
     functionSignature: null,
     parameters: null,
+    estimatedGas: null,
 
     // Modifiers
     style: null
@@ -39,20 +42,33 @@ class ChainData extends PureComponent {
       contractName,
       contractAddress,
       functionSignature,
-      parameters
+      parameters,
+      estimatedGas
     } = this.props
     setChainData({
       contractName,
       contractAddress,
       functionSignature,
-      parameters
+      parameters,
+      estimatedGas
     })
   }
 
   render() {
-    const { children, visible, color, style } = this.props
+    const {
+      children,
+      visibleDataProvenance,
+      color,
+      visibleTransactions,
+      estimatedGas,
+      style
+    } = this.props
 
-    return visible ? (
+    return (estimatedGas ? (
+      visibleTransactions
+    ) : (
+      visibleDataProvenance
+    )) ? (
       <span
         onMouseEnter={this.handleMouseEnter}
         data-tip=""
@@ -69,8 +85,11 @@ class ChainData extends PureComponent {
 
 export default connect(
   (state, ownProps) => ({
-    visible: state.contract[ownProps.contractAddress].visible,
-    color: state.contract[ownProps.contractAddress].color
+    visibleDataProvenance:
+      state.contract[ownProps.contractAddress].visibleDataProvenance,
+    color: state.contract[ownProps.contractAddress].color,
+    visibleTransactions:
+      state.contract[ownProps.contractAddress].visibleTransactions
   }),
   { setChainData: tooltipActions.setChainData }
 )(ChainData)

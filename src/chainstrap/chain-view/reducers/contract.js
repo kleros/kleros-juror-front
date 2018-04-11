@@ -12,8 +12,11 @@ export const contractShape = PropTypes.shape({
   address: PropTypes.string.isRequired,
 
   // Data Provenance
-  visible: PropTypes.bool.isRequired,
-  color: PropTypes.string.isRequired
+  visibleDataProvenance: PropTypes.bool.isRequired,
+  color: PropTypes.string.isRequired,
+
+  // Transactions
+  visibleTransactions: PropTypes.bool.isRequired
 })
 
 // Reducer
@@ -24,15 +27,24 @@ export default createReducer(
       ...state,
       [contract.address]: {
         id: contract.address,
-        visible: true,
+        visibleDataProvenance: false,
         color: '#ff0000',
+        visibleTransactions: false,
         ...contract
       }
     }),
     [contractActions.SET_CONTRACT_VISIBILITY]: (
       state,
-      { payload: { address, visible } }
-    ) => ({ ...state, [address]: { ...state[address], visible: visible } }),
+      { payload: { address, visible, dataProvenance } }
+    ) => ({
+      ...state,
+      [address]: {
+        ...state[address],
+        [`visible${
+          dataProvenance ? 'DataProvenance' : 'Transactions'
+        }`]: visible
+      }
+    }),
     [contractActions.SET_CONTRACT_COLOR]: (
       state,
       { payload: { address, color } }

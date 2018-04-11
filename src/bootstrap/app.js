@@ -46,7 +46,6 @@ const App = ({ store, history, testElement }) => (
         {
           name: chainViewConstants.KLEROS_POC_NAME,
           address: ARBITRATOR_ADDRESS,
-          visible: false,
           color: chainViewConstants.KLEROS_POC_COLOR
         }
       ]}

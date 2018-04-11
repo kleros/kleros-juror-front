@@ -10,6 +10,7 @@ import { eth } from '../../bootstrap/dapp-api'
 import RequiresMetaMask from '../../components/requires-meta-mask'
 import logo from '../../assets/logo.png'
 import DataProvenance from '../data-provenance'
+import Transactions from '../transactions'
 import ChainDataTooltip from '../../components/chain-data-tooltip'
 
 import './chain-view.css'
@@ -32,8 +33,11 @@ class ChainView extends PureComponent {
         address: PropTypes.string.isRequired,
 
         // Data Provenance
-        visible: PropTypes.bool,
-        color: PropTypes.string
+        visibleDataProvenance: PropTypes.bool,
+        color: PropTypes.string,
+
+        // Transactions
+        visibleTransactions: PropTypes.bool
       }).isRequired
     ),
 
@@ -70,7 +74,6 @@ class ChainView extends PureComponent {
         addContract({
           name: `Account ${i + 1}`,
           address: a,
-          visible: false,
           color: '#ff9900'
         })
       )
@@ -121,7 +124,10 @@ class ChainView extends PureComponent {
           </div>
           <div className={`ChainView-panel ${isOpen ? 'is-open' : ''}`}>
             <h3 className="ChainView-panel-title">ChainView</h3>
-            {[{ name: 'Data Provenance', Component: DataProvenance }].map(t => {
+            {[
+              { name: 'Data Provenance', Component: DataProvenance },
+              { name: 'Transactions', Component: Transactions }
+            ].map(t => {
               const isToggled = toggledTabName === t.name
               return (
                 <div key={t.name} className="ChainView-panel-tab">
