@@ -8,9 +8,9 @@ export const addContract = contract => ({
   type: ADD_CONTRACT,
   payload: { contract }
 })
-export const setContractVisibility = (address, visible) => ({
+export const setContractVisibility = (address, visible, dataProvenance) => ({
   type: SET_CONTRACT_VISIBILITY,
-  payload: { address, visible }
+  payload: { address, visible, dataProvenance }
 })
 export const setContractColor = (address, color) => ({
   type: SET_CONTRACT_COLOR,
