@@ -3,7 +3,7 @@ import { takeLatest, call, select } from 'redux-saga/effects'
 import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
 import * as walletSelectors from '../reducers/wallet'
-import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
+import { kleros } from '../bootstrap/dapp-api'
 import { fetchSaga, updateSaga } from '../utils/saga'
 import * as disputeConstants from '../constants/dispute'
 import * as chainViewConstants from '../constants/chain-view'
@@ -62,8 +62,7 @@ const parseDispute = d => {
  */
 function* fetchDisputes() {
   return (yield call(
-    kleros.disputes.getDisputesForUser,
-    ARBITRATOR_ADDRESS,
+    kleros.arbitrator.getDisputesForUser,
     yield select(walletSelectors.getAccount)
   )).map(parseDispute)
 }
@@ -76,7 +75,6 @@ function* fetchDispute({ payload: { disputeID } }) {
   return parseDispute(
     yield call(
       kleros.disputes.getDataForDispute,
-      ARBITRATOR_ADDRESS,
       disputeID,
       yield select(walletSelectors.getAccount)
     )
@@ -90,21 +88,9 @@ function* fetchDispute({ payload: { disputeID } }) {
 function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.disputes.submitVotesForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    ruling,
-    votes,
-    account
-  )
+  yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**
@@ -114,19 +100,9 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
 function* repartitionTokens({ payload: { disputeID } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.arbitrator.repartitionJurorTokens,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  yield call(kleros.arbitrator.repartitionJurorTokens, disputeID, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**
@@ -136,19 +112,9 @@ function* repartitionTokens({ payload: { disputeID } }) {
 function* executeRuling({ payload: { disputeID } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.arbitrator.executeRuling,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  yield call(kleros.arbitrator.executeRuling, disputeID, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**

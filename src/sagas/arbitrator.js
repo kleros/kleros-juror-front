@@ -2,7 +2,7 @@ import { takeLatest, call, select } from 'redux-saga/effects'
 
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
-import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
+import { kleros } from '../bootstrap/dapp-api'
 import { fetchSaga, updateSaga } from '../utils/saga'
 
 /**
@@ -12,7 +12,6 @@ import { fetchSaga, updateSaga } from '../utils/saga'
 function* fetchPNKBalance() {
   return yield call(
     kleros.arbitrator.getPNKBalance,
-    ARBITRATOR_ADDRESS,
     yield select(walletSelectors.getAccount)
   )
 }
@@ -25,7 +24,6 @@ function* buyPNK({ payload: { amount } }) {
   return yield call(
     kleros.arbitrator.buyPNK,
     amount,
-    ARBITRATOR_ADDRESS,
     yield select(walletSelectors.getAccount)
   )
 }
@@ -38,7 +36,6 @@ function* activatePNK({ payload: { amount } }) {
   return yield call(
     kleros.arbitrator.activatePNK,
     amount,
-    ARBITRATOR_ADDRESS,
     yield select(walletSelectors.getAccount)
   )
 }
@@ -48,7 +45,7 @@ function* activatePNK({ payload: { amount } }) {
  * @returns {object} - The arbitrator data.
  */
 function* fetchArbitratorData() {
-  return yield call(kleros.arbitrator.getData, ARBITRATOR_ADDRESS)
+  return yield call(kleros.arbitrator.getData)
 }
 
 /**
@@ -58,7 +55,6 @@ function* fetchArbitratorData() {
 function* passPeriod() {
   return yield call(
     kleros.arbitrator.passPeriod,
-    ARBITRATOR_ADDRESS,
     yield select(walletSelectors.getAccount)
   )
 }
