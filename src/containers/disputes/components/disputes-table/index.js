@@ -21,7 +21,7 @@ const columns = [
     id: 'deadline',
     Header: 'Deadline',
     maxWidth: 110,
-    accessor: d => d.appealRulings[d.numberOfAppeals].deadline || null,
+    accessor: () => null, // TODO: get deadline here
     Cell: cell =>
       cell.value === null
         ? 'None'

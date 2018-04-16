@@ -61,10 +61,10 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  return (yield call(
+  return yield call(
     kleros.arbitrator.getDisputesForUser,
     yield select(walletSelectors.getAccount)
-  )).map(parseDispute)
+  )
 }
 
 /**
