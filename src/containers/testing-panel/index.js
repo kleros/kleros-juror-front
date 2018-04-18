@@ -89,6 +89,7 @@ class TestingPanel extends PureComponent {
                       <div>
                         <BuyPNKForm
                           enableReinitialize
+                          keepDirtyOnReinitialize
                           initialValues={{
                             rate: (
                               <span>
@@ -167,6 +168,7 @@ class TestingPanel extends PureComponent {
                 <div>
                   <PassPeriodForm
                     enableReinitialize
+                    keepDirtyOnReinitialize
                     initialValues={{
                       currentPeriod: (
                         <span>

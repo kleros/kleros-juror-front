@@ -7302,9 +7302,9 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-kleros-api@0.0.70:
-  version "0.0.70"
-  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.0.70.tgz#3bc21d08a6d25004ab1d0cb15c2b72a03e2e52e1"
+kleros-api@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.3.0.tgz#1a38ef367b733a8618580553f90ce3baa5371a4a"
   dependencies:
     babel-runtime "^6.26.0"
     kleros "^0.0.5"
@@ -10960,6 +10960,12 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+shallow-diff@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/shallow-diff/-/shallow-diff-0.0.5.tgz#4bcb768d6666df3059ce2244a6fb70bda2a022b2"
+  dependencies:
+    simple-loop "0.0.4"
+
 shallowequal@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-0.2.2.tgz#1e32fd5bcab6ad688a4812cb0cc04efc75c7014e"
@@ -11020,6 +11026,10 @@ shellwords@^0.1.1:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-loop@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/simple-loop/-/simple-loop-0.0.4.tgz#5b4150de09a31641b2439fa8cd29735de236af98"
 
 slash@^1.0.0:
   version "1.0.0"

@@ -1,14 +1,27 @@
-import { takeLatest, call, select } from 'redux-saga/effects'
+import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
 import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
+import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
-import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
+import { kleros } from '../bootstrap/dapp-api'
 import { fetchSaga, updateSaga } from '../utils/saga'
+import { action } from '../utils/action'
 import * as disputeConstants from '../constants/dispute'
 import * as chainViewConstants from '../constants/chain-view'
 
+import { fetchArbitratorData } from './arbitrator'
+
 // Parsers
+const parseDisputes = (disputes, deadline, currentSession) =>
+  disputes.map(d => ({
+    ...d,
+    deadline:
+      d.firstSession + d.numberOfAppeals === currentSession
+        ? new Date(deadline)
+        : null
+  }))
+
 const parseDispute = d => {
   // Add arbitrable contract to ChainView
   addContract({
@@ -61,11 +74,35 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  return (yield call(
-    kleros.disputes.getDisputesForUser,
-    ARBITRATOR_ADDRESS,
-    yield select(walletSelectors.getAccount)
-  )).map(parseDispute)
+  const [_disputes, deadline, arbitratorData] = yield all([
+    call(
+      kleros.arbitrator.getDisputesForUser,
+      yield select(walletSelectors.getAccount)
+    ),
+    call(kleros.arbitrator.getDeadlineForOpenDispute),
+    call(fetchArbitratorData)
+  ])
+
+  yield put(
+    action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
+  )
+
+  const disputes = []
+  for (const d of _disputes) {
+    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
+      yield call(
+        kleros.arbitrable.setContractInstance,
+        d.arbitrableContractAddress
+      )
+      disputes.push({
+        ...d,
+        description: (yield call(kleros.arbitrable.getDataFromStore))
+          .description
+      })
+    } else disputes.push(d)
+  }
+
+  return parseDisputes(disputes, deadline, arbitratorData.session)
 }
 
 /**
@@ -76,7 +113,6 @@ function* fetchDispute({ payload: { disputeID } }) {
   return parseDispute(
     yield call(
       kleros.disputes.getDataForDispute,
-      ARBITRATOR_ADDRESS,
       disputeID,
       yield select(walletSelectors.getAccount)
     )
@@ -90,21 +126,9 @@ function* fetchDispute({ payload: { disputeID } }) {
 function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.disputes.submitVotesForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    ruling,
-    votes,
-    account
-  )
+  yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**
@@ -114,19 +138,9 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
 function* repartitionTokens({ payload: { disputeID } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.arbitrator.repartitionJurorTokens,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  yield call(kleros.arbitrator.repartitionJurorTokens, disputeID, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**
@@ -136,19 +150,9 @@ function* repartitionTokens({ payload: { disputeID } }) {
 function* executeRuling({ payload: { disputeID } }) {
   const account = yield select(walletSelectors.getAccount)
 
-  yield call(
-    kleros.arbitrator.executeRuling,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  yield call(kleros.arbitrator.executeRuling, disputeID, account)
 
-  return yield call(
-    kleros.disputes.getDataForDispute,
-    ARBITRATOR_ADDRESS,
-    disputeID,
-    account
-  )
+  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
 }
 
 /**
