@@ -1,14 +1,27 @@
-import { takeLatest, call, select } from 'redux-saga/effects'
+import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
 import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
+import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros } from '../bootstrap/dapp-api'
 import { fetchSaga, updateSaga } from '../utils/saga'
+import { action } from '../utils/action'
 import * as disputeConstants from '../constants/dispute'
 import * as chainViewConstants from '../constants/chain-view'
 
+import { fetchArbitratorData } from './arbitrator'
+
 // Parsers
+const parseDisputes = (disputes, deadline, currentSession) =>
+  disputes.map(d => ({
+    ...d,
+    deadline:
+      d.firstSession + d.numberOfAppeals === currentSession
+        ? new Date(deadline)
+        : null
+  }))
+
 const parseDispute = d => {
   // Add arbitrable contract to ChainView
   addContract({
@@ -61,10 +74,20 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  return yield call(
-    kleros.arbitrator.getDisputesForUser,
-    yield select(walletSelectors.getAccount)
+  const [disputes, deadline, arbitratorData] = yield all([
+    call(
+      kleros.arbitrator.getDisputesForUser,
+      yield select(walletSelectors.getAccount)
+    ),
+    call(kleros.arbitrator.getDeadlineForOpenDispute),
+    call(fetchArbitratorData)
+  ])
+
+  yield put(
+    action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
   )
+
+  return parseDisputes(disputes, deadline, arbitratorData.session)
 }
 
 /**

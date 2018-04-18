@@ -44,7 +44,7 @@ function* activatePNK({ payload: { amount } }) {
  * Fetches the arbitrator's data.
  * @returns {object} - The arbitrator data.
  */
-function* fetchArbitratorData() {
+export function* fetchArbitratorData() {
   return yield call(kleros.arbitrator.getData)
 }
 

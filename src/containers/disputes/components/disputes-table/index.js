@@ -18,10 +18,9 @@ const columns = [
     accessor: () => 'General Court'
   },
   {
-    id: 'deadline',
     Header: 'Deadline',
     maxWidth: 110,
-    accessor: () => null, // TODO: get deadline here
+    accessor: 'deadline',
     Cell: cell =>
       cell.value === null
         ? 'None'
@@ -30,7 +29,7 @@ const columns = [
   {
     Header: 'Status',
     maxWidth: 80,
-    accessor: 'disputeStatus',
+    accessor: 'status',
     Cell: cell => <StatusHint status={cell.value} />
   }
 ]
