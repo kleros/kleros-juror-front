@@ -74,7 +74,7 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  const [disputes, deadline, arbitratorData] = yield all([
+  const [_disputes, deadline, arbitratorData] = yield all([
     call(
       kleros.arbitrator.getDisputesForUser,
       yield select(walletSelectors.getAccount)
@@ -86,6 +86,21 @@ function* fetchDisputes() {
   yield put(
     action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
   )
+
+  const disputes = []
+  for (const d of _disputes) {
+    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
+      yield call(
+        kleros.arbitrable.setContractInstance,
+        d.arbitrableContractAddress
+      )
+      disputes.push({
+        ...d,
+        description: (yield call(kleros.arbitrable.getDataFromStore))
+          .description
+      })
+    } else disputes.push(d)
+  }
 
   return parseDisputes(disputes, deadline, arbitratorData.session)
 }
