@@ -33,5 +33,3 @@ export default createReducer({
   PNKBalance: PNKBalanceInitialState,
   arbitratorData: arbitratorDataInitialState
 })
-
-// Selectors

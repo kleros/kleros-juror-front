@@ -13,7 +13,7 @@ import {
 import * as notificationActions from '../actions/notification'
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import { kleros, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
+import { kleros } from '../bootstrap/dapp-api'
 import { action } from '../utils/action'
 import { fetchSaga, updateSaga } from '../utils/saga'
 
@@ -27,11 +27,9 @@ function* pushNotificationsListener() {
 
     // Set up event channel with subscriber
     const channel = eventChannel(emitter => {
-      kleros.watchForEvents(ARBITRATOR_ADDRESS, account, notification =>
-        emitter(notification)
-      )
+      kleros.watchForEvents(account, notification => emitter(notification))
 
-      return kleros.eventListener.stopWatchingArbitratorEvents // Unsubscribe function
+      return kleros.stopWatchingForEvents // Unsubscribe function
     })
 
     // Keep listening while on the same account
@@ -64,7 +62,7 @@ function* pushNotificationsListener() {
  */
 function* fetchNotifications() {
   return yield call(
-    kleros.notifications.getUnreadNotifications,
+    kleros.notifications.getUnreadStoredNotifications,
     yield select(walletSelectors.getAccount)
   )
 }
@@ -75,7 +73,7 @@ function* fetchNotifications() {
  */
 function* dismissNotification({ payload: { txHash, logIndex } }) {
   yield call(
-    kleros.notifications.markNotificationAsRead,
+    kleros.notifications.markStoredNotificationAsRead,
     yield select(walletSelectors.getAccount),
     txHash,
     logIndex
@@ -93,8 +91,8 @@ function* dismissNotification({ payload: { txHash, logIndex } }) {
 function* fetchPendingActions() {
   return yield call(
     kleros.notifications.getStatefulNotifications,
-    ARBITRATOR_ADDRESS,
-    yield select(walletSelectors.getAccount)
+    yield select(walletSelectors.getAccount),
+    true
   )
 }
 

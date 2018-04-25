@@ -10,7 +10,6 @@ const columns = [
   {
     Header: 'Case Name',
     minWidth: 220,
-    accessor: 'description',
     Cell: CaseNameCell
   },
   {
@@ -19,10 +18,9 @@ const columns = [
     accessor: () => 'General Court'
   },
   {
-    id: 'deadline',
     Header: 'Deadline',
     maxWidth: 110,
-    accessor: d => d.appealRulings[d.numberOfAppeals].deadline || null,
+    accessor: 'deadline',
     Cell: cell =>
       cell.value === null
         ? 'None'
@@ -31,7 +29,7 @@ const columns = [
   {
     Header: 'Status',
     maxWidth: 80,
-    accessor: 'disputeStatus',
+    accessor: 'status',
     Cell: cell => <StatusHint status={cell.value} />
   }
 ]

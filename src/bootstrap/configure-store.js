@@ -38,7 +38,7 @@ export default function configureStore(
       .default
     const reduxUnhandledAction = require('redux-unhandled-action').default
     middleware.push(
-      reduxImmutableState(),
+      reduxImmutableState({ ignore: ['form'] }),
       reduxUnhandledAction(action =>
         console.error(
           `${action} didn't lead to creation of a new state object`,

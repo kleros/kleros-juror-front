@@ -13,6 +13,12 @@ export const {
   rate: {
     type: 'info'
   },
+  ETHBalance: {
+    type: 'info'
+  },
+  PNKBalance: {
+    type: 'info'
+  },
   amount: {
     type: 'text',
     validate: [required, number],

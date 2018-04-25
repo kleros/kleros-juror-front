@@ -22,8 +22,7 @@ const Button = ({
 
 Button.propTypes = {
   // State
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.node.isRequired,
 
   // Handlers
   onClick: PropTypes.func.isRequired,

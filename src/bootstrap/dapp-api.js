@@ -13,8 +13,12 @@ else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth.HttpProvider(ETHEREUM_PROVIDER)
 
-const kleros = new Kleros(eth.currentProvider, STORE_PROVIDER)
+const kleros = new Kleros(
+  eth.currentProvider,
+  STORE_PROVIDER,
+  ARBITRATOR_ADDRESS
+)
 
-console.log('ARBITRATOR: ', ARBITRATOR_ADDRESS)
+setTimeout(() => console.log('Kleros: ', kleros, 'Web3: ', window.web3), 1000)
 
-export { eth, kleros, ETHEREUM_PROVIDER, STORE_PROVIDER, ARBITRATOR_ADDRESS }
+export { eth, kleros, ARBITRATOR_ADDRESS }

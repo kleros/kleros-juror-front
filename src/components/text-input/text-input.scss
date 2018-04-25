@@ -5,7 +5,7 @@
   background: #fff;
   border: 1px solid #dfe3e9;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 0.875rem;
   height: 45px;
   margin: 0.5rem;
   position: relative;
@@ -40,8 +40,8 @@
 
     .TextInput-input:focus + &,
     &.is-touched {
-      font-size: 8px;
-      line-height: 8px;
+      font-size: 0.5rem;
+      line-height: 0.5rem;
       top: 5px;
       transform: none;
     }
@@ -50,7 +50,7 @@
   &-error {
     bottom: 0;
     color: $error;
-    font-size: 8px;
+    font-size: 0.5rem;
     left: 5px;
     position: absolute;
   }

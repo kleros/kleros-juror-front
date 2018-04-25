@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
 
+import { ChainData } from '../../chainstrap'
+import { ARBITRATOR_ADDRESS } from '../../bootstrap/dapp-api'
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
 import { dateToString } from '../../utils/date'
@@ -11,6 +13,7 @@ import AnchoredList from '../../components/anchored-list'
 import Identicon from '../../components/identicon'
 import Button from '../../components/button'
 import * as disputeConstants from '../../constants/dispute'
+import * as chainViewConstants from '../../constants/chain-view'
 
 import Details from './components/details'
 import Evidence from './components/evidence'
@@ -41,12 +44,12 @@ class Dispute extends PureComponent {
     fetchDispute(Number(disputeID))
   }
 
-  handleVoteButtonClick = event => {
+  handleVoteButtonClick = ({ currentTarget: { id } }) => {
     const { dispute, voteOnDispute } = this.props
     voteOnDispute(
       dispute.data.disputeId,
       dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
-      event.currentTarget.id
+      id
     )
   }
 
@@ -103,6 +106,10 @@ class Dispute extends PureComponent {
                         partyAAddress={dispute.data.partyA}
                         partyBAddress={dispute.data.partyB}
                         arbitrationFee={dispute.data.appealJuror[0].fee}
+                        arbitrableContractAddress={
+                          dispute.data.arbitrableContractAddress
+                        }
+                        disputeID={dispute.data.disputeId}
                       />
                     )
                   },
@@ -118,6 +125,10 @@ class Dispute extends PureComponent {
                               partyAAddress={dispute.data.partyA}
                               partyBAddress={dispute.data.partyB}
                               arbitrationFee={e.fee}
+                              arbitrableContractAddress={
+                                dispute.data.arbitrableContractAddress
+                              }
+                              disputeID={dispute.data.disputeId}
                             />
                           )
                         }
@@ -132,6 +143,10 @@ class Dispute extends PureComponent {
                               title={e.name}
                               description={e.description}
                               URL={e.url}
+                              arbitrableContractAddress={
+                                dispute.data.arbitrableContractAddress
+                              }
+                              isPartyA={e.submitter === dispute.data.partyA}
                             />
                           )
                         }
@@ -145,6 +160,8 @@ class Dispute extends PureComponent {
                               votesForPartyA={e.voteCounter[0]}
                               votesForPartyB={e.voteCounter[1]}
                               netPNK={dispute.data.netPNK}
+                              disputeID={dispute.data.disputeId}
+                              appeals={dispute.data.numberOfAppeals}
                             />
                           )
                         }
@@ -158,10 +175,38 @@ class Dispute extends PureComponent {
                         element: (
                           <div key={today} className="Dispute-action">
                             <Button id={0} onClick={this.handleVoteButtonClick}>
-                              Vote for Party A
+                              <ChainData
+                                contractName={
+                                  chainViewConstants.KLEROS_POC_NAME
+                                }
+                                contractAddress={ARBITRATOR_ADDRESS}
+                                functionSignature={
+                                  chainViewConstants.KLEROS_POC_VOTE_RULING_SIG
+                                }
+                                parameters={chainViewConstants.KLEROS_POC_VOTE_RULING_PARAMS()}
+                                estimatedGas={
+                                  chainViewConstants.KLEROS_POC_VOTE_RULING_GAS
+                                }
+                              >
+                                Vote for Party A
+                              </ChainData>
                             </Button>
                             <Button id={1} onClick={this.handleVoteButtonClick}>
-                              Vote for Party B
+                              <ChainData
+                                contractName={
+                                  chainViewConstants.KLEROS_POC_NAME
+                                }
+                                contractAddress={ARBITRATOR_ADDRESS}
+                                functionSignature={
+                                  chainViewConstants.KLEROS_POC_VOTE_RULING_SIG
+                                }
+                                parameters={chainViewConstants.KLEROS_POC_VOTE_RULING_PARAMS()}
+                                estimatedGas={
+                                  chainViewConstants.KLEROS_POC_VOTE_RULING_GAS
+                                }
+                              >
+                                Vote for Party B
+                              </ChainData>
                             </Button>
                           </div>
                         )
@@ -175,7 +220,21 @@ class Dispute extends PureComponent {
                               <Button
                                 onClick={this.handleRepartitionButtonClick}
                               >
-                                Repartition Tokens
+                                <ChainData
+                                  contractName={
+                                    chainViewConstants.KLEROS_POC_NAME
+                                  }
+                                  contractAddress={ARBITRATOR_ADDRESS}
+                                  functionSignature={
+                                    chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_SIG
+                                  }
+                                  parameters={chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_PARAMS()}
+                                  estimatedGas={
+                                    chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_GAS
+                                  }
+                                >
+                                  Repartition Tokens
+                                </ChainData>
                               </Button>
                             </div>
                           )
@@ -187,7 +246,21 @@ class Dispute extends PureComponent {
                             element: (
                               <div key={today} className="Dispute-action">
                                 <Button onClick={this.handleExecuteButtonClick}>
-                                  Execute Ruling
+                                  <ChainData
+                                    contractName={
+                                      chainViewConstants.KLEROS_POC_NAME
+                                    }
+                                    contractAddress={ARBITRATOR_ADDRESS}
+                                    functionSignature={
+                                      chainViewConstants.KLEROS_POC_EXECUTE_RULING_SIG
+                                    }
+                                    parameters={chainViewConstants.KLEROS_POC_EXECUTE_RULING_PARAMS()}
+                                    estimatedGas={
+                                      chainViewConstants.KLEROS_POC_EXECUTE_RULING_GAS
+                                    }
+                                  >
+                                    Execute Ruling
+                                  </ChainData>
                                 </Button>
                               </div>
                             )
