@@ -12,16 +12,6 @@ import * as chainViewConstants from '../constants/chain-view'
 
 import { fetchArbitratorData } from './arbitrator'
 
-// Parsers
-const parseDisputes = (disputes, deadline, currentSession) =>
-  disputes.map(d => ({
-    ...d,
-    deadline:
-      d.firstSession + d.numberOfAppeals === currentSession
-        ? new Date(deadline)
-        : null
-  }))
-
 const parseDispute = d => {
   // Add arbitrable contract to ChainView
   addContract({
@@ -58,12 +48,11 @@ const parseDispute = d => {
     }))
   ]
   events = events.sort((a, b) => (a.data <= b.date || a.data !== null ? -1 : 1))
-
   return {
     ...d,
-    appealCreatedAt: d.appealCreatedAt.map(Date),
-    appealDeadlines: d.appealDeadlines.map(Date),
-    appealRuledAt: d.appealRuledAt.map(Date),
+    appealCreatedAt: d.appealCreatedAt.map(timestamp => new Date(timestamp)),
+    appealDeadlines: d.appealDeadlines.map(timestamp => new Date(timestamp)),
+    appealRuledAt: d.appealRuledAt.map(timestamp => new Date(timestamp)),
     latestAppealForJuror,
     events
   }
@@ -74,12 +63,11 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
-  const [_disputes, deadline, arbitratorData] = yield all([
+  const [_disputes, arbitratorData] = yield all([
     call(
       kleros.arbitrator.getDisputesForUser,
       yield select(walletSelectors.getAccount)
     ),
-    call(kleros.arbitrator.getDeadlineForOpenDispute),
     call(fetchArbitratorData)
   ])
 
@@ -94,15 +82,22 @@ function* fetchDisputes() {
         kleros.arbitrable.setContractInstance,
         d.arbitrableContractAddress
       )
+      const [arbitrableData, disputeStoreData] = yield all([
+        call(kleros.arbitrable.getDataFromStore),
+        call(kleros.disputes.getDisputeFromStore, d.disputeId)
+      ])
+
+      const deadline = disputeStoreData.appealDeadlines[d.numberOfAppeals]
+
       disputes.push({
         ...d,
-        description: (yield call(kleros.arbitrable.getDataFromStore))
-          .description
+        description: arbitrableData.description,
+        deadline: deadline ? new Date(deadline) : null
       })
     } else disputes.push(d)
   }
 
-  return parseDisputes(disputes, deadline, arbitratorData.session)
+  return disputes
 }
 
 /**
@@ -127,8 +122,7 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   const account = yield select(walletSelectors.getAccount)
 
   yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
-
-  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
+  return yield call(fetchDispute, { payload: { disputeID } })
 }
 
 /**
@@ -140,7 +134,7 @@ function* repartitionTokens({ payload: { disputeID } }) {
 
   yield call(kleros.arbitrator.repartitionJurorTokens, disputeID, account)
 
-  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
+  return yield call(fetchDispute, { payload: { disputeID } })
 }
 
 /**
@@ -152,7 +146,7 @@ function* executeRuling({ payload: { disputeID } }) {
 
   yield call(kleros.arbitrator.executeRuling, disputeID, account)
 
-  return yield call(kleros.disputes.getDataForDispute, disputeID, account)
+  return yield call(fetchDispute, { payload: { disputeID } })
 }
 
 /**
