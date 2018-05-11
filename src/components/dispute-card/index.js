@@ -49,9 +49,11 @@ DisputeCard.propTypes = {
 }
 
 DisputeCard.defaultProps = {
+  // State
+  disputeID: null,
+
   // Modifiers
-  className: '',
-  disputeID: undefined
+  className: ''
 }
 
 export default DisputeCard

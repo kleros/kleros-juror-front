@@ -48,11 +48,12 @@ const parseDispute = d => {
     }))
   ]
   events = events.sort((a, b) => (a.data <= b.date || a.data !== null ? -1 : 1))
+
   return {
     ...d,
-    appealCreatedAt: d.appealCreatedAt.map(timestamp => new Date(timestamp)),
-    appealDeadlines: d.appealDeadlines.map(timestamp => new Date(timestamp)),
-    appealRuledAt: d.appealRuledAt.map(timestamp => new Date(timestamp)),
+    appealCreatedAt: d.appealCreatedAt.map(Date),
+    appealDeadlines: d.appealDeadlines.map(Date),
+    appealRuledAt: d.appealRuledAt.map(Date),
     latestAppealForJuror,
     events
   }
