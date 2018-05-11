@@ -2337,13 +2337,7 @@ exports[`Storyshots Dispute Card appealable 1`] = `
               </small>
             </h6>
             <h5>
-              <a
-                href="/disputes/undefined"
-                onClick={[Function]}
-              >
-                Unknown Website Owner Claims Services Were Not Delivered
-                
-              </a>
+              Unknown Website Owner Claims Services Were Not Delivered
             </h5>
           </div>
           <div
@@ -2658,13 +2652,7 @@ exports[`Storyshots Dispute Card resolved 1`] = `
               </small>
             </h6>
             <h5>
-              <a
-                href="/disputes/undefined"
-                onClick={[Function]}
-              >
-                Unknown Website Owner Claims Services Were Not Delivered
-                
-              </a>
+              Unknown Website Owner Claims Services Were Not Delivered
             </h5>
           </div>
           <div
@@ -2979,13 +2967,7 @@ exports[`Storyshots Dispute Card waiting 1`] = `
               </small>
             </h6>
             <h5>
-              <a
-                href="/disputes/undefined"
-                onClick={[Function]}
-              >
-                Unknown Website Owner Claims Services Were Not Delivered
-                
-              </a>
+              Unknown Website Owner Claims Services Were Not Delivered
             </h5>
           </div>
           <div

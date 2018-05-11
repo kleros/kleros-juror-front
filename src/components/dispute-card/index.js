@@ -25,10 +25,13 @@ const DisputeCard = ({
       </small>
     </h6>
     <h5>
-      <Link to={`/disputes/${disputeID}`}>
-        {title}
-        {disputeID ? ` #${disputeID}` : ''}
-      </Link>
+      {disputeID ? (
+        <Link to={`/disputes/${disputeID}`}>
+          {title} {disputeID ? ` #${disputeID}` : ''}
+        </Link>
+      ) : (
+        title
+      )}
     </h5>
   </div>
 )
@@ -37,7 +40,7 @@ DisputeCard.propTypes = {
   // State
   status: PropTypes.number.isRequired,
   subcourt: PropTypes.string.isRequired,
-  disputeID: PropTypes.string.isRequired,
+  disputeID: PropTypes.string,
   date: PropTypes.instanceOf(Date).isRequired,
   title: PropTypes.string.isRequired,
 
@@ -46,6 +49,9 @@ DisputeCard.propTypes = {
 }
 
 DisputeCard.defaultProps = {
+  // State
+  disputeID: null,
+
   // Modifiers
   className: ''
 }
