@@ -51,9 +51,9 @@ const parseDispute = d => {
 
   return {
     ...d,
-    appealCreatedAt: d.appealCreatedAt.map(timestamp => new Date(timestamp)),
-    appealDeadlines: d.appealDeadlines.map(timestamp => new Date(timestamp)),
-    appealRuledAt: d.appealRuledAt.map(timestamp => new Date(timestamp)),
+    appealCreatedAt: d.appealCreatedAt.map(seconds => new Date(seconds)),
+    appealDeadlines: d.appealDeadlines.map(seconds => new Date(seconds)),
+    appealRuledAt: d.appealRuledAt.map(seconds => new Date(seconds)),
     latestAppealForJuror,
     events
   }
