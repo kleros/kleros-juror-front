@@ -51,9 +51,9 @@ const parseDispute = d => {
 
   return {
     ...d,
-    appealCreatedAt: d.appealCreatedAt.map(seconds => new Date(seconds)),
-    appealDeadlines: d.appealDeadlines.map(seconds => new Date(seconds)),
-    appealRuledAt: d.appealRuledAt.map(seconds => new Date(seconds)),
+    appealCreatedAt: d.appealJuror.map(appealJurorData => new Date(appealJurorData.createdAt)),
+    appealDeadlines: d.appealRulings.map(appealRulingData => new Date(appealRulingData.deadline)),
+    appealRuledAt: d.appealRulings.map(appealRulingData => new Date(appealRulingData.ruledAt)),
     latestAppealForJuror,
     events
   }
@@ -83,12 +83,18 @@ function* fetchDisputes() {
         kleros.arbitrable.setContractInstance,
         d.arbitrableContractAddress
       )
-      const [arbitrableData, disputeStoreData] = yield all([
+
+      const [arbitrableData, disputeDeadlines] = yield all([
         call(kleros.arbitrable.getDataFromStore),
-        call(kleros.disputes.getDisputeFromStore, d.disputeId)
+        call(
+          kleros.disputes.getDisputeDeadline,
+          d.disputeId,
+          yield select(walletSelectors.getAccount),
+          d.numberOfAppeals
+        )
       ])
 
-      const deadline = disputeStoreData.appealDeadlines[d.numberOfAppeals]
+      const deadline = disputeDeadlines[d.numberOfAppeals]
 
       disputes.push({
         ...d,
