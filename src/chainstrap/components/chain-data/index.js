@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { connect } from '../chain-view/bootstrap/configure-store'
-import * as tooltipActions from '../actions/tooltip'
+import { connect } from '../../chain-view/bootstrap/configure-store'
+import * as tooltipActions from '../../actions/tooltip'
 
 class ChainData extends PureComponent {
   static propTypes = {

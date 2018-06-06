@@ -1,0 +1,14 @@
+/* @define ChainHash */
+.ChainHash {
+  overflow-wrap: break-word;
+
+  &-link {
+    margin-left: 4px;
+    position: relative;
+
+    &-image {
+      height: 100%;
+      position: absolute;
+    }
+  }
+}

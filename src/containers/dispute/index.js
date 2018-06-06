@@ -40,7 +40,12 @@ class Dispute extends PureComponent {
   }
 
   componentDidMount() {
-    const { match: { params: { disputeID } }, fetchDispute } = this.props
+    const {
+      match: {
+        params: { disputeID }
+      },
+      fetchDispute
+    } = this.props
     fetchDispute(Number(disputeID))
   }
 
@@ -277,9 +282,12 @@ class Dispute extends PureComponent {
   }
 }
 
-export default connect(state => ({ dispute: state.dispute.dispute }), {
-  fetchDispute: disputeActions.fetchDispute,
-  voteOnDispute: disputeActions.voteOnDispute,
-  repartitionTokens: disputeActions.repartitionTokens,
-  executeRuling: disputeActions.executeRuling
-})(Dispute)
+export default connect(
+  state => ({ dispute: state.dispute.dispute }),
+  {
+    fetchDispute: disputeActions.fetchDispute,
+    voteOnDispute: disputeActions.voteOnDispute,
+    repartitionTokens: disputeActions.repartitionTokens,
+    executeRuling: disputeActions.executeRuling
+  }
+)(Dispute)

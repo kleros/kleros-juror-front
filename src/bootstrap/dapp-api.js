@@ -13,12 +13,42 @@ else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth.HttpProvider(ETHEREUM_PROVIDER)
 
+const network = eth
+  .net_version()
+  .then(networkID => {
+    switch (networkID) {
+      case '1':
+        return 'main'
+      case '3':
+        return 'ropsten'
+      case '4':
+        return 'rinkeby'
+      case '42':
+        return 'kovan'
+      default:
+        return null
+    }
+  })
+  .catch(() => null)
+
 const kleros = new Kleros(
   eth.currentProvider,
   STORE_PROVIDER,
   ARBITRATOR_ADDRESS
 )
 
-setTimeout(() => console.log('Kleros: ', kleros, 'Web3: ', window.web3), 1000)
+const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
+const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/
+const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
 
-export { eth, kleros, ARBITRATOR_ADDRESS }
+export {
+  eth,
+  network,
+  kleros,
+  ARBITRATOR_ADDRESS,
+  ETHAddressRegExpCaptureGroup,
+  ETHAddressRegExp,
+  strictETHAddressRegExp
+}
+
+setTimeout(() => console.log('Kleros: ', kleros, 'Web3: ', window.web3), 1000)

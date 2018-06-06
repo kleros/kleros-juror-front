@@ -22,7 +22,10 @@ class DataProvenance extends PureComponent {
   }
 
   handleToggleVisibilityClick = ({
-    currentTarget: { id, dataset: { value } }
+    currentTarget: {
+      id,
+      dataset: { value }
+    }
   }) => {
     const { setContractVisibility } = this.props
     setContractVisibility(id, value !== 'true', true)

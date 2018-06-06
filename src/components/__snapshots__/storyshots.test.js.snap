@@ -596,12 +596,6 @@ exports[`Storyshots Anchored List default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -633,6 +627,11 @@ exports[`Storyshots Anchored List default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -939,12 +938,6 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -976,6 +969,11 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -1282,12 +1280,6 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1319,6 +1311,11 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -1586,12 +1583,6 @@ exports[`Storyshots Button disabled 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1623,6 +1614,11 @@ exports[`Storyshots Button disabled 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -1890,12 +1886,6 @@ exports[`Storyshots Button primary 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -1927,6 +1917,11 @@ exports[`Storyshots Button primary 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -2194,12 +2189,6 @@ exports[`Storyshots Button with lots of text 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2231,6 +2220,11 @@ exports[`Storyshots Button with lots of text 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -2509,12 +2503,6 @@ exports[`Storyshots Dispute Card appealable 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2546,6 +2534,11 @@ exports[`Storyshots Dispute Card appealable 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -2824,12 +2817,6 @@ exports[`Storyshots Dispute Card resolved 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -2861,6 +2848,11 @@ exports[`Storyshots Dispute Card resolved 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -3139,12 +3131,6 @@ exports[`Storyshots Dispute Card waiting 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3176,6 +3162,11 @@ exports[`Storyshots Dispute Card waiting 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -3440,12 +3431,6 @@ exports[`Storyshots Form header 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3477,6 +3462,11 @@ exports[`Storyshots Form header 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -3743,12 +3733,6 @@ exports[`Storyshots Form info 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -3780,6 +3764,11 @@ exports[`Storyshots Form info 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -4040,12 +4029,6 @@ exports[`Storyshots Icosahedron default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4077,6 +4060,11 @@ exports[`Storyshots Icosahedron default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -4337,12 +4325,6 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4374,6 +4356,11 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -4716,12 +4703,6 @@ exports[`Storyshots Label Value Group default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -4753,6 +4734,11 @@ exports[`Storyshots Label Value Group default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -5030,12 +5016,6 @@ exports[`Storyshots Loading Bar default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5067,6 +5047,11 @@ exports[`Storyshots Loading Bar default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -5179,7 +5164,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                 className="NavBar-tabs"
               >
                 <a
-                  aria-current="true"
+                  aria-current="page"
                   className="NavBar-tabs-tab is-active"
                   href="/"
                   onClick={[Function]}
@@ -5188,7 +5173,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Home
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/disputes"
                   onClick={[Function]}
@@ -5197,7 +5182,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Disputes
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/testing-panel"
                   onClick={[Function]}
@@ -5206,7 +5191,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Testing Panel
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/1"
                   onClick={[Function]}
@@ -5215,7 +5200,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Extra
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/2"
                   onClick={[Function]}
@@ -5224,7 +5209,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Extra
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/3"
                   onClick={[Function]}
@@ -5233,7 +5218,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Extra
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/4"
                   onClick={[Function]}
@@ -5242,7 +5227,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Extra
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/5"
                   onClick={[Function]}
@@ -5251,7 +5236,7 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                   Extra
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/6"
                   onClick={[Function]}
@@ -5442,12 +5427,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5479,6 +5458,11 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -5591,7 +5575,7 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                 className="NavBar-tabs"
               >
                 <a
-                  aria-current="true"
+                  aria-current="page"
                   className="NavBar-tabs-tab is-active"
                   href="/"
                   onClick={[Function]}
@@ -5600,7 +5584,7 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                   Home
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/disputes"
                   onClick={[Function]}
@@ -5609,7 +5593,7 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                   Disputes
                 </a>
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="NavBar-tabs-tab"
                   href="/testing-panel"
                   onClick={[Function]}
@@ -5800,12 +5784,6 @@ exports[`Storyshots Nav Bar with routes 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -5837,6 +5815,11 @@ exports[`Storyshots Nav Bar with routes 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -6111,12 +6094,6 @@ exports[`Storyshots Notification Card default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6148,6 +6125,11 @@ exports[`Storyshots Notification Card default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -6422,12 +6404,6 @@ exports[`Storyshots Notification Card with lots of text 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6459,6 +6435,11 @@ exports[`Storyshots Notification Card with lots of text 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -6725,12 +6706,6 @@ exports[`Storyshots Page Not Found default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -6762,6 +6737,11 @@ exports[`Storyshots Page Not Found default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -7038,12 +7018,6 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7075,6 +7049,11 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -7351,12 +7330,6 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7388,6 +7361,11 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -7650,12 +7628,6 @@ exports[`Storyshots Status Hint appealable 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7687,6 +7659,11 @@ exports[`Storyshots Status Hint appealable 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -7949,12 +7926,6 @@ exports[`Storyshots Status Hint resolved 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -7986,6 +7957,11 @@ exports[`Storyshots Status Hint resolved 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -8248,12 +8224,6 @@ exports[`Storyshots Status Hint waiting 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -8285,6 +8255,11 @@ exports[`Storyshots Status Hint waiting 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -9093,12 +9068,6 @@ exports[`Storyshots Table default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9130,6 +9099,11 @@ exports[`Storyshots Table default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -9402,12 +9376,6 @@ exports[`Storyshots Text Input default 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9439,6 +9407,11 @@ exports[`Storyshots Text Input default 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -9716,12 +9689,6 @@ exports[`Storyshots Text Input error 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -9753,6 +9720,11 @@ exports[`Storyshots Text Input error 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -10025,12 +9997,6 @@ exports[`Storyshots Text Input touched 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10062,6 +10028,11 @@ exports[`Storyshots Text Input touched 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -10334,12 +10305,6 @@ exports[`Storyshots Text Input valid 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10371,6 +10336,11 @@ exports[`Storyshots Text Input valid 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -10638,12 +10608,6 @@ exports[`Storyshots Toast confirm 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10675,6 +10639,11 @@ exports[`Storyshots Toast confirm 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -10942,12 +10911,6 @@ exports[`Storyshots Toast error 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -10979,6 +10942,11 @@ exports[`Storyshots Toast error 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -11246,12 +11214,6 @@ exports[`Storyshots Toast info 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -11283,6 +11245,11 @@ exports[`Storyshots Toast info 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -11550,12 +11517,6 @@ exports[`Storyshots Toast message 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -11587,6 +11548,11 @@ exports[`Storyshots Toast message 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -11854,12 +11820,6 @@ exports[`Storyshots Toast success 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -11891,6 +11851,11 @@ exports[`Storyshots Toast success 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -12158,12 +12123,6 @@ exports[`Storyshots Toast warning 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -12195,6 +12154,11 @@ exports[`Storyshots Toast warning 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -12474,12 +12438,6 @@ exports[`Storyshots Typography headings 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -12511,6 +12469,11 @@ exports[`Storyshots Typography headings 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;
@@ -12781,12 +12744,6 @@ exports[`Storyshots Typography paragraphs 1`] = `
     </div>
   </div>
   <div>
-    <div
-      className="__react_component_tooltip place-top type-dark "
-      data-id="tooltip"
-    >
-      
-    </div>
     <span
       aria-live="assertive"
       className="redux-toastr"
@@ -12818,6 +12775,11 @@ exports[`Storyshots Typography paragraphs 1`] = `
         />
       </span>
     </span>
+    <div
+      className="__react_component_tooltip place-top type-dark "
+      data-id="tooltip"
+      id={undefined}
+    />
   </div>
 </div>
 `;

@@ -5,7 +5,7 @@ import * as disputeActions from '../actions/dispute'
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros } from '../bootstrap/dapp-api'
-import { fetchSaga, updateSaga } from '../utils/saga'
+import { lessduxSaga } from '../utils/saga'
 import { action } from '../utils/action'
 import * as disputeConstants from '../constants/dispute'
 import * as chainViewConstants from '../constants/chain-view'
@@ -77,7 +77,7 @@ function* fetchDisputes() {
   )
 
   const disputes = []
-  for (const d of _disputes) {
+  for (const d of _disputes)
     if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
       yield call(
         kleros.arbitrable.setContractInstance,
@@ -96,7 +96,6 @@ function* fetchDisputes() {
         deadline: deadline ? new Date(deadline) : null
       })
     } else disputes.push(d)
-  }
 
   return disputes
 }
@@ -157,7 +156,8 @@ export default function* disputeSaga() {
   // Disputes
   yield takeLatest(
     disputeActions.disputes.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     disputeActions.disputes,
     fetchDisputes
   )
@@ -165,25 +165,29 @@ export default function* disputeSaga() {
   // Dispute
   yield takeLatest(
     disputeActions.dispute.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     disputeActions.dispute,
     fetchDispute
   )
   yield takeLatest(
     disputeActions.dispute.VOTE_ON,
-    updateSaga,
+    lessduxSaga,
+    'update',
     disputeActions.dispute,
     voteOnDispute
   )
   yield takeLatest(
     disputeActions.dispute.REPARTITION_TOKENS,
-    updateSaga,
+    lessduxSaga,
+    'update',
     disputeActions.dispute,
     repartitionTokens
   )
   yield takeLatest(
     disputeActions.dispute.EXECUTE_RULING,
-    updateSaga,
+    lessduxSaga,
+    'update',
     disputeActions.dispute,
     executeRuling
   )
