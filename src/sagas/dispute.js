@@ -52,13 +52,16 @@ const parseDispute = d => {
   return {
     ...d,
     appealCreatedAt: d.appealJuror.map(
-      appealJurorData => new Date(appealJurorData.createdAt)
+      appealJurorData =>
+        appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
     ),
     appealDeadlines: d.appealRulings.map(
-      appealRulingData => new Date(appealRulingData.deadline)
+      appealRulingData =>
+        appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
     ),
     appealRuledAt: d.appealRulings.map(
-      appealRulingData => new Date(appealRulingData.ruledAt)
+      appealRulingData =>
+        appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
     ),
     latestAppealForJuror,
     events
@@ -70,11 +73,10 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
+  const account = yield select(walletSelectors.getAccount)
+
   const [_disputes, arbitratorData] = yield all([
-    call(
-      kleros.arbitrator.getDisputesForUser,
-      yield select(walletSelectors.getAccount)
-    ),
+    call(kleros.arbitrator.getDisputesForUser, account),
     call(fetchArbitratorData)
   ])
 
@@ -95,7 +97,7 @@ function* fetchDisputes() {
         call(
           kleros.disputes.getDisputeDeadline,
           d.disputeId,
-          yield select(walletSelectors.getAccount),
+          account,
           d.numberOfAppeals
         )
       ])
