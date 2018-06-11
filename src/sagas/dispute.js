@@ -51,9 +51,18 @@ const parseDispute = d => {
 
   return {
     ...d,
-    appealCreatedAt: d.appealCreatedAt.map(seconds => new Date(seconds)),
-    appealDeadlines: d.appealDeadlines.map(seconds => new Date(seconds)),
-    appealRuledAt: d.appealRuledAt.map(seconds => new Date(seconds)),
+    appealCreatedAt: d.appealJuror.map(
+      appealJurorData =>
+        appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
+    ),
+    appealDeadlines: d.appealRulings.map(
+      appealRulingData =>
+        appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
+    ),
+    appealRuledAt: d.appealRulings.map(
+      appealRulingData =>
+        appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
+    ),
     latestAppealForJuror,
     events
   }
@@ -64,11 +73,10 @@ const parseDispute = d => {
  * @returns {object[]} - The disputes.
  */
 function* fetchDisputes() {
+  const account = yield select(walletSelectors.getAccount)
+
   const [_disputes, arbitratorData] = yield all([
-    call(
-      kleros.arbitrator.getDisputesForUser,
-      yield select(walletSelectors.getAccount)
-    ),
+    call(kleros.arbitrator.getDisputesForUser, account),
     call(fetchArbitratorData)
   ])
 
@@ -83,17 +91,21 @@ function* fetchDisputes() {
         kleros.arbitrable.setContractInstance,
         d.arbitrableContractAddress
       )
-      const [arbitrableData, disputeStoreData] = yield all([
-        call(kleros.arbitrable.getDataFromStore),
-        call(kleros.disputes.getDisputeFromStore, d.disputeId)
-      ])
 
-      const deadline = disputeStoreData.appealDeadlines[d.numberOfAppeals]
+      const [arbitrableData, disputeDeadline] = yield all([
+        call(kleros.arbitrable.getDataFromStore),
+        call(
+          kleros.disputes.getDisputeDeadline,
+          d.disputeId,
+          account,
+          d.numberOfAppeals
+        )
+      ])
 
       disputes.push({
         ...d,
-        description: arbitrableData.description,
-        deadline: deadline ? new Date(deadline) : null
+        description: arbitrableData ? arbitrableData.description : null,
+        deadline: disputeDeadline ? new Date(disputeDeadline) : null
       })
     } else disputes.push(d)
 
