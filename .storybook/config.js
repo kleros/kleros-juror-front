@@ -1,10 +1,10 @@
 import React from 'react'
 import { configure, addDecorator } from '@storybook/react'
 import { host } from 'storybook-host'
-import { combineReducers, applyMiddleware, createStore } from 'redux'
+import { combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
-import ReduxToastr, { reducer as toastr } from 'react-redux-toastr'
+import { reducer as toastr } from 'react-redux-toastr'
 
 import GlobalComponents from '../src/bootstrap/global-components'
 
@@ -19,13 +19,7 @@ addDecorator(
 )
 
 // Integration Wrapper
-const store = createStore(
-  combineReducers({ toastr }),
-  applyMiddleware(store => next => action => {
-    console.log(action)
-    return next(action)
-  })
-)
+const store = createStore(combineReducers({ toastr }))
 addDecorator(story => (
   <Provider store={store}>
     <div>

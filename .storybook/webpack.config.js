@@ -1,5 +1,3 @@
-const { join } = require('path')
-
 module.exports = {
   module: {
     rules: [
@@ -8,7 +6,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.png$/,
+        test: /\.(woff|woff2|png)$/,
         use: ['url-loader']
       }
     ]

@@ -15,7 +15,7 @@ import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
 import { kleros } from '../bootstrap/dapp-api'
 import { action } from '../utils/action'
-import { fetchSaga, updateSaga } from '../utils/saga'
+import { lessduxSaga } from '../utils/saga'
 
 /**
  * Listens for push notifications.
@@ -106,7 +106,8 @@ export default function* notificationSaga() {
   // Notifications
   yield takeLatest(
     notificationActions.notifications.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     notificationActions.notifications,
     fetchNotifications
   )
@@ -114,7 +115,8 @@ export default function* notificationSaga() {
   // Notification
   yield takeLatest(
     notificationActions.notification.DISMISS,
-    updateSaga,
+    lessduxSaga,
+    'update',
     notificationActions.notification,
     dismissNotification
   )
@@ -122,7 +124,8 @@ export default function* notificationSaga() {
   // Pending Actions
   yield takeLatest(
     notificationActions.pendingActions.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     notificationActions.pendingActions,
     fetchPendingActions
   )

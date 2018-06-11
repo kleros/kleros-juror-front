@@ -3,7 +3,7 @@ import { takeLatest, call, select } from 'redux-saga/effects'
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
 import { kleros } from '../bootstrap/dapp-api'
-import { fetchSaga, updateSaga } from '../utils/saga'
+import { lessduxSaga } from '../utils/saga'
 
 /**
  * Fetches the PNK balance for the current wallet.
@@ -66,19 +66,22 @@ export default function* arbitratorSaga() {
   // PNK Balance
   yield takeLatest(
     arbitratorActions.PNKBalance.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     arbitratorActions.PNKBalance,
     fetchPNKBalance
   )
   yield takeLatest(
     arbitratorActions.PNKBalance.BUY,
-    updateSaga,
+    lessduxSaga,
+    'update',
     arbitratorActions.PNKBalance,
     buyPNK
   )
   yield takeLatest(
     arbitratorActions.PNKBalance.ACTIVATE,
-    updateSaga,
+    lessduxSaga,
+    'update',
     arbitratorActions.PNKBalance,
     activatePNK
   )
@@ -86,13 +89,15 @@ export default function* arbitratorSaga() {
   // Arbitrator Data
   yield takeLatest(
     arbitratorActions.arbitratorData.FETCH,
-    fetchSaga,
+    lessduxSaga,
+    'fetch',
     arbitratorActions.arbitratorData,
     fetchArbitratorData
   )
   yield takeLatest(
     arbitratorActions.arbitratorData.PASS_PERIOD,
-    updateSaga,
+    lessduxSaga,
+    'update',
     arbitratorActions.arbitratorData,
     passPeriod
   )

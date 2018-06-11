@@ -8,7 +8,7 @@ import * as tooltipSelectors from '../../reducers/tooltip'
 import * as contractActions from '../../../actions/contract'
 import { eth } from '../../bootstrap/dapp-api'
 import RequiresMetaMask from '../../components/requires-meta-mask'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/images/logo.png'
 import DataProvenance from '../data-provenance'
 import Transactions from '../transactions'
 import ChainDataTooltip from '../../components/chain-data-tooltip'
@@ -162,12 +162,14 @@ class ChainView extends PureComponent {
           </div>
         </div>
         {children}
-        <ReactTooltip id="chainView" />
+        <ReactTooltip id="chainView" multiline html />
         <ReactTooltip
           id="chainViewChainData"
           class="ChainDataTooltip"
           effect="solid"
           delayHide={1000}
+          multiline
+          html
         >
           {chainData && (
             <ChainDataTooltip
@@ -181,6 +183,9 @@ class ChainView extends PureComponent {
   }
 }
 
-export default connect(state => ({ chainData: state.tooltip.chainData }), {
-  addContract: contractActions.addContract
-})(ChainView)
+export default connect(
+  state => ({ chainData: state.tooltip.chainData }),
+  {
+    addContract: contractActions.addContract
+  }
+)(ChainView)

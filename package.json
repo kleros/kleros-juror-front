@@ -2,7 +2,12 @@
   "name": "kleros-juror-front",
   "version": "0.2.0",
   "description": "The front end for Kleros jurors.",
-  "keywords": ["blockchain", "ethereum", "dapp", "frontend"],
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "dapp",
+    "frontend"
+  ],
   "repository": "https://github.com/kleros/kleros-juror-front",
   "author": "Kleros",
   "license": "MIT",
@@ -37,7 +42,9 @@
     ]
   },
   "commitlint": {
-    "extends": ["@commitlint/config-conventional"]
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
     "@dump247/storybook-state": "^1.2.1",
@@ -56,7 +63,7 @@
     "ganache-cli": "^6.1.0",
     "husky": "^0.14.3",
     "jest-enzyme": "^4.0.2",
-    "kleros-scripts": "^0.5.0",
+    "kleros-scripts": "^0.6.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
@@ -75,7 +82,7 @@
     "create-redux-form": "^0.1.2",
     "ethjs": "^0.3.3",
     "history": "^4.7.2",
-    "kleros-api": "^0.4.1",
+    "kleros-api": "^0.7.0",
     "lessdux": "^0.3.0",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
