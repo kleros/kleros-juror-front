@@ -97,7 +97,6 @@ function* fetchDisputes() {
         call(
           kleros.disputes.getDisputeDeadline,
           d.disputeId,
-          account,
           d.numberOfAppeals
         )
       ])
