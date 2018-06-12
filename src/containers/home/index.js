@@ -42,8 +42,6 @@ class Home extends PureComponent {
 
     // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
-    fetchNotifications: PropTypes.func.isRequired,
-    fetchPendingActions: PropTypes.func.isRequired,
     dismissNotification: PropTypes.func.isRequired,
     fetchPNKBalance: PropTypes.func.isRequired,
     activatePNK: PropTypes.func.isRequired,
@@ -55,16 +53,8 @@ class Home extends PureComponent {
   }
 
   componentDidMount() {
-    const {
-      fetchBalance,
-      fetchNotifications,
-      fetchPendingActions,
-      fetchPNKBalance,
-      fetchArbitratorData
-    } = this.props
+    const { fetchBalance, fetchPNKBalance, fetchArbitratorData } = this.props
     fetchBalance()
-    fetchNotifications()
-    fetchPendingActions()
     fetchPNKBalance()
     fetchArbitratorData()
   }
@@ -349,8 +339,6 @@ export default connect(
   }),
   {
     fetchBalance: walletActions.fetchBalance,
-    fetchNotifications: notificationActions.fetchNotifications,
-    fetchPendingActions: notificationActions.fetchPendingActions,
     dismissNotification: notificationActions.dismissNotification,
     fetchPNKBalance: arbitratorActions.fetchPNKBalance,
     activatePNK: arbitratorActions.activatePNK,

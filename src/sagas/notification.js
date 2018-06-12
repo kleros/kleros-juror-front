@@ -21,9 +21,16 @@ import { lessduxSaga } from '../utils/saga'
  * Listens for push notifications.
  */
 function* pushNotificationsListener() {
-  // Start after fetching all notifications
-  while (yield take(notificationActions.notifications.FETCH)) {
-    const account = yield select(walletSelectors.getAccount) // Current account
+  // Start after receiving accounts
+  yield take(walletActions.accounts.RECEIVE)
+  while (true) {
+    const account = yield select(walletSelectors.getAccount) // Cache current account
+
+    // Fetch full list
+    yield put(action(notificationActions.notifications.FETCH))
+    yield put(action(notificationActions.pendingActions.FETCH))
+    yield take(notificationActions.notifications.RECEIVE)
+    yield take(notificationActions.pendingActions.RECEIVE)
 
     // Set up event channel with subscriber
     const channel = eventChannel(emitter => {
