@@ -94,12 +94,7 @@ function* fetchDisputes() {
 
       const [arbitrableData, disputeDeadline] = yield all([
         call(kleros.arbitrable.getDataFromStore),
-        call(
-          kleros.disputes.getDisputeDeadline,
-          d.disputeId,
-          account,
-          d.numberOfAppeals
-        )
+        call(kleros.disputes.getDisputeDeadline, d.disputeId, d.numberOfAppeals)
       ])
 
       disputes.push({
