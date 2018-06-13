@@ -1,5 +1,7 @@
 [build.environment]
   REACT_APP_PROD_ARBITRATOR_ADDRESS = "0x7a5a9d8235a7bd3cd75adc8f1089c51da113b2cc"
+  REACT_APP_PROD_STORE_PROVIDER = "https://develop.kleros.in"
 
 [context.production.environment]
   REACT_APP_PROD_ARBITRATOR_ADDRESS = "0x6183694b0f853dff99cde9ad322973ac580b2127"
+  REACT_APP_PROD_STORE_PROVIDER = "https://kleros.in"
