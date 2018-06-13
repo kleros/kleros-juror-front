@@ -179,7 +179,7 @@ class Dispute extends PureComponent {
                         anchor: 'Vote',
                         element: (
                           <div key={today} className="Dispute-action">
-                            <Button id={0} onClick={this.handleVoteButtonClick}>
+                            <Button id={1} onClick={this.handleVoteButtonClick}>
                               <ChainData
                                 contractName={
                                   chainViewConstants.KLEROS_POC_NAME
@@ -196,7 +196,7 @@ class Dispute extends PureComponent {
                                 Vote for Party A
                               </ChainData>
                             </Button>
-                            <Button id={1} onClick={this.handleVoteButtonClick}>
+                            <Button id={2} onClick={this.handleVoteButtonClick}>
                               <ChainData
                                 contractName={
                                   chainViewConstants.KLEROS_POC_NAME
