@@ -66,7 +66,7 @@ const Details = ({
               parameters={chainViewConstants.KLEROS_POC_DISPUTES_PARAMS(
                 disputeID
               )}
-            >{`${arbitrationFee} PNK`}</ChainData>
+            >{`${arbitrationFee} ETH`}</ChainData>
           )
         }
       ]}
