@@ -15,13 +15,14 @@ const Details = ({
   partyBAddress,
   arbitrationFee,
   arbitrableContractAddress,
-  disputeID
+  disputeID,
+  appealNumber
 }) => (
   <div className="Details">
     <small>
       {dateToString(date, { withTime: false, numericMonth: false })}
     </small>
-    <h4>Dispute Details</h4>
+    <h4>{appealNumber ? `Appeal #${appealNumber}` : 'Dispute'} Details</h4>
     <LabelValueGroup
       items={[
         {
@@ -82,7 +83,13 @@ Details.propTypes = {
   partyBAddress: PropTypes.string.isRequired,
   arbitrationFee: PropTypes.number.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
-  disputeID: PropTypes.number.isRequired
+  disputeID: PropTypes.number.isRequired,
+  appealNumber: PropTypes.number
+}
+
+Details.defaultProps = {
+  // State
+  appealNumber: null
 }
 
 export default Details

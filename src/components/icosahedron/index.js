@@ -38,7 +38,7 @@ class Icosahedron extends PureComponent {
       2 * Math.PI * ((Date.now() % Icosahedron.spinTime) / Icosahedron.spinTime)
     return {
       xRotation: Math.cos(angleOfTime + Math.PI / 2) * Icosahedron.inclination,
-      yRotation: (-angleOfTime * Icosahedron.ySpinsPerSpin) / 2,
+      yRotation: -angleOfTime * Icosahedron.ySpinsPerSpin / 2,
       zRotation: Math.cos(angleOfTime) * Icosahedron.inclination
     }
   }

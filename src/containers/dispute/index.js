@@ -40,12 +40,7 @@ class Dispute extends PureComponent {
   }
 
   componentDidMount() {
-    const {
-      match: {
-        params: { disputeID }
-      },
-      fetchDispute
-    } = this.props
+    const { match: { params: { disputeID } }, fetchDispute } = this.props
     fetchDispute(Number(disputeID))
   }
 
@@ -134,6 +129,7 @@ class Dispute extends PureComponent {
                                 dispute.data.arbitrableContractAddress
                               }
                               disputeID={dispute.data.disputeId}
+                              appealNumber={e.appealNumber}
                             />
                           )
                         }
@@ -162,11 +158,12 @@ class Dispute extends PureComponent {
                             <Ruling
                               key={e.date}
                               date={e.date}
-                              votesForPartyA={e.voteCounter[0]}
-                              votesForPartyB={e.voteCounter[1]}
+                              votesForPartyA={e.voteCounter[1]}
+                              votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}
                               disputeID={dispute.data.disputeId}
                               appeals={dispute.data.numberOfAppeals}
+                              appealNumber={e.appealNumber}
                             />
                           )
                         }
@@ -282,12 +279,9 @@ class Dispute extends PureComponent {
   }
 }
 
-export default connect(
-  state => ({ dispute: state.dispute.dispute }),
-  {
-    fetchDispute: disputeActions.fetchDispute,
-    voteOnDispute: disputeActions.voteOnDispute,
-    repartitionTokens: disputeActions.repartitionTokens,
-    executeRuling: disputeActions.executeRuling
-  }
-)(Dispute)
+export default connect(state => ({ dispute: state.dispute.dispute }), {
+  fetchDispute: disputeActions.fetchDispute,
+  voteOnDispute: disputeActions.voteOnDispute,
+  repartitionTokens: disputeActions.repartitionTokens,
+  executeRuling: disputeActions.executeRuling
+})(Dispute)

@@ -34,20 +34,29 @@ const parseDispute = d => {
     ...d.appealJuror.slice(1).map((a, i) => ({
       ...a,
       type: disputeConstants.EVENT_TYPE_ENUM[0],
-      date: new Date(d.appealCreatedAt[i])
+      // appeal created at is null in the appeal phase of session it was raised. Use current date
+      date: a.createdAt ? new Date(a.createdAt) : new Date(),
+      appealNumber: i + 1
     })),
     ...d.evidence.map(e => ({
       ...e,
       type: disputeConstants.EVENT_TYPE_ENUM[1],
       date: new Date(e.submittedAt)
     })),
-    ...d.appealRulings.map(a => ({
+    ...d.appealRulings.map((a, i) => ({
       ...a,
+      appealNumber: i,
       type: disputeConstants.EVENT_TYPE_ENUM[2],
       date: a.ruledAt ? new Date(a.ruledAt) : null
     }))
   ]
-  events = events.sort((a, b) => (a.data <= b.date || a.data !== null ? -1 : 1))
+  events = events.sort(
+    (a, b) =>
+      // Put events with no date at the end. These are in progress
+      (a.date === null) - (b.date === null) ||
+      +(a.date > b.date) ||
+      -(a.date < b.date)
+  )
 
   return {
     ...d,
