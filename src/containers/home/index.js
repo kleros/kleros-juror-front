@@ -74,7 +74,7 @@ class Home extends PureComponent {
   }
 
   handleActivateButtonClick = () => {
-    toastr.message('Activate PNK', {
+    toastr.message('Deposit PNK', {
       id: 'activatePNKToastr',
       component: () => {
         const { activatePNKFormIsInvalid } = this.props
@@ -85,7 +85,7 @@ class Home extends PureComponent {
               onClick={this.handleActivatePNKFormButtonClick}
               disabled={activatePNKFormIsInvalid}
             >
-              Activate
+              Deposit
             </Button>
           </div>
         )
@@ -181,7 +181,7 @@ class Home extends PureComponent {
                     />
                     <div className="Home-stats-block-content-header">
                       <h5>
-                        Activated<RenderIf
+                        Deposited<RenderIf
                           resource={arbitratorData}
                           loading={null}
                           done={
@@ -285,6 +285,7 @@ class Home extends PureComponent {
                 <div key={n._id} className="Home-cardList-card">
                   <NotificationCard
                     id={n._id}
+                    disputeID={n.data.disputeId}
                     message={n.message}
                     to={`/disputes/${n.data.disputeId}`}
                     onDismissClick={this.handleNotificationCardDismissClick}

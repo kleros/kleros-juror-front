@@ -15,7 +15,8 @@ const Ruling = ({
   votesForPartyB,
   netPNK,
   disputeID,
-  appeals
+  appeals,
+  appealNumber
 }) => {
   const inProgress = date === null
   const won = netPNK >= 0
@@ -26,7 +27,7 @@ const Ruling = ({
           ? 'In Progress'
           : dateToString(date, { withTime: false, numericMonth: false })}
       </small>
-      <h4>Ruling</h4>
+      <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       {!inProgress && (
         <div className="Ruling-outcome">
           <div
@@ -35,7 +36,11 @@ const Ruling = ({
             }`}
           >
             <h4 className="Ruling-outcome-netPNK-label">
-              Party {votesForPartyA > votesForPartyB ? 'A' : 'B'} Wins
+              {votesForPartyA === 0 && votesForPartyB === 0
+                ? 'No Ruling'
+                : votesForPartyA > votesForPartyB
+                  ? 'Party A Wins'
+                  : 'Party B Wins'}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">
@@ -113,7 +118,8 @@ Ruling.propTypes = {
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
   disputeID: PropTypes.number.isRequired,
-  appeals: PropTypes.number.isRequired
+  appeals: PropTypes.number.isRequired,
+  appealNumber: PropTypes.number.isRequired
 }
 
 Ruling.defaultProps = {
