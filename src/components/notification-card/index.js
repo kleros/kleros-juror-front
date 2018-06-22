@@ -6,16 +6,15 @@ import './notification-card.css'
 
 const NotificationCard = ({
   id,
+  disputeID,
   message,
   to,
-  disputeId,
   onClick,
   onDismissClick
 }) => {
   const content = (
     <div className="NotificationCard-message" onClick={onClick}>
-      <span>Dispute {disputeId}: </span>
-      <span>{message}</span>
+      Dispute {disputeID}: {message}
     </div>
   )
   return (
@@ -36,7 +35,7 @@ NotificationCard.propTypes = {
   // State
   id: PropTypes.string,
   message: PropTypes.string.isRequired,
-  disputeId: PropTypes.number.isRequired,
+  disputeID: PropTypes.number.isRequired,
   to: PropTypes.string,
 
   // Handlers

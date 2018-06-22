@@ -286,7 +286,7 @@ class Home extends PureComponent {
                   <NotificationCard
                     id={n._id}
                     message={n.message}
-                    disputeId={n.data.disputeId}
+                    disputeID={n.data.disputeId}
                     to={`/disputes/${n.data.disputeId}`}
                     onDismissClick={this.handleNotificationCardDismissClick}
                   />

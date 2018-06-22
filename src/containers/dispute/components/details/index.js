@@ -84,12 +84,7 @@ Details.propTypes = {
   arbitrationFee: PropTypes.number.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number
-}
-
-Details.defaultProps = {
-  // State
-  appealNumber: null
+  appealNumber: PropTypes.number.isRequired
 }
 
 export default Details

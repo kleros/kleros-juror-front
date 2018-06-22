@@ -119,13 +119,12 @@ Ruling.propTypes = {
   netPNK: PropTypes.number.isRequired,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number
+  appealNumber: PropTypes.number.isRequired
 }
 
 Ruling.defaultProps = {
   // State
-  date: null,
-  appealNumber: null
+  date: null
 }
 
 export default Ruling
