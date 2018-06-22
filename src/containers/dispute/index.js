@@ -134,6 +134,7 @@ class Dispute extends PureComponent {
                                 dispute.data.arbitrableContractAddress
                               }
                               disputeID={dispute.data.disputeId}
+                              appealNumber={e.appealNumber}
                             />
                           )
                         }
@@ -162,11 +163,12 @@ class Dispute extends PureComponent {
                             <Ruling
                               key={e.date}
                               date={e.date}
-                              votesForPartyA={e.voteCounter[0]}
-                              votesForPartyB={e.voteCounter[1]}
+                              votesForPartyA={e.voteCounter[1]}
+                              votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}
                               disputeID={dispute.data.disputeId}
                               appeals={dispute.data.numberOfAppeals}
+                              appealNumber={e.appealNumber}
                             />
                           )
                         }

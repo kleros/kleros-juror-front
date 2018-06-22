@@ -4,10 +4,17 @@ import { Link } from 'react-router-dom'
 
 import './notification-card.css'
 
-const NotificationCard = ({ id, message, to, onClick, onDismissClick }) => {
+const NotificationCard = ({
+  id,
+  disputeID,
+  message,
+  to,
+  onClick,
+  onDismissClick
+}) => {
   const content = (
     <div className="NotificationCard-message" onClick={onClick}>
-      {message}
+      Dispute {disputeID}: {message}
     </div>
   )
   return (
@@ -27,6 +34,7 @@ const NotificationCard = ({ id, message, to, onClick, onDismissClick }) => {
 NotificationCard.propTypes = {
   // State
   id: PropTypes.string,
+  disputeID: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
   to: PropTypes.string,
 
