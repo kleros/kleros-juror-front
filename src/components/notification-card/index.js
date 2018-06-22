@@ -34,8 +34,8 @@ const NotificationCard = ({
 NotificationCard.propTypes = {
   // State
   id: PropTypes.string,
-  message: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
+  message: PropTypes.string.isRequired,
   to: PropTypes.string,
 
   // Handlers
