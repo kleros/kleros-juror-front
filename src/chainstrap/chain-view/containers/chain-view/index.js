@@ -183,6 +183,9 @@ class ChainView extends PureComponent {
   }
 }
 
-export default connect(state => ({ chainData: state.tooltip.chainData }), {
-  addContract: contractActions.addContract
-})(ChainView)
+export default connect(
+  state => ({ chainData: state.tooltip.chainData }),
+  {
+    addContract: contractActions.addContract
+  }
+)(ChainView)

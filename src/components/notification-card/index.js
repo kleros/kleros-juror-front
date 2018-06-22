@@ -36,7 +36,7 @@ NotificationCard.propTypes = {
   // State
   id: PropTypes.string,
   message: PropTypes.string.isRequired,
-  disputeId: PropTypes.number,
+  disputeId: PropTypes.number.isRequired,
   to: PropTypes.string,
 
   // Handlers
@@ -48,7 +48,6 @@ NotificationCard.defaultProps = {
   // State
   id: '',
   to: null,
-  disputeId: -1,
 
   // Handlers
   onClick: null,

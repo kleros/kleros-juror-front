@@ -5915,7 +5915,13 @@ exports[`Storyshots Notification Card default 1`] = `
               className="NotificationCard-message"
               onClick={[Function]}
             >
-              This is a notification card.
+              <span>
+                Dispute 
+                : 
+              </span>
+              <span>
+                This is a notification card.
+              </span>
             </div>
             <div
               className="NotificationCard-dismiss"
@@ -6225,7 +6231,13 @@ exports[`Storyshots Notification Card with lots of text 1`] = `
               className="NotificationCard-message"
               onClick={[Function]}
             >
-              This is a notification card. This is a notification card. This is a notification card. This is a notification card. This is a notification card.
+              <span>
+                Dispute 
+                : 
+              </span>
+              <span>
+                This is a notification card. This is a notification card. This is a notification card. This is a notification card. This is a notification card.
+              </span>
             </div>
             <div
               className="NotificationCard-dismiss"
