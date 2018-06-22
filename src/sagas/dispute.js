@@ -51,11 +51,15 @@ const parseDispute = d => {
     }))
   ]
   events = events.sort(
-    (a, b) =>
+    (a, b) => {
       // Put events with no date at the end. These are in progress
-      (a.date === null) - (b.date === null) ||
-      +(a.date > b.date) ||
-      -(a.date < b.date)
+      const dateAisNull = a.date === null
+      const dateBisNull = b.date === null
+      if (dateAisNull && dateBisNull) return 0
+      if (dateAisNull) return 1
+      if (dateBisNull) return -1
+      return a.date - b.date
+    }
   )
 
   return {
