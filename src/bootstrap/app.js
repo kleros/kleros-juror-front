@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
 import { Provider, connect } from 'react-redux'
@@ -17,7 +17,7 @@ import TestingPanel from '../containers/testing-panel'
 import PageNotFound from '../components/page-not-found'
 import * as chainViewConstants from '../constants/chain-view'
 
-import { ARBITRATOR_ADDRESS } from './dapp-api'
+import { arbitratorAddress, _initializeKleros } from './dapp-api'
 import GlobalComponents from './global-components'
 
 import './app.css'
@@ -38,40 +38,66 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
   )
 )
 
-const App = ({ store, history, testElement }) => (
-  <Provider store={store}>
-    <ChainView
-      onReceiveAccounts={handleReceiveAccounts}
-      initialContracts={[
-        {
-          name: chainViewConstants.KLEROS_POC_NAME,
-          address: ARBITRATOR_ADDRESS,
-          color: chainViewConstants.KLEROS_POC_COLOR
-        }
-      ]}
-    >
-      <ConnectedRouter history={history}>
-        <div id="router-root">
-          <Helmet>
-            <title>Kleros Dapp</title>
-          </Helmet>
-          <Route exact path="*" component={ConnectedNavBar} />
-          <div id="scroll-root">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/disputes" component={Disputes} />
-              <Route exact path="/disputes/:disputeID" component={Dispute} />
-              <Route exact path="/testing-panel" component={TestingPanel} />
-              <Route component={PageNotFound} />
-            </Switch>
-          </div>
-          {testElement}
-          <Route exact path="*" component={GlobalComponents} />
-        </div>
-      </ConnectedRouter>
-    </ChainView>
-  </Provider>
-)
+class App extends PureComponent {
+  state = {
+    loading: true
+  }
+
+  async componentDidMount() {
+    // wait for kleros and arbitrator address to be initialized
+    await _initializeKleros()
+
+    this.setState({
+      loading: false
+    })
+  }
+
+  render() {
+    const { store, history, testElement } = this.props
+    const { loading } = this.state
+
+    if (loading) return false
+
+    return (
+      <Provider store={store}>
+        <ChainView
+          onReceiveAccounts={handleReceiveAccounts}
+          initialContracts={[
+            {
+              name: chainViewConstants.KLEROS_POC_NAME,
+              address: arbitratorAddress,
+              color: chainViewConstants.KLEROS_POC_COLOR
+            }
+          ]}
+        >
+          <ConnectedRouter history={history}>
+            <div id="router-root">
+              <Helmet>
+                <title>Kleros Dapp</title>
+              </Helmet>
+              <Route exact path="*" component={ConnectedNavBar} />
+              <div id="scroll-root">
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/disputes" component={Disputes} />
+                  <Route
+                    exact
+                    path="/disputes/:disputeID"
+                    component={Dispute}
+                  />
+                  <Route exact path="/testing-panel" component={TestingPanel} />
+                  <Route component={PageNotFound} />
+                </Switch>
+              </div>
+              {testElement}
+              <Route exact path="*" component={GlobalComponents} />
+            </div>
+          </ConnectedRouter>
+        </ChainView>
+      </Provider>
+    )
+  }
+}
 
 App.propTypes = {
   // State

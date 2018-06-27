@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { ChainData } from '../../../../chainstrap'
-import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
+import { arbitratorAddress } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
 import * as chainViewConstants from '../../../../constants/chain-view'
@@ -58,7 +58,7 @@ const Ruling = ({
             value: (
               <ChainData
                 contractName={chainViewConstants.KLEROS_POC_NAME}
-                contractAddress={ARBITRATOR_ADDRESS}
+                contractAddress={arbitratorAddress}
                 functionSignature={
                   chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
                 }
@@ -77,7 +77,7 @@ const Ruling = ({
             value: (
               <ChainData
                 contractName={chainViewConstants.KLEROS_POC_NAME}
-                contractAddress={ARBITRATOR_ADDRESS}
+                contractAddress={arbitratorAddress}
                 functionSignature={
                   chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
                 }
