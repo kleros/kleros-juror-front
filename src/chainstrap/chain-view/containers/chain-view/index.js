@@ -7,7 +7,6 @@ import { connect } from '../../bootstrap/configure-store'
 import * as tooltipSelectors from '../../reducers/tooltip'
 import * as contractActions from '../../../actions/contract'
 import { eth } from '../../bootstrap/dapp-api'
-import RequiresMetaMask from '../../components/requires-meta-mask'
 import logo from '../../assets/images/logo.png'
 import DataProvenance from '../data-provenance'
 import Transactions from '../transactions'
@@ -40,9 +39,7 @@ class ChainView extends PureComponent {
         visibleTransactions: PropTypes.bool
       }).isRequired
     ),
-
-    // Callbacks
-    onReceiveAccounts: PropTypes.func
+    accounts: PropTypes.arrayOf(PropTypes.string)
   }
 
   static defaultProps = {
@@ -51,9 +48,7 @@ class ChainView extends PureComponent {
 
     // State
     initialContracts: null,
-
-    // Callbacks
-    onReceiveAccounts: null
+    accounts: []
   }
 
   state = {
@@ -64,10 +59,7 @@ class ChainView extends PureComponent {
   }
 
   async componentDidMount() {
-    const { addContract, initialContracts, onReceiveAccounts } = this.props
-
-    const accounts = await eth.accounts()
-    onReceiveAccounts && onReceiveAccounts(accounts)
+    const { addContract, initialContracts, accounts } = this.props
 
     accounts &&
       accounts.forEach((a, i) =>
@@ -101,13 +93,13 @@ class ChainView extends PureComponent {
     const { loading, needsUnlock, isOpen, toggledTabName } = this.state
 
     // Web3 not loaded
-    if (eth.accounts === undefined) return <RequiresMetaMask />
+    if (eth.accounts === undefined) return false
 
     // Loading accounts
     if (loading) return null
 
     // Web3 locked
-    if (needsUnlock) return <RequiresMetaMask needsUnlock />
+    if (needsUnlock) return false
 
     return (
       <div style={{ height: '100%', width: '100%' }}>
