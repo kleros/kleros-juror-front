@@ -21,7 +21,7 @@ const _initializeKleros = async () => {
 
   arbitratorAddress =
     process.env[
-      `REACT_APP_${ethConstants.NETWORK[networkID]}_${env}_ARBITRATOR_ADDRESS`
+      `REACT_APP_${env}_${ethConstants.NETWORK[networkID]}_ARBITRATOR_ADDRESS`
     ]
 
   kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, arbitratorAddress)
