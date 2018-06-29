@@ -24,6 +24,7 @@ class ChainView extends PureComponent {
 
     // State
     children: PropTypes.node.isRequired,
+    accounts: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     initialContracts: PropTypes.arrayOf(
       PropTypes.shape({
         // Meta Data
@@ -38,8 +39,7 @@ class ChainView extends PureComponent {
         // Transactions
         visibleTransactions: PropTypes.bool
       }).isRequired
-    ),
-    accounts: PropTypes.arrayOf(PropTypes.string)
+    )
   }
 
   static defaultProps = {
@@ -47,19 +47,16 @@ class ChainView extends PureComponent {
     chainData: null,
 
     // State
-    initialContracts: null,
-    accounts: []
+    initialContracts: null
   }
 
   state = {
-    loading: true,
-    needsUnlock: true,
     isOpen: false,
     toggledTabName: null
   }
 
-  async componentDidMount() {
-    const { addContract, initialContracts, accounts } = this.props
+  componentDidMount() {
+    const { addContract, accounts, initialContracts } = this.props
 
     accounts &&
       accounts.forEach((a, i) =>
@@ -69,10 +66,7 @@ class ChainView extends PureComponent {
           color: '#ff9900'
         })
       )
-
     initialContracts && initialContracts.forEach(c => addContract(c))
-
-    this.setState({ loading: false, needsUnlock: !accounts || !accounts[0] })
   }
 
   handleToggleClick = () =>
@@ -89,17 +83,11 @@ class ChainView extends PureComponent {
     this.setState({ isOpen: true, toggledTabName: 'Data Provenance' })
 
   render() {
-    const { chainData, children } = this.props
-    const { loading, needsUnlock, isOpen, toggledTabName } = this.state
+    const { chainData, children, accounts } = this.props
+    const { isOpen, toggledTabName } = this.state
 
-    // Web3 not loaded
-    if (eth.accounts === undefined) return false
-
-    // Loading accounts
-    if (loading) return null
-
-    // Web3 locked
-    if (needsUnlock) return false
+    if (eth.accounts === undefined) return 'Web3 not loaded.' // Web3 not loaded
+    if (!accounts || !accounts[0]) return 'Web3 wallet needs unlock.' // Web3 locked
 
     return (
       <div style={{ height: '100%', width: '100%' }}>

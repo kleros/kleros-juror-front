@@ -14,17 +14,19 @@ else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth.HttpProvider(ETHEREUM_PROVIDER)
 
-let arbitratorAddress
+let ARBITRATOR_ADDRESS
 let kleros
-const _initializeKleros = async () => {
+const initializeKleros = async () => {
   const networkID = await eth.net_version()
 
-  arbitratorAddress =
+  ARBITRATOR_ADDRESS =
     process.env[
-      `REACT_APP_${env}_${ethConstants.NETWORK[networkID]}_ARBITRATOR_ADDRESS`
+      `REACT_APP_${env}_${
+        ethConstants.NETWORK_MAP[networkID]
+      }_ARBITRATOR_ADDRESS`
     ]
 
-  kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, arbitratorAddress)
+  kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, ARBITRATOR_ADDRESS)
 }
 
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
@@ -33,13 +35,23 @@ const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
 
 export {
   eth,
+  ARBITRATOR_ADDRESS,
   kleros,
-  arbitratorAddress,
-  _initializeKleros,
+  initializeKleros,
   ETHAddressRegExpCaptureGroup,
   ETHAddressRegExp,
   strictETHAddressRegExp
 }
 
-setTimeout(() => console.log('Kleros: ', kleros, 'Web3: ', window.web3), 1000)
-setTimeout(() => console.log('Arbitrator Address: ', arbitratorAddress), 1000)
+setTimeout(
+  () =>
+    console.log(
+      'Arbitrator Address: ',
+      ARBITRATOR_ADDRESS,
+      'Kleros: ',
+      kleros,
+      'Web3: ',
+      window.web3
+    ),
+  1000
+)

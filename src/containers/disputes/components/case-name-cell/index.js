@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import { ChainData } from '../../../../chainstrap'
-import { arbitratorAddress } from '../../../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import Identicon from '../../../../components/identicon'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
@@ -20,7 +20,7 @@ const CaseNameCell = ({
         <small>
           <ChainData
             contractName={chainViewConstants.KLEROS_POC_NAME}
-            contractAddress={arbitratorAddress}
+            contractAddress={ARBITRATOR_ADDRESS}
             functionSignature={chainViewConstants.KLEROS_POC_DISPUTES_SIG}
             parameters={chainViewConstants.KLEROS_POC_DISPUTES_PARAMS(
               disputeId

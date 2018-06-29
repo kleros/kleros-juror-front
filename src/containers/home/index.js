@@ -5,7 +5,7 @@ import { toastr } from 'react-redux-toastr'
 import { RenderIf } from 'lessdux'
 
 import { ChainData, ChainHash } from '../../chainstrap'
-import { arbitratorAddress } from '../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS } from '../../bootstrap/dapp-api'
 import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as notificationSelectors from '../../reducers/notification'
@@ -133,7 +133,7 @@ class Home extends PureComponent {
                       <h6>
                         <ChainData
                           contractName={chainViewConstants.KLEROS_POC_NAME}
-                          contractAddress={arbitratorAddress}
+                          contractAddress={ARBITRATOR_ADDRESS}
                           functionSignature={
                             chainViewConstants.KLEROS_POC_JURORS_SIG
                           }
@@ -198,7 +198,7 @@ class Home extends PureComponent {
                                   contractName={
                                     chainViewConstants.KLEROS_POC_NAME
                                   }
-                                  contractAddress={arbitratorAddress}
+                                  contractAddress={ARBITRATOR_ADDRESS}
                                   functionSignature={
                                     chainViewConstants.KLEROS_POC_ACTIVATE_TOKENS_SIG
                                   }
@@ -217,7 +217,7 @@ class Home extends PureComponent {
                       <h6>
                         <ChainData
                           contractName={chainViewConstants.KLEROS_POC_NAME}
-                          contractAddress={arbitratorAddress}
+                          contractAddress={ARBITRATOR_ADDRESS}
                           functionSignature={
                             chainViewConstants.KLEROS_POC_JURORS_SIG
                           }
@@ -253,7 +253,7 @@ class Home extends PureComponent {
                       <h6>
                         <ChainData
                           contractName={chainViewConstants.KLEROS_POC_NAME}
-                          contractAddress={arbitratorAddress}
+                          contractAddress={ARBITRATOR_ADDRESS}
                           functionSignature={
                             chainViewConstants.KLEROS_POC_JURORS_SIG
                           }

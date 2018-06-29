@@ -2,15 +2,9 @@ import React from 'react'
 
 import './missing-arbitrator.css'
 
-const MissingArbitrator = () => (
+export default () => (
   <div className="MissingArbitrator">
-    <div className="MissingArbitrator-message">
-      <span>
-        Oh no! There is no arbitrator contract deployed on this network. Please
-        switch networks.
-      </span>
-    </div>
+    Oh no! There is no arbitrator contract deployed on this network. Please
+    switch networks.
   </div>
 )
-
-export default MissingArbitrator

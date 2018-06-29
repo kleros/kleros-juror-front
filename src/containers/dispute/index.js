@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
 
 import { ChainData } from '../../chainstrap'
-import { arbitratorAddress } from '../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS } from '../../bootstrap/dapp-api'
 import * as disputeSelectors from '../../reducers/dispute'
 import * as disputeActions from '../../actions/dispute'
 import { dateToString } from '../../utils/date'
@@ -186,7 +186,7 @@ class Dispute extends PureComponent {
                                 contractName={
                                   chainViewConstants.KLEROS_POC_NAME
                                 }
-                                contractAddress={arbitratorAddress}
+                                contractAddress={ARBITRATOR_ADDRESS}
                                 functionSignature={
                                   chainViewConstants.KLEROS_POC_VOTE_RULING_SIG
                                 }
@@ -203,7 +203,7 @@ class Dispute extends PureComponent {
                                 contractName={
                                   chainViewConstants.KLEROS_POC_NAME
                                 }
-                                contractAddress={arbitratorAddress}
+                                contractAddress={ARBITRATOR_ADDRESS}
                                 functionSignature={
                                   chainViewConstants.KLEROS_POC_VOTE_RULING_SIG
                                 }
@@ -231,7 +231,7 @@ class Dispute extends PureComponent {
                                   contractName={
                                     chainViewConstants.KLEROS_POC_NAME
                                   }
-                                  contractAddress={arbitratorAddress}
+                                  contractAddress={ARBITRATOR_ADDRESS}
                                   functionSignature={
                                     chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_SIG
                                   }
@@ -257,7 +257,7 @@ class Dispute extends PureComponent {
                                     contractName={
                                       chainViewConstants.KLEROS_POC_NAME
                                     }
-                                    contractAddress={arbitratorAddress}
+                                    contractAddress={ARBITRATOR_ADDRESS}
                                     functionSignature={
                                       chainViewConstants.KLEROS_POC_EXECUTE_RULING_SIG
                                     }

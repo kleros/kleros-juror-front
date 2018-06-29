@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
 
 import { ChainData } from '../../chainstrap'
-import { arbitratorAddress } from '../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS } from '../../bootstrap/dapp-api'
 import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
@@ -114,7 +114,7 @@ class TestingPanel extends PureComponent {
                                   contractName={
                                     chainViewConstants.KLEROS_POC_NAME
                                   }
-                                  contractAddress={arbitratorAddress}
+                                  contractAddress={ARBITRATOR_ADDRESS}
                                   functionSignature={
                                     chainViewConstants.KLEROS_POC_JURORS_SIG
                                   }
@@ -137,7 +137,7 @@ class TestingPanel extends PureComponent {
                         >
                           <ChainData
                             contractName={chainViewConstants.KLEROS_POC_NAME}
-                            contractAddress={arbitratorAddress}
+                            contractAddress={ARBITRATOR_ADDRESS}
                             functionSignature={
                               chainViewConstants.KLEROS_POC_BUY_PINAKION_SIG
                             }
@@ -175,7 +175,7 @@ class TestingPanel extends PureComponent {
                           <b>Current Period:</b>{' '}
                           <ChainData
                             contractName={chainViewConstants.KLEROS_POC_NAME}
-                            contractAddress={arbitratorAddress}
+                            contractAddress={ARBITRATOR_ADDRESS}
                             functionSignature={
                               chainViewConstants.KLEROS_POC_PERIOD_SIG
                             }
@@ -194,7 +194,7 @@ class TestingPanel extends PureComponent {
                           <b>Current Session:</b>{' '}
                           <ChainData
                             contractName={chainViewConstants.KLEROS_POC_NAME}
-                            contractAddress={arbitratorAddress}
+                            contractAddress={ARBITRATOR_ADDRESS}
                             functionSignature={
                               chainViewConstants.KLEROS_POC_SESSION_SIG
                             }
@@ -215,7 +215,7 @@ class TestingPanel extends PureComponent {
                   >
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
-                      contractAddress={arbitratorAddress}
+                      contractAddress={ARBITRATOR_ADDRESS}
                       functionSignature={
                         chainViewConstants.KLEROS_POC_PASS_PERIOD_SIG
                       }

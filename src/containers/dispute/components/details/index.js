@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { ChainData } from '../../../../chainstrap'
-import { arbitratorAddress } from '../../../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
 import * as chainViewConstants from '../../../../constants/chain-view'
@@ -62,7 +62,7 @@ const Details = ({
           value: (
             <ChainData
               contractName={chainViewConstants.KLEROS_POC_NAME}
-              contractAddress={arbitratorAddress}
+              contractAddress={ARBITRATOR_ADDRESS}
               functionSignature={chainViewConstants.KLEROS_POC_DISPUTES_SIG}
               parameters={chainViewConstants.KLEROS_POC_DISPUTES_PARAMS(
                 disputeID

@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 import ChainView from '../chainstrap'
 import * as walletSelectors from '../reducers/wallet'
 import * as walletActions from '../actions/wallet'
-import * as chainViewConstants from '../constants/chain-view'
-import RequiresMetaMaskPage from '../components/requires-meta-mask'
+import RequiresMetaMask from '../components/requires-meta-mask'
 import MissingArbitrator from '../components/missing-arbitrator'
+import * as chainViewConstants from '../constants/chain-view'
 
-import { _initializeKleros, arbitratorAddress } from './dapp-api'
+import { ARBITRATOR_ADDRESS, initializeKleros } from './dapp-api'
 
 class Initializer extends PureComponent {
   static propTypes = {
@@ -20,26 +20,18 @@ class Initializer extends PureComponent {
     fetchAccounts: PropTypes.func.isRequired,
 
     // State
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element.isRequired)
-    ]).isRequired
+    children: PropTypes.node.isRequired
   }
 
-  state = {
-    initialized: false
-  }
+  state = { initialized: false }
 
   async componentDidMount() {
     const { fetchAccounts } = this.props
-    // initialize kleros
-    await _initializeKleros()
-    // initialize accounts
-    fetchAccounts()
 
-    this.setState({
-      initialized: true
-    })
+    fetchAccounts()
+    await initializeKleros()
+
+    this.setState({ initialized: true })
   }
 
   render() {
@@ -47,9 +39,8 @@ class Initializer extends PureComponent {
     const { initialized } = this.state
 
     if (initialized && !accounts.loading) {
-      if (!accounts.data) return <RequiresMetaMaskPage needsUnlock />
-
-      if (!arbitratorAddress) return <MissingArbitrator />
+      if (!accounts.data) return <RequiresMetaMask needsUnlock />
+      if (!ARBITRATOR_ADDRESS) return <MissingArbitrator />
 
       return (
         <ChainView
@@ -57,7 +48,7 @@ class Initializer extends PureComponent {
           initialContracts={[
             {
               name: chainViewConstants.KLEROS_POC_NAME,
-              address: arbitratorAddress,
+              address: ARBITRATOR_ADDRESS,
               color: chainViewConstants.KLEROS_POC_COLOR
             }
           ]}
@@ -65,9 +56,7 @@ class Initializer extends PureComponent {
           {children}
         </ChainView>
       )
-    } else {
-      return 'loading...'
-    }
+    } else return 'Loading...'
   }
 }
 
