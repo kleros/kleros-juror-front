@@ -51,6 +51,7 @@ class ChainView extends PureComponent {
   }
 
   state = {
+    initialized: false,
     isOpen: false,
     toggledTabName: null
   }
@@ -67,6 +68,8 @@ class ChainView extends PureComponent {
         })
       )
     initialContracts && initialContracts.forEach(c => addContract(c))
+
+    this.setState({ initialized: true })
   }
 
   handleToggleClick = () =>
@@ -84,8 +87,9 @@ class ChainView extends PureComponent {
 
   render() {
     const { chainData, children, accounts } = this.props
-    const { isOpen, toggledTabName } = this.state
+    const { initialized, isOpen, toggledTabName } = this.state
 
+    if (!initialized) return null
     if (eth.accounts === undefined) return 'Web3 not loaded.' // Web3 not loaded
     if (!accounts || !accounts[0]) return 'Web3 wallet needs unlock.' // Web3 locked
 
