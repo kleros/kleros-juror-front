@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'test')
   eth = new Eth(require('ganache-cli').provider())
 else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
-else eth = new Eth.HttpProvider(ETHEREUM_PROVIDER)
+else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
 
 let ARBITRATOR_ADDRESS
 let kleros
