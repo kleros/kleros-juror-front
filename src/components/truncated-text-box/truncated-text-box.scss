@@ -1,0 +1,11 @@
+.TruncatedTextBox {
+  background-color: #fff;
+
+  &-actionDiv {
+    color: #4a90e2;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+}

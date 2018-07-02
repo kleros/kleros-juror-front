@@ -94,9 +94,7 @@ class Dispute extends PureComponent {
                             size={12}
                             className="Dispute-header-title-identicon"
                           />
-                          <h3>
-                            Decision Summary for "{dispute.data.description}"
-                          </h3>
+                          <h3>Decision Summary for "{dispute.data.title}"</h3>
                         </div>
                         <hr />
                       </div>
@@ -115,6 +113,7 @@ class Dispute extends PureComponent {
                           dispute.data.arbitrableContractAddress
                         }
                         disputeID={dispute.data.disputeId}
+                        description={dispute.data.description}
                       />
                     )
                   },
