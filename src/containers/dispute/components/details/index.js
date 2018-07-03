@@ -75,9 +75,13 @@ const Details = ({
       ]}
     />
     <hr />
-    <h4>Contract Description</h4>
-    <TruncatableTextBox text={description} maxWords={200} />
-    <hr />
+    {description && (
+      <div>
+        <h4>Contract Description</h4>
+        <TruncatableTextBox text={description} maxWords={200} />
+        <hr />
+      </div>
+    )}
   </div>
 )
 
@@ -90,7 +94,12 @@ Details.propTypes = {
   arbitrableContractAddress: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string
+}
+
+Details.defaultProps = {
+  // State
+  description: null
 }
 
 export default Details
