@@ -21,18 +21,18 @@ export default class TruncatableTextBox extends PureComponent {
 
     const words = text.split(' ')
     return (
-      <div className="TruncatableTextBoxTextBox">
+      <div className="TruncatableTextBox">
         <p>
           {truncated && words.length > maxWords
-            ? words.slice(0, maxWords).join(' ')
+            ? words.slice(0, maxWords).join(' ') + '...'
             : text}
         </p>
         {words.length > maxWords && (
           <div
-            className="TruncatableTextBoxTextBox-actionDiv"
+            className="TruncatableTextBox-actionDiv"
             onClick={this.toggleMore}
           >
-            Show {truncated ? 'More ∧' : 'Less ∨'}
+            Show {truncated ? 'More ∨' : 'Less ∧'}
           </div>
         )}
       </div>

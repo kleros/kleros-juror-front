@@ -12550,17 +12550,17 @@ exports[`Storyshots Truncatable Text Box default 1`] = `
           }
         >
           <div
-            className="TruncatableTextBoxTextBox"
+            className="TruncatableTextBox"
           >
             <p>
-              Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu. Sed
+              Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu. Sed...
             </p>
             <div
-              className="TruncatableTextBoxTextBox-actionDiv"
+              className="TruncatableTextBox-actionDiv"
               onClick={[Function]}
             >
               Show 
-              More ∧
+              More ∨
             </div>
           </div>
           <div
@@ -12857,7 +12857,7 @@ exports[`Storyshots Truncatable Text Box not exceeding max words 1`] = `
           }
         >
           <div
-            className="TruncatableTextBoxTextBox"
+            className="TruncatableTextBox"
           >
             <p>
               Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu. Sed scelerisque dolor in orci luctus semper. Mauris turpis magna, congue vitae sollicitudin vel, pretium nec arcu.
