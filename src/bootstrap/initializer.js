@@ -28,7 +28,7 @@ class Initializer extends PureComponent {
   async componentDidMount() {
     const { fetchAccounts } = this.props
 
-    await initializeKleros() // Kleros must be initialized before fetchAccounts as accounts triggers notifications sagas.
+    await initializeKleros() // Kleros must be initialized before fetchAccounts as accounts trigger notifications sagas
     fetchAccounts()
 
     this.setState({ initialized: true })
