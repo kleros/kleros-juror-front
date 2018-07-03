@@ -12465,7 +12465,7 @@ exports[`Storyshots Toast warning 1`] = `
 </div>
 `;
 
-exports[`Storyshots Truncated Text Box default 1`] = `
+exports[`Storyshots Truncatable Text Box default 1`] = `
 <div>
   <div
     data-radium={true}
@@ -12550,13 +12550,13 @@ exports[`Storyshots Truncated Text Box default 1`] = `
           }
         >
           <div
-            className="TruncatedTextBox"
+            className="TruncatableTextBoxTextBox"
           >
             <p>
               Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu. Sed
             </p>
             <div
-              className="TruncatedTextBox-actionDiv"
+              className="TruncatableTextBoxTextBox-actionDiv"
               onClick={[Function]}
             >
               Show 
@@ -12772,7 +12772,7 @@ exports[`Storyshots Truncated Text Box default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Truncated Text Box not exceeding max words 1`] = `
+exports[`Storyshots Truncatable Text Box not exceeding max words 1`] = `
 <div>
   <div
     data-radium={true}
@@ -12857,7 +12857,7 @@ exports[`Storyshots Truncated Text Box not exceeding max words 1`] = `
           }
         >
           <div
-            className="TruncatedTextBox"
+            className="TruncatableTextBoxTextBox"
           >
             <p>
               Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu. Sed scelerisque dolor in orci luctus semper. Mauris turpis magna, congue vitae sollicitudin vel, pretium nec arcu.

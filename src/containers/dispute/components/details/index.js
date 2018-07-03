@@ -5,7 +5,7 @@ import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
-import TruncatedTextBox from '../../../../components/truncated-text-box'
+import TruncatableTextBox from '../../../../components/truncatable-text-box'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
 import './details.css'
@@ -76,7 +76,7 @@ const Details = ({
     />
     <hr />
     <h4>Contract Description</h4>
-    <TruncatedTextBox text={description} maxWords={200} />
+    <TruncatableTextBox text={description} maxWords={200} />
     <hr />
   </div>
 )

@@ -1,7 +1,7 @@
 @import '../../styles/_colors.scss';
 
-/* @define TruncatedTextBox */
-.TruncatedTextBox {
+/* @define TruncatableTextBox */
+.TruncatableTextBox {
   &-actionDiv {
     color: $info;
     font-size: 14px;

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import './truncated-text-box.css'
+import './truncatable-text-box.css'
 
-export default class TruncatedTextBox extends PureComponent {
+export default class TruncatableTextBox extends PureComponent {
   static propTypes = {
     // State
     text: PropTypes.string.isRequired,
@@ -21,14 +21,17 @@ export default class TruncatedTextBox extends PureComponent {
 
     const words = text.split(' ')
     return (
-      <div className="TruncatedTextBox">
+      <div className="TruncatableTextBoxTextBox">
         <p>
           {truncated && words.length > maxWords
             ? words.slice(0, maxWords).join(' ')
             : text}
         </p>
         {words.length > maxWords && (
-          <div className="TruncatedTextBox-actionDiv" onClick={this.toggleMore}>
+          <div
+            className="TruncatableTextBoxTextBox-actionDiv"
+            onClick={this.toggleMore}
+          >
             Show {truncated ? 'More ∧' : 'Less ∨'}
           </div>
         )}

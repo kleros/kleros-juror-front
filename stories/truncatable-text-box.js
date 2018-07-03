@@ -1,11 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import TruncatedTextBox from '../src/components/truncated-text-box'
+import TruncatableTextBox from '../src/components/truncatable-text-box'
 
-storiesOf('Truncated Text Box', module)
+storiesOf('Truncatable Text Box', module)
   .add('default', () => (
-    <TruncatedTextBox
+    <TruncatableTextBox
       text="Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu.
   Sed scelerisque dolor in orci luctus semper. Mauris turpis magna, congue
   vitae sollicitudin vel, pretium nec arcu."
@@ -13,7 +13,7 @@ storiesOf('Truncated Text Box', module)
     />
   ))
   .add('not exceeding max words', () => (
-    <TruncatedTextBox
+    <TruncatableTextBox
       text="Duis et mauris vestibulum, auctor lacus porttitor, pellentesque arcu.
   Sed scelerisque dolor in orci luctus semper. Mauris turpis magna, congue
   vitae sollicitudin vel, pretium nec arcu."
