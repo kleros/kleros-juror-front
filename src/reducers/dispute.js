@@ -63,6 +63,7 @@ const {
     ).isRequired,
 
     // Store Data
+    title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     evidence: PropTypes.arrayOf(

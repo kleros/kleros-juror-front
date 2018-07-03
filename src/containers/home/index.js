@@ -13,7 +13,6 @@ import * as notificationActions from '../../actions/notification'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import Icosahedron from '../../components/icosahedron'
-import LoadingBar from '../../components/loading-bar'
 import Identicon from '../../components/identicon'
 import BalancePieChart from '../../components/balance-pie-chart'
 import Button from '../../components/button'
@@ -127,7 +126,7 @@ class Home extends PureComponent {
                 </h5>
                 <RenderIf
                   resource={PNKBalance}
-                  loading={<LoadingBar />}
+                  loading={'...'}
                   done={
                     PNKBalance.data && (
                       <h6>
@@ -150,7 +149,7 @@ class Home extends PureComponent {
                 />
                 <RenderIf
                   resource={balance}
-                  loading={<LoadingBar />}
+                  loading={<Icosahedron />}
                   done={
                     <h6>
                       <ChainData
@@ -169,7 +168,7 @@ class Home extends PureComponent {
           <div className="Home-stats-block">
             <RenderIf
               resource={PNKBalance}
-              loading={<LoadingBar />}
+              loading={<Icosahedron />}
               done={
                 PNKBalance.data && (
                   <div className="Home-stats-block-content">
@@ -238,7 +237,7 @@ class Home extends PureComponent {
           <div className="Home-stats-block">
             <RenderIf
               resource={PNKBalance}
-              loading={<LoadingBar />}
+              loading={<Icosahedron />}
               done={
                 PNKBalance.data && (
                   <div className="Home-stats-block-content">

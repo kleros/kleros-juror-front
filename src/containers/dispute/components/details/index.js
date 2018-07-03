@@ -5,6 +5,7 @@ import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
+import TruncatedTextBox from '../../../../components/truncated-text-box'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
 import './details.css'
@@ -16,7 +17,8 @@ const Details = ({
   arbitrationFee,
   arbitrableContractAddress,
   disputeID,
-  appealNumber
+  appealNumber,
+  description
 }) => (
   <div className="Details">
     <small>
@@ -73,6 +75,9 @@ const Details = ({
       ]}
     />
     <hr />
+    <h4>Contract Description</h4>
+    <TruncatedTextBox text={description} maxWords={200} />
+    <hr />
   </div>
 )
 
@@ -84,7 +89,8 @@ Details.propTypes = {
   arbitrationFee: PropTypes.number.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number.isRequired
+  appealNumber: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired
 }
 
 export default Details

@@ -10,13 +10,13 @@ import * as chainViewConstants from '../../../../constants/chain-view'
 import './case-name-cell.css'
 
 const CaseNameCell = ({
-  original: { disputeId, arbitrableContractAddress, description }
+  original: { disputeId, arbitrableContractAddress, title }
 }) => (
   <div className="CaseNameCell">
     <Identicon seed={arbitrableContractAddress} size={12} />
     <Link to={`/disputes/${disputeId}`}>
       <div className="CaseNameCell-title">
-        <h5>{description}</h5>
+        <h5>{title}</h5>
         <small>
           <ChainData
             contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -39,7 +39,7 @@ CaseNameCell.propTypes = {
   original: PropTypes.shape({
     disputeId: PropTypes.string.isRequired,
     arbitrableContractAddress: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired
   }).isRequired
 }
 
