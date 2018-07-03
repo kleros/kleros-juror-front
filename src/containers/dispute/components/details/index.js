@@ -75,10 +75,8 @@ const Details = ({
       ]}
     />
     <hr />
-    <div>
-      <h4>Contract Description</h4>
-      <TruncatedTextBox text={description} numberOfWords={200} />
-    </div>
+    <h4>Contract Description</h4>
+    <TruncatedTextBox text={description} maxWords={200} />
     <hr />
   </div>
 )

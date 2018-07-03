@@ -1,11 +1,10 @@
-.TruncatedTextBox {
-  background-color: #fff;
+@import '../../styles/_colors.scss';
 
+/* @define TruncatedTextBox */
+.TruncatedTextBox {
   &-actionDiv {
-    color: #4a90e2;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 18px;
+    color: $info;
+    font-size: 14px;
+    user-select: none;
   }
 }
