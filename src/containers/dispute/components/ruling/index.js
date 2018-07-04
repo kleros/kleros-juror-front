@@ -52,59 +52,63 @@ const Ruling = ({
         </div>
       )}
       <LabelValueGroup
-        items={[
-          {
-            label: 'Votes for Party A',
-            value: (
-              <ChainData
-                contractName={chainViewConstants.KLEROS_POC_NAME}
-                contractAddress={ARBITRATOR_ADDRESS}
-                functionSignature={
-                  chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
+        items={
+          inProgress
+            ? []
+            : [
+                {
+                  label: 'Votes for Party A',
+                  value: (
+                    <ChainData
+                      contractName={chainViewConstants.KLEROS_POC_NAME}
+                      contractAddress={ARBITRATOR_ADDRESS}
+                      functionSignature={
+                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
+                      }
+                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
+                        disputeID,
+                        appeals,
+                        1
+                      )}
+                    >
+                      {votesForPartyA}
+                    </ChainData>
+                  )
+                },
+                {
+                  label: 'Votes for Party B',
+                  value: (
+                    <ChainData
+                      contractName={chainViewConstants.KLEROS_POC_NAME}
+                      contractAddress={ARBITRATOR_ADDRESS}
+                      functionSignature={
+                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
+                      }
+                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
+                        disputeID,
+                        appeals,
+                        2
+                      )}
+                    >
+                      {votesForPartyB}
+                    </ChainData>
+                  )
+                },
+                {
+                  label: 'PNK Redistribution',
+                  value: (
+                    <span
+                      className={`Ruling-netPNK Ruling-netPNK--${
+                        won ? 'positive' : 'negative'
+                      }`}
+                    >
+                      {won ? '+' : '-'}
+                      {netPNK}
+                    </span>
+                  )
                 }
-                parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                  disputeID,
-                  appeals,
-                  1
-                )}
-              >
-                {votesForPartyA}
-              </ChainData>
-            )
-          },
-          {
-            label: 'Votes for Party B',
-            value: (
-              <ChainData
-                contractName={chainViewConstants.KLEROS_POC_NAME}
-                contractAddress={ARBITRATOR_ADDRESS}
-                functionSignature={
-                  chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
-                }
-                parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                  disputeID,
-                  appeals,
-                  2
-                )}
-              >
-                {votesForPartyB}
-              </ChainData>
-            )
-          },
-          {
-            label: 'PNK Redistribution',
-            value: (
-              <span
-                className={`Ruling-netPNK Ruling-netPNK--${
-                  won ? 'positive' : 'negative'
-                }`}
-              >
-                {won ? '+' : '-'}
-                {netPNK}
-              </span>
-            )
-          }
-        ]}
+              ]
+        }
       />
       <hr />
     </div>
