@@ -6,7 +6,6 @@
   background: $dark3;
   display: flex;
   height: 70px;
-  overflow-x: hidden;
   padding: 0 15%;
   position: absolute;
   top: 0;
@@ -22,7 +21,7 @@
     display: flex;
     height: 100%;
     margin: 0 50px 0 25px;
-    overflow-x: scroll;
+    overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
