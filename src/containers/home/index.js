@@ -74,7 +74,6 @@ class Home extends PureComponent {
 
   handleActivateButtonClick = () => {
     const { PNKBalance } = this.props
-
     toastr.message('Deposit PNK', {
       id: 'activatePNKToastr',
       component: () => {
