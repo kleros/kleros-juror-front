@@ -36,7 +36,7 @@ const Ruling = ({
             }`}
           >
             <h4 className="Ruling-outcome-netPNK-label">
-              {votesForPartyA === 0 && votesForPartyB === 0
+              {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
                   ? 'Party A Wins'

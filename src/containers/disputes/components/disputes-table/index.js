@@ -35,7 +35,17 @@ const columns = [
 ]
 
 const DisputesTable = ({ disputes }) => (
-  <Table columns={columns} loading={disputes.loading} data={disputes.data} />
+  <Table
+    columns={columns}
+    loading={disputes.loading}
+    data={disputes.data}
+    defaultSorted={[
+      {
+        id: 'deadline',
+        desc: true
+      }
+    ]}
+  />
 )
 
 DisputesTable.propTypes = {
