@@ -7,6 +7,7 @@ import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
 import TruncatableTextBox from '../../../../components/truncatable-text-box'
 import * as chainViewConstants from '../../../../constants/chain-view'
+import LinkBox from '../../../../components/link-box'
 
 import './details.css'
 
@@ -18,7 +19,7 @@ const Details = ({
   arbitrableContractAddress,
   disputeID,
   appealNumber,
-  description
+  metaEvidence
 }) => (
   <div className="Details">
     <small>
@@ -28,7 +29,7 @@ const Details = ({
     <LabelValueGroup
       items={[
         {
-          label: 'Party A',
+          label: metaEvidence.aliases[partyAAddress] || 'Party A  ',
           value: (
             <ChainData
               contractName={chainViewConstants.ARBITRABLE_CONTRACT_NAME}
@@ -44,7 +45,7 @@ const Details = ({
           identiconSeed: partyAAddress
         },
         {
-          label: 'Party B',
+          label: metaEvidence.aliases[partyBAddress] || 'Party B',
           value: (
             <ChainData
               contractName={chainViewConstants.ARBITRABLE_CONTRACT_NAME}
@@ -58,6 +59,21 @@ const Details = ({
             </ChainData>
           ),
           identiconSeed: partyBAddress
+        },
+        {
+          label: 'Dispute Category',
+          value: (
+            <ChainData
+              contractName={chainViewConstants.KLEROS_POC_NAME}
+              contractAddress={ARBITRATOR_ADDRESS}
+              functionSignature={chainViewConstants.KLEROS_POC_DISPUTES_SIG}
+              parameters={chainViewConstants.KLEROS_POC_DISPUTES_PARAMS(
+                disputeID
+              )}
+            >
+              {metaEvidence.category}
+            </ChainData>
+          )
         },
         {
           label: 'Arbitration Fee',
@@ -75,10 +91,17 @@ const Details = ({
       ]}
     />
     <hr />
-    {description && (
+    {metaEvidence.description && (
       <div>
-        <h4>Contract Description</h4>
-        <TruncatableTextBox text={description} maxWords={200} />
+        <h4>Description</h4>
+        <TruncatableTextBox text={metaEvidence.description} maxWords={200} />
+        <hr />
+      </div>
+    )}
+    {metaEvidence.fileURI && (
+      <div>
+        <h4>File</h4>
+        <LinkBox link={metaEvidence.fileURI} />
         <hr />
       </div>
     )}
@@ -94,12 +117,12 @@ Details.propTypes = {
   arbitrableContractAddress: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
-  description: PropTypes.string
+  metaEvidence: PropTypes.shape()
 }
 
 Details.defaultProps = {
   // State
-  description: null
+  metaEvidence: {}
 }
 
 export default Details

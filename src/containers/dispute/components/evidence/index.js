@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { ChainData } from '../../../../chainstrap'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
+import LinkBox from '../../../../components/link-box'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
 const Evidence = ({
@@ -47,9 +48,9 @@ const Evidence = ({
         {
           label: 'URL',
           value: (
-            <a href={URL} target="_blank" rel="noopener noreferrer">
-              {URL.slice(0, 30)}...
-            </a>
+            <div>
+              <LinkBox link={URL} />
+            </div>
           )
         }
       ]}

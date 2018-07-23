@@ -16,7 +16,8 @@ const Ruling = ({
   netPNK,
   disputeID,
   appeals,
-  appealNumber
+  appealNumber,
+  question
 }) => {
   const inProgress = date === null
   const won = netPNK >= 0
@@ -51,6 +52,7 @@ const Ruling = ({
           </div>
         </div>
       )}
+      <p>{question}</p>
       <LabelValueGroup
         items={
           inProgress
@@ -123,12 +125,14 @@ Ruling.propTypes = {
   netPNK: PropTypes.number.isRequired,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number.isRequired
+  appealNumber: PropTypes.number.isRequired,
+  question: PropTypes.string
 }
 
 Ruling.defaultProps = {
   // State
-  date: null
+  date: null,
+  question: ''
 }
 
 export default Ruling

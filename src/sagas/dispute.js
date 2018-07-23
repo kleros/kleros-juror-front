@@ -110,8 +110,8 @@ function* fetchDisputes() {
 
       disputes.push({
         ...d,
-        title: arbitrableData ? arbitrableData.title : null,
-        description: arbitrableData ? arbitrableData.description : null,
+        title: arbitrableData ? arbitrableData.metaEvidence.title : null,
+        description: arbitrableData ? arbitrableData.metaEvidence.title : null,
         deadline: disputeDeadline ? new Date(disputeDeadline) : null
       })
     } else disputes.push(d)
