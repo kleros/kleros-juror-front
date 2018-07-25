@@ -1,6 +1,12 @@
 /* @define LinkBox */
 .LinkBox {
-  &-image {
-    max-width: 50%;
+  height: inherit;
+
+  &-content {
+    height: inherit;
+
+    &-image {
+      height: inherit;
+    }
   }
 }

@@ -10,31 +10,35 @@ import logo from '../../assets/images/logo.png'
 import './nav-bar.css'
 
 const NavBar = ({ accounts, routes }) => (
-  <div className="NavBar">
-    <a href="https://kleros.io">
-      <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
-    </a>
-    <div className="NavBar-tabs">
-      {routes.map(r => (
-        <NavLink
-          key={r.to}
-          className="NavBar-tabs-tab"
-          activeClassName="is-active"
-          to={r.to}
-          exact={r.to === '/'}
-        >
-          {r.name}
-        </NavLink>
-      ))}
-    </div>
-    <div className="NavBar-buttons">
-      <div className="NavBar-buttons-button">
-        <RenderIf
-          resource={accounts}
-          loading="..."
-          done={accounts.data && <Identicon seed={accounts.data[0]} size={9} />}
-          failedLoading="..."
-        />
+  <div>
+    <div className="NavBar">
+      <a href="https://kleros.io">
+        <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
+      </a>
+      <div className="NavBar-tabs">
+        {routes.map(r => (
+          <NavLink
+            key={r.to}
+            className="NavBar-tabs-tab"
+            activeClassName="is-active"
+            to={r.to}
+            exact={r.to === '/'}
+          >
+            {r.name}
+          </NavLink>
+        ))}
+      </div>
+      <div className="NavBar-buttons">
+        <div className="NavBar-buttons-button">
+          <RenderIf
+            resource={accounts}
+            loading="..."
+            done={
+              accounts.data && <Identicon seed={accounts.data[0]} size={9} />
+            }
+            failedLoading="..."
+          />
+        </div>
       </div>
     </div>
   </div>

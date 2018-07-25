@@ -110,8 +110,6 @@ class Dispute extends PureComponent {
                       <Details
                         key={dispute.data.appealCreatedAt[0] || 1}
                         date={dispute.data.appealCreatedAt[0] || today}
-                        partyAAddress={dispute.data.partyA}
-                        partyBAddress={dispute.data.partyB}
                         arbitrationFee={dispute.data.appealJuror[0].fee}
                         arbitrableContractAddress={
                           dispute.data.arbitrableContractAddress
@@ -172,9 +170,7 @@ class Dispute extends PureComponent {
                               disputeID={dispute.data.disputeId}
                               appeals={dispute.data.numberOfAppeals}
                               appealNumber={e.appealNumber}
-                              question={
-                                dispute.data.metaEvidence.question || ''
-                              }
+                              metaEvidence={dispute.data.metaEvidence}
                             />
                           )
                         }
@@ -182,8 +178,7 @@ class Dispute extends PureComponent {
                         return null
                     }
                   }),
-                  !dispute.data.appealJuror[dispute.data.numberOfAppeals]
-                    .canRule
+                  dispute.data.appealJuror[dispute.data.numberOfAppeals].canRule
                     ? {
                         anchor: 'Vote',
                         element: (

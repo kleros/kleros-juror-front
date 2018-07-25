@@ -10,8 +10,13 @@ const onImgError = e => {
 
 const LinkBox = ({ link }) => (
   <div className="LinkBox">
-    <div className="LinkBox-image">
-      <img src={link} onError={onImgError} alt="" />
+    <div className="LinkBox-content">
+      <img
+        className="LinkBox-content-image"
+        src={link}
+        onError={onImgError}
+        alt=""
+      />
     </div>
     <a href={link}>{link.slice(0, 30)}</a>
   </div>

@@ -104,14 +104,18 @@ function* fetchDisputes() {
       )
 
       const [arbitrableData, disputeDeadline] = yield all([
-        call(kleros.arbitrable.getDataFromStore),
+        call(kleros.arbitrable.getContractData),
         call(kleros.disputes.getDisputeDeadline, d.disputeId, d.numberOfAppeals)
       ])
 
       disputes.push({
         ...d,
-        title: arbitrableData ? arbitrableData.metaEvidence.title : null,
-        description: arbitrableData ? arbitrableData.metaEvidence.title : null,
+        title: arbitrableData.metaEvidence
+          ? arbitrableData.metaEvidence.title
+          : null,
+        description: arbitrableData.metaEvidence
+          ? arbitrableData.metaEvidence.description
+          : null,
         deadline: disputeDeadline ? new Date(disputeDeadline) : null
       })
     } else disputes.push(d)
