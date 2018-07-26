@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import ChainView from '../chainstrap'
 import * as walletSelectors from '../reducers/wallet'
@@ -60,9 +61,11 @@ class Initializer extends PureComponent {
   }
 }
 
-export default connect(
-  state => ({
-    accounts: state.wallet.accounts
-  }),
-  { fetchAccounts: walletActions.fetchAccounts }
-)(Initializer)
+export default withRouter(
+  connect(
+    state => ({
+      accounts: state.wallet.accounts
+    }),
+    { fetchAccounts: walletActions.fetchAccounts }
+  )(Initializer)
+)

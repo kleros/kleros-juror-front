@@ -16,12 +16,16 @@ const Ruling = ({
   netPNK,
   disputeID,
   appeals,
-  appealNumber
+  appealNumber,
+  metaEvidence
 }) => {
   const inProgress = date === null
   const won = netPNK >= 0
   return (
     <div className="Ruling">
+      <hr />
+      <h4>{metaEvidence.question}</h4>
+      <hr />
       <small>
         {inProgress
           ? 'In Progress'
@@ -39,8 +43,8 @@ const Ruling = ({
               {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
-                  ? 'Party A Wins'
-                  : 'Party B Wins'}
+                  ? metaEvidence.rulingOptions.titles[0]
+                  : metaEvidence.rulingOptions.titles[1]}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">
@@ -123,7 +127,8 @@ Ruling.propTypes = {
   netPNK: PropTypes.number.isRequired,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number.isRequired
+  appealNumber: PropTypes.number.isRequired,
+  metaEvidence: PropTypes.shape.isRequired
 }
 
 Ruling.defaultProps = {
