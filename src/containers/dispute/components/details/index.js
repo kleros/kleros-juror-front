@@ -50,8 +50,6 @@ class Details extends Component {
     )
 
     if (metaEvidence.evidenceDisplayInterfaceURL) {
-      // const testDisplayURI =
-      //   'http://localhost:3001/evidence-display/doges-on-trial'
       fileDisplay = (
         <iframe
           src={metaEvidence.evidenceDisplayInterfaceURL}
