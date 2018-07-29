@@ -3,7 +3,7 @@
 /* @define NavBar */
 .NavBar {
   align-items: center;
-  background: $dark3;
+  background: #f5f8fa;
   display: flex;
   height: 70px;
   padding: 0 15%;
@@ -26,13 +26,14 @@
     white-space: nowrap;
 
     &-tab {
-      color: $light3;
+      color: #1a1b23;
       font-weight: 300;
+      height: 100%;
+      line-height: 70px;
       padding: 0 25px;
 
-      &:hover,
       &.is-active {
-        color: $light;
+        border-bottom: 4px solid $info;
       }
     }
   }

@@ -756,7 +756,7 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
               <path
                 d="M 73.77641290737884 42.27457514062631 A 25 25 0 1 1 49.999999999999986 25"
                 fill="none"
-                stroke="#fff"
+                stroke="#f5f8fa"
                 strokeDasharray={125.66370614359172}
                 strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
@@ -1098,7 +1098,7 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
               <path
                 d="M 73.77641290737884 42.27457514062632 A 25 25 0 0 0 50 25"
                 fill="none"
-                stroke="#fff"
+                stroke="#f5f8fa"
                 strokeDasharray={31.41592653589793}
                 strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
@@ -1405,14 +1405,14 @@ exports[`Storyshots Button disabled 1`] = `
           }
         >
           <div
-            className="Button is-disabled "
-            onClick={[Function]}
+            className="Button Button--primary Button--normal is-disabled "
+            onClick={null}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -1708,14 +1708,14 @@ exports[`Storyshots Button primary 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -2011,14 +2011,14 @@ exports[`Storyshots Button with lots of text 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME, CLICK ME, CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -10736,14 +10736,14 @@ exports[`Storyshots Toast confirm 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11039,14 +11039,14 @@ exports[`Storyshots Toast error 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11342,14 +11342,14 @@ exports[`Storyshots Toast info 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11645,14 +11645,14 @@ exports[`Storyshots Toast message 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11948,14 +11948,14 @@ exports[`Storyshots Toast success 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -12251,14 +12251,14 @@ exports[`Storyshots Toast warning 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}

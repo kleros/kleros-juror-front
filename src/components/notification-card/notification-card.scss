@@ -5,12 +5,12 @@
   background: $light;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
-  height: 100px;
+  // height: 100px;
   position: relative;
 
   &-message {
     color: $dark3;
-    height: 100px;
+    // height: 100px;
     overflow: hidden;
     padding: 26px 30px;
     text-overflow: ellipsis;

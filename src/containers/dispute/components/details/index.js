@@ -52,6 +52,7 @@ class Details extends Component {
     if (metaEvidence.evidenceDisplayInterfaceURL) {
       fileDisplay = (
         <iframe
+          title="File Display"
           src={metaEvidence.evidenceDisplayInterfaceURL}
           ref={this.registerMetaEvidenceFrame}
           frameBorder="0"

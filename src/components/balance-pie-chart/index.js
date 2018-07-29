@@ -10,7 +10,7 @@ const BalancePieChart = ({ type, balance, total, size }) => (
         key: 1,
         color: type === 'activated' ? '#0059ab' : '#47525d'
       },
-      { value: balance ? total - balance : 1, key: 2, color: '#fff' } // If total is 0, make the entire pie chart white
+      { value: balance ? total - balance : 1, key: 2, color: '#f5f8fa' } // If total is 0, make the entire pie chart white
     ]}
     startAngle={270}
     lengthAngle={type === 'activated' ? 360 : -360}
