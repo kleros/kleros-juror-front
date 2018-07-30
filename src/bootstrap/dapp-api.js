@@ -16,8 +16,9 @@ else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
 
 let ARBITRATOR_ADDRESS
 let kleros
+let networkID
 const initializeKleros = async () => {
-  const networkID = await eth.net_version()
+  networkID = await eth.net_version()
 
   ARBITRATOR_ADDRESS =
     process.env[
@@ -40,7 +41,8 @@ export {
   initializeKleros,
   ETHAddressRegExpCaptureGroup,
   ETHAddressRegExp,
-  strictETHAddressRegExp
+  strictETHAddressRegExp,
+  networkID
 }
 
 setTimeout(

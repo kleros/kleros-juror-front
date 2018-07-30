@@ -6,7 +6,9 @@ import { createActions } from 'lessdux'
 export const PNKBalance = {
   ...createActions('$PNK$_BALANCE', { withUpdate: true }),
   BUY: 'BUY_PNK',
-  ACTIVATE: 'ACTIVATE_PNK'
+  ACTIVATE: 'ACTIVATE_PNK',
+  TRANSFER: 'TRANSFER',
+  WITHDRAW: 'WITHDRAW'
 }
 
 // Arbitrator Data
@@ -27,6 +29,17 @@ export const activatePNK = formData => ({
   type: PNKBalance.ACTIVATE,
   payload: { amount: formData.amount }
 })
+export const transferPNK = formData => ({
+  type: PNKBalance.TRANSFER,
+  payload: { amount: formData.amount }
+})
+export const withdrawPNK = formData => {
+  console.log(1)
+  return {
+    type: PNKBalance.WITHDRAW,
+    payload: { amount: formData.amount }
+  }
+}
 
 // Arbitrator Data
 export const fetchArbitratorData = () => ({ type: arbitratorData.FETCH })

@@ -29,6 +29,30 @@ function* buyPNK({ payload: { amount } }) {
 }
 
 /**
+ * Buys PNK for the current wallet.
+ * @returns {object} - The update PNK balance.
+ */
+function* transferPNK({ payload: { amount } }) {
+  return yield call(
+    kleros.arbitrator.transferPNKToArbitrator,
+    amount,
+    yield select(walletSelectors.getAccount)
+  )
+}
+/**
+ * Buys PNK for the current wallet.
+ * @returns {object} - The update PNK balance.
+ */
+function* withdrawPNK({ payload: { amount } }) {
+  console.log(amount)
+  return yield call(
+    kleros.arbitrator.withdrawPNK,
+    amount,
+    yield select(walletSelectors.getAccount)
+  )
+}
+
+/**
  * Activates PNK for the current wallet.
  * @returns {object} - The updated PNK balance.
  */
@@ -84,6 +108,20 @@ export default function* arbitratorSaga() {
     'update',
     arbitratorActions.PNKBalance,
     activatePNK
+  )
+  yield takeLatest(
+    arbitratorActions.PNKBalance.TRANSFER,
+    lessduxSaga,
+    'update',
+    arbitratorActions.PNKBalance,
+    transferPNK
+  )
+  yield takeLatest(
+    arbitratorActions.PNKBalance.WITHDRAW,
+    lessduxSaga,
+    'update',
+    arbitratorActions.PNKBalance,
+    withdrawPNK
   )
 
   // Arbitrator Data
