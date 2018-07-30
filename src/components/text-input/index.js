@@ -24,7 +24,9 @@ const TextInput = ({
     {placeholder && (
       <div
         className={`TextInput-placeholder${
-          touched || value ? ' is-touched' : ''
+          touched || (value !== null && value !== undefined)
+            ? ' is-touched'
+            : ''
         }`}
       >
         {placeholder}

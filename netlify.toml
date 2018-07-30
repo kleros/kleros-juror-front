@@ -4,7 +4,7 @@
   REACT_APP_PROD_RINKEBY_ARBITRATOR_ADDRESS="0x27a836a66a16d10a4d5a400dd89417e4e9a8961f"
   REACT_APP_PROD_MAINNET_ARBITRATOR_ADDRESS="0xa9f0ed953257de9598523c04741adc8225c9b1c5"
   REACT_APP_PROD_STORE_PROVIDER="https://develop.kleros.in"
-  REACT_APP_PROD_DOGE_IMAGES_BASE_URL="https://staging-doges-on-trial-doge-images.s3.us-east-2.amazonaws.com/"
+  REACT_APP_PROD_DOGE_IMAGES_BASE_URL="https://production-doges-on-trial-doge-images.s3.us-east-2.amazonaws.com/"
 
 [context.production.environment]
   REACT_APP_PROD_ETHEREUM_PROVIDER="<provider>"

@@ -1,5 +1,5 @@
 import { form } from '../../../../utils/form-generator'
-import { required, number } from '../../../../utils/validation'
+import { required, number, positiveNumber } from '../../../../utils/validation'
 
 export const {
   Form: ActivatePNKForm,
@@ -8,7 +8,7 @@ export const {
 } = form('activatePNKForm', {
   amount: {
     type: 'text',
-    validate: [required, number],
+    validate: [required, number, positiveNumber],
     props: {
       type: 'number',
       className: 'Form-fullWidth'

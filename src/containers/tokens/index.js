@@ -80,6 +80,25 @@ class Tokens extends PureComponent {
     fetchArbitratorData()
   }
 
+  validateTransferPNKForm = values => {
+    const { PNKBalance } = this.props
+    const errors = {}
+    if (PNKBalance.data.contractBalance < values.amount)
+      errors.amount = 'You do not own this much PNK.'
+    return errors
+  }
+
+  validateWithdrawPNKForm = values => {
+    const { PNKBalance } = this.props
+    const errors = {}
+    if (
+      PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens <
+      values.amount
+    )
+      errors.amount = 'You do not have this much free PNK.'
+    return errors
+  }
+
   render() {
     const {
       accounts,
@@ -118,6 +137,7 @@ class Tokens extends PureComponent {
             amount: PNKBalance.data.contractBalance
           }}
           onSubmit={transferPNK}
+          validate={this.validateTransferPNKForm}
         />
 
         <Button
@@ -141,6 +161,7 @@ class Tokens extends PureComponent {
             amount: PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens
           }}
           onSubmit={withdrawPNK}
+          validate={this.validateWithdrawPNKForm}
         />
 
         <Button
