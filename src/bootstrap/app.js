@@ -35,7 +35,7 @@ const App = ({ store, history, testElement }) => (
     <ConnectedRouter history={history}>
       <div id="router-root">
         <Helmet>
-          <title>Kleros Dapp</title>
+          <title>Kleros · Juror Dashboard</title>
         </Helmet>
         <Switch>
           <Route
