@@ -233,6 +233,12 @@ class Tokens extends PureComponent {
             </ChainData>
           </div>
           <div className="Tokens-info-item">
+            <b>Activated PNK:</b> {PNKBalance.data.activatedTokens}
+          </div>
+          <div className="Tokens-info-item">
+            <b>Locked PNK:</b> {PNKBalance.data.lockedTokens}
+          </div>
+          <div className="Tokens-info-item">
             <b>Session:</b>
             {` ${arbitratorData.data.session}`}
           </div>
