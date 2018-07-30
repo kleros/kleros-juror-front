@@ -1,9 +1,10 @@
 .redux-toastr {
   .top-center {
+    display: flex;
     margin-left: 0;
     padding: 0;
+    text-align: center;
     transform: translateX(-50%);
-    width: 70%;
   }
 
   .toastr {

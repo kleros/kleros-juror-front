@@ -114,7 +114,7 @@ class Home extends PureComponent {
 
     return (
       <div className="Home">
-        <h4>Welcome to Kleros!</h4>
+        <h4>Welcome to Kleros's Juror Dashboard!</h4>
         <div className="Home-stats">
           <div className="Home-stats-block">
             <div className="Home-stats-block-content">
@@ -133,7 +133,7 @@ class Home extends PureComponent {
                   loading={'...'}
                   done={
                     PNKBalance.data && (
-                      <h6>
+                      <h6 data-tip="This is the amount of PNK you have in the Kleros contract.">
                         <ChainData
                           contractName={chainViewConstants.KLEROS_POC_NAME}
                           contractAddress={ARBITRATOR_ADDRESS}
