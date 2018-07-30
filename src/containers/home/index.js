@@ -114,7 +114,7 @@ class Home extends PureComponent {
 
     return (
       <div className="Home">
-        <h4>Welcome to Kleros's Juror Dashboard!</h4>
+        <h4>Welcome to Kleros' Juror Dashboard!</h4>
         <div className="Home-stats">
           <div className="Home-stats-block">
             <div className="Home-stats-block-content">

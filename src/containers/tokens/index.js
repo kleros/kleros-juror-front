@@ -112,7 +112,7 @@ class Tokens extends PureComponent {
               <span>
                 In order to deposit PNK in a session you must transfer PNK to
                 the Kleros contract. You may withdraw your tokens at any time as
-                long as you have not activated PNK in the current session.
+                long as you have not deposited PNK in the current session.
               </span>
             ),
             amount: PNKBalance.data.contractBalance
