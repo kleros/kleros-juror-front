@@ -24,7 +24,7 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
       accounts={accounts}
       routes={[
         { name: 'Home', to: '/' },
-        { name: 'Disputes', to: '/disputes' },
+        { name: 'Cases', to: '/cases' },
         { name: 'Testing Panel', to: '/testing-panel' }
       ]}
     />
@@ -49,12 +49,8 @@ const App = ({ store, history, testElement }) => (
               <div id="scroll-root">
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  <Route exact path="/disputes" component={Disputes} />
-                  <Route
-                    exact
-                    path="/disputes/:disputeID"
-                    component={Dispute}
-                  />
+                  <Route exact path="/cases" component={Disputes} />
+                  <Route exact path="/cases/:disputeID" component={Dispute} />
                   <Route exact path="/testing-panel" component={TestingPanel} />
                   <Route component={PageNotFound} />
                 </Switch>

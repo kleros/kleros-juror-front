@@ -14,7 +14,7 @@ const CaseNameCell = ({
 }) => (
   <div className="CaseNameCell">
     <Identicon seed={arbitrableContractAddress} size={12} />
-    <Link to={`/disputes/${disputeId}`}>
+    <Link to={`/cases/${disputeId}`}>
       <div className="CaseNameCell-title">
         <h5>{title}</h5>
         <small>

@@ -26,7 +26,7 @@ const DisputeCard = ({
     </h6>
     <h5>
       {disputeID ? (
-        <Link to={`/disputes/${disputeID}`}>
+        <Link to={`/cases/${disputeID}`}>
           {title} {disputeID ? ` #${disputeID}` : ''}
         </Link>
       ) : (
