@@ -27,9 +27,7 @@ const Ruling = ({
       <h4>{metaEvidence.question}</h4>
       <hr />
       <small>
-        {inProgress
-          ? 'In Progress'
-          : dateToString(date, { withTime: false, numericMonth: false })}
+        {inProgress ? 'In Progress' : dateToString(date, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       {!inProgress && (

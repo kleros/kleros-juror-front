@@ -17,9 +17,7 @@ const Evidence = ({
   isPartyA
 }) => (
   <div className="Evidence">
-    <small>
-      {dateToString(date, { withTime: false, numericMonth: false })}
-    </small>
+    <small>{dateToString(date, { withTime: false })}</small>
     <h4>Evidence Submitted</h4>
     <LabelValueGroup
       items={[

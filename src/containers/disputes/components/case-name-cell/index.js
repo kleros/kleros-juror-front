@@ -27,7 +27,7 @@ const CaseNameCell = ({
             )}
             style={{ display: 'block', height: '100%', width: '100%' }}
           >
-            #{disputeId}
+            Case #{disputeId}
           </ChainData>
         </small>
       </div>

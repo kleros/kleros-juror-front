@@ -63,9 +63,7 @@ class Details extends Component {
 
     return (
       <div className="Details">
-        <small>
-          {dateToString(date, { withTime: false, numericMonth: false })}
-        </small>
+        <small>{dateToString(date, { withTime: false })}</small>
         <h4>{appealNumber ? `Appeal #${appealNumber}` : 'Dispute'} Details</h4>
         <LabelValueGroup
           items={Object.keys(metaEvidence.aliases)

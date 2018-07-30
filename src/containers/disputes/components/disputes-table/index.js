@@ -15,11 +15,11 @@ const columns = [
   {
     id: 'subcourt',
     Header: 'Subcourt',
-    accessor: () => 'General Court'
+    accessor: () => 'Doge Court'
   },
   {
     Header: 'Deadline',
-    maxWidth: 110,
+    maxWidth: 140,
     accessor: 'deadline',
     Cell: cell =>
       cell.value === null
