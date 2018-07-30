@@ -114,7 +114,8 @@ class Tokens extends PureComponent {
                 the Kleros contract. You may withdraw your tokens at any time as
                 long as you have not activated PNK in the current session.
               </span>
-            )
+            ),
+            amount: PNKBalance.data.contractBalance
           }}
           onSubmit={transferPNK}
         />
@@ -136,7 +137,8 @@ class Tokens extends PureComponent {
                 during a session that you have not deposited tokens in. You can
                 not withdraw tokens that are at stake in active disputes.
               </span>
-            )
+            ),
+            amount: PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens
           }}
           onSubmit={withdrawPNK}
         />
