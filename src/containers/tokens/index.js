@@ -142,10 +142,11 @@ class Tokens extends PureComponent {
 
         <Button
           onClick={submitTransferPNKForm}
+          size="small"
           disabled={transferPNKFormIsInvalid}
           className="Tokens-form-button"
         >
-          TRANSFER TOKENS
+          TRANSFER PNK
         </Button>
         <WithdrawPNKForm
           enableReinitialize
@@ -166,10 +167,11 @@ class Tokens extends PureComponent {
 
         <Button
           onClick={submitWithdrawPNKForm}
+          size="small"
           disabled={withdrawPNKFormIsInvalid}
           className="Tokens-form-button"
         >
-          WITHDRAW TOKENS
+          WITHDRAW PNK
         </Button>
       </div>
     ]
