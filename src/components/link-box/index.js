@@ -18,7 +18,6 @@ const LinkBox = ({ link }) => (
         alt=""
       />
     </div>
-    <a href={link}>{link.slice(0, 30)}</a>
   </div>
 )
 
