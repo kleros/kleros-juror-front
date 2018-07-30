@@ -97,7 +97,7 @@ class Dispute extends PureComponent {
                           <h3>
                             Decision Summary for "{
                               dispute.data.metaEvidence.title
-                            }"
+                            }", Case #{dispute.data.disputeId}
                           </h3>
                         </div>
                         <hr />
