@@ -12,6 +12,6 @@ export default () => (
       transitionOut="bounceOutUp"
       progressBar
     />
-    <ReactTooltip multiline html />
+    <ReactTooltip html />
   </div>
 )

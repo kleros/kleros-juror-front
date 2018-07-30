@@ -169,7 +169,10 @@ class Home extends PureComponent {
               </div>
             </div>
           </div>
-          <div className="Home-stats-block">
+          <div
+            className="Home-stats-block"
+            data-tip="This is the amount of PNK you have deposited to be drawn as a juror.<br />The more you deposit, the higher your chances of being drawn."
+          >
             <RenderIf
               resource={PNKBalance}
               loading={<Icosahedron />}
@@ -238,7 +241,10 @@ class Home extends PureComponent {
               failedLoading="..."
             />
           </div>
-          <div className="Home-stats-block">
+          <div
+            className="Home-stats-block"
+            data-tip="This is the amount of PNK you have locked in cases waiting to be ruled."
+          >
             <RenderIf
               resource={PNKBalance}
               loading={<Icosahedron />}
