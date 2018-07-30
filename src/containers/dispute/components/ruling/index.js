@@ -61,7 +61,7 @@ const Ruling = ({
             ? []
             : [
                 {
-                  label: 'Votes for Party A',
+                  label: `Voted ${metaEvidence.rulingOptions.titles[0]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -80,7 +80,7 @@ const Ruling = ({
                   )
                 },
                 {
-                  label: 'Votes for Party B',
+                  label: `Voted ${metaEvidence.rulingOptions.titles[1]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
