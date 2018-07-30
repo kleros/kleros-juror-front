@@ -7,7 +7,7 @@ import * as dateConstants from '../constants/date'
  */
 export function dateToString(
   date,
-  { withYear = true, withTime = true, numericMonth = true } = {}
+  { withYear = true, withTime = true, numericMonth = false } = {}
 ) {
   const day = date.getDate()
   const month = date.getMonth()

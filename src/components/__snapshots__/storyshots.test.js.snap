@@ -756,7 +756,7 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
               <path
                 d="M 73.77641290737884 42.27457514062631 A 25 25 0 1 1 49.999999999999986 25"
                 fill="none"
-                stroke="#fff"
+                stroke="#f5f8fa"
                 strokeDasharray={125.66370614359172}
                 strokeDashoffset={125.66370614359172}
                 strokeLinecap={undefined}
@@ -1098,7 +1098,7 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
               <path
                 d="M 73.77641290737884 42.27457514062632 A 25 25 0 0 0 50 25"
                 fill="none"
-                stroke="#fff"
+                stroke="#f5f8fa"
                 strokeDasharray={31.41592653589793}
                 strokeDashoffset={31.41592653589793}
                 strokeLinecap={undefined}
@@ -1405,14 +1405,14 @@ exports[`Storyshots Button disabled 1`] = `
           }
         >
           <div
-            className="Button is-disabled "
-            onClick={[Function]}
+            className="Button Button--primary Button--normal is-disabled "
+            onClick={null}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -1708,14 +1708,14 @@ exports[`Storyshots Button primary 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -2011,14 +2011,14 @@ exports[`Storyshots Button with lots of text 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               CLICK ME, CLICK ME, CLICK ME
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -2327,7 +2327,7 @@ exports[`Storyshots Dispute Card appealable 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                13.10 at 5:36 pm
+                October 13rd at 5:36 pm
               </small>
             </h6>
             <h5>
@@ -2641,7 +2641,7 @@ exports[`Storyshots Dispute Card resolved 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                25.10 at 7:23 am
+                October 25th at 7:23 am
               </small>
             </h6>
             <h5>
@@ -2955,7 +2955,7 @@ exports[`Storyshots Dispute Card waiting 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                2.10 at 3:50 am
+                October 2nd at 3:50 am
               </small>
             </h6>
             <h5>
@@ -5446,111 +5446,113 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
               }
             }
           >
-            <div
-              className="NavBar"
-            >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Kleros Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+            <div>
               <div
-                className="NavBar-tabs"
+                className="NavBar"
               >
                 <a
-                  aria-current="page"
-                  className="NavBar-tabs-tab is-active"
-                  href="/"
-                  onClick={[Function]}
-                  style={Object {}}
+                  href="https://kleros.io"
                 >
-                  Home
+                  <img
+                    alt="Kleros Logo"
+                    className="NavBar-logo"
+                    src="logo.png"
+                  />
                 </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/disputes"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Disputes
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/testing-panel"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Testing Panel
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/1"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/2"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/3"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/4"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/5"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/6"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Extra
-                </a>
-              </div>
-              <div
-                className="NavBar-buttons"
-              >
                 <div
-                  className="NavBar-buttons-button"
+                  className="NavBar-tabs"
                 >
-                  <div>
-                    [Identicon]
+                  <a
+                    aria-current="page"
+                    className="NavBar-tabs-tab is-active"
+                    href="/"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    Home
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/disputes"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Disputes
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/testing-panel"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Testing Panel
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/1"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/2"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/3"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/4"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/5"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/6"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Extra
+                  </a>
+                </div>
+                <div
+                  className="NavBar-buttons"
+                >
+                  <div
+                    className="NavBar-buttons-button"
+                  >
+                    <div>
+                      [Identicon]
+                    </div>
                   </div>
                 </div>
               </div>
@@ -5857,57 +5859,59 @@ exports[`Storyshots Nav Bar with routes 1`] = `
               }
             }
           >
-            <div
-              className="NavBar"
-            >
-              <a
-                href="https://kleros.io"
-              >
-                <img
-                  alt="Kleros Logo"
-                  className="NavBar-logo"
-                  src="logo.png"
-                />
-              </a>
+            <div>
               <div
-                className="NavBar-tabs"
+                className="NavBar"
               >
                 <a
-                  aria-current="page"
-                  className="NavBar-tabs-tab is-active"
-                  href="/"
-                  onClick={[Function]}
-                  style={Object {}}
+                  href="https://kleros.io"
                 >
-                  Home
+                  <img
+                    alt="Kleros Logo"
+                    className="NavBar-logo"
+                    src="logo.png"
+                  />
                 </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/disputes"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Disputes
-                </a>
-                <a
-                  aria-current={null}
-                  className="NavBar-tabs-tab"
-                  href="/testing-panel"
-                  onClick={[Function]}
-                  style={undefined}
-                >
-                  Testing Panel
-                </a>
-              </div>
-              <div
-                className="NavBar-buttons"
-              >
                 <div
-                  className="NavBar-buttons-button"
+                  className="NavBar-tabs"
                 >
-                  <div>
-                    [Identicon]
+                  <a
+                    aria-current="page"
+                    className="NavBar-tabs-tab is-active"
+                    href="/"
+                    onClick={[Function]}
+                    style={Object {}}
+                  >
+                    Home
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/disputes"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Disputes
+                  </a>
+                  <a
+                    aria-current={null}
+                    className="NavBar-tabs-tab"
+                    href="/testing-panel"
+                    onClick={[Function]}
+                    style={undefined}
+                  >
+                    Testing Panel
+                  </a>
+                </div>
+                <div
+                  className="NavBar-buttons"
+                >
+                  <div
+                    className="NavBar-buttons-button"
+                  >
+                    <div>
+                      [Identicon]
+                    </div>
                   </div>
                 </div>
               </div>
@@ -8850,7 +8854,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10 at 3:50 am
+                        October 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -8922,7 +8926,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10 at 3:50 am
+                        October 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -8994,7 +8998,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10 at 3:50 am
+                        October 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -9066,7 +9070,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        2.10 at 3:50 am
+                        October 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -10732,14 +10736,14 @@ exports[`Storyshots Toast confirm 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11035,14 +11039,14 @@ exports[`Storyshots Toast error 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11338,14 +11342,14 @@ exports[`Storyshots Toast info 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11641,14 +11645,14 @@ exports[`Storyshots Toast message 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -11944,14 +11948,14 @@ exports[`Storyshots Toast success 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}
@@ -12247,14 +12251,14 @@ exports[`Storyshots Toast warning 1`] = `
           }
         >
           <div
-            className="Button  "
+            className="Button Button--primary Button--normal  "
             onClick={[Function]}
           >
-            <h5
+            <h2
               className="Button-label "
             >
               TOAST
-            </h5>
+            </h2>
           </div>
           <div
             data-radium={true}

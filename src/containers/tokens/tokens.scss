@@ -1,7 +1,16 @@
-/* @define TestingPanel */
-.TestingPanel {
+/* @define Tokens */
+.Tokens {
   display: flex;
   padding: 16px 15%;
+
+  &-info {
+    flex: 1;
+    padding-top: 50px;
+
+    &-item {
+      padding: 10px;
+    }
+  }
 
   &-form {
     flex: 1;
@@ -10,7 +19,6 @@
     &-button {
       margin-left: 40px;
       margin-top: 20px;
-      width: 120px;
 
       &--nextPeriod {
         margin-top: 25px;

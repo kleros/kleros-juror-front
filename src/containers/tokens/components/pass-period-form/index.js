@@ -8,11 +8,5 @@ export const {
   header: {
     type: 'header',
     props: { title: 'MOVE TO NEXT PERIOD' }
-  },
-  currentPeriod: {
-    type: 'info'
-  },
-  currentSession: {
-    type: 'info'
   }
 })

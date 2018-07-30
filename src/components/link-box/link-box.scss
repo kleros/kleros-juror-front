@@ -1,0 +1,12 @@
+/* @define LinkBox */
+.LinkBox {
+  height: inherit;
+
+  &-content {
+    height: inherit;
+
+    &-image {
+      height: inherit;
+    }
+  }
+}

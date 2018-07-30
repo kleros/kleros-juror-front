@@ -4909,7 +4909,7 @@ eth-sig-util@^1.4.2:
     bn.js "^4.10.0"
     ethereumjs-util "^5.0.0"
 
-ethereumjs-util@^5.0.0, ethereumjs-util@^5.1.1:
+ethereumjs-util@^5.0.0, ethereumjs-util@^5.1.1, ethereumjs-util@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ethereumjs-util/-/ethereumjs-util-5.2.0.tgz#3e0c0d1741471acf1036052d048623dee54ad642"
   dependencies:
@@ -4954,6 +4954,16 @@ ethjs-contract@0.2.2:
     ethjs-util "0.1.3"
     js-sha3 "0.5.5"
 
+ethjs-contract@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/ethjs-contract/-/ethjs-contract-0.2.3.tgz#f113ced8ed1c9c635b0b7ec71901340b64e8cded"
+  dependencies:
+    babel-runtime "^6.26.0"
+    ethjs-abi "0.2.0"
+    ethjs-filter "0.1.8"
+    ethjs-util "0.1.3"
+    js-sha3 "0.5.5"
+
 ethjs-filter@0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/ethjs-filter/-/ethjs-filter-0.1.8.tgz#2b02726b820ed4dd3860614d185c0c0f7ed1747f"
@@ -4979,6 +4989,15 @@ ethjs-query@0.3.7:
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/ethjs-query/-/ethjs-query-0.3.7.tgz#597884664e7769c5e314a8f2f7ac6b44aceaff5e"
   dependencies:
+    ethjs-format "0.2.7"
+    ethjs-rpc "0.2.0"
+    promise-to-callback "^1.0.0"
+
+ethjs-query@0.3.8:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/ethjs-query/-/ethjs-query-0.3.8.tgz#aa5af02887bdd5f3c78b3256d0f22ffd5d357490"
+  dependencies:
+    babel-runtime "^6.26.0"
     ethjs-format "0.2.7"
     ethjs-rpc "0.2.0"
     promise-to-callback "^1.0.0"
@@ -5024,6 +5043,21 @@ ethjs@^0.3.3:
     ethjs-filter "0.1.8"
     ethjs-provider-http "0.1.6"
     ethjs-query "0.3.7"
+    ethjs-unit "0.1.6"
+    ethjs-util "0.1.3"
+    js-sha3 "0.5.5"
+    number-to-bn "1.7.0"
+
+ethjs@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ethjs/-/ethjs-0.4.0.tgz#53e6312b6fe050620bd6c5813cb683191cfd6e4a"
+  dependencies:
+    bn.js "4.11.6"
+    ethjs-abi "0.2.1"
+    ethjs-contract "0.2.3"
+    ethjs-filter "0.1.8"
+    ethjs-provider-http "0.1.6"
+    ethjs-query "0.3.8"
     ethjs-unit "0.1.6"
     ethjs-util "0.1.3"
     js-sha3 "0.5.5"
@@ -7919,14 +7953,16 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
-kleros-api@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.9.1.tgz#7b458b7525654a8f9a66691cdf1604a004bd57b6"
+kleros-api@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/kleros-api/-/kleros-api-0.11.1.tgz#41acacdc176c84e968345725be5e27f80ef91c75"
   dependencies:
     babel-runtime "^6.26.0"
     eth-sig-util "^1.4.2"
+    ethereumjs-util "^5.2.0"
+    ethjs "^0.4.0"
     kleros "^0.0.6"
-    kleros-interaction "^0.0.17"
+    kleros-interaction "^0.0.18"
     lodash "^4.17.4"
     minimetoken "^0.2.0"
     truffle-contract "^2.0.5"
@@ -7940,9 +7976,9 @@ kleros-interaction@^0.0.15:
     minimetoken "^0.2.0"
     zeppelin-solidity "^1.7.0"
 
-kleros-interaction@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.17.tgz#0cc7a0320e0403ae5715369a899b29583f40c0d3"
+kleros-interaction@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/kleros-interaction/-/kleros-interaction-0.0.18.tgz#33cc24de75a9bb218077b2d38a61a6dfe8a43519"
   dependencies:
     minimetoken "^0.2.0"
     zeppelin-solidity "^1.7.0"
@@ -8015,9 +8051,9 @@ lcov-parse@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/lcov-parse/-/lcov-parse-0.0.10.tgz#1b0b8ff9ac9c7889250582b70b71315d9da6d9a3"
 
-lessdux@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/lessdux/-/lessdux-0.3.0.tgz#74cc04899ba2de4e17353f11bac4eca67639e2d1"
+lessdux@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/lessdux/-/lessdux-0.7.3.tgz#e4ecf511b6a785d5604da6bd353e6dca31931d02"
   dependencies:
     prop-types "^15.6.0"
 

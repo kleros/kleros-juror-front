@@ -16,16 +16,18 @@ const Ruling = ({
   netPNK,
   disputeID,
   appeals,
-  appealNumber
+  appealNumber,
+  metaEvidence
 }) => {
   const inProgress = date === null
   const won = netPNK >= 0
   return (
     <div className="Ruling">
+      <hr />
+      <h4>{metaEvidence.question}</h4>
+      <hr />
       <small>
-        {inProgress
-          ? 'In Progress'
-          : dateToString(date, { withTime: false, numericMonth: false })}
+        {inProgress ? 'In Progress' : dateToString(date, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       {!inProgress && (
@@ -36,11 +38,11 @@ const Ruling = ({
             }`}
           >
             <h4 className="Ruling-outcome-netPNK-label">
-              {votesForPartyA === 0 && votesForPartyB === 0
+              {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
-                  ? 'Party A Wins'
-                  : 'Party B Wins'}
+                  ? metaEvidence.rulingOptions.titles[0]
+                  : metaEvidence.rulingOptions.titles[1]}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">
@@ -57,7 +59,7 @@ const Ruling = ({
             ? []
             : [
                 {
-                  label: 'Votes for Party A',
+                  label: `Voted ${metaEvidence.rulingOptions.titles[0]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -76,7 +78,7 @@ const Ruling = ({
                   )
                 },
                 {
-                  label: 'Votes for Party B',
+                  label: `Voted ${metaEvidence.rulingOptions.titles[1]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -123,7 +125,8 @@ Ruling.propTypes = {
   netPNK: PropTypes.number.isRequired,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
-  appealNumber: PropTypes.number.isRequired
+  appealNumber: PropTypes.number.isRequired,
+  metaEvidence: PropTypes.shape.isRequired
 }
 
 Ruling.defaultProps = {

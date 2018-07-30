@@ -15,11 +15,11 @@ const columns = [
   {
     id: 'subcourt',
     Header: 'Subcourt',
-    accessor: () => 'General Court'
+    accessor: () => 'Doge Court'
   },
   {
     Header: 'Deadline',
-    maxWidth: 110,
+    maxWidth: 140,
     accessor: 'deadline',
     Cell: cell =>
       cell.value === null
@@ -35,7 +35,17 @@ const columns = [
 ]
 
 const DisputesTable = ({ disputes }) => (
-  <Table columns={columns} loading={disputes.loading} data={disputes.data} />
+  <Table
+    columns={columns}
+    loading={disputes.loading}
+    data={disputes.data}
+    defaultSorted={[
+      {
+        id: 'deadline',
+        desc: true
+      }
+    ]}
+  />
 )
 
 DisputesTable.propTypes = {

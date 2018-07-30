@@ -73,13 +73,17 @@ class Home extends PureComponent {
   }
 
   handleActivateButtonClick = () => {
+    const { PNKBalance } = this.props
     toastr.message('Deposit PNK', {
       id: 'activatePNKToastr',
       component: () => {
         const { activatePNKFormIsInvalid } = this.props
         return (
           <div>
-            <ActivatePNKForm onSubmit={this.handleActivatePNKFormSubmit} />
+            <ActivatePNKForm
+              onSubmit={this.handleActivatePNKFormSubmit}
+              initialValues={{ amount: PNKBalance.data.tokenBalance }}
+            />
             <Button
               onClick={this.handleActivatePNKFormButtonClick}
               disabled={activatePNKFormIsInvalid}
@@ -165,7 +169,10 @@ class Home extends PureComponent {
               </div>
             </div>
           </div>
-          <div className="Home-stats-block">
+          <div
+            className="Home-stats-block"
+            data-tip="This is the amount of PNK you have deposited to be drawn as a juror.<br />The more you deposit, the higher your chances of being drawn."
+          >
             <RenderIf
               resource={PNKBalance}
               loading={<Icosahedron />}
@@ -234,7 +241,10 @@ class Home extends PureComponent {
               failedLoading="..."
             />
           </div>
-          <div className="Home-stats-block">
+          <div
+            className="Home-stats-block"
+            data-tip="This is the amount of PNK you have locked in cases waiting to be ruled."
+          >
             <RenderIf
               resource={PNKBalance}
               loading={<Icosahedron />}
@@ -286,7 +296,7 @@ class Home extends PureComponent {
                     id={n._id}
                     disputeID={n.data.disputeId}
                     message={n.message}
-                    to={`/disputes/${n.data.disputeId}`}
+                    to={`/cases/${n.data.disputeId}`}
                     onDismissClick={this.handleNotificationCardDismissClick}
                   />
                 </div>
