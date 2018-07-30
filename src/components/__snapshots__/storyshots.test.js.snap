@@ -8670,7 +8670,7 @@ exports[`Storyshots Table default 1`] = `
                   value=""
                 />
                 <div
-                  className="TextInput-placeholder"
+                  className="TextInput-placeholder is-touched"
                 >
                   SEARCH
                 </div>
@@ -9508,7 +9508,7 @@ exports[`Storyshots Text Input default 1`] = `
               value=""
             />
             <div
-              className="TextInput-placeholder"
+              className="TextInput-placeholder is-touched"
             >
               EMAIL
             </div>
@@ -9816,7 +9816,7 @@ exports[`Storyshots Text Input error 1`] = `
               value=""
             />
             <div
-              className="TextInput-placeholder"
+              className="TextInput-placeholder is-touched"
             >
               EMAIL
             </div>
@@ -10437,7 +10437,7 @@ exports[`Storyshots Text Input valid 1`] = `
               value=""
             />
             <div
-              className="TextInput-placeholder"
+              className="TextInput-placeholder is-touched"
             >
               EMAIL
             </div>
