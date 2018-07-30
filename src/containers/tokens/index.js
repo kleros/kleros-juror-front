@@ -111,11 +111,11 @@ class Tokens extends PureComponent {
             explaination: (
               <span>
                 In order to deposit PNK in a session you must transfer PNK to
-                the arbitrator contract. You may withdraw your tokens at any
-                time as long as you have not activated PNK in the current
-                session.
+                the Kleros contract. You may withdraw your tokens at any time as
+                long as you have not activated PNK in the current session.
               </span>
-            )
+            ),
+            amount: PNKBalance.data.contractBalance
           }}
           onSubmit={transferPNK}
         />
@@ -133,11 +133,12 @@ class Tokens extends PureComponent {
           initialValues={{
             explaination: (
               <span>
-                Withdraw PNK from the arbitrator. You may only call this during
-                a session that you have not deposited tokens. You can not
-                withdraw tokens that are at stake in active disuptes.
+                Withdraw PNK from the Kleros contract. You may only call this
+                during a session that you have not deposited tokens in. You can
+                not withdraw tokens that are at stake in active disputes.
               </span>
-            )
+            ),
+            amount: PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens
           }}
           onSubmit={withdrawPNK}
         />
@@ -232,6 +233,12 @@ class Tokens extends PureComponent {
             >
               {PNKBalance.data.tokenBalance}
             </ChainData>
+          </div>
+          <div className="Tokens-info-item">
+            <b>Activated PNK:</b> {PNKBalance.data.activatedTokens}
+          </div>
+          <div className="Tokens-info-item">
+            <b>Locked PNK:</b> {PNKBalance.data.lockedTokens}
           </div>
           <div className="Tokens-info-item">
             <b>Session:</b>
