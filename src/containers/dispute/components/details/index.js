@@ -13,23 +13,21 @@ import './details.css'
 
 class Details extends Component {
   componentDidMount() {
-    if (this.metaEvidenceFrame) {
-      const { metaEvidence, disputeID, arbitrableContractAddress } = this.props
-
-      this.metaEvidenceFrame.onload = () => {
-        this.metaEvidenceFrame.contentWindow.postMessage(
-          {
-            target: 'evidence',
-            data: { metaEvidence, disputeID, arbitrableContractAddress }
-          },
-          '*'
-        )
-      }
-    }
+    window.onmessage = this.handleFrameMessage.bind(this)
   }
 
-  registerMetaEvidenceFrame = frame => {
-    this.metaEvidenceFrame = frame
+  handleFrameMessage = message => {
+    if (message.data && message.data.target === 'evidence') {
+      const { metaEvidence, disputeID, arbitrableContractAddress } = this.props
+
+      message.source.postMessage(
+        {
+          target: 'evidence',
+          data: { metaEvidence, disputeID, arbitrableContractAddress }
+        },
+        '*'
+      )
+    }
   }
 
   render() {
@@ -54,7 +52,6 @@ class Details extends Component {
         <iframe
           title="File Display"
           src={metaEvidence.evidenceDisplayInterfaceURL}
-          ref={this.registerMetaEvidenceFrame}
           frameBorder="0"
           height="300"
         />
