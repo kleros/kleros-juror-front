@@ -2,21 +2,15 @@ import { form } from '../../../../utils/form-generator'
 import { required, number } from '../../../../utils/validation'
 
 export const {
-  Form: BuyPNKForm,
-  isInvalid: getBuyPNKFormIsInvalid,
-  submit: submitBuyPNKForm
-} = form('buyPNKForm', {
+  Form: WithdrawPNKForm,
+  isInvalid: WithdrawPNKFormIsInvalid,
+  submit: submitWithdrawPNKForm
+} = form('withdrawPNKForm', {
   header: {
     type: 'header',
-    props: { title: 'BUY PNK' }
+    props: { title: 'WITHDRAW PNK' }
   },
-  rate: {
-    type: 'info'
-  },
-  ETHBalance: {
-    type: 'info'
-  },
-  PNKBalance: {
+  explaination: {
     type: 'info'
   },
   amount: {

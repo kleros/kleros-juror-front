@@ -9,7 +9,7 @@ import NavBar from '../components/nav-bar'
 import Home from '../containers/home'
 import Disputes from '../containers/disputes'
 import Dispute from '../containers/dispute'
-import TestingPanel from '../containers/testing-panel'
+import Tokens from '../containers/tokens'
 import PageNotFound from '../components/page-not-found'
 import DogesOnTrialEvidence from '../components/iframes/doges-on-trial-evidence'
 
@@ -25,7 +25,7 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
       routes={[
         { name: 'Home', to: '/' },
         { name: 'Cases', to: '/cases' },
-        { name: 'Testing Panel', to: '/testing-panel' }
+        { name: 'Tokens', to: '/tokens' }
       ]}
     />
   )
@@ -51,7 +51,7 @@ const App = ({ store, history, testElement }) => (
                   <Route exact path="/" component={Home} />
                   <Route exact path="/cases" component={Disputes} />
                   <Route exact path="/cases/:disputeID" component={Dispute} />
-                  <Route exact path="/testing-panel" component={TestingPanel} />
+                  <Route exact path="/tokens" component={Tokens} />
                   <Route component={PageNotFound} />
                 </Switch>
               </div>

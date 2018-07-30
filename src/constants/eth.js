@@ -1,3 +1,4 @@
+export const MAINNET = 1
 export const NETWORK_MAP = {
   1: 'MAINNET',
   3: 'ROPSTEN',
