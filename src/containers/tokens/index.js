@@ -152,7 +152,7 @@ class Tokens extends PureComponent {
       </div>
     ]
 
-    if (networkID !== ethConstants.MAINNET) {
+    if (Number(networkID) !== ethConstants.MAINNET) {
       forms.push(
         <div>
           <BuyPNKForm

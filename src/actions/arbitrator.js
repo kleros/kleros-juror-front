@@ -7,8 +7,8 @@ export const PNKBalance = {
   ...createActions('$PNK$_BALANCE', { withUpdate: true }),
   BUY: 'BUY_PNK',
   ACTIVATE: 'ACTIVATE_PNK',
-  TRANSFER: 'TRANSFER',
-  WITHDRAW: 'WITHDRAW'
+  TRANSFER: 'TRANSFER_PNK',
+  WITHDRAW: 'WITHDRAW_PNK'
 }
 
 // Arbitrator Data
