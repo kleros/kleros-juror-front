@@ -121,6 +121,11 @@ class Tokens extends PureComponent {
 
     if (!PNKBalance.data || !arbitratorData.data) return null
 
+    let withdrawInvalid = true
+    if (!withdrawPNKFormIsInvalid && PNKBalance.data.activatedTokens === 0) {
+      withdrawInvalid = false
+    }
+    
     const forms = [
       <div key={0}>
         <TransferPNKForm
@@ -168,7 +173,7 @@ class Tokens extends PureComponent {
         <Button
           onClick={submitWithdrawPNKForm}
           size="small"
-          disabled={withdrawPNKFormIsInvalid}
+          disabled={withdrawInvalid}
           className="Tokens-form-button"
         >
           WITHDRAW PNK
