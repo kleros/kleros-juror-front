@@ -10,7 +10,6 @@ export default class Slider extends PureComponent {
     // State
     startLabel: PropTypes.string.isRequired,
     endLabel: PropTypes.string.isRequired,
-    initialPercent: PropTypes.number.isRequired,
     steps: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -25,27 +24,8 @@ export default class Slider extends PureComponent {
     steps: null
   }
 
-  state = {
-    left: 0
-  }
-
-  barRef = null
-
-  getBarRef = ref => {
-    const { initialPercent } = this.props
-
-    this.barRef = ref
-
-    /* istanbul ignore if  */
-    if (this.barRef && process.env.NODE_ENV !== 'test')
-      this.setState({
-        left: this.barRef.getBoundingClientRect().width * initialPercent
-      })
-  }
-
   render() {
     const { startLabel, endLabel, steps: _steps } = this.props
-    const { left } = this.state
 
     const steps = []
     if (_steps) {
@@ -93,8 +73,6 @@ export default class Slider extends PureComponent {
         />
         {/* Steps */}
         {steps}
-        {/* Thumb */}
-        <div className="Slider-thumb" style={{ left }} />
         {/* Labels */}
         <div className="Slider-labels">
           <p>{startLabel}</p>

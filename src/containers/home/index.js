@@ -51,7 +51,6 @@ const renderPeriodSlider = arbitratorData => {
       <Slider
         startLabel={`Period Start: ${dateToString(new Date(start))}`}
         endLabel={`Period End: ${dateToString(new Date(end))}`}
-        initialPercent={initialPercent}
         steps={[
           {
             label: 'Now',
