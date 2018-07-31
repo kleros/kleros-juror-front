@@ -106,6 +106,16 @@ class Home extends PureComponent {
     submitActivatePNKForm()
   }
 
+  validateActivatePNKForm = values => {
+    const { arbitratorData } = this.props
+    const errors = {}
+    if (arbitratorData.data.minActivatedToken > values.amount)
+      errors.amount = `You must deposit a minimum of ${
+        arbitratorData.data.minActivatedToken
+      } PNK.`
+    return errors
+  }
+
   handleActivateButtonClick = () => {
     const { PNKBalance } = this.props
     toastr.message('Deposit PNK', {
@@ -117,6 +127,7 @@ class Home extends PureComponent {
             <ActivatePNKForm
               onSubmit={this.handleActivatePNKFormSubmit}
               initialValues={{ amount: PNKBalance.data.tokenBalance }}
+              validate={this.validateActivatePNKForm}
             />
             <Button
               onClick={this.handleActivatePNKFormButtonClick}
@@ -234,7 +245,7 @@ class Home extends PureComponent {
                             arbitratorData.data &&
                             arbitratorConstants.PERIOD_ENUM[
                               arbitratorData.data.period
-                            ] === 'activation' && (
+                            ] === 'deposit' && (
                               <Button
                                 onClick={this.handleActivateButtonClick}
                                 className="Home-stats-block-content-header-activateButton"
