@@ -125,7 +125,7 @@ class Tokens extends PureComponent {
     if (!withdrawPNKFormIsInvalid && PNKBalance.data.activatedTokens === 0) {
       withdrawInvalid = false
     }
-    
+
     const forms = [
       <div key={0}>
         <TransferPNKForm
