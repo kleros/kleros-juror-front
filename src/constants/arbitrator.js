@@ -5,3 +5,10 @@ export const PERIOD_ENUM = [
   'appeal', // When parties can appeal the rulings
   'execution' // When where token redistribution occurs and Kleros call the arbitrated contracts
 ]
+export const PERIOD_DESCRIPTION_ENUM = [
+  'You can deposit PNK to be drawn as a juror.',
+  'Users are being drawn as jurors.',
+  'You can vote on the cases for which you were drawn.',
+  'Parties can appeal rulings.',
+  'PNK is being distributed and rulings are being executed.'
+]

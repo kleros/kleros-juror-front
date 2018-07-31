@@ -8,6 +8,8 @@ import TextInput from '../text-input'
 
 import './table.css'
 
+const EmptyNoDataComponent = () => <span />
+const NoDataComponent = () => <span>No data.</span>
 class Table extends PureComponent {
   constructor(props) {
     super(props)
@@ -46,7 +48,7 @@ class Table extends PureComponent {
   }
 
   render() {
-    const { data: _data, className, ...rest } = this.props
+    const { data: _data, loading, className, ...rest } = this.props
     const { searchInput, filteredData } = this.state
 
     return (
@@ -68,11 +70,13 @@ class Table extends PureComponent {
           defaultPageSize={7}
           // Indicators
           LoadingComponent={Icosahedron}
-          noDataText="No data."
+          NoDataComponent={loading ? EmptyNoDataComponent : NoDataComponent}
           // Row Props
           getTrProps={this.getTrProps}
           // Data
           data={filteredData}
+          // Loading
+          loading={loading}
           // Rest
           {...rest}
         />
@@ -85,6 +89,7 @@ Table.propTypes = {
   // React Table
   columns: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
   data: PropTypes.arrayOf(PropTypes.shape({}).isRequired),
+  loading: PropTypes.bool.isRequired,
   ...ReactTable.propTypes,
 
   // Handlers
