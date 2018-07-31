@@ -22,7 +22,9 @@ const {
     pinakionContractAddress: PropTypes.string.isRequired,
     session: PropTypes.number.isRequired,
     period: PropTypes.number.isRequired,
-    lastPeriodChange: PropTypes.number.isRequired
+    lastPeriodChange: PropTypes.number.isRequired,
+    timePerPeriod: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    minActivatedToken: PropTypes.number.isRequired
   }),
   { withUpdate: true }
 )

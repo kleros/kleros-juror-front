@@ -1,0 +1,65 @@
+@import '../../styles/_colors.scss';
+
+/* @define Slider */
+.Slider {
+  padding-top: 5px;
+  position: relative;
+
+  &-bar {
+    background: $light2;
+    height: 15px;
+  }
+
+  &-thumb {
+    background: $primary;
+    height: 20px;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 5px;
+  }
+
+  &-value {
+    left: 0;
+    padding: 5px;
+    position: absolute;
+    top: -27px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  &-step {
+    background: $success;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 5px;
+    width: 0;
+
+    &--point {
+      transform: translateX(-50%);
+      width: 5px;
+    }
+
+    &-label {
+      display: none;
+      left: 50%;
+      pointer-events: none;
+      position: absolute;
+      top: 1px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    &:hover &-label {
+      display: block;
+    }
+  }
+
+  &-labels {
+    display: flex;
+    justify-content: space-between;
+  }
+}
