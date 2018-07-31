@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { ArbitrablePermissionList } from 'kleros-api/lib/contracts/implementations/arbitrable'
-import _ from 'lodash'
 
 import { eth } from '../../../bootstrap/dapp-api'
 import LinkBox from '../../link-box'
@@ -14,10 +13,13 @@ class DogesOnTrialEvidence extends Component {
 
   componentDidMount() {
     window.onmessage = this.receiveEvidence.bind(this)
-    window.parent.postMessage({
-      target: 'evidence',
-      loaded: true
-    }, '*')
+    window.parent.postMessage(
+      {
+        target: 'evidence',
+        loaded: true
+      },
+      '*'
+    )
   }
 
   async receiveEvidence(evidence) {
@@ -44,7 +46,7 @@ class DogesOnTrialEvidence extends Component {
     if (!evidence) return null
     let uri
     // it is metaEvidence if there is a disputeID. We have to fetch the image
-    if (!_.isNull(evidence.disputeID)) {
+    if (evidence.disputeID !== null && evidence.disputeID !== undefined) {
       uri = evidence.metaEvidence.fileURI
     } else uri = evidence.URI
 

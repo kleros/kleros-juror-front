@@ -121,8 +121,13 @@ class Tokens extends PureComponent {
 
     if (!PNKBalance.data || !arbitratorData.data) return null
 
+    let withdrawInvalid = true
+    if (!withdrawPNKFormIsInvalid && PNKBalance.data.activatedTokens === 0) {
+      withdrawInvalid = false
+    }
+
     const forms = [
-      <div>
+      <div key={0}>
         <TransferPNKForm
           enableReinitialize
           keepDirtyOnReinitialize
@@ -168,7 +173,7 @@ class Tokens extends PureComponent {
         <Button
           onClick={submitWithdrawPNKForm}
           size="small"
-          disabled={withdrawPNKFormIsInvalid}
+          disabled={withdrawInvalid}
           className="Tokens-form-button"
         >
           WITHDRAW PNK
@@ -178,7 +183,7 @@ class Tokens extends PureComponent {
 
     if (Number(networkID) !== ethConstants.MAINNET) {
       forms.push(
-        <div>
+        <div key={1}>
           <BuyPNKForm
             enableReinitialize
             keepDirtyOnReinitialize
@@ -271,7 +276,11 @@ class Tokens extends PureComponent {
             <b>Period:</b>
             {` ${camelToTitleCase(
               arbitratorConstants.PERIOD_ENUM[arbitratorData.data.period]
-            )}`}
+            )} - ${
+              arbitratorConstants.PERIOD_DESCRIPTION_ENUM[
+                arbitratorData.data.period
+              ]
+            }`}
           </div>
         </div>
         <div className="Tokens-form">

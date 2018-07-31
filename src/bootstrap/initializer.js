@@ -57,7 +57,10 @@ class Initializer extends PureComponent {
           {children}
         </ChainView>
       )
-    } else return 'Loading...'
+    } else
+      return (
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
+      )
   }
 }
 
