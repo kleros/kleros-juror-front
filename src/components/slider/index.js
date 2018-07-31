@@ -18,10 +18,7 @@ export default class Slider extends PureComponent {
         color: PropTypes.string,
         point: PropTypes.bool
       }).isRequired
-    ),
-
-    // Callbacks
-    calcValue: PropTypes.func.isRequired
+    )
   }
 
   static defaultProps = {
@@ -29,39 +26,26 @@ export default class Slider extends PureComponent {
   }
 
   state = {
-    left: 0,
-    value: null
+    left: 0
   }
 
   barRef = null
 
   getBarRef = ref => {
-    const { initialPercent, calcValue } = this.props
+    const { initialPercent } = this.props
 
     this.barRef = ref
 
     /* istanbul ignore if  */
     if (this.barRef && process.env.NODE_ENV !== 'test')
       this.setState({
-        left: this.barRef.getBoundingClientRect().width * initialPercent,
-        value: calcValue(initialPercent)
+        left: this.barRef.getBoundingClientRect().width * initialPercent
       })
-  }
-
-  handleBarMouseMove = event => {
-    const { calcValue } = this.props
-
-    const boundingClientRect = this.barRef.getBoundingClientRect()
-    const left = event.pageX - boundingClientRect.left
-    this.setState({
-      left,
-      value: calcValue(left / boundingClientRect.width)
-    })
   }
 
   render() {
     const { startLabel, endLabel, steps: _steps } = this.props
-    const { left, value } = this.state
+    const { left } = this.state
 
     const steps = []
     if (_steps) {
@@ -85,7 +69,6 @@ export default class Slider extends PureComponent {
         steps.push(
           <div
             key={step.label + step.percent}
-            onMouseMove={this.handleBarMouseMove}
             className={`Slider-step ${step.point ? 'Slider-step--point' : ''}`}
             style={{
               background: step.color,
@@ -112,11 +95,6 @@ export default class Slider extends PureComponent {
         {steps}
         {/* Thumb */}
         <div className="Slider-thumb" style={{ left }} />
-        {value && (
-          <div className="Slider-value" style={{ left }}>
-            <h4>{value}</h4>
-          </div>
-        )}
         {/* Labels */}
         <div className="Slider-labels">
           <p>{startLabel}</p>

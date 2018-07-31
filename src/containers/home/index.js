@@ -18,6 +18,9 @@ import BalancePieChart from '../../components/balance-pie-chart'
 import Button from '../../components/button'
 import NotificationCard from '../../components/notification-card'
 import DisputeCard from '../../components/dispute-card'
+import Slider from '../../components/slider'
+import { dateToString } from '../../utils/date'
+import { camelToTitleCase } from '../../utils/string'
 import * as arbitratorConstants from '../../constants/arbitrator'
 import * as chainViewConstants from '../../constants/chain-view'
 
@@ -29,6 +32,38 @@ import {
 
 import './home.css'
 
+const renderPeriodSlider = arbitratorData => {
+  const start = arbitratorData.lastPeriodChange * 1000
+  const end = start + arbitratorData.timePerPeriod[arbitratorData.period] * 1000
+  const duration = end - start
+  const initialPercent = Math.min((Date.now() - start) / duration, 1)
+  return (
+    <div>
+      <br />
+      <b>Session:</b> {arbitratorData.session}
+      <br />
+      <br />
+      <b>Period:</b>{' '}
+      {camelToTitleCase(arbitratorConstants.PERIOD_ENUM[arbitratorData.period])}{' '}
+      - {arbitratorConstants.PERIOD_DESCRIPTION_ENUM[arbitratorData.period]}
+      <br />
+      <br />
+      <Slider
+        startLabel={`Period Start: ${dateToString(new Date(start))}`}
+        endLabel={`Period End: ${dateToString(new Date(end))}`}
+        initialPercent={initialPercent}
+        steps={[
+          {
+            label: 'Now',
+            percent: initialPercent,
+            color: '#337ab7',
+            point: true
+          }
+        ]}
+      />
+    </div>
+  )
+}
 class Home extends PureComponent {
   static propTypes = {
     // Redux State
@@ -115,6 +150,12 @@ class Home extends PureComponent {
     return (
       <div className="Home">
         <h4>Welcome to Kleros' Juror Dashboard!</h4>
+        <RenderIf
+          resource={arbitratorData}
+          loading={'...'}
+          done={arbitratorData.data && renderPeriodSlider(arbitratorData.data)}
+          failedLoading="..."
+        />
         <div className="Home-stats">
           <div className="Home-stats-block">
             <div className="Home-stats-block-content">
