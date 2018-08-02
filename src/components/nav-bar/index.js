@@ -16,17 +16,30 @@ const NavBar = ({ accounts, routes }) => (
         <img className="NavBar-logo" src={logo} alt="Kleros Logo" />
       </a>
       <div className="NavBar-tabs">
-        {routes.map(r => (
-          <NavLink
-            key={r.to}
-            className="NavBar-tabs-tab"
-            activeClassName="is-active"
-            to={r.to}
-            exact={r.to === '/'}
-          >
-            {r.name}
-          </NavLink>
-        ))}
+        {routes.map(
+          r =>
+            r.isExternal ? (
+              <a
+                key={r.to}
+                href={r.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="NavBar-tabs-tab"
+              >
+                {r.name}
+              </a>
+            ) : (
+              <NavLink
+                key={r.to}
+                className="NavBar-tabs-tab"
+                activeClassName="is-active"
+                to={r.to}
+                exact={r.to === '/'}
+              >
+                {r.name}
+              </NavLink>
+            )
+        )}
       </div>
       <div className="NavBar-buttons">
         <div className="NavBar-buttons-button">
@@ -52,7 +65,8 @@ NavBar.propTypes = {
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      to: PropTypes.string.isRequired
+      to: PropTypes.string.isRequired,
+      isExternal: PropTypes.bool
     }).isRequired
   ).isRequired
 }
