@@ -1,8 +1,15 @@
 /* @define DogesOnTrialEvidence */
 .DogesOnTrialEvidence {
   margin-top: -70px;
+  overflow: hidden;
 
   &-picture {
-    height: 230px;
+    &-link {
+      height: 230px;
+    }
   }
+}
+
+#crisp-chatbox {
+  display: none !important;
 }

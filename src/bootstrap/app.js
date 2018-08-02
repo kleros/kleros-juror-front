@@ -25,7 +25,13 @@ const ConnectedNavBar = connect(state => ({ accounts: state.wallet.accounts }))(
       routes={[
         { name: 'Home', to: '/' },
         { name: 'Cases', to: '/cases' },
-        { name: 'Tokens', to: '/tokens' }
+        { name: 'Tokens', to: '/tokens' },
+        {
+          name: 'Guide',
+          to:
+            'https://medium.com/kleros/doges-on-trial-pilot-explainer-911492c3a7d8',
+          isExternal: true
+        }
       ]}
     />
   )
