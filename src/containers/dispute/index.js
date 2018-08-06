@@ -128,14 +128,13 @@ class Dispute extends PureComponent {
                             <Details
                               key={e.date}
                               date={e.date}
-                              partyAAddress={dispute.data.partyA}
-                              partyBAddress={dispute.data.partyB}
                               arbitrationFee={e.fee}
                               arbitrableContractAddress={
                                 dispute.data.arbitrableContractAddress
                               }
                               disputeID={dispute.data.disputeId}
                               appealNumber={e.appealNumber}
+                              metaEvidence={dispute.data.metaEvidence}
                             />
                           )
                         }
