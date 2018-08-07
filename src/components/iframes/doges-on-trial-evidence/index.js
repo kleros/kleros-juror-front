@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ArbitrablePermissionList } from 'kleros-api/lib/contracts/implementations/arbitrable'
 
-import { eth } from '../../../bootstrap/dapp-api'
+import { eth, env } from '../../../bootstrap/dapp-api'
 import LinkBox from '../../link-box'
 
 import './doges-on-trial-evidence.css'
@@ -33,7 +33,7 @@ class DogesOnTrialEvidence extends Component {
         message.data.disputeID
       )
       message.data.metaEvidence.fileURI =
-        process.env.REACT_APP_DEV_DOGE_IMAGES_BASE_URL + itemHash
+        process.env[`REACT_APP_${env}_DOGE_IMAGES_BASE_URL`] + itemHash
 
       this.setState({
         evidence: message.data
