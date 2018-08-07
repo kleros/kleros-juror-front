@@ -42,7 +42,8 @@ export {
   ETHAddressRegExpCaptureGroup,
   ETHAddressRegExp,
   strictETHAddressRegExp,
-  networkID
+  networkID,
+  env
 }
 
 setTimeout(
