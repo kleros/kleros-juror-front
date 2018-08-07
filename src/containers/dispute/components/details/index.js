@@ -17,13 +17,20 @@ class Details extends Component {
   }
 
   handleFrameMessage = message => {
-    if (message.data && message.data.target === 'evidence') {
+    if (
+      message.data &&
+      message.data.target === 'evidence' &&
+      message.data.loaded
+    ) {
       const { metaEvidence, disputeID, arbitrableContractAddress } = this.props
 
       message.source.postMessage(
         {
           target: 'evidence',
-          data: { metaEvidence, disputeID, arbitrableContractAddress }
+          metaEvidence,
+          evidence: {},
+          arbitrableContractAddress,
+          disputeID
         },
         '*'
       )
@@ -40,6 +47,7 @@ class Details extends Component {
       metaEvidence
     } = this.props
 
+    // Default display of primary document file.
     let fileDisplay = (
       <div>
         <h4>File</h4>
@@ -47,6 +55,7 @@ class Details extends Component {
       </div>
     )
 
+    // Use external interface to display primary document file.
     if (metaEvidence.evidenceDisplayInterfaceURL) {
       fileDisplay = (
         <iframe
