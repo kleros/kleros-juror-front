@@ -53,10 +53,10 @@ class DogesOnTrialEvidence extends Component {
         <div className="DogesOnTrialEvidence-picture">
           <a
             className="DogesOnTrialEvidence-picture-link"
-            href={ uri }
+            href={uri}
             target="_blank"
           >
-            <LinkBox link={ uri } />
+            <LinkBox link={uri} />
           </a>
         </div>
       </div>
