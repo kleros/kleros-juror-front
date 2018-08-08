@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 
 import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
@@ -14,7 +15,7 @@ const Ruling = ({
   votesForPartyA,
   votesForPartyB,
   netPNK,
-  rulings,
+  ruling,
   disputeID,
   appeals,
   appealNumber,
@@ -24,11 +25,11 @@ const Ruling = ({
   const won = netPNK >= 0
   // For now assume all draws for juror had the same ruling
   const jurorRuling =
-    rulings.length > 0
-      ? rulings[0] > 0
-        ? `You ruled: ${metaEvidence.rulingOptions.titles[rulings[0] - 1]}`
+    _.isNull(ruling)
+      ? ''
+      : ruling > 0
+        ? `You ruled: ${metaEvidence.rulingOptions.titles[ruling - 1]}`
         : 'No Ruling'
-      : ''
   return (
     <div className="Ruling">
       <hr />
@@ -132,7 +133,7 @@ Ruling.propTypes = {
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
-  rulings: PropTypes.shape,
+  ruling: PropTypes.shape,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
@@ -142,7 +143,7 @@ Ruling.propTypes = {
 Ruling.defaultProps = {
   // State
   date: null,
-  rulings: []
+  ruling: null
 }
 
 export default Ruling
