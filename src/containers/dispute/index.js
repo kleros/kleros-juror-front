@@ -166,8 +166,8 @@ class Dispute extends PureComponent {
                               votesForPartyA={e.voteCounter[1]}
                               votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}
-                              rulings={
-                                dispute.data.appealJuror[e.appealNumber].rulings
+                              ruling={
+                                dispute.data.appealJuror[e.appealNumber].ruling
                               }
                               disputeID={dispute.data.disputeId}
                               appeals={dispute.data.numberOfAppeals}

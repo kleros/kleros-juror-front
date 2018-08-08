@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ArbitrablePermissionList } from 'kleros-api/lib/contracts/implementations/arbitrable'
 
-import { eth } from '../../../bootstrap/dapp-api'
+import { eth, env } from '../../../bootstrap/dapp-api'
 import LinkBox from '../../link-box'
 
 import './doges-on-trial-evidence.css'
@@ -22,21 +22,21 @@ class DogesOnTrialEvidence extends Component {
     )
   }
 
-  async receiveEvidence(evidence) {
-    if (evidence.data && evidence.data.target === 'evidence') {
+  async receiveEvidence(message) {
+    if (message.data && message.data.target === 'evidence') {
       const arbitrablePermissionList = new ArbitrablePermissionList(
         eth.currentProvider,
-        evidence.data.data.arbitrableContractAddress
+        message.data.arbitrableContractAddress
       )
 
       const itemHash = await arbitrablePermissionList.getItemByDisputeId(
-        evidence.data.data.disputeID
+        message.data.disputeID
       )
-      evidence.data.data.metaEvidence.fileURI =
-        process.env.REACT_APP_DEV_DOGE_IMAGES_BASE_URL + itemHash
+      message.data.metaEvidence.fileURI =
+        process.env[`REACT_APP_${env}_DOGE_IMAGES_BASE_URL`] + itemHash
 
       this.setState({
-        evidence: evidence.data.data
+        evidence: message.data
       })
     }
   }
@@ -44,11 +44,8 @@ class DogesOnTrialEvidence extends Component {
   render() {
     const { evidence } = this.state
     if (!evidence) return null
-    let uri
-    // it is metaEvidence if there is a disputeID. We have to fetch the image
-    if (evidence.disputeID !== null && evidence.disputeID !== undefined) {
-      uri = evidence.metaEvidence.fileURI
-    } else uri = evidence.URI
+
+    const uri = evidence.metaEvidence.fileURI
 
     return (
       <div className="DogesOnTrialEvidence">
