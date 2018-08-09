@@ -15,7 +15,7 @@ const Ruling = ({
   votesForPartyA,
   votesForPartyB,
   netPNK,
-  ruling,
+  jurorRuling,
   disputeID,
   appeals,
   appealNumber,
@@ -23,12 +23,11 @@ const Ruling = ({
 }) => {
   const inProgress = date === null
   const won = netPNK >= 0
-  // For now assume all draws for juror had the same ruling
-  const jurorRuling =
-    _.isNull(ruling)
+  const jurorRulingDisplay =
+    (jurorRuling == null)
       ? ''
-      : ruling > 0
-        ? `You ruled: ${metaEvidence.rulingOptions.titles[ruling - 1]}`
+      : jurorRuling > 0
+        ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
         : 'No Ruling'
   return (
     <div className="Ruling">
@@ -39,7 +38,7 @@ const Ruling = ({
         {inProgress ? 'In Progress' : dateToString(date, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
-      <small>{jurorRuling}</small>
+      <small>{jurorRulingDisplay}</small>
       {!inProgress && (
         <div className="Ruling-outcome">
           <div
