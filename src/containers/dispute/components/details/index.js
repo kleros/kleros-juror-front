@@ -28,8 +28,9 @@ class Details extends Component {
         {
           target: 'evidence',
           metaEvidence,
-          evidence: {},
+          evidence: null,
           arbitrableContractAddress,
+          arbitratorAddress: ARBITRATOR_ADDRESS,
           disputeID
         },
         '*'
