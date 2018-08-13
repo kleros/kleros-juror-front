@@ -1,16 +1,16 @@
 export const MONTHS_ENUM = [
-  'January',
-  'February',
+  'Jan',
+  'Feb',
   'March',
   'April',
   'May',
   'June',
   'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
+  'Aug',
+  'Sept',
+  'Oct',
+  'Nov',
+  'Dec'
 ]
 
 export const ORDINAL_INDICATOR_ENUM = [
