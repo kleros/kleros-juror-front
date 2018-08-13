@@ -65,6 +65,7 @@ class Table extends PureComponent {
         </div>
         <ReactTable
           // Number of Rows
+          minRows={filteredData.length < 7 ? filteredData.length || 3 : 7}
           pageSizeOptions={[7, 14, 28, 56, 112]}
           defaultPageSize={7}
           // Indicators
