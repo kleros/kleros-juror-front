@@ -57,10 +57,7 @@ class Initializer extends PureComponent {
           {children}
         </ChainView>
       )
-    } else
-      return (
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
-      )
+    } else return <RequiresMetaMask needsUnlock={false} />
   }
 }
 
