@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 
 import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
@@ -24,7 +23,7 @@ const Ruling = ({
   const inProgress = date === null
   const won = netPNK >= 0
   const jurorRulingDisplay =
-    (jurorRuling == null)
+    jurorRuling === null || jurorRuling === undefined
       ? ''
       : jurorRuling > 0
         ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
@@ -132,7 +131,7 @@ Ruling.propTypes = {
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
-  ruling: PropTypes.shape,
+  jurorRuling: PropTypes.shape,
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
@@ -142,7 +141,7 @@ Ruling.propTypes = {
 Ruling.defaultProps = {
   // State
   date: null,
-  ruling: null
+  jurorRuling: null
 }
 
 export default Ruling

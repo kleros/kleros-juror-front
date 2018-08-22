@@ -2327,7 +2327,7 @@ exports[`Storyshots Dispute Card appealable 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                October 13rd at 5:36 pm
+                Oct 13rd at 5:36 pm
               </small>
             </h6>
             <h5>
@@ -2641,7 +2641,7 @@ exports[`Storyshots Dispute Card resolved 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                October 25th at 7:23 am
+                Oct 25th at 7:23 am
               </small>
             </h6>
             <h5>
@@ -2955,7 +2955,7 @@ exports[`Storyshots Dispute Card waiting 1`] = `
                 <span
                   className="DisputeCard-oval"
                 />
-                October 2nd at 3:50 am
+                Oct 2nd at 3:50 am
               </small>
             </h6>
             <h5>
@@ -8854,7 +8854,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        October 2nd at 3:50 am
+                        Oct 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -8926,7 +8926,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        October 2nd at 3:50 am
+                        Oct 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -8998,7 +8998,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        October 2nd at 3:50 am
+                        Oct 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"
@@ -9070,7 +9070,7 @@ exports[`Storyshots Table default 1`] = `
                           }
                         }
                       >
-                        October 2nd at 3:50 am
+                        Oct 2nd at 3:50 am
                       </div>
                       <div
                         className="rt-td"

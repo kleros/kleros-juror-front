@@ -95,9 +95,9 @@ class Dispute extends PureComponent {
                             className="Dispute-header-title-identicon"
                           />
                           <h3>
-                            Decision Summary for "{
-                              dispute.data.metaEvidence.title
-                            }", Case #{dispute.data.disputeId}
+                            Decision Summary for "
+                            {dispute.data.metaEvidence.title}
+                            ", Case #{dispute.data.disputeId}
                           </h3>
                         </div>
                         <hr />
@@ -167,7 +167,8 @@ class Dispute extends PureComponent {
                               votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}
                               jurorRuling={
-                                dispute.data.appealJuror[e.appealNumber].jurorRuling
+                                dispute.data.appealJuror[e.appealNumber]
+                                  .jurorRuling
                               }
                               disputeID={dispute.data.disputeId}
                               appeals={dispute.data.numberOfAppeals}

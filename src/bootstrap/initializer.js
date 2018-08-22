@@ -40,6 +40,7 @@ class Initializer extends PureComponent {
     const { initialized } = this.state
 
     if (initialized && !accounts.loading) {
+      if (!window.web3) return <RequiresMetaMask />
       if (!accounts.data) return <RequiresMetaMask needsUnlock />
       if (!ARBITRATOR_ADDRESS) return <MissingArbitrator />
 
@@ -57,10 +58,10 @@ class Initializer extends PureComponent {
           {children}
         </ChainView>
       )
-    } else
-      return (
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
-      )
+    }
+    return (
+      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
+    )
   }
 }
 

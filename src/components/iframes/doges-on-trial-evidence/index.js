@@ -55,6 +55,7 @@ class DogesOnTrialEvidence extends Component {
             className="DogesOnTrialEvidence-picture-link"
             href={uri}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <LinkBox link={uri} />
           </a>
