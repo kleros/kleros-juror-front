@@ -3,4 +3,4 @@ export const required = name => v =>
 export const number = name => v =>
   Number.isNaN(Number(v)) ? `${name} must be a number.` : undefined
 export const positiveNumber = name => v =>
-  v < 0 ? `${name} must be positive.` : undefined
+  v <= 0 ? `${name} must be strictly positive.` : undefined
