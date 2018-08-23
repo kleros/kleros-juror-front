@@ -58,10 +58,11 @@ class Initializer extends PureComponent {
           {children}
         </ChainView>
       )
-    }
-    return (
-      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
-    )
+    } else if (window.web3) {
+      return (
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading...</span>
+      )
+    } else return <RequiresMetaMask needsUnlock={false} />
   }
 }
 
