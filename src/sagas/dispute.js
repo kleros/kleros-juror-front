@@ -1,3 +1,5 @@
+import { makePopup } from '@typeform/embed'
+
 import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
 import { addContract } from '../chainstrap'
@@ -145,6 +147,20 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   const account = yield select(walletSelectors.getAccount)
 
   yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
+
+  const popup = makePopup(
+    `https://kleros.typeform.com/to/utoDzJ?address=${account}&disputeid=${disputeID}&vote=${
+      Number(ruling) === 1 ? 'yes' : 'no'
+    }`,
+    {
+      mode: 'drawer_left',
+      autoClose: 2,
+      hideHeaders: true,
+      hideFooter: true
+    }
+  )
+  popup.open()
+
   return yield call(fetchDispute, { payload: { disputeID } })
 }
 
