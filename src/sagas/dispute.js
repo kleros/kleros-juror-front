@@ -105,10 +105,7 @@ function* fetchDisputes() {
         d.arbitrableContractAddress
       )
 
-      const [arbitrableData, disputeDeadline] = yield all([
-        call(kleros.arbitrable.getContractData),
-        call(kleros.disputes.getDisputeDeadline, d.disputeId, d.numberOfAppeals)
-      ])
+      const arbitrableData = yield call(kleros.arbitrable.getContractData)
 
       disputes.push({
         ...d,
@@ -117,10 +114,35 @@ function* fetchDisputes() {
           : null,
         description: arbitrableData.metaEvidence
           ? arbitrableData.metaEvidence.description
-          : null,
-        deadline: disputeDeadline ? new Date(disputeDeadline) : null
+          : null
       })
     } else disputes.push(d)
+
+  return disputes
+}
+
+/**
+ * Updates dispute set with deadlines
+ * @returns {object[]} - The disputes.
+ */
+function* fetchDisputeDeadlines({ payload: { _disputes } }) {
+  const disputeDeadlines = yield all(
+    _disputes.map(dispute =>
+      call(
+        kleros.disputes.getDisputeDeadline,
+        dispute.disputeId,
+        dispute.numberOfAppeals
+      )
+    )
+  )
+
+  const disputes = []
+  for (let i = 0; i < _disputes.length; i++) {
+    disputes.push({
+      ..._disputes[i],
+      deadline: disputeDeadlines[i] ? new Date(disputeDeadlines[i]) : null
+    })
+  }
 
   return disputes
 }
@@ -199,6 +221,13 @@ export default function* disputeSaga() {
     'fetch',
     disputeActions.disputes,
     fetchDisputes
+  )
+  yield takeLatest(
+    disputeActions.disputes.FETCH_DEADLINES,
+    lessduxSaga,
+    'update',
+    disputeActions.disputes,
+    fetchDisputeDeadlines
   )
 
   // Dispute

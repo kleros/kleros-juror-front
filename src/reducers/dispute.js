@@ -18,11 +18,13 @@ const {
       rulingChoices: PropTypes.number.isRequired,
       state: PropTypes.number.isRequired,
       status: PropTypes.number.isRequired,
+      deadline: PropTypes.string,
       voteCounters: PropTypes.arrayOf(
         PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
       ).isRequired
     }).isRequired
-  )
+  ),
+  { withUpdate: true }
 )
 const {
   shape: disputeShape,
