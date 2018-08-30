@@ -3,7 +3,10 @@ import { createActions } from 'lessdux'
 /* Actions */
 
 // Disputes
-export const disputes = createActions('DISPUTES')
+export const disputes = {
+  ...createActions('DISPUTES', { withUpdate: true }),
+  FETCH_DEADLINES: 'FETCH_DISPUTE_DEADLINES'
+}
 
 // Dispute
 export const dispute = {
@@ -17,6 +20,10 @@ export const dispute = {
 
 // Disputes
 export const fetchDisputes = () => ({ type: disputes.FETCH })
+export const fetchDisputeDeadlines = _disputes => ({
+  type: disputes.FETCH_DEADLINES,
+  payload: { _disputes }
+})
 
 // Dispute
 export const fetchDispute = disputeID => ({

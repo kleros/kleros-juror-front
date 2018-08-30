@@ -16,7 +16,12 @@ class Disputes extends PureComponent {
     disputes: disputeSelectors.disputesShape.isRequired,
 
     // Action Dispatchers
-    fetchDisputes: PropTypes.func.isRequired
+    fetchDisputes: PropTypes.func.isRequired,
+    fetchDisputeDeadlines: PropTypes.func.isRequired
+  }
+
+  state = {
+    loadedDeadlines: false
   }
 
   componentDidMount() {
@@ -24,9 +29,17 @@ class Disputes extends PureComponent {
     fetchDisputes()
   }
 
+  componentDidUpdate() {
+    const { fetchDisputeDeadlines, disputes } = this.props
+    const { loadedDeadlines } = this.state
+    if (!loadedDeadlines && disputes && disputes.data) {
+      fetchDisputeDeadlines(disputes.data)
+      this.setState({ loadedDeadlines: true })
+    }
+  }
+
   render() {
     const { disputes } = this.props
-
     const table = <DisputesTable disputes={disputes} />
     return (
       <div className="Disputes">
@@ -48,6 +61,7 @@ export default connect(
     disputes: state.dispute.disputes
   }),
   {
-    fetchDisputes: disputeActions.fetchDisputes
+    fetchDisputes: disputeActions.fetchDisputes,
+    fetchDisputeDeadlines: disputeActions.fetchDisputeDeadlines
   }
 )(Disputes)

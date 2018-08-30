@@ -8,6 +8,11 @@ import CaseNameCell from '../case-name-cell'
 
 const columns = [
   {
+    show: false,
+    accessor: 'disputeId',
+    id: 'disputeId'
+  },
+  {
     Header: 'Case Name',
     minWidth: 220,
     Cell: CaseNameCell
@@ -22,8 +27,8 @@ const columns = [
     maxWidth: 140,
     accessor: 'deadline',
     Cell: cell =>
-      cell.value === null
-        ? 'None'
+      cell.value == null
+        ? 'Loading...'
         : dateToString(cell.value, { withYear: false })
   },
   {
@@ -41,7 +46,11 @@ const DisputesTable = ({ disputes }) => (
     data={disputes.data}
     defaultSorted={[
       {
-        id: 'deadline',
+        id: 'status',
+        desc: false
+      },
+      {
+        id: 'disputeId',
         desc: true
       }
     ]}
