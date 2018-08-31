@@ -87,8 +87,8 @@ class Details extends Component {
                 >
                   {address}
                 </ChainData>
-              ),
-              identiconSeed: address
+              )
+              // identiconSeed: address
             }))
             .concat([
               {
