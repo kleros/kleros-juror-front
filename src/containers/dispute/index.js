@@ -52,7 +52,7 @@ class Dispute extends PureComponent {
   handleVoteButtonClick = ({ currentTarget: { id } }) => {
     const { dispute, voteOnDispute } = this.props
     voteOnDispute(
-      dispute.data.disputeId,
+      dispute.data.disputeID,
       dispute.data.appealJuror[dispute.data.latestAppealForJuror].draws,
       id
     )
@@ -60,12 +60,12 @@ class Dispute extends PureComponent {
 
   handleRepartitionButtonClick = () => {
     const { dispute, repartitionTokens } = this.props
-    repartitionTokens(dispute.data.disputeId)
+    repartitionTokens(dispute.data.disputeID)
   }
 
   handleExecuteButtonClick = () => {
     const { dispute, executeRuling } = this.props
-    executeRuling(dispute.data.disputeId)
+    executeRuling(dispute.data.disputeID)
   }
 
   render() {
@@ -97,7 +97,7 @@ class Dispute extends PureComponent {
                           <h3>
                             Decision Summary for "
                             {dispute.data.metaEvidence.title}
-                            ", Case #{dispute.data.disputeId}
+                            ", Case #{dispute.data.disputeID}
                           </h3>
                         </div>
                         <hr />
@@ -114,7 +114,7 @@ class Dispute extends PureComponent {
                         arbitrableContractAddress={
                           dispute.data.arbitrableContractAddress
                         }
-                        disputeID={dispute.data.disputeId}
+                        disputeID={dispute.data.disputeID}
                         metaEvidence={dispute.data.metaEvidence}
                       />
                     )
@@ -132,7 +132,7 @@ class Dispute extends PureComponent {
                               arbitrableContractAddress={
                                 dispute.data.arbitrableContractAddress
                               }
-                              disputeID={dispute.data.disputeId}
+                              disputeID={dispute.data.disputeID}
                               appealNumber={e.appealNumber}
                               metaEvidence={dispute.data.metaEvidence}
                             />
@@ -170,7 +170,7 @@ class Dispute extends PureComponent {
                                 dispute.data.appealJuror[e.appealNumber]
                                   .jurorRuling
                               }
-                              disputeID={dispute.data.disputeId}
+                              disputeID={dispute.data.disputeID}
                               appeals={dispute.data.numberOfAppeals}
                               appealNumber={e.appealNumber}
                               metaEvidence={dispute.data.metaEvidence}

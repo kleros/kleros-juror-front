@@ -25,8 +25,8 @@ class Disputes extends PureComponent {
   }
 
   componentDidMount() {
-    const { fetchDisputes } = this.props
-    fetchDisputes()
+    const { fetchDisputes, disputes } = this.props
+    if (disputes && !disputes.data) fetchDisputes()
   }
 
   componentDidUpdate() {

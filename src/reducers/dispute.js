@@ -11,7 +11,7 @@ const {
       arbitrableContractAddress: PropTypes.string.isRequired,
       arbitratorAddress: PropTypes.string.isRequired,
       arbitrationFeePerJuror: PropTypes.number.isRequired,
-      disputeId: PropTypes.number.isRequired,
+      disputeID: PropTypes.number.isRequired,
       firstSession: PropTypes.number.isRequired,
       initialNumberJurors: PropTypes.number.isRequired,
       numberOfAppeals: PropTypes.number.isRequired,
@@ -39,7 +39,7 @@ const {
     partyB: PropTypes.string.isRequired,
 
     // Dispute Data
-    disputeId: PropTypes.number.isRequired,
+    disputeID: PropTypes.number.isRequired,
     firstSession: PropTypes.number.isRequired,
     lastSession: PropTypes.number.isRequired,
     numberOfAppeals: PropTypes.number.isRequired,

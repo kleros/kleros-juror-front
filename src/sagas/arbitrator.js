@@ -44,7 +44,6 @@ function* transferPNK({ payload: { amount } }) {
  * @returns {object} - The update PNK balance.
  */
 function* withdrawPNK({ payload: { amount } }) {
-  console.log(amount)
   return yield call(
     kleros.arbitrator.withdrawPNK,
     amount,

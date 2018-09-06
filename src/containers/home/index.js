@@ -20,6 +20,7 @@ import NotificationCard from '../../components/notification-card'
 import DisputeCard from '../../components/dispute-card'
 import Slider from '../../components/slider'
 import { dateToString } from '../../utils/date'
+import { weiBNToDecimalString, decimalStringToWeiBN } from '../../utils/number'
 import { camelToTitleCase } from '../../utils/string'
 import * as arbitratorConstants from '../../constants/arbitrator'
 import * as chainViewConstants from '../../constants/chain-view'
@@ -94,8 +95,9 @@ class Home extends PureComponent {
 
   handleActivatePNKFormSubmit = formData => {
     const { activatePNK } = this.props
+    const { amount } = formData
     toastr.removeByType('message')
-    activatePNK(formData)
+    activatePNK(decimalStringToWeiBN(amount).toString())
   }
 
   handleActivatePNKFormButtonClick = () => {
@@ -109,10 +111,14 @@ class Home extends PureComponent {
   validateActivatePNKForm = values => {
     const { arbitratorData } = this.props
     const errors = {}
-    if (arbitratorData.data.minActivatedToken > values.amount)
-      errors.amount = `You must deposit a minimum of ${
+    if (
+      arbitratorData.data.minActivatedToken.greaterThan(
+        decimalStringToWeiBN(values.amount, 'ether')
+      )
+    )
+      errors.amount = `You must deposit a minimum of ${decimalStringToWeiBN(
         arbitratorData.data.minActivatedToken
-      } PNK.`
+      ).toString()} PNK.`
     return errors
   }
 
@@ -126,7 +132,12 @@ class Home extends PureComponent {
           <div>
             <ActivatePNKForm
               onSubmit={this.handleActivatePNKFormSubmit}
-              initialValues={{ amount: PNKBalance.data.tokenBalance }}
+              initialValues={{
+                amount: weiBNToDecimalString(
+                  PNKBalance.data.tokenBalance,
+                  'ether'
+                )
+              }}
               validate={this.validateActivatePNKForm}
             />
             <Button
@@ -159,7 +170,7 @@ class Home extends PureComponent {
 
     return (
       <div className="Home">
-        <h4>Welcome to Kleros' Juror Dashboard!</h4>
+        <h4>{"Welcome to Kleros' Juror Dashboard!"}</h4>
         <RenderIf
           resource={arbitratorData}
           loading={'...'}
@@ -195,7 +206,8 @@ class Home extends PureComponent {
                             accounts.data[0]
                           )}
                         >
-                          {PNKBalance.data.tokenBalance} PNK
+                          {weiBNToDecimalString(PNKBalance.data.tokenBalance)}{' '}
+                          PNK
                         </ChainData>
                       </h6>
                     )
@@ -232,8 +244,8 @@ class Home extends PureComponent {
                   <div className="Home-stats-block-content">
                     <BalancePieChart
                       type="activated"
-                      balance={PNKBalance.data.activatedTokens}
-                      total={PNKBalance.data.tokenBalance}
+                      balance={PNKBalance.data.activatedTokens.toNumber()}
+                      total={PNKBalance.data.tokenBalance.toNumber()}
                       size={80}
                     />
                     <div className="Home-stats-block-content-header">
@@ -282,7 +294,10 @@ class Home extends PureComponent {
                             accounts.data[0]
                           )}
                         >
-                          {PNKBalance.data.activatedTokens} PNK
+                          {weiBNToDecimalString(
+                            PNKBalance.data.activatedTokens
+                          )}{' '}
+                          PNK
                         </ChainData>
                       </h6>
                     </div>
@@ -304,8 +319,8 @@ class Home extends PureComponent {
                   <div className="Home-stats-block-content">
                     <BalancePieChart
                       type="locked"
-                      balance={PNKBalance.data.lockedTokens}
-                      total={PNKBalance.data.tokenBalance}
+                      balance={PNKBalance.data.lockedTokens.toNumber()}
+                      total={PNKBalance.data.tokenBalance.toNumber()}
                       size={80}
                     />
                     <div className="Home-stats-block-content-header">
@@ -321,7 +336,8 @@ class Home extends PureComponent {
                             accounts.data[0]
                           )}
                         >
-                          {PNKBalance.data.lockedTokens} PNK
+                          {weiBNToDecimalString(PNKBalance.data.lockedTokens)}{' '}
+                          PNK
                         </ChainData>
                       </h6>
                     </div>
@@ -345,9 +361,9 @@ class Home extends PureComponent {
                 <div key={n._id} className="Home-cardList-card">
                   <NotificationCard
                     id={n._id}
-                    disputeID={n.data.disputeId}
+                    disputeID={n.data.disputeID}
                     message={n.message}
-                    to={`/cases/${n.data.disputeId}`}
+                    to={`/cases/${n.data.disputeID}`}
                     onDismissClick={this.handleNotificationCardDismissClick}
                   />
                 </div>
@@ -367,13 +383,13 @@ class Home extends PureComponent {
               pendingActions.data &&
               pendingActions.data.map(p => (
                 <div
-                  key={p.message + p.data.disputeId}
+                  key={p.message + p.data.disputeID}
                   className="Home-cardList-card"
                 >
                   <DisputeCard
                     status={0}
                     subcourt="GENERAL COURT"
-                    disputeID={p.data.disputeId}
+                    disputeID={p.data.disputeID}
                     date={new Date()}
                     title={p.message}
                   />

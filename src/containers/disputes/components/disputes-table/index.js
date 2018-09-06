@@ -9,8 +9,8 @@ import CaseNameCell from '../case-name-cell'
 const columns = [
   {
     show: false,
-    accessor: 'disputeId',
-    id: 'disputeId'
+    accessor: 'disputeID',
+    id: 'disputeID'
   },
   {
     Header: 'Case Name',
@@ -50,7 +50,7 @@ const DisputesTable = ({ disputes }) => (
         desc: false
       },
       {
-        id: 'disputeId',
+        id: 'disputeID',
         desc: true
       }
     ]}
