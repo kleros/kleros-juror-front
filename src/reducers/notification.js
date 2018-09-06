@@ -9,7 +9,7 @@ export const _notificationShape = PropTypes.shape({
   message: PropTypes.string.isRequired,
   data: PropTypes.shape({
     // TODO
-    disputeId: PropTypes.number,
+    disputeID: PropTypes.number,
     arbitratorAddress: PropTypes.string
   }).isRequired,
   _id: PropTypes.string.isRequired,

@@ -7,9 +7,9 @@ const {
   initialState: PNKBalanceInitialState
 } = createResource(
   PropTypes.shape({
-    tokenBalance: PropTypes.number.isRequired,
-    activatedTokens: PropTypes.number.isRequired,
-    lockedTokens: PropTypes.number.isRequired
+    tokenBalance: PropTypes.object.isRequired,
+    activatedTokens: PropTypes.object.isRequired,
+    lockedTokens: PropTypes.object.isRequired
   }),
   { withUpdate: true }
 )
@@ -24,7 +24,7 @@ const {
     period: PropTypes.number.isRequired,
     lastPeriodChange: PropTypes.number.isRequired,
     timePerPeriod: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
-    minActivatedToken: PropTypes.number.isRequired
+    minActivatedToken: PropTypes.object.isRequired
   }),
   { withUpdate: true }
 )

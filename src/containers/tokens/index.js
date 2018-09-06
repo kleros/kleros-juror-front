@@ -10,6 +10,7 @@ import * as walletActions from '../../actions/wallet'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
 import { camelToTitleCase } from '../../utils/string'
+import { weiBNToDecimalString, decimalStringToWeiBN } from '../../utils/number'
 import Icosahedron from '../../components/icosahedron'
 import Button from '../../components/button'
 import * as arbitratorConstants from '../../constants/arbitrator'
@@ -83,7 +84,11 @@ class Tokens extends PureComponent {
   validateTransferPNKForm = values => {
     const { PNKBalance } = this.props
     const errors = {}
-    if (PNKBalance.data.contractBalance < values.amount)
+    if (
+      PNKBalance.data.contractBalance.lessThan(
+        decimalStringToWeiBN(values.amount)
+      )
+    )
       errors.amount = 'You do not own this much PNK.'
     return errors
   }
@@ -92,11 +97,30 @@ class Tokens extends PureComponent {
     const { PNKBalance } = this.props
     const errors = {}
     if (
-      PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens <
-      values.amount
+      PNKBalance.data.tokenBalance
+        .minus(PNKBalance.data.lockedTokens)
+        .lessThan(decimalStringToWeiBN(values.amount))
     )
       errors.amount = 'You do not have this much free PNK.'
     return errors
+  }
+
+  handleWithdrawPNKFormSubmit = formData => {
+    const { withdrawPNK } = this.props
+    const { amount } = formData
+    withdrawPNK(decimalStringToWeiBN(amount).toString())
+  }
+
+  handleTransferPNKFormSubmit = formData => {
+    const { transferPNK } = this.props
+    const { amount } = formData
+    transferPNK(decimalStringToWeiBN(amount).toString())
+  }
+
+  handleBuyPNKFormSubmit = formData => {
+    const { buyPNK } = this.props
+    const { amount } = formData
+    buyPNK(decimalStringToWeiBN(amount).toString())
   }
 
   render() {
@@ -105,16 +129,13 @@ class Tokens extends PureComponent {
       balance,
       PNKBalance,
       arbitratorData,
-      buyPNK,
       passPeriod,
       buyPNKFormIsInvalid,
       submitBuyPNKForm,
       passPeriodFormIsInvalid,
       submitPassPeriodForm,
-      transferPNK,
       transferPNKFormIsInvalid,
       submitTransferPNKForm,
-      withdrawPNK,
       withdrawPNKFormIsInvalid,
       submitWithdrawPNKForm
     } = this.props
@@ -122,7 +143,10 @@ class Tokens extends PureComponent {
     if (!PNKBalance.data || !arbitratorData.data) return null
 
     let withdrawInvalid = true
-    if (!withdrawPNKFormIsInvalid && PNKBalance.data.activatedTokens === 0) {
+    if (
+      !withdrawPNKFormIsInvalid &&
+      PNKBalance.data.activatedTokens.toNumber() === 0
+    ) {
       withdrawInvalid = false
     }
 
@@ -152,9 +176,9 @@ class Tokens extends PureComponent {
                 </small>
               </span>
             ),
-            amount: PNKBalance.data.contractBalance
+            amount: weiBNToDecimalString(PNKBalance.data.contractBalance)
           }}
-          onSubmit={transferPNK}
+          onSubmit={this.handleTransferPNKFormSubmit}
           validate={this.validateTransferPNKForm}
         />
 
@@ -177,9 +201,11 @@ class Tokens extends PureComponent {
                 not withdraw tokens that are at stake in active disputes.
               </span>
             ),
-            amount: PNKBalance.data.tokenBalance - PNKBalance.data.lockedTokens
+            amount: weiBNToDecimalString(
+              PNKBalance.data.tokenBalance.minus(PNKBalance.data.lockedTokens)
+            )
           }}
-          onSubmit={withdrawPNK}
+          onSubmit={this.handleWithdrawPNKFormSubmit}
           validate={this.validateWithdrawPNKForm}
         />
 
@@ -207,7 +233,7 @@ class Tokens extends PureComponent {
                 </span>
               )
             }}
-            onSubmit={buyPNK}
+            onSubmit={this.handleBuyPNKFormSubmit}
           />
 
           <Button
@@ -272,14 +298,16 @@ class Tokens extends PureComponent {
                 accounts.data[0]
               )}
             >
-              {PNKBalance.data.tokenBalance}
+              {weiBNToDecimalString(PNKBalance.data.tokenBalance)}
             </ChainData>
           </div>
           <div className="Tokens-info-item">
-            <b>Activated PNK:</b> {PNKBalance.data.activatedTokens}
+            <b>Activated PNK:</b>{' '}
+            {weiBNToDecimalString(PNKBalance.data.activatedTokens)}
           </div>
           <div className="Tokens-info-item">
-            <b>Locked PNK:</b> {PNKBalance.data.lockedTokens}
+            <b>Locked PNK:</b>{' '}
+            {weiBNToDecimalString(PNKBalance.data.lockedTokens)}
           </div>
           <div className="Tokens-info-item">
             <b>Session:</b>

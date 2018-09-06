@@ -21,25 +21,22 @@ export const arbitratorData = {
 
 // PNK Balance
 export const fetchPNKBalance = () => ({ type: PNKBalance.FETCH })
-export const buyPNK = formData => ({
+export const buyPNK = amount => ({
   type: PNKBalance.BUY,
-  payload: { amount: formData.amount }
+  payload: { amount }
 })
-export const activatePNK = formData => ({
+export const activatePNK = amount => ({
   type: PNKBalance.ACTIVATE,
-  payload: { amount: formData.amount }
+  payload: { amount }
 })
-export const transferPNK = formData => ({
+export const transferPNK = amount => ({
   type: PNKBalance.TRANSFER,
-  payload: { amount: formData.amount }
+  payload: { amount }
 })
-export const withdrawPNK = formData => {
-  console.log(1)
-  return {
-    type: PNKBalance.WITHDRAW,
-    payload: { amount: formData.amount }
-  }
-}
+export const withdrawPNK = amount => ({
+  type: PNKBalance.WITHDRAW,
+  payload: { amount }
+})
 
 // Arbitrator Data
 export const fetchArbitratorData = () => ({ type: arbitratorData.FETCH })

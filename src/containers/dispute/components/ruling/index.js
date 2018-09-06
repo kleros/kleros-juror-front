@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
+import { weiBNToDecimalString } from '../../../../utils/number'
 import LabelValueGroup from '../../../../components/label-value-group'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
@@ -57,7 +58,9 @@ const Ruling = ({
             <h5 className="Ruling-outcome-netPNK-label">
               {won ? 'Received ' : 'Lost '}
             </h5>
-            <h4 className="Ruling-outcome-netPNK-label">{netPNK} PNK</h4>
+            <h4 className="Ruling-outcome-netPNK-label">
+              {weiBNToDecimalString(netPNK)} PNK
+            </h4>
           </div>
         </div>
       )}
@@ -113,7 +116,7 @@ const Ruling = ({
                       }`}
                     >
                       {won ? '+' : '-'}
-                      {netPNK}
+                      {weiBNToDecimalString(netPNK)}
                     </span>
                   )
                 }

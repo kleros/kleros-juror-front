@@ -87,16 +87,13 @@ const parseDispute = d => {
  */
 function* fetchDisputes() {
   const account = yield select(walletSelectors.getAccount)
-
   const [_disputes, arbitratorData] = yield all([
     call(kleros.arbitrator.getDisputesForUser, account),
     call(fetchArbitratorData)
   ])
-
   yield put(
     action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
   )
-
   const disputes = []
   for (const d of _disputes)
     if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
@@ -105,16 +102,12 @@ function* fetchDisputes() {
         d.arbitrableContractAddress
       )
 
-      const arbitrableData = yield call(kleros.arbitrable.getContractData)
+      const metaEvidence = yield call(kleros.arbitrable.getMetaEvidence)
 
       disputes.push({
         ...d,
-        title: arbitrableData.metaEvidence
-          ? arbitrableData.metaEvidence.title
-          : null,
-        description: arbitrableData.metaEvidence
-          ? arbitrableData.metaEvidence.description
-          : null
+        title: metaEvidence ? metaEvidence.title : null,
+        description: metaEvidence ? metaEvidence.description : null
       })
     } else disputes.push(d)
 
@@ -130,7 +123,7 @@ function* fetchDisputeDeadlines({ payload: { _disputes } }) {
     _disputes.map(dispute =>
       call(
         kleros.disputes.getDisputeDeadline,
-        dispute.disputeId,
+        dispute.disputeID,
         dispute.numberOfAppeals
       )
     )

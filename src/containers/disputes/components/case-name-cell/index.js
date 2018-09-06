@@ -10,11 +10,11 @@ import * as chainViewConstants from '../../../../constants/chain-view'
 import './case-name-cell.css'
 
 const CaseNameCell = ({
-  original: { disputeId, arbitrableContractAddress, title }
+  original: { disputeID, arbitrableContractAddress, title }
 }) => (
   <div className="CaseNameCell">
     <Identicon seed={arbitrableContractAddress} size={12} />
-    <Link to={`/cases/${disputeId}`}>
+    <Link to={`/cases/${disputeID}`}>
       <div className="CaseNameCell-title">
         <h5>{title}</h5>
         <small>
@@ -23,11 +23,11 @@ const CaseNameCell = ({
             contractAddress={ARBITRATOR_ADDRESS}
             functionSignature={chainViewConstants.KLEROS_POC_DISPUTES_SIG}
             parameters={chainViewConstants.KLEROS_POC_DISPUTES_PARAMS(
-              disputeId
+              disputeID
             )}
             style={{ display: 'block', height: '100%', width: '100%' }}
           >
-            Case #{disputeId}
+            Case #{disputeID}
           </ChainData>
         </small>
       </div>
@@ -37,7 +37,7 @@ const CaseNameCell = ({
 
 CaseNameCell.propTypes = {
   original: PropTypes.shape({
-    disputeId: PropTypes.string.isRequired,
+    disputeID: PropTypes.string.isRequired,
     arbitrableContractAddress: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
   }).isRequired
