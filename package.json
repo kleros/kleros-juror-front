@@ -83,7 +83,7 @@
     "create-redux-form": "^0.1.2",
     "ethjs": "^0.3.3",
     "history": "^4.7.2",
-    "kleros-api": "^0.17.2",
+    "kleros-api": "^0.17.3",
     "lessdux": "^0.7.3",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
