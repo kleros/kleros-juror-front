@@ -164,11 +164,13 @@ export default class BondingCurve extends ContractImplementation {
       (receiverAddr.startsWith('0x') ? receiverAddr.slice(2) : receiverAddr) +
       new BN(minETH).toString(16, 64)
 
-    return pnkInstance.approveAndCall(
+    await pnkInstance.loadContract()
+
+    return pnkInstance.contractInstance.approveAndCall(
       this.contractAddress,
       amountTKN,
-      account,
-      extraData
+      extraData,
+      { from: account }
     )
   }
 }
