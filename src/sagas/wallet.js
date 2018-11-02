@@ -14,10 +14,8 @@ import * as errorConstants from '../constants/error'
  */
 export function* fetchAccounts() {
   let accounts
-  if (window.ethereum)
-    accounts = yield call(window.ethereum.enable)
-  else
-    accounts = yield call(eth.accounts)
+  if (window.ethereum) accounts = yield call(window.ethereum.enable)
+  else accounts = yield call(eth.accounts)
   if (!accounts[0]) throw new Error(errorConstants.ETH_NO_ACCOUNTS)
 
   return accounts
