@@ -1,6 +1,6 @@
 import { toBN, BN } from 'ethjs'
-import ContractImplementation from 'kleros-api/es/contracts/ContractImplementation'
-import MiniMePinakion from 'kleros-api/es/contracts/implementations/PNK/MiniMePinakion'
+import ContractImplementation from 'kleros-api/lib/contracts/ContractImplementation'
+import MiniMePinakion from 'kleros-api/lib/contracts/implementations/PNK/MiniMePinakion'
 
 import { decimalStringToWeiBN } from '../utils/number'
 
