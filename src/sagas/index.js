@@ -7,6 +7,7 @@ import walletSaga from './wallet'
 import notificationSaga from './notification'
 import arbitratorSaga from './arbitrator'
 import disputeSaga from './dispute'
+import bondingCurveSaga from './bonding-curve'
 
 /**
  * Makes a saga restart after an uncaught error.
@@ -44,7 +45,8 @@ const rootSagas = [
   walletSaga,
   notificationSaga,
   arbitratorSaga,
-  disputeSaga
+  disputeSaga,
+  bondingCurveSaga
 ].map(makeRestartable)
 
 /**

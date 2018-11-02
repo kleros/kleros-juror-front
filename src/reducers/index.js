@@ -7,6 +7,7 @@ import wallet from './wallet'
 import notification from './notification'
 import arbitrator from './arbitrator'
 import dispute from './dispute'
+import bondingCurve from './bonding-curve'
 
 // Export root reducer
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   wallet,
   notification,
   arbitrator,
-  dispute
+  dispute,
+  bondingCurve
 })
