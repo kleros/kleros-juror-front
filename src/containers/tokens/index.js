@@ -40,13 +40,7 @@ import {
   WithdrawPNKFormIsInvalid,
   submitWithdrawPNKForm
 } from './components/withdraw-pnk-form'
-import {
-  getBuyPNKFromBondingCurveFormIsInvalid,
-  getSellPNKToBondingCurveFormIsInvalid,
-  submitBuyPNKFromBondingCurveForm,
-  submitSellPNKToBondingCurveForm,
-  BondingCurveForm
-} from './components/bonding-curve-form'
+import BondingCurveForm from './components/bonding-curve-form'
 
 import './tokens.css'
 
@@ -59,10 +53,6 @@ class Tokens extends PureComponent {
     arbitratorData: arbitratorSelectors.arbitratorDataShape.isRequired,
     bondingCurveTotals:
       bondingCurveSelectors.bondingCurveTotalsShape.isRequired,
-    bondingCurveFormViewState: PropTypes.shape({
-      estimatedETH: PropTypes.string.isRequired,
-      estimatedPNK: PropTypes.string.isRequired
-    }).isRequired,
 
     // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
@@ -90,15 +80,7 @@ class Tokens extends PureComponent {
 
     // passPeriodForm
     passPeriodFormIsInvalid: PropTypes.bool.isRequired,
-    submitPassPeriodForm: PropTypes.func.isRequired,
-
-    // buyPNKFromBondingCurveForm
-    buyPNKFromBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
-    submitBuyPNKFromBondingCurveForm: PropTypes.func.isRequired,
-
-    // sellPNKToBondingCurveForm
-    sellPNKToBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
-    submitSellPNKToBondingCurveForm: PropTypes.func.isRequired
+    submitPassPeriodForm: PropTypes.func.isRequired
   }
 
   state = {
@@ -142,10 +124,6 @@ class Tokens extends PureComponent {
     return errors
   }
 
-  validateBuyPNKFromBondingCurveForm = _values => {}
-
-  validateSellPNKToBondingCurveForm = _values => {}
-
   handleWithdrawPNKFormSubmit = formData => {
     const { withdrawPNK } = this.props
     const { amount } = formData
@@ -176,13 +154,9 @@ class Tokens extends PureComponent {
     sellPNKToBondingCurve(decimalStringToWeiBN(amountOfPNK).toString())
   }
 
-  handleOpenBondingCurveForm = event => {
-    this.setState({ showBondingCurveForm: true })
-    event.preventDefault()
-  }
-
-  handleCloseBondingCurveForm = event => {
-    this.setState({ showBondingCurveForm: false })
+  handleToggleBondingCurveForm = event => {
+    const { showBondingCurveForm } = this.state
+    this.setState({ showBondingCurveForm: showBondingCurveForm })
     event.preventDefault()
   }
 
@@ -201,12 +175,7 @@ class Tokens extends PureComponent {
       submitTransferPNKForm,
       withdrawPNKFormIsInvalid,
       submitWithdrawPNKForm,
-      bondingCurveTotals,
-      buyPNKFromBondingCurveFormIsInvalid,
-      submitBuyPNKFromBondingCurveForm,
-      sellPNKToBondingCurveFormIsInvalid,
-      submitSellPNKToBondingCurveForm,
-      bondingCurveFormViewState
+      bondingCurveTotals
     } = this.props
 
     const { showBondingCurveForm } = this.state
@@ -225,7 +194,7 @@ class Tokens extends PureComponent {
       <div key={0}>
         <ReactModal ariaHideApp={false} isOpen={showBondingCurveForm}>
           <div
-            onClick={this.handleCloseBondingCurveForm}
+            onClick={this.handleToggleBondingCurveForm}
             className="Tokens-modal-dismiss"
           >
             &times;
@@ -236,23 +205,8 @@ class Tokens extends PureComponent {
             done={
               <BondingCurveForm
                 handleBuyPNK={this.handleBuyPNKFromBondingCurveForm}
-                validateBuyPNK={this.validateBuyPNKFromBondingCurveForm}
-                buyPNKFromBondingCurveFormIsInvalid={
-                  buyPNKFromBondingCurveFormIsInvalid
-                }
                 handleSellPNK={this.handleSellPNKToBondingCurveForm}
-                validateSellPNK={this.validateSellPNKToBondingCurveForm}
-                sellPNKToBondingCurveFormIsInvalid={
-                  sellPNKToBondingCurveFormIsInvalid
-                }
-                submitBuyPNKFromBondingCurveForm={
-                  submitBuyPNKFromBondingCurveForm
-                }
-                submitSellPNKToBondingCurveForm={
-                  submitSellPNKToBondingCurveForm
-                }
-                totals={bondingCurveTotals.data}
-                viewState={bondingCurveFormViewState}
+                bondingCurveTotals={bondingCurveTotals}
               />
             }
           />
@@ -270,7 +224,8 @@ class Tokens extends PureComponent {
                 <br />
                 <small>
                   If you don't have PNK, you can buy some from{' '}
-                  <a onClick={this.handleOpenBondingCurveForm}>here</a> or from{' '}
+                  <a onClick={this.handleToggleBondingCurveForm}>here</a> or
+                  from{' '}
                   <a
                     href="https://idex.market/eth/pnk"
                     target="_blank"
@@ -462,14 +417,7 @@ export default connect(
     buyPNKFormIsInvalid: getBuyPNKFormIsInvalid(state),
     passPeriodFormIsInvalid: getPassPeriodFormIsInvalid(state),
     transferPNKFormIsInvalid: TransferPNKFormIsInvalid(state),
-    withdrawPNKFormIsInvalid: WithdrawPNKFormIsInvalid(state),
-    buyPNKFromBondingCurveFormIsInvalid: getBuyPNKFromBondingCurveFormIsInvalid(
-      state
-    ),
-    sellPNKToBondingCurveFormIsInvalid: getSellPNKToBondingCurveFormIsInvalid(
-      state
-    ),
-    bondingCurveFormViewState: state.bondingCurve.bondingCurveFormState
+    withdrawPNKFormIsInvalid: WithdrawPNKFormIsInvalid(state)
   }),
   {
     fetchBalance: walletActions.fetchBalance,
@@ -485,8 +433,6 @@ export default connect(
     submitBuyPNKForm,
     submitPassPeriodForm,
     submitTransferPNKForm,
-    submitWithdrawPNKForm,
-    submitBuyPNKFromBondingCurveForm,
-    submitSellPNKToBondingCurveForm
+    submitWithdrawPNKForm
   }
 )(Tokens)

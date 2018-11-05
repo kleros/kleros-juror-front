@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './form-info.css'
 
 const FormInfo = ({ input: { value }, className }) => (
-  <div className={'FormInfo' + (className ? ' ' + className : '')}>
+  <div className={`FormInfo${className ? ' ' + className : ''}`}>
     <h5 className="FormInfo-text">{value}</h5>
   </div>
 )
