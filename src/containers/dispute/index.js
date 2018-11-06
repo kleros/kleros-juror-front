@@ -70,6 +70,7 @@ class Dispute extends PureComponent {
 
   render() {
     const { dispute } = this.props
+    console.log(dispute)
     const today = new Date()
     return (
       <div className="Dispute">
@@ -96,7 +97,7 @@ class Dispute extends PureComponent {
                           />
                           <h3>
                             Decision Summary for "
-                            {dispute.data.metaEvidence.title}
+                            {dispute.data.metaEvidenceJSON.title}
                             ", Case #{dispute.data.disputeID}
                           </h3>
                         </div>
@@ -109,13 +110,14 @@ class Dispute extends PureComponent {
                     element: (
                       <Details
                         key={dispute.data.appealCreatedAt[0] || 1}
-                        date={dispute.data.appealCreatedAt[0] || today}
+                        createdAt={dispute.data.appealCreatedAt[0] || today}
                         arbitrationFee={dispute.data.appealJuror[0].fee}
                         arbitrableContractAddress={
                           dispute.data.arbitrableContractAddress
                         }
                         disputeID={dispute.data.disputeID}
-                        metaEvidence={dispute.data.metaEvidence}
+                        metaEvidenceJSON={dispute.data.metaEvidenceJSON}
+                        metaEvidenceValid={dispute.data.metaEvidenceValid}
                       />
                     )
                   },
@@ -134,7 +136,7 @@ class Dispute extends PureComponent {
                               }
                               disputeID={dispute.data.disputeID}
                               appealNumber={e.appealNumber}
-                              metaEvidence={dispute.data.metaEvidence}
+                              metaEvidenceJSON={dispute.data.metaEvidenceJSON}
                             />
                           )
                         }
@@ -143,16 +145,14 @@ class Dispute extends PureComponent {
                           anchor: 'Evidence',
                           element: (
                             <Evidence
-                              key={e.date + e.url}
-                              date={e.date}
-                              partyAddress={e.submittedBy}
-                              title={e.name}
-                              description={e.description}
-                              URL={e.URI}
-                              arbitrableContractAddress={
-                                dispute.data.arbitrableContractAddress
-                              }
-                              isPartyA={e.submitter === dispute.data.partyA}
+                              key={e.submittedAt}
+                              evidenceValid={e.evidenceValid}
+                              fileValid={e.fileValid}
+                              evidenceJSON={e.evidenceJSON}
+                              submittedBy={e.submittedBy}
+                              submittedAt={e.submittedAt}
+                              evidenceDisplayInterface={dispute.data.metaEvidenceJSON.evidenceDisplayInterface}
+                              evidenceDisplayInterfaceValid={dispute.data.metaEvidenceJSON.evidenceDisplayInterfaceValid}
                             />
                           )
                         }
@@ -162,7 +162,7 @@ class Dispute extends PureComponent {
                           element: (
                             <Ruling
                               key={e.date}
-                              date={e.date}
+                              ruledAt={e.ruledAt}
                               votesForPartyA={e.voteCounter[1]}
                               votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}
@@ -173,7 +173,7 @@ class Dispute extends PureComponent {
                               disputeID={dispute.data.disputeID}
                               appeals={dispute.data.numberOfAppeals}
                               appealNumber={e.appealNumber}
-                              metaEvidence={dispute.data.metaEvidence}
+                              metaEvidenceJSON={dispute.data.metaEvidenceJSON}
                             />
                           )
                         }
@@ -189,7 +189,7 @@ class Dispute extends PureComponent {
                             <div>
                               <p>
                                 {
-                                  dispute.data.metaEvidence.rulingOptions
+                                  dispute.data.metaEvidenceJSON.rulingOptions
                                     .descriptions[0]
                                 }
                               </p>
@@ -211,7 +211,7 @@ class Dispute extends PureComponent {
                                   }
                                 >
                                   {
-                                    dispute.data.metaEvidence.rulingOptions
+                                    dispute.data.metaEvidenceJSON.rulingOptions
                                       .titles[0]
                                   }
                                 </ChainData>
@@ -220,7 +220,7 @@ class Dispute extends PureComponent {
                             <div>
                               <p>
                                 {
-                                  dispute.data.metaEvidence.rulingOptions
+                                  dispute.data.metaEvidenceJSON.rulingOptions
                                     .descriptions[1]
                                 }
                               </p>
@@ -242,7 +242,7 @@ class Dispute extends PureComponent {
                                   }
                                 >
                                   {
-                                    dispute.data.metaEvidence.rulingOptions
+                                    dispute.data.metaEvidenceJSON.rulingOptions
                                       .titles[1]
                                   }
                                 </ChainData>

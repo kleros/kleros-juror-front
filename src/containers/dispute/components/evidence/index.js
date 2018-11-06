@@ -8,49 +8,27 @@ import LinkBox from '../../../../components/link-box'
 import * as chainViewConstants from '../../../../constants/chain-view'
 
 const Evidence = ({
-  date,
-  partyAddress,
-  title,
-  description,
-  URL,
-  arbitrableContractAddress,
-  isPartyA
+  evidenceValid,
+  fileValid,
+  evidenceJSON,
+  submittedBy,
+  submittedAt,
+  evidenceDisplayInterface,
+  evidenceDisplayInterfaceValid
 }) => (
   <div className="Evidence">
-    <small>{dateToString(date, { withTime: false })}</small>
+    <small>{dateToString(submittedAt, { withTime: false })}</small>
     <h4>Evidence Submitted</h4>
     <LabelValueGroup
       items={[
         {
-          label: 'By',
-          value: (
-            <ChainData
-              contractName={chainViewConstants.ARBITRABLE_CONTRACT_NAME}
-              contractAddress={arbitrableContractAddress}
-              functionSignature={
-                isPartyA
-                  ? chainViewConstants.ARBITRABLE_CONTRACT_PARTY_A_SIG
-                  : chainViewConstants.ARBITRABLE_CONTRACT_PARTY_B_SIG
-              }
-              parameters={(isPartyA
-                ? chainViewConstants.ARBITRABLE_CONTRACT_PARTY_A_PARAMS
-                : chainViewConstants.ARBITRABLE_CONTRACT_PARTY_B_PARAMS)()}
-            >
-              {partyAddress}
-            </ChainData>
-          ),
-          identiconSeed: partyAddress
+          label: 'Submitted By',
+          value: submittedBy,
+          identiconSeed: submittedBy
         },
-        { label: 'Title', value: title },
-        { label: 'Description', value: description },
-        {
-          label: 'URL',
-          value: (
-            <div>
-              <LinkBox link={URL} />
-            </div>
-          )
-        }
+        { label: 'Name', value: evidenceJSON.name },
+        { label: 'Description', value: evidenceJSON.description },
+        { label: 'Link', value: evidenceJSON.url },
       ]}
     />
     <hr />

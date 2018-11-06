@@ -1,5 +1,6 @@
 import Eth from 'ethjs'
 import { Kleros } from 'kleros-api'
+import Archon from 'eth-archon'
 
 import * as ethConstants from '../constants/eth'
 
@@ -31,6 +32,8 @@ const initializeKleros = async () => {
   kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, ARBITRATOR_ADDRESS)
 }
 
+const archon = new Archon(eth.currentProvider)
+
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
 const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/
 const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
@@ -44,7 +47,8 @@ export {
   ETHAddressRegExp,
   strictETHAddressRegExp,
   networkID,
-  env
+  env,
+  archon
 }
 
 setTimeout(
