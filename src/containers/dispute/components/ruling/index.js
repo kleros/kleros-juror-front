@@ -11,7 +11,7 @@ import * as chainViewConstants from '../../../../constants/chain-view'
 import './ruling.css'
 
 const Ruling = ({
-  date,
+  ruledAt,
   votesForPartyA,
   votesForPartyB,
   netPNK,
@@ -19,23 +19,24 @@ const Ruling = ({
   disputeID,
   appeals,
   appealNumber,
-  metaEvidence
+  metaEvidenceJSON,
+  metaEvidenceValid
 }) => {
-  const inProgress = date === null
+  const inProgress = ruledAt === null
   const won = netPNK >= 0
   const jurorRulingDisplay =
     jurorRuling === null || jurorRuling === undefined
       ? ''
       : jurorRuling > 0
-      ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
+      ? `You ruled: ${metaEvidenceJSON.rulingOptions.titles[jurorRuling - 1]}`
       : 'No Ruling'
   return (
     <div className="Ruling">
       <hr />
-      <h4>{metaEvidence.question}</h4>
+      <h4>{metaEvidenceJSON.question}</h4>
       <hr />
       <small>
-        {inProgress ? 'In Progress' : dateToString(date, { withTime: false })}
+        {inProgress ? 'In Progress' : dateToString(ruledAt, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       <small>{jurorRulingDisplay}</small>
@@ -50,8 +51,8 @@ const Ruling = ({
               {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
-                ? metaEvidence.rulingOptions.titles[0]
-                : metaEvidence.rulingOptions.titles[1]}
+                ? metaEvidenceJSON.rulingOptions.titles[0]
+                : metaEvidenceJSON.rulingOptions.titles[1]}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">
@@ -70,7 +71,7 @@ const Ruling = ({
             ? []
             : [
                 {
-                  label: `Voted ${metaEvidence.rulingOptions.titles[0]}`,
+                  label: `Voted ${metaEvidenceJSON.rulingOptions.titles[0]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -89,7 +90,7 @@ const Ruling = ({
                   )
                 },
                 {
-                  label: `Voted ${metaEvidence.rulingOptions.titles[1]}`,
+                  label: `Voted ${metaEvidenceJSON.rulingOptions.titles[1]}`,
                   value: (
                     <ChainData
                       contractName={chainViewConstants.KLEROS_POC_NAME}
@@ -130,7 +131,7 @@ const Ruling = ({
 
 Ruling.propTypes = {
   // State
-  date: PropTypes.instanceOf(Date),
+  ruledAt: PropTypes.instanceOf(Date),
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
@@ -143,7 +144,7 @@ Ruling.propTypes = {
 
 Ruling.defaultProps = {
   // State
-  date: null,
+  ruledAt: null,
   jurorRuling: null
 }
 

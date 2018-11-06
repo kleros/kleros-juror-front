@@ -82,6 +82,7 @@
     "@kleros/archon": "^0.3.0",
     "@typeform/embed": "^0.5.12",
     "create-redux-form": "^0.1.2",
+    "eth-archon": "^0.2.0",
     "ethjs": "^0.3.3",
     "history": "^4.7.2",
     "kleros-api": "^0.17.3",
