@@ -1,0 +1,46 @@
+{
+  "abi": [
+    {
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "payable": false,
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ],
+      "name": "approve",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "_spender"
+        },
+        {
+          "type": "uint256",
+          "name": "_value"
+        }
+      ],
+      "constant": false
+    },
+    {
+      "type": "function",
+      "stateMutability": "view",
+      "payable": false,
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "name": "balanceOf",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "_who"
+        }
+      ],
+      "constant": true
+    }
+  ]
+}

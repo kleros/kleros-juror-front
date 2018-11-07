@@ -92,7 +92,7 @@ class BondingCurveForm extends PureComponent {
         inputETH,
         bondingCurveTotals.data.totalETH,
         bondingCurveTotals.data.totalPNK,
-        bondingCurveTotals.data.spread
+        toBN(0)
       )
     )
   }
@@ -104,7 +104,7 @@ class BondingCurveForm extends PureComponent {
         inputPNK,
         bondingCurveTotals.data.totalETH,
         bondingCurveTotals.data.totalPNK,
-        bondingCurveTotals.data.spread
+        toBN(0)
       )
     )
   }
@@ -162,6 +162,9 @@ class BondingCurveForm extends PureComponent {
         >
           SELL NOW
         </Button>
+        <div className="Tokens-notes">
+          <small>You will be requested to sign two transactions.</small>
+        </div>
       </div>
     )
   } // render()
@@ -192,7 +195,8 @@ export default connect(
   }
 )(BondingCurveForm)
 
-const SPREAD_DIVISOR = toBN(10000) // Must be kept in sync with the bonding curve contract
+const SPREAD_FACTOR = toBN(997)
+const SPREAD_DIVISOR = toBN(1000)
 
 /** Given an input ETH amount and the state values of the bonding curve contract,
  *  compute the amount of PNK that can be brought using the same formula as the
@@ -202,25 +206,22 @@ const SPREAD_DIVISOR = toBN(10000) // Must be kept in sync with the bonding curv
  *  @param {string} inputETH User input ETH amount in ETH (not Wei). May not be a valid number.
  *  @param {BigNumber} totalETH 'totalETH' value of the contract.
  *  @param {BigNumber} totalPNK 'totalPNK' value of the contract.
- *  @param {BigNumber} spread 'spread' value of the contract.
  *  @returns {string} Amount of PNK in wei.
  */
-function estimatePNK(inputETH, totalETH, totalPNK, spread) {
-  var ETH
+function estimatePNK(inputETH, totalETH, totalPNK) {
   try {
-    ETH = decimalStringToWeiBN(inputETH)
+    inputETH = decimalStringToWeiBN(inputETH)
   } catch (_) {
     return '0'
   }
   // convert all to BN from BigNumber
   totalETH = toBN(totalETH)
   totalPNK = toBN(totalPNK)
-  spread = toBN(spread)
 
-  return ETH.mul(totalPNK)
-    .mul(SPREAD_DIVISOR)
-    .div(totalETH.add(ETH))
-    .div(SPREAD_DIVISOR.add(spread))
+  return inputETH
+    .mul(totalPNK)
+    .mul(SPREAD_FACTOR)
+    .div(totalETH.mul(SPREAD_DIVISOR).add(inputETH.mul(SPREAD_FACTOR)))
     .toString()
 }
 
@@ -232,25 +233,21 @@ function estimatePNK(inputETH, totalETH, totalPNK, spread) {
  *  @param {string} inputPNK User input PNK amount. May not be a valid number.
  *  @param {BigNumber} totalETH 'totalETH' value of the contract.
  *  @param {BigNumber} totalPNK 'totalPNK' value of the contract.
- *  @param {BigNumber} spread 'spread' value of the contract.
  *  @returns {string} Amount of ETH in wei.
  */
-function estimateETH(inputPNK, totalETH, totalPNK, spread) {
-  var PNK
+function estimateETH(inputPNK, totalETH, totalPNK) {
   try {
-    PNK = decimalStringToWeiBN(inputPNK)
+    inputPNK = decimalStringToWeiBN(inputPNK)
   } catch (_) {
     return '0'
   }
   // convert all to BN from BigNumber
   totalETH = toBN(totalETH)
   totalPNK = toBN(totalPNK)
-  spread = toBN(spread)
 
-  return totalETH
-    .mul(PNK)
-    .mul(SPREAD_DIVISOR)
-    .div(totalPNK.add(PNK))
-    .div(SPREAD_DIVISOR.add(spread))
+  return inputPNK
+    .mul(totalETH)
+    .mul(SPREAD_FACTOR)
+    .div(totalPNK.mul(SPREAD_DIVISOR).add(inputPNK.mul(SPREAD_FACTOR)))
     .toString()
 }

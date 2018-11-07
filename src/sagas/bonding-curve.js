@@ -1,10 +1,9 @@
-import { BN } from 'ethjs'
 import ContractImplementation from 'kleros-api/lib/contracts/ContractImplementation'
-import MiniMePinakion from 'kleros-api/lib/contracts/implementations/PNK/MiniMePinakion'
 
 import { takeLatest, call, select, all } from 'redux-saga/effects'
 
-import bondingCurveArtifact from '../assets/contracts/BondingCurve'
+import uniswapArtifact from '../assets/contracts/Uniswap'
+import ERC20Artifact from '../assets/contracts/ERC20'
 import { eth, BONDING_CURVE_ADDRESS } from '../bootstrap/dapp-api'
 import * as bondingCurveActions from '../actions/bonding-curve'
 import * as walletSelectors from '../reducers/wallet'
@@ -31,15 +30,15 @@ const getBondingCurve = (function() {
 
 /**
  * Fetch reserve parameters of the bonding curve.
- * @returns {object} { totalETH, totalPNK, spread } all keys map to big number objects.
+ * @returns {object} { totalETH, totalPNK } all keys map to big number objects.
  */
 function* fetchBondingCurveTotals() {
-  const [totalETH, totalPNK, spread] = yield all([
+  const [totalETH, totalPNK] = yield all([
     call(getBondingCurve().getTotalETH),
-    call(getBondingCurve().getTotalTKN),
-    call(getBondingCurve().getSpread)
+    call(getBondingCurve().getTotalTKN)
   ])
-  return { totalETH, totalPNK, spread }
+  console.info('totalETH', totalETH.toString(), 'totalPNK', totalPNK.toString())
+  return { totalETH, totalPNK }
 }
 
 /**
@@ -49,7 +48,14 @@ function* fetchBondingCurveTotals() {
  */
 function* buyPNKFromBondingCurve({ payload: { amount } }) {
   const addr = yield select(walletSelectors.getAccount)
-  yield call(getBondingCurve().buy, addr, 0, amount, addr)
+  yield call(
+    getBondingCurve().buy,
+    addr,
+    1,
+    '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+    amount,
+    addr
+  )
   return yield call(fetchBondingCurveTotals)
 }
 
@@ -60,7 +66,14 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
  */
 function* sellPNKToBondingCurve({ payload: { amount } }) {
   const addr = yield select(walletSelectors.getAccount)
-  yield call(getBondingCurve().sell, amount, addr, 0, addr)
+  yield call(
+    getBondingCurve().sell,
+    amount,
+    addr,
+    1,
+    '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+    addr
+  )
   return yield call(fetchBondingCurveTotals)
 }
 
@@ -101,7 +114,15 @@ class BondingCurve extends ContractImplementation {
    * @param {string} contractAddress - Address of the Bonding Curve contract.
    */
   constructor(web3Provider, contractAddress) {
-    super(web3Provider, bondingCurveArtifact, contractAddress)
+    super(web3Provider, uniswapArtifact, contractAddress)
+    const self = this
+    this._PNKInstance = (async () => {
+      await self.loadContract()
+      const PNKContractAddress = await self.contractInstance.tokenAddress()
+      return this._Web3Wrapper._web3.eth
+        .contract(ERC20Artifact.abi)
+        .at(PNKContractAddress)
+    })()
   }
 
   /**
@@ -110,12 +131,20 @@ class BondingCurve extends ContractImplementation {
    */
   getTotalETH = async () => {
     await this.loadContract()
-    try {
-      return this.contractInstance.totalETH()
-    } catch (err) {
-      console.error(err)
-      throw new Error('Unable to fetch totalETH from the bonding curve')
-    }
+
+    return new Promise((resolve, reject) =>
+      // Note: the sync version doesn't work.
+      this._Web3Wrapper._web3.eth.getBalance(
+        this.contractAddress,
+        (err, result) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(result)
+          }
+        }
+      )
+    )
   }
 
   /**
@@ -123,44 +152,42 @@ class BondingCurve extends ContractImplementation {
    * @returns {number} - The total amount of bonded token as a BigNumber.
    */
   getTotalTKN = async () => {
-    await this.loadContract()
-    try {
-      return this.contractInstance.totalTKN()
-    } catch (err) {
-      console.error(err)
-      throw new Error('Unable to fetch totalTKN from the bonding curve')
-    }
-  }
-
-  /**
-   * Fetch the spead of the bonding curve.
-   * @returns {number} - The spread as a BigNumber.
-   */
-  getSpread = async () => {
-    await this.loadContract()
-    try {
-      return this.contractInstance.spread()
-    } catch (err) {
-      console.error(err)
-      throw new Error('Unable to fetch spread from the bonding curve')
-    }
+    const PNKInstance = await this._PNKInstance
+    return new Promise((resolve, reject) =>
+      PNKInstance.balanceOf(this.contractAddress, (err, result) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(result)
+        }
+      })
+    )
   }
 
   /**
    * Buy bonded token from the bonding curve.
    * @param {string} receiver - The account the brought token is accredited to.
    * @param {string} minTKN - The minimum amount of bonded token expected in return.
+   * @param {string} deadline - Transaction deadline timestamp in uint256.
    * @param {string} amount - The amount of ETH to spend.
    * @param {string} account - The address of the buyer.
    * @returns {object} - The result transaction object.
    */
-  buy = async (receiver, minTKN, amount, account) => {
+  buy = async (receiver, minTKN, deadline, amount, account) => {
     await this.loadContract()
-    return this.contractInstance.buy(receiver, minTKN, {
-      from: account,
-      value: amount,
-      gas: process.env.GAS || undefined
-    })
+    try {
+      return await this.contractInstance.ethToTokenTransferInput(
+        minTKN,
+        deadline,
+        receiver,
+        {
+          from: account,
+          value: amount
+        }
+      )
+    } catch (err) {
+      console.error('Error when buying PNK:', err)
+    }
   }
 
   /**
@@ -168,31 +195,44 @@ class BondingCurve extends ContractImplementation {
    * @param {string} amountTKN - The amount of token to sell.
    * @param {stirng} receiverAddr - The address to receive ETH.
    * @param {string} minETH - The minimum amount of ETH expected in return.
+   * @param {string} deadline - Transaction deadline timestamp in uint256.
    * @param {string} account - The address of the seller.
-   * @returns {object} - The result transaction object.
    */
-  sell = async (amountTKN, receiverAddr, minETH, account) => {
+  sell = async (amountTKN, receiverAddr, minETH, deadline, account) => {
     await this.loadContract()
 
-    const pinakionContractAddress = await this.contractInstance.tokenContract()
-    const pnkInstance = new MiniMePinakion(
-      this.getWeb3Provider(),
-      pinakionContractAddress
-    )
+    const PNKInstance = await this._PNKInstance
 
-    // See BondingCurve.sol in kleros-interaction for the definition of extraData.
-    const extraData =
-      '0x62637331' + // Magic number for string "bcs1"
-      (receiverAddr.startsWith('0x') ? receiverAddr.slice(2) : receiverAddr) +
-      new BN(minETH).toString(16, 64)
+    try {
+      await new Promise((resolve, reject) =>
+        PNKInstance.approve(
+          this.contractAddress,
+          amountTKN,
+          { from: account },
+          (err, result) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve(result)
+            }
+          }
+        )
+      )
+    } catch (err) {
+      console.error('Error when approving:', err)
+      return
+    }
 
-    await pnkInstance.loadContract()
-
-    return pnkInstance.contractInstance.approveAndCall(
-      this.contractAddress,
-      amountTKN,
-      extraData,
-      { from: account }
-    )
+    try {
+      await this.contractInstance.tokenToEthTransferInput(
+        amountTKN,
+        minETH,
+        deadline,
+        receiverAddr,
+        { from: account }
+      )
+    } catch (err) {
+      console.error('Error when selling PNK:', err)
+    }
   }
 }

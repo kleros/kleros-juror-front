@@ -156,7 +156,7 @@ class Tokens extends PureComponent {
 
   handleToggleBondingCurveForm = event => {
     const { showBondingCurveForm } = this.state
-    this.setState({ showBondingCurveForm: showBondingCurveForm })
+    this.setState({ showBondingCurveForm: !showBondingCurveForm })
     event.preventDefault()
   }
 
