@@ -30,13 +30,16 @@ const Ruling = ({
       : jurorRuling > 0
       ? `You ruled: ${metaEvidenceJSON.rulingOptions.titles[jurorRuling - 1]}`
       : 'No Ruling'
+
   return (
     <div className="Ruling">
       <hr />
       <h4>{metaEvidenceJSON.question}</h4>
       <hr />
       <small>
-        {inProgress ? 'In Progress' : dateToString(ruledAt, { withTime: false })}
+        {inProgress
+          ? 'In Progress'
+          : dateToString(ruledAt, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       <small>{jurorRulingDisplay}</small>
@@ -72,41 +75,11 @@ const Ruling = ({
             : [
                 {
                   label: `Voted ${metaEvidenceJSON.rulingOptions.titles[0]}`,
-                  value: (
-                    <ChainData
-                      contractName={chainViewConstants.KLEROS_POC_NAME}
-                      contractAddress={ARBITRATOR_ADDRESS}
-                      functionSignature={
-                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
-                      }
-                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                        disputeID,
-                        appeals,
-                        1
-                      )}
-                    >
-                      {votesForPartyA}
-                    </ChainData>
-                  )
+                  value: votesForPartyA
                 },
                 {
                   label: `Voted ${metaEvidenceJSON.rulingOptions.titles[1]}`,
-                  value: (
-                    <ChainData
-                      contractName={chainViewConstants.KLEROS_POC_NAME}
-                      contractAddress={ARBITRATOR_ADDRESS}
-                      functionSignature={
-                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
-                      }
-                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                        disputeID,
-                        appeals,
-                        2
-                      )}
-                    >
-                      {votesForPartyB}
-                    </ChainData>
-                  )
+                  value: votesForPartyB
                 },
                 {
                   label: 'PNK Redistribution',
@@ -139,7 +112,8 @@ Ruling.propTypes = {
   disputeID: PropTypes.number.isRequired,
   appeals: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
-  metaEvidence: PropTypes.shape.isRequired
+  metaEvidenceJSON: PropTypes.shape.isRequired,
+  metaEvidenceValid: PropTypes.bool.isRequired
 }
 
 Ruling.defaultProps = {

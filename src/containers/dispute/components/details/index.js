@@ -24,7 +24,11 @@ class Details extends Component {
       message.data.target === 'evidence' &&
       message.data.loaded
     ) {
-      const { metaEvidenceJSON, disputeID, arbitrableContractAddress } = this.props
+      const {
+        metaEvidenceJSON,
+        disputeID,
+        arbitrableContractAddress
+      } = this.props
 
       message.source.postMessage(
         {
@@ -51,19 +55,18 @@ class Details extends Component {
       metaEvidenceJSON
     } = this.props
 
-    console.log(metaEvidenceJSON)
-
     // Default display of primary document file.
     let fileDisplay = metaEvidenceJSON.fileURI ? (
-        <div>
-          <h4>File</h4>
-          <LinkBox link={metaEvidenceJSON.fileURI} />
-        </div>
-      ) : <div />
-
+      <div>
+        <h4>File</h4>
+        <LinkBox link={metaEvidenceJSON.fileURI} />
+      </div>
+    ) : (
+      <div />
+    )
 
     // Use external interface to display primary document file.
-    if (metaEvidenceJSON.evidenceDisplayInterfaceURL && metaEvidenceJSON.fileURI)
+    if (metaEvidenceJSON.evidenceDisplayInterfaceURL)
       fileDisplay = (
         <iframe
           title="File Display"
@@ -113,7 +116,7 @@ class Details extends Component {
 }
 
 Details.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
+  createdAt: PropTypes.instanceOf(Date).isRequired,
   arbitrationFee: PropTypes.number.isRequired,
   arbitrableContractAddress: PropTypes.string.isRequired,
   disputeID: PropTypes.number.isRequired,
