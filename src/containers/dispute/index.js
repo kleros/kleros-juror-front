@@ -70,7 +70,7 @@ class Dispute extends PureComponent {
 
   render() {
     const { dispute } = this.props
-    console.log(dispute)
+
     const today = new Date()
     return (
       <div className="Dispute">
@@ -129,7 +129,7 @@ class Dispute extends PureComponent {
                           element: (
                             <Details
                               key={e.date}
-                              date={e.date}
+                              createdAt={e.date}
                               arbitrationFee={e.fee}
                               arbitrableContractAddress={
                                 dispute.data.arbitrableContractAddress
@@ -145,14 +145,20 @@ class Dispute extends PureComponent {
                           anchor: 'Evidence',
                           element: (
                             <Evidence
-                              key={e.submittedAt}
+                              key={e.date}
                               evidenceValid={e.evidenceValid}
                               fileValid={e.fileValid}
                               evidenceJSON={e.evidenceJSON}
                               submittedBy={e.submittedBy}
-                              submittedAt={e.submittedAt}
-                              evidenceDisplayInterface={dispute.data.metaEvidenceJSON.evidenceDisplayInterface}
-                              evidenceDisplayInterfaceValid={dispute.data.metaEvidenceJSON.evidenceDisplayInterfaceValid}
+                              submittedAt={e.date}
+                              evidenceDisplayInterface={
+                                dispute.data.metaEvidenceJSON
+                                  .evidenceDisplayInterface
+                              }
+                              evidenceDisplayInterfaceValid={
+                                dispute.data.metaEvidenceJSON
+                                  .evidenceDisplayInterfaceValid
+                              }
                             />
                           )
                         }
@@ -162,7 +168,7 @@ class Dispute extends PureComponent {
                           element: (
                             <Ruling
                               key={e.date}
-                              ruledAt={e.ruledAt}
+                              ruledAt={e.date}
                               votesForPartyA={e.voteCounter[1]}
                               votesForPartyB={e.voteCounter[2]}
                               netPNK={dispute.data.netPNK}

@@ -28,7 +28,7 @@ const Evidence = ({
         },
         { label: 'Name', value: evidenceJSON.name },
         { label: 'Description', value: evidenceJSON.description },
-        { label: 'Link', value: evidenceJSON.url },
+        { label: 'Link', value: evidenceJSON.url }
       ]}
     />
     <hr />

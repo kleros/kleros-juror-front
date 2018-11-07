@@ -15,7 +15,6 @@ import * as chainViewConstants from '../constants/chain-view'
 import { fetchArbitratorData } from './arbitrator'
 
 const parseDispute = d => {
-
   // Find the latest appeal where the juror is drawn
   let latestAppealForJuror = null
   for (let i = d.appealJuror.length - 1; i >= 0; i--)
@@ -84,33 +83,40 @@ const parseDispute = d => {
 function* fetchDisputes() {
   const account = yield select(walletSelectors.getAccount)
   const [_disputes, arbitratorData] = yield all([
-    call(kleros.arbitrator.getDisputesForUser, account),
+    call(kleros.arbitrator.getDisputesForUserFromStore, account),
     call(fetchArbitratorData)
   ])
+
   yield put(
     action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
   )
   const disputes = []
   for (const d of _disputes)
     if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
-      const disputeData = yield call(
-        archon.arbitrable.getDispute,
-        d.arbitrableContractAddress,
-        ARBITRATOR_ADDRESS,
-        d.disputeID
-      )
-      const metaEvidence = yield call(
-        archon.arbitrable.getMetaEvidence,
-        d.arbitrableContractAddress,
-        disputeData.metaEvidenceID
-      )
-      // TODO handle invalid hashes
+      // legacy disputes, or disputes that do not follow the standard may not have MetaEvidence
+      try {
+        const disputeData = yield call(
+          archon.arbitrable.getDispute,
+          d.arbitrableContractAddress,
+          ARBITRATOR_ADDRESS,
+          d.disputeID
+        )
+        const metaEvidence = yield call(
+          archon.arbitrable.getMetaEvidence,
+          d.arbitrableContractAddress,
+          disputeData.metaEvidenceID
+        )
+        // TODO handle invalid hashes
 
-      disputes.push({
-        ...d,
-        title: metaEvidence.metaEvidenceJSON.title || null,
-        description: metaEvidence.metaEvidenceJSON.description || null
-      })
+        disputes.push({
+          ...d,
+          title: metaEvidence.metaEvidenceJSON.title || null,
+          description: metaEvidence.metaEvidenceJSON.description || null
+        })
+      } catch (err) {
+        console.error(err)
+        disputes.push(d)
+      }
     } else disputes.push(d)
 
   return disputes
@@ -149,30 +155,12 @@ function* fetchDispute({ payload: { disputeID } }) {
   // Fetch extra data from contracts
   const account = yield select(walletSelectors.getAccount)
 
-  // arbitrator and disputeData
-  const [disputeData, session, period, jurorStoreData, netPNK] =
-    yield all([
-      call(
-        kleros.arbitrator.getDispute,
-        disputeID,
-        true
-      ),
-      call(
-        kleros.arbitrator.getSession
-      ),
-      call(
-        kleros.arbitrator.getPeriod
-      ),
-      call(
-        kleros.disputes.getDisputeFromStore,
-        account,
-        disputeID
-      ),
-      call(
-        kleros.arbitrator.getNetTokensForDispute,
-        disputeID,
-        account
-      )
+  const [disputeData, session, period, jurorStoreData, netPNK] = yield all([
+    call(kleros.arbitrator.getDispute, disputeID, true),
+    call(kleros.arbitrator.getSession),
+    call(kleros.arbitrator.getPeriod),
+    call(kleros.disputes.getDisputeFromStore, account, disputeID),
+    call(kleros.arbitrator.getNetTokensForDispute, disputeID, account)
   ])
 
   const disputeLogData = yield call(
@@ -203,50 +191,30 @@ function* fetchDispute({ payload: { disputeID } }) {
   for (let appeal = 0; appeal <= disputeData.numberOfAppeals; appeal++) {
     // start fetching timestamps ASAP because they take the most time
     const timestampPromises = [
-      call(
-        kleros.disputes.getAppealCreatedAt,
-        disputeID,
-        account,
-        appeal
-      ),
-      call(
-        kleros.disputes.getDisputeDeadline,
-        disputeID,
-        appeal
-      ),
-      call(
-        kleros.disputes.getAppealRuledAt,
-        disputeID,
-        appeal
-      )
+      call(kleros.disputes.getAppealCreatedAt, disputeID, account, appeal),
+      call(kleros.disputes.getDisputeDeadline, disputeID, appeal),
+      call(kleros.disputes.getAppealRuledAt, disputeID, appeal)
     ]
 
     const lastAppealSession = disputeData.firstSession + appeal
     const isLastAppeal = lastAppealSession === session
     // Get appeal data
-    const draws = jurorStoreData.appealDraws ? (jurorStoreData.appealDraws[appeal] || []) : []
+    const draws = jurorStoreData.appealDraws
+      ? jurorStoreData.appealDraws[appeal] || []
+      : []
     let canRule = false
     let canRepartition = false
     let canExecute = false
     let ruling
     const rulingPromises = [
-      call(
-        kleros.arbitrator.currentRulingForDispute,
-        disputeID,
-        appeal
-      )
+      call(kleros.arbitrator.currentRulingForDispute, disputeID, appeal)
     ]
 
     // Extra info for the last appeal
     if (isLastAppeal) {
       if (draws.length > 0)
         rulingPromises.push(
-          call(
-            kleros.arbitrator.canRuleDispute,
-            disputeID,
-            draws,
-            account
-          )
+          call(kleros.arbitrator.canRuleDispute, disputeID, draws, account)
         )
 
       if (session && period)
@@ -254,7 +222,7 @@ function* fetchDispute({ payload: { disputeID } }) {
           lastAppealSession <= session && // Not appealed to the next session
           period === 4 && // Executable period
           disputeData.state === 0 // Open dispute
-      canExecute = disputeData.state === 2  // Executable state
+      canExecute = disputeData.state === 2 // Executable state
     }
 
     // Wait for parallel requests to complete
@@ -300,13 +268,9 @@ function* fetchDispute({ payload: { disputeID } }) {
     appealJuror,
     appealRulings,
     netPNK
-
   }
 
-  return yield call(
-    parseDispute,
-    dispute
-  )
+  return yield call(parseDispute, dispute)
 }
 
 /**
