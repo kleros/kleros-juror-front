@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ArbitrablePermissionList } from 'kleros-api/lib/contracts/implementations/arbitrable'
+import { ArbitrablePermissionList } from 'kleros-api-2/lib/contracts/implementations/arbitrable'
 
 import { eth, env } from '../../../bootstrap/dapp-api'
 import LinkBox from '../../link-box'

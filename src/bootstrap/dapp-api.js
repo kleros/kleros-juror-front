@@ -1,5 +1,5 @@
 import Eth from 'ethjs'
-import { Kleros } from 'kleros-api'
+import { Kleros } from 'kleros-api-2' // FIXME NPM hack
 import Archon from 'eth-archon'
 
 import * as ethConstants from '../constants/eth'

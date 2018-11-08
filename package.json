@@ -85,7 +85,7 @@
     "eth-archon": "^0.2.0",
     "ethjs": "^0.3.3",
     "history": "^4.7.2",
-    "kleros-api": "^0.17.3",
+    "kleros-api-2": "^0.18.8",
     "lessdux": "^0.7.3",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
