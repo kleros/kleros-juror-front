@@ -151,13 +151,10 @@ class Dispute extends PureComponent {
                               evidenceJSON={e.evidenceJSON}
                               submittedBy={e.submittedBy}
                               submittedAt={e.date}
-                              evidenceDisplayInterface={
-                                dispute.data.metaEvidenceJSON
-                                  .evidenceDisplayInterface
-                              }
-                              evidenceDisplayInterfaceValid={
-                                dispute.data.metaEvidenceJSON
-                                  .evidenceDisplayInterfaceValid
+                              metaEvidenceJSON={dispute.data.metaEvidenceJSON}
+                              disputeID={dispute.data.disputeID}
+                              arbitrableContractAddress={
+                                dispute.data.arbitrableContractAddress
                               }
                             />
                           )
