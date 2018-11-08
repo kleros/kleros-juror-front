@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { ChainData } from '../../../../chainstrap'
 import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import { weiBNToDecimalString } from '../../../../utils/number'
 import LabelValueGroup from '../../../../components/label-value-group'
 import TruncatableTextBox from '../../../../components/truncatable-text-box'
-import * as chainViewConstants from '../../../../constants/chain-view'
 import LinkBox from '../../../../components/link-box'
 
 import './details.css'
@@ -48,10 +46,7 @@ class Details extends Component {
     const {
       createdAt,
       arbitrationFee,
-      arbitrableContractAddress,
-      disputeID,
       appealNumber,
-      metaEvidenceValid,
       metaEvidenceJSON
     } = this.props
 

@@ -2,7 +2,6 @@ import { makePopup } from '@typeform/embed'
 
 import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
-import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
@@ -10,7 +9,6 @@ import { kleros, archon, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { lessduxSaga } from '../utils/saga'
 import { action } from '../utils/action'
 import * as disputeConstants from '../constants/dispute'
-import * as chainViewConstants from '../constants/chain-view'
 
 import { fetchArbitratorData } from './arbitrator'
 
@@ -205,7 +203,8 @@ function* fetchDispute({ payload: { disputeID } }) {
     let canRule = false
     let canRepartition = false
     let canExecute = false
-    let ruling
+    let ruling = null
+
     const rulingPromises = [
       call(kleros.arbitrator.currentRulingForDispute, disputeID, appeal)
     ]
@@ -226,9 +225,9 @@ function* fetchDispute({ payload: { disputeID } }) {
     }
 
     // Wait for parallel requests to complete
-    ;[ruling, canRule] = yield all(rulingPromises)
+    ;[ruling, canRule] = yield all(rulingPromises) // es-lint-ignore prefer-const
 
-    let jurorRuling = null
+    let jurorRuling = null // es-lint-ignore prefer-const
     // if can't rule that means they already did or they missed it
     if (draws.length > 0 && !canRule) {
       jurorRuling = yield call(

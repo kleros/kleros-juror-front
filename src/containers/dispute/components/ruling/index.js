@@ -1,12 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ChainData } from '../../../../chainstrap'
-import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import { weiBNToDecimalString } from '../../../../utils/number'
 import LabelValueGroup from '../../../../components/label-value-group'
-import * as chainViewConstants from '../../../../constants/chain-view'
 
 import './ruling.css'
 
@@ -16,11 +13,8 @@ const Ruling = ({
   votesForPartyB,
   netPNK,
   jurorRuling,
-  disputeID,
-  appeals,
   appealNumber,
-  metaEvidenceJSON,
-  metaEvidenceValid
+  metaEvidenceJSON
 }) => {
   const inProgress = ruledAt === null
   const won = netPNK >= 0
@@ -109,11 +103,8 @@ Ruling.propTypes = {
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
   jurorRuling: PropTypes.shape,
-  disputeID: PropTypes.number.isRequired,
-  appeals: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
-  metaEvidenceJSON: PropTypes.shape.isRequired,
-  metaEvidenceValid: PropTypes.bool.isRequired
+  metaEvidenceJSON: PropTypes.shape.isRequired
 }
 
 Ruling.defaultProps = {
