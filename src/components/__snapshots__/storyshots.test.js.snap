@@ -630,7 +630,6 @@ exports[`Storyshots Anchored List default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -721,7 +720,6 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
           }
         >
           <div
-            className={undefined}
             style={
               Object {
                 "height": 80,
@@ -745,7 +743,6 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
                 stroke="#0059ab"
                 strokeDasharray={31.41592653589793}
                 strokeDashoffset={31.41592653589793}
-                strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
                   Object {
@@ -759,7 +756,6 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
                 stroke="#f5f8fa"
                 strokeDasharray={125.66370614359172}
                 strokeDashoffset={125.66370614359172}
-                strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
                   Object {
@@ -972,7 +968,6 @@ exports[`Storyshots Balance Pie Chart activated 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -1063,7 +1058,6 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
           }
         >
           <div
-            className={undefined}
             style={
               Object {
                 "height": 80,
@@ -1087,7 +1081,6 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
                 stroke="#47525d"
                 strokeDasharray={125.66370614359172}
                 strokeDashoffset={125.66370614359172}
-                strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
                   Object {
@@ -1101,7 +1094,6 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
                 stroke="#f5f8fa"
                 strokeDasharray={31.41592653589793}
                 strokeDashoffset={31.41592653589793}
-                strokeLinecap={undefined}
                 strokeWidth={50}
                 style={
                   Object {
@@ -1314,7 +1306,6 @@ exports[`Storyshots Balance Pie Chart locked 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -1617,7 +1608,6 @@ exports[`Storyshots Button disabled 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -1920,7 +1910,6 @@ exports[`Storyshots Button primary 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -2223,7 +2212,6 @@ exports[`Storyshots Button with lots of text 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -2537,7 +2525,6 @@ exports[`Storyshots Dispute Card appealable 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -2851,7 +2838,6 @@ exports[`Storyshots Dispute Card resolved 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -3165,7 +3151,6 @@ exports[`Storyshots Dispute Card waiting 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -3465,7 +3450,6 @@ exports[`Storyshots Form header 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -3767,7 +3751,6 @@ exports[`Storyshots Form info 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -4063,7 +4046,6 @@ exports[`Storyshots Icosahedron default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -4359,7 +4341,6 @@ exports[`Storyshots Identicon with placeholder seed 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -4737,7 +4718,6 @@ exports[`Storyshots Label Value Group default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -5050,7 +5030,6 @@ exports[`Storyshots Loading Bar default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -5348,7 +5327,6 @@ exports[`Storyshots Missing Arbitrator default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -5476,7 +5454,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/disputes"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Disputes
                   </a>
@@ -5485,7 +5462,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/testing-panel"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Testing Panel
                   </a>
@@ -5494,7 +5470,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/1"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5503,7 +5478,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/2"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5512,7 +5486,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/3"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5521,7 +5494,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/4"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5530,7 +5502,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/5"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5539,7 +5510,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
                     className="NavBar-tabs-tab"
                     href="/6"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Extra
                   </a>
@@ -5761,7 +5731,6 @@ exports[`Storyshots Nav Bar with a lot of routes, (scrollable) 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -5889,7 +5858,6 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                     className="NavBar-tabs-tab"
                     href="/disputes"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Disputes
                   </a>
@@ -5898,7 +5866,6 @@ exports[`Storyshots Nav Bar with routes 1`] = `
                     className="NavBar-tabs-tab"
                     href="/testing-panel"
                     onClick={[Function]}
-                    style={undefined}
                   >
                     Testing Panel
                   </a>
@@ -6120,7 +6087,6 @@ exports[`Storyshots Nav Bar with routes 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -6432,7 +6398,6 @@ exports[`Storyshots Notification Card default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -6744,7 +6709,6 @@ exports[`Storyshots Notification Card with lots of text 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -7046,7 +7010,6 @@ exports[`Storyshots Page Not Found default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -7358,7 +7321,6 @@ exports[`Storyshots Requires MetaMask needs unlock 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -7670,7 +7632,6 @@ exports[`Storyshots Requires MetaMask not found 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -7968,7 +7929,6 @@ exports[`Storyshots Status Hint appealable 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -8266,7 +8226,6 @@ exports[`Storyshots Status Hint resolved 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -8564,7 +8523,6 @@ exports[`Storyshots Status Hint waiting 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -8683,7 +8641,6 @@ exports[`Storyshots Table default 1`] = `
               <div
                 className="rt-table"
                 role="grid"
-                style={undefined}
               >
                 <div
                   className="rt-thead -header"
@@ -8696,10 +8653,9 @@ exports[`Storyshots Table default 1`] = `
                   <div
                     className="rt-tr"
                     role="row"
-                    style={undefined}
                   >
                     <div
-                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      className="rt-th rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
                       role="columnheader"
                       style={
@@ -8723,7 +8679,7 @@ exports[`Storyshots Table default 1`] = `
                       />
                     </div>
                     <div
-                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      className="rt-th rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
                       role="columnheader"
                       style={
@@ -8747,7 +8703,7 @@ exports[`Storyshots Table default 1`] = `
                       />
                     </div>
                     <div
-                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      className="rt-th rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
                       role="columnheader"
                       style={
@@ -8771,7 +8727,7 @@ exports[`Storyshots Table default 1`] = `
                       />
                     </div>
                     <div
-                      className="rt-th  rt-resizable-header -cursor-pointer"
+                      className="rt-th rt-resizable-header -cursor-pointer"
                       onClick={[Function]}
                       role="columnheader"
                       style={
@@ -8812,7 +8768,6 @@ exports[`Storyshots Table default 1`] = `
                       className="rt-tr -odd"
                       onClick={null}
                       role="row"
-                      style={undefined}
                     >
                       <div
                         className="rt-td"
@@ -8884,7 +8839,6 @@ exports[`Storyshots Table default 1`] = `
                       className="rt-tr -even"
                       onClick={null}
                       role="row"
-                      style={undefined}
                     >
                       <div
                         className="rt-td"
@@ -8956,7 +8910,6 @@ exports[`Storyshots Table default 1`] = `
                       className="rt-tr -odd"
                       onClick={null}
                       role="row"
-                      style={undefined}
                     >
                       <div
                         className="rt-td"
@@ -9028,7 +8981,6 @@ exports[`Storyshots Table default 1`] = `
                       className="rt-tr -even"
                       onClick={null}
                       role="row"
-                      style={undefined}
                     >
                       <div
                         className="rt-td"
@@ -9099,7 +9051,6 @@ exports[`Storyshots Table default 1`] = `
               >
                 <div
                   className="-pagination"
-                  style={undefined}
                 >
                   <div
                     className="-previous"
@@ -9408,7 +9359,6 @@ exports[`Storyshots Table default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -9716,7 +9666,6 @@ exports[`Storyshots Text Input default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -10029,7 +9978,6 @@ exports[`Storyshots Text Input error 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -10337,7 +10285,6 @@ exports[`Storyshots Text Input touched 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -10645,7 +10592,6 @@ exports[`Storyshots Text Input valid 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -10948,7 +10894,6 @@ exports[`Storyshots Toast confirm 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -11251,7 +11196,6 @@ exports[`Storyshots Toast error 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -11554,7 +11498,6 @@ exports[`Storyshots Toast info 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -11857,7 +11800,6 @@ exports[`Storyshots Toast message 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -12160,7 +12102,6 @@ exports[`Storyshots Toast success 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -12463,7 +12404,6 @@ exports[`Storyshots Toast warning 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -12770,7 +12710,6 @@ exports[`Storyshots Truncatable Text Box default 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -13070,7 +13009,6 @@ exports[`Storyshots Truncatable Text Box not exceeding max words 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -13385,7 +13323,6 @@ exports[`Storyshots Typography headings 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
@@ -13691,7 +13628,6 @@ exports[`Storyshots Typography paragraphs 1`] = `
     <div
       className="__react_component_tooltip place-top type-dark "
       data-id="tooltip"
-      id={undefined}
     />
   </div>
 </div>
