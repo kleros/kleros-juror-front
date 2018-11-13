@@ -23,6 +23,4 @@ const render = type => () => <Component type={type} />
 const types = ['info', 'warning', 'success', 'error', 'message', 'confirm']
 
 const stories = storiesOf('Toast', module)
-for (const type of types) {
-  stories.add(type, render(type))
-}
+for (const type of types) stories.add(type, render(type))

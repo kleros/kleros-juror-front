@@ -24,12 +24,11 @@ const parseDispute = d => {
 
   // Find the latest appeal where the juror is drawn
   let latestAppealForJuror = null
-  for (let i = d.appealJuror.length - 1; i >= 0; i--) {
+  for (let i = d.appealJuror.length - 1; i >= 0; i--)
     if (d.appealJuror[i].canRule) {
       latestAppealForJuror = i
       break
     }
-  }
 
   // Build array of appeals, evidence submissions, and rulings as events
   let events = [
@@ -130,12 +129,11 @@ function* fetchDisputeDeadlines({ payload: { _disputes } }) {
   )
 
   const disputes = []
-  for (let i = 0; i < _disputes.length; i++) {
+  for (let i = 0; i < _disputes.length; i++)
     disputes.push({
       ..._disputes[i],
       deadline: disputeDeadlines[i] ? new Date(disputeDeadlines[i]) : null
     })
-  }
 
   return disputes
 }
