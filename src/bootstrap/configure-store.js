@@ -49,12 +49,11 @@ export default function configureStore(
   }
 
   // Testing Tools
-  if (dispatchSpy) {
+  if (dispatchSpy)
     middleware.push(_store => next => action => {
       dispatchSpy(action)
       return next(action)
     })
-  }
 
   // Reattach tooltips if necessary
   middleware.push(store => next => action => {

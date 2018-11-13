@@ -58,7 +58,7 @@ class Details extends Component {
     )
 
     // Use external interface to display primary document file.
-    if (metaEvidence.evidenceDisplayInterfaceURL) {
+    if (metaEvidence.evidenceDisplayInterfaceURL)
       fileDisplay = (
         <iframe
           title="File Display"
@@ -67,7 +67,6 @@ class Details extends Component {
           height="300"
         />
       )
-    }
 
     return (
       <div className="Details">
