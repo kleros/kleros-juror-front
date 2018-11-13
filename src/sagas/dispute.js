@@ -90,7 +90,7 @@ function* fetchDisputes() {
   )
   const disputes = []
   for (const d of _disputes)
-    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
+    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x')
       // legacy disputes, or disputes that do not follow the standard may not have MetaEvidence
       try {
         const disputeData = yield call(
@@ -115,7 +115,7 @@ function* fetchDisputes() {
         console.error(err)
         disputes.push(d)
       }
-    } else disputes.push(d)
+    else disputes.push(d)
 
   return disputes
 }
@@ -229,14 +229,13 @@ function* fetchDispute({ payload: { disputeID } }) {
 
     let jurorRuling = null // es-lint-ignore prefer-const
     // if can't rule that means they already did or they missed it
-    if (draws.length > 0 && !canRule) {
+    if (draws.length > 0 && !canRule)
       jurorRuling = yield call(
         kleros.arbitrator.getVoteForJuror,
         disputeID,
         appeal,
         account
       )
-    }
 
     // wait for all timestamps to be fetched
     const [appealCreatedAt, appealDeadline, appealRuledAt] = yield all(

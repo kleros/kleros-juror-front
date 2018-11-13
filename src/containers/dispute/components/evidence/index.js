@@ -48,7 +48,7 @@ class Evidence extends Component {
     let fileDisplay = <div />
 
     // Use external interface to display primary document file.
-    if (metaEvidenceJSON.evidenceDisplayInterfaceURL) {
+    if (metaEvidenceJSON.evidenceDisplayInterfaceURL)
       fileDisplay = (
         <iframe
           title="Evidence Display"
@@ -57,7 +57,6 @@ class Evidence extends Component {
           height="300"
         />
       )
-    }
 
     return (
       <div className="Evidence">
