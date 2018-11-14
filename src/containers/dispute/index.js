@@ -253,59 +253,57 @@ class Dispute extends PureComponent {
                       }
                     : dispute.data.appealRulings[dispute.data.numberOfAppeals]
                         .canRepartition
-                      ? {
-                          anchor: 'Repartition Tokens',
-                          element: (
-                            <div key={today} className="Dispute-action">
-                              <Button
-                                onClick={this.handleRepartitionButtonClick}
+                    ? {
+                        anchor: 'Repartition Tokens',
+                        element: (
+                          <div key={today} className="Dispute-action">
+                            <Button onClick={this.handleRepartitionButtonClick}>
+                              <ChainData
+                                contractName={
+                                  chainViewConstants.KLEROS_POC_NAME
+                                }
+                                contractAddress={ARBITRATOR_ADDRESS}
+                                functionSignature={
+                                  chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_SIG
+                                }
+                                parameters={chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_PARAMS()}
+                                estimatedGas={
+                                  chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_GAS
+                                }
                               >
-                                <ChainData
-                                  contractName={
-                                    chainViewConstants.KLEROS_POC_NAME
-                                  }
-                                  contractAddress={ARBITRATOR_ADDRESS}
-                                  functionSignature={
-                                    chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_SIG
-                                  }
-                                  parameters={chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_PARAMS()}
-                                  estimatedGas={
-                                    chainViewConstants.KLEROS_POC_ONE_SHOT_TOKEN_REPARTITION_GAS
-                                  }
-                                >
-                                  Repartition Tokens
-                                </ChainData>
-                              </Button>
-                            </div>
-                          )
-                        }
-                      : dispute.data.appealRulings[dispute.data.numberOfAppeals]
-                          .canExecute
-                        ? {
-                            anchor: 'Execute Ruling',
-                            element: (
-                              <div key={today} className="Dispute-action">
-                                <Button onClick={this.handleExecuteButtonClick}>
-                                  <ChainData
-                                    contractName={
-                                      chainViewConstants.KLEROS_POC_NAME
-                                    }
-                                    contractAddress={ARBITRATOR_ADDRESS}
-                                    functionSignature={
-                                      chainViewConstants.KLEROS_POC_EXECUTE_RULING_SIG
-                                    }
-                                    parameters={chainViewConstants.KLEROS_POC_EXECUTE_RULING_PARAMS()}
-                                    estimatedGas={
-                                      chainViewConstants.KLEROS_POC_EXECUTE_RULING_GAS
-                                    }
-                                  >
-                                    Execute Ruling
-                                  </ChainData>
-                                </Button>
-                              </div>
-                            )
-                          }
-                        : null
+                                Repartition Tokens
+                              </ChainData>
+                            </Button>
+                          </div>
+                        )
+                      }
+                    : dispute.data.appealRulings[dispute.data.numberOfAppeals]
+                        .canExecute
+                    ? {
+                        anchor: 'Execute Ruling',
+                        element: (
+                          <div key={today} className="Dispute-action">
+                            <Button onClick={this.handleExecuteButtonClick}>
+                              <ChainData
+                                contractName={
+                                  chainViewConstants.KLEROS_POC_NAME
+                                }
+                                contractAddress={ARBITRATOR_ADDRESS}
+                                functionSignature={
+                                  chainViewConstants.KLEROS_POC_EXECUTE_RULING_SIG
+                                }
+                                parameters={chainViewConstants.KLEROS_POC_EXECUTE_RULING_PARAMS()}
+                                estimatedGas={
+                                  chainViewConstants.KLEROS_POC_EXECUTE_RULING_GAS
+                                }
+                              >
+                                Execute Ruling
+                              </ChainData>
+                            </Button>
+                          </div>
+                        )
+                      }
+                    : null
                 ]}
               />
             )

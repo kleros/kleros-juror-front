@@ -27,8 +27,8 @@ const Ruling = ({
     jurorRuling === null || jurorRuling === undefined
       ? ''
       : jurorRuling > 0
-        ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
-        : 'No Ruling'
+      ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
+      : 'No Ruling'
   return (
     <div className="Ruling">
       <hr />
@@ -50,8 +50,8 @@ const Ruling = ({
               {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
-                  ? metaEvidence.rulingOptions.titles[0]
-                  : metaEvidence.rulingOptions.titles[1]}
+                ? metaEvidence.rulingOptions.titles[0]
+                : metaEvidence.rulingOptions.titles[1]}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">

@@ -12,6 +12,7 @@ class DogesOnTrialEvidence extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line unicorn/prefer-add-event-listener
     window.onmessage = this.receiveEvidence.bind(this)
     window.parent.postMessage(
       {

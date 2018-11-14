@@ -250,7 +250,8 @@ class Home extends PureComponent {
                     />
                     <div className="Home-stats-block-content-header">
                       <h5>
-                        Deposited<RenderIf
+                        Deposited
+                        <RenderIf
                           resource={arbitratorData}
                           loading={null}
                           done={

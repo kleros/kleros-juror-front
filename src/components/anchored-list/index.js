@@ -86,28 +86,30 @@ export default class AnchoredList extends PureComponent {
       >
         <div className="AnchoredList-container">
           <div className="AnchoredList-container-margin" />
-          {items.filter(i => i).map((item, i) => (
-            <div
-              key={item.element.key}
-              ref={this.getChildRef}
-              className="AnchoredList-container-item"
-            >
-              {item.anchor && (
-                <div
-                  id={i}
-                  className="AnchoredList-container-item-anchor"
-                  style={{
-                    bottom: anchorBottoms[i],
-                    ...this.calcAnchorLeftAndOpacity(i)
-                  }}
-                  data-tip={item.anchor}
-                  data-type="info"
-                  onClick={this.handleAnchorClick}
-                />
-              )}
-              {item.element}
-            </div>
-          ))}
+          {items
+            .filter(i => i)
+            .map((item, i) => (
+              <div
+                key={item.element.key}
+                ref={this.getChildRef}
+                className="AnchoredList-container-item"
+              >
+                {item.anchor && (
+                  <div
+                    id={i}
+                    className="AnchoredList-container-item-anchor"
+                    style={{
+                      bottom: anchorBottoms[i],
+                      ...this.calcAnchorLeftAndOpacity(i)
+                    }}
+                    data-tip={item.anchor}
+                    data-type="info"
+                    onClick={this.handleAnchorClick}
+                  />
+                )}
+                {item.element}
+              </div>
+            ))}
         </div>
       </div>
     )
