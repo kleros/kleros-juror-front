@@ -12,6 +12,7 @@ import {
   weiBNToDecimalString
 } from '../../../../utils/number'
 import * as bondingCurveSelectors from '../../../../reducers/bonding-curve'
+import * as bondingCurveActions from '../../../../actions/bonding-curve'
 
 const {
   Form: BuyPNKFromBondingCurveForm,
@@ -71,12 +72,12 @@ const {
 
 class BondingCurveForm extends PureComponent {
   static propTypes = {
-    handleBuyPNK: PropTypes.func.isRequired,
-    handleSellPNK: PropTypes.func.isRequired,
     buyPNKFromBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
     sellPNKToBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
     submitBuyPNKFromBondingCurveForm: PropTypes.func.isRequired,
     submitSellPNKToBondingCurveForm: PropTypes.func.isRequired,
+    buyPNKFromBondingCurve: PropTypes.func.isRequired,
+    sellPNKToBondingCurve: PropTypes.func.isRequired,
     bondingCurveTotals:
       bondingCurveSelectors.bondingCurveTotalsShape.isRequired,
     inputETH: PropTypes.string,
@@ -109,10 +110,20 @@ class BondingCurveForm extends PureComponent {
     )
   }
 
+  handleBuyPNK = formData => {
+    const { buyPNKFromBondingCurve } = this.props
+    const { amountOfETH } = formData
+    buyPNKFromBondingCurve(decimalStringToWeiBN(amountOfETH).toString())
+  }
+
+  handleSellPNK = formData => {
+    const { sellPNKToBondingCurve } = this.props
+    const { amountOfPNK } = formData
+    sellPNKToBondingCurve(decimalStringToWeiBN(amountOfPNK).toString())
+  }
+
   render() {
     const {
-      handleBuyPNK,
-      handleSellPNK,
       buyPNKFromBondingCurveFormIsInvalid,
       sellPNKToBondingCurveFormIsInvalid,
       submitBuyPNKFromBondingCurveForm,
@@ -132,7 +143,7 @@ class BondingCurveForm extends PureComponent {
               </span>
             )
           }}
-          onSubmit={handleBuyPNK}
+          onSubmit={this.handleBuyPNK}
         />
         <Button
           onClick={submitBuyPNKFromBondingCurveForm}
@@ -153,7 +164,7 @@ class BondingCurveForm extends PureComponent {
               </span>
             )
           }}
-          onSubmit={handleSellPNK}
+          onSubmit={this.handleSellPNK}
         />
         <Button
           onClick={submitSellPNKToBondingCurveForm}
@@ -191,7 +202,9 @@ export default connect(
     getSellPNKToBondingCurveFormIsInvalid,
     submitSellPNKToBondingCurveForm,
     getBuyPNKFromBondingCurveFormIsInvalid,
-    submitBuyPNKFromBondingCurveForm
+    submitBuyPNKFromBondingCurveForm,
+    buyPNKFromBondingCurve: bondingCurveActions.buyPNKFromBondingCurve,
+    sellPNKToBondingCurve: bondingCurveActions.sellPNKToBondingCurve
   }
 )(BondingCurveForm)
 

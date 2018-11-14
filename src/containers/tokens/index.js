@@ -62,8 +62,6 @@ class Tokens extends PureComponent {
     passPeriod: PropTypes.func.isRequired,
     transferPNK: PropTypes.func.isRequired,
     withdrawPNK: PropTypes.func.isRequired,
-    buyPNKFromBondingCurve: PropTypes.func.isRequired,
-    sellPNKToBondingCurve: PropTypes.func.isRequired,
     fetchBondingCurveData: PropTypes.func.isRequired,
 
     // Transfer PNK
@@ -142,18 +140,6 @@ class Tokens extends PureComponent {
     buyPNK(decimalStringToWeiBN(amount).toString())
   }
 
-  handleBuyPNKFromBondingCurveForm = formData => {
-    const { buyPNKFromBondingCurve } = this.props
-    const { amountOfETH } = formData
-    buyPNKFromBondingCurve(decimalStringToWeiBN(amountOfETH).toString())
-  }
-
-  handleSellPNKToBondingCurveForm = formData => {
-    const { sellPNKToBondingCurve } = this.props
-    const { amountOfPNK } = formData
-    sellPNKToBondingCurve(decimalStringToWeiBN(amountOfPNK).toString())
-  }
-
   handleToggleBondingCurveForm = event => {
     const { showBondingCurveForm } = this.state
     this.setState({ showBondingCurveForm: !showBondingCurveForm })
@@ -202,13 +188,7 @@ class Tokens extends PureComponent {
           <RenderIf
             resource={bondingCurveTotals}
             loading={<Icosahedron />}
-            done={
-              <BondingCurveForm
-                handleBuyPNK={this.handleBuyPNKFromBondingCurveForm}
-                handleSellPNK={this.handleSellPNKToBondingCurveForm}
-                bondingCurveTotals={bondingCurveTotals}
-              />
-            }
+            done={<BondingCurveForm bondingCurveTotals={bondingCurveTotals} />}
           />
         </ReactModal>
         <TransferPNKForm
@@ -427,8 +407,6 @@ export default connect(
     passPeriod: arbitratorActions.passPeriod,
     transferPNK: arbitratorActions.transferPNK,
     withdrawPNK: arbitratorActions.withdrawPNK,
-    buyPNKFromBondingCurve: bondingCurveActions.buyPNKFromBondingCurve,
-    sellPNKToBondingCurve: bondingCurveActions.sellPNKToBondingCurve,
     fetchBondingCurveData: bondingCurveActions.fetchBondingCurveData,
     submitBuyPNKForm,
     submitPassPeriodForm,
