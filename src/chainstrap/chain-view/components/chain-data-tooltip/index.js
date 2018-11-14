@@ -54,7 +54,9 @@ const ChainDataTooltip = ({
           <FontAwesomeIcon icon="search" />
         </div>
         <div>
-          EXPLORE IN<br />ETHERSCAN
+          EXPLORE IN
+          <br />
+          ETHERSCAN
         </div>
       </a>
       <CopyToClipboard text={contractAddress}>
@@ -63,7 +65,9 @@ const ChainDataTooltip = ({
             <FontAwesomeIcon icon="copy" />
           </div>
           <div>
-            COPY<br />ADDRESS
+            COPY
+            <br />
+            ADDRESS
           </div>
         </div>
       </CopyToClipboard>
@@ -72,7 +76,9 @@ const ChainDataTooltip = ({
         className="ChainDataTooltip-buttons-button"
       >
         <div>
-          OPEN IN<br />CHAINVIEW
+          OPEN IN
+          <br />
+          CHAINVIEW
         </div>
       </div>
     </div>

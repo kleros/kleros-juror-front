@@ -14,6 +14,7 @@ import './details.css'
 
 class Details extends Component {
   componentDidMount() {
+    // eslint-disable-next-line unicorn/prefer-add-event-listener
     window.onmessage = this.handleFrameMessage.bind(this)
   }
 

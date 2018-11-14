@@ -63,17 +63,14 @@ const parseDispute = d => {
 
   return {
     ...d,
-    appealCreatedAt: d.appealJuror.map(
-      appealJurorData =>
-        appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
+    appealCreatedAt: d.appealJuror.map(appealJurorData =>
+      appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
     ),
-    appealDeadlines: d.appealRulings.map(
-      appealRulingData =>
-        appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
+    appealDeadlines: d.appealRulings.map(appealRulingData =>
+      appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
     ),
-    appealRuledAt: d.appealRulings.map(
-      appealRulingData =>
-        appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
+    appealRuledAt: d.appealRulings.map(appealRulingData =>
+      appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
     ),
     latestAppealForJuror,
     events
