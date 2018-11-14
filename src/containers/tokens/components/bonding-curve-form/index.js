@@ -214,6 +214,19 @@ class BondingCurveForm extends PureComponent {
         <div className="Tokens-notes">
           <small>You will be requested to sign two transactions.</small>
         </div>
+        <div className="Tokens-modal-footer">
+          <small>
+            Powered by{' '}
+            <a
+              href="https://uniswap.exchange"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              UniSwap
+            </a>
+            .
+          </small>
+        </div>
       </div>
     )
   } // render()
