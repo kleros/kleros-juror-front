@@ -7,7 +7,7 @@ import LabelValueGroup from '../../../../components/label-value-group'
 
 class Evidence extends Component {
   componentDidMount() {
-    window.onmessage = this.handleFrameMessage.bind(this)
+    window.addEventListener('message', this.handleFrameMessage.bind(this))
   }
 
   handleFrameMessage = message => {
