@@ -92,10 +92,25 @@ class BondingCurveForm extends PureComponent {
       estimatePNK(
         inputETH,
         bondingCurveTotals.data.totalETH,
-        bondingCurveTotals.data.totalPNK,
-        toBN(0)
+        bondingCurveTotals.data.totalPNK
       )
     )
+  }
+
+  buyPrice() {
+    const { inputETH, bondingCurveTotals } = this.props
+    const PNK = estimatePNK(
+      inputETH,
+      bondingCurveTotals.data.totalETH,
+      bondingCurveTotals.data.totalPNK
+    )
+    if (PNK === '0') {
+      return '?'
+    } else {
+      return toBN(PNK)
+        .div(decimalStringToWeiBN(inputETH))
+        .toString()
+    }
   }
 
   estimateETH() {
@@ -104,10 +119,25 @@ class BondingCurveForm extends PureComponent {
       estimateETH(
         inputPNK,
         bondingCurveTotals.data.totalETH,
-        bondingCurveTotals.data.totalPNK,
-        toBN(0)
+        bondingCurveTotals.data.totalPNK
       )
     )
+  }
+
+  sellPrice() {
+    const { inputPNK, bondingCurveTotals } = this.props
+    const ETH = estimateETH(
+      inputPNK,
+      bondingCurveTotals.data.totalETH,
+      bondingCurveTotals.data.totalPNK
+    )
+    if (ETH === '0') {
+      return '?'
+    } else {
+      return decimalStringToWeiBN(inputPNK)
+        .div(toBN(ETH))
+        .toString()
+    }
   }
 
   handleBuyPNK = formData => {
@@ -138,9 +168,13 @@ class BondingCurveForm extends PureComponent {
           initialValues={{
             explanation: <span>The amount of ETH you'd like to spend:</span>,
             rate: (
-              <span>
-                Estimated amount of PNK you'll get: {this.estimatePNK()}
-              </span>
+              <div>
+                <span>
+                  Estimated amount of PNK you'll get: {this.estimatePNK()}
+                </span>
+                <br />
+                <span>Exchange rate: 1 ETH = {this.buyPrice()} PNK</span>
+              </div>
             )
           }}
           onSubmit={this.handleBuyPNK}
@@ -159,9 +193,13 @@ class BondingCurveForm extends PureComponent {
           initialValues={{
             explanation: <span>The amount of PNK you'd like to sell:</span>,
             rate: (
-              <span>
-                Estimated amount of ETH you'll get: {this.estimateETH()}
-              </span>
+              <div>
+                <span>
+                  Estimated amount of ETH you'll get: {this.estimateETH()}
+                </span>
+                <br />
+                <span>Exchange rate: 1 ETH = {this.sellPrice()} PNK</span>
+              </div>
             )
           }}
           onSubmit={this.handleSellPNK}
