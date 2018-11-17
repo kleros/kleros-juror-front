@@ -1,6 +1,6 @@
 import ContractImplementation from 'kleros-api/lib/contracts/ContractImplementation'
 
-import { takeLatest, call, select, all } from 'redux-saga/effects'
+import { takeLatest, call, select, all, put } from 'redux-saga/effects'
 
 import uniswapArtifact from '../assets/contracts/Uniswap'
 import ERC20Artifact from '../assets/contracts/ERC20'
@@ -33,12 +33,24 @@ const getBondingCurve = (function() {
  * @returns {object} { totalETH, totalPNK } all keys map to big number objects.
  */
 function* fetchBondingCurveTotals() {
-  const [totalETH, totalPNK] = yield all([
+  const [totalETH, totalPNK, allowance] = yield all([
     call(getBondingCurve().getTotalETH),
-    call(getBondingCurve().getTotalTKN)
+    call(getBondingCurve().getTotalTKN),
+    call(
+      getBondingCurve().getAllowance,
+      yield select(walletSelectors.getAccount)
+    )
   ])
-  console.info('totalETH', totalETH.toString(), 'totalPNK', totalPNK.toString())
-  return { totalETH, totalPNK }
+  console.info(
+    'totalETH',
+    totalETH.toString(),
+    'totalPNK',
+    totalPNK.toString(),
+    'allowance',
+    allowance.toString()
+  )
+
+  return { totalETH, totalPNK, allowance }
 }
 
 /**
@@ -78,6 +90,27 @@ function* sellPNKToBondingCurve({ payload: { amount } }) {
 }
 
 /**
+ * Approve PNK to the bonding curve contract.
+ */
+function* approvePNKToBondingCurve({ payload: { amount } }) {
+  yield put(bondingCurveActions.updateApproveTransactionProgress('pending'))
+
+  const addr = yield select(walletSelectors.getAccount)
+  const txID = yield call(getBondingCurve().approve, amount, addr)
+
+  if (!txID) {
+    yield put(bondingCurveActions.updateApproveTransactionProgress(''))
+    return
+  }
+
+  yield put(bondingCurveActions.updateApproveTransactionProgress('confirming'))
+  yield call(getBondingCurve().waitForApproval, addr)
+
+  yield put(bondingCurveActions.updateApproveTransactionProgress('done'))
+  yield call(fetchBondingCurveTotals)
+}
+
+/**
  * The root of the bonding curve saga.
  */
 export default function* bondingCurveSaga() {
@@ -101,6 +134,10 @@ export default function* bondingCurveSaga() {
     'update',
     bondingCurveActions.bondingCurve,
     sellPNKToBondingCurve
+  )
+  yield takeLatest(
+    bondingCurveActions.bondingCurve.APPROVE_PNK,
+    approvePNKToBondingCurve
   )
 }
 
@@ -153,8 +190,28 @@ class BondingCurve extends ContractImplementation {
    */
   getTotalTKN = async () => {
     const PNKInstance = await this._PNKInstance
+
     return new Promise((resolve, reject) =>
       PNKInstance.balanceOf(this.contractAddress, (err, result) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(result)
+        }
+      })
+    )
+  }
+
+  /**
+   * Fetch the amount of PNK approved to the bonding curve contract.
+   * @param {string} account - The user account.
+   * @returns {number} - BigNumber.
+   */
+  getAllowance = async account => {
+    const PNKInstance = await this._PNKInstance
+
+    return new Promise((resolve, reject) =>
+      PNKInstance.allowance(account, this.contractAddress, (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -201,13 +258,33 @@ class BondingCurve extends ContractImplementation {
   sell = async (amountTKN, receiverAddr, minETH, deadline, account) => {
     await this.loadContract()
 
+    try {
+      await this.contractInstance.tokenToEthTransferInput(
+        amountTKN,
+        minETH,
+        deadline,
+        receiverAddr,
+        { from: account }
+      )
+    } catch (err) {
+      console.error('Error when selling PNK:', err)
+    }
+  }
+
+  /**
+   * Approve tokens to the bonding curve contract.
+   * @param {string} amount - The amount of token to be approve.
+   * @param {string} account - The token owner account.
+   * @returns {string} - The transaction ID, or null if it fails.
+   */
+  approve = async (amount, account) => {
     const PNKInstance = await this._PNKInstance
 
     try {
-      await new Promise((resolve, reject) =>
+      return await new Promise((resolve, reject) =>
         PNKInstance.approve(
           this.contractAddress,
-          amountTKN,
+          amount,
           { from: account },
           (err, result) => {
             if (err) {
@@ -220,19 +297,34 @@ class BondingCurve extends ContractImplementation {
       )
     } catch (err) {
       console.error('Error when approving:', err)
-      return
+      return null
     }
+  }
 
-    try {
-      await this.contractInstance.tokenToEthTransferInput(
-        amountTKN,
-        minETH,
-        deadline,
-        receiverAddr,
-        { from: account }
-      )
-    } catch (err) {
-      console.error('Error when selling PNK:', err)
-    }
+  /**
+   * Wait for the approve() transaction to be mined.
+   * @param {string} owner - Token owner's address.
+   * @returns {Promise} - A promise to wait for.
+   */
+  waitForApproval = async owner => {
+    const PNKInstance = await this._PNKInstance
+
+    return new Promise((resolve, reject) => {
+      const event = PNKInstance.Approval({
+        owner,
+        spender: this.contractAddress
+      })
+      event.watch((err, _log) => {
+        try {
+          // The should be called according to the doc but it is undefined.
+          event.stopWatching()
+        } catch (_) {}
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      })
+    })
   }
 }

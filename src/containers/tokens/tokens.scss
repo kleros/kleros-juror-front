@@ -26,6 +26,15 @@
       margin-bottom: 0;
       margin-top: 14px;
     }
+
+    &-footer {
+      float: right;
+    }
+
+    &-text {
+      margin-left: 40px;
+      margin-top: 20px;
+    }
   }
 
   &-modal {
@@ -47,13 +56,5 @@
         cursor: pointer;
       }
     }
-
-    &-footer {
-      float: right;
-    }
-  }
-
-  &-notes {
-    margin-left: 40px; // left-align with SELL NOW button
   }
 }

@@ -8,12 +8,14 @@ const {
 } = createResource(
   PropTypes.shape({
     totalETH: PropTypes.object.isRequired,
-    totalPNK: PropTypes.object.isRequired
+    totalPNK: PropTypes.object.isRequired,
+    allowance: PropTypes.object.isRequired
   }),
   { withUpdate: true }
 )
 export { bondingCurveTotalsShape }
 
 export default createReducer({
-  bondingCurveTotals: bondingCurveInitialState
+  bondingCurveTotals: bondingCurveInitialState,
+  approveTransactionProgress: { data: '' }
 })

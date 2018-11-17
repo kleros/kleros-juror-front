@@ -41,6 +41,51 @@
         }
       ],
       "constant": true
+    },
+    {
+      "type": "function",
+      "stateMutability": "view",
+      "payable": false,
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "name": "allowance",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "_owner"
+        },
+        {
+          "type": "address",
+          "name": "_spender"
+        }
+      ],
+      "constant": true
+    },
+    {
+      "type": "event",
+      "name": "Approval",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "spender",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "value",
+          "indexed": false
+        }
+      ],
+      "anonymous": false
     }
   ]
 }

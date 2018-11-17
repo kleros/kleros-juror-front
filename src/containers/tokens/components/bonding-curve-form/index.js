@@ -78,10 +78,12 @@ class BondingCurveForm extends PureComponent {
     submitSellPNKToBondingCurveForm: PropTypes.func.isRequired,
     buyPNKFromBondingCurve: PropTypes.func.isRequired,
     sellPNKToBondingCurve: PropTypes.func.isRequired,
+    approvePNKToBondingCurve: PropTypes.func.isRequired,
     bondingCurveTotals:
       bondingCurveSelectors.bondingCurveTotalsShape.isRequired,
     inputETH: PropTypes.string,
-    inputPNK: PropTypes.string
+    inputPNK: PropTypes.string,
+    approveTransactionProgress: PropTypes.string.isRequired
   }
 
   static defaultProps = { inputETH: '0', inputPNK: '0' }
@@ -140,6 +142,37 @@ class BondingCurveForm extends PureComponent {
     }
   }
 
+  unlock = event => {
+    const { approvePNKToBondingCurve } = this.props
+    const APPROVE_PNK_AMOUNT = '100000000'
+
+    approvePNKToBondingCurve(
+      decimalStringToWeiBN(APPROVE_PNK_AMOUNT).toString()
+    )
+    event.preventDefault()
+  }
+
+  isApproveRequired() {
+    const {
+      inputPNK,
+      bondingCurveTotals,
+      approveTransactionProgress
+    } = this.props
+    if (approveTransactionProgress === 'done') {
+      return false
+    }
+
+    const allowance = bondingCurveTotals.data.allowance
+    return (
+      allowance.isZero() || allowance.lt(decimalStringToWeiBN(inputPNK || '0'))
+    )
+  }
+
+  isSellButtonEnabled() {
+    const { sellPNKToBondingCurveFormIsInvalid } = this.props
+    return !sellPNKToBondingCurveFormIsInvalid && !this.isApproveRequired()
+  }
+
   handleBuyPNK = formData => {
     const { buyPNKFromBondingCurve } = this.props
     const { amountOfETH } = formData
@@ -155,9 +188,9 @@ class BondingCurveForm extends PureComponent {
   render() {
     const {
       buyPNKFromBondingCurveFormIsInvalid,
-      sellPNKToBondingCurveFormIsInvalid,
       submitBuyPNKFromBondingCurveForm,
-      submitSellPNKToBondingCurveForm
+      submitSellPNKToBondingCurveForm,
+      approveTransactionProgress
     } = this.props
 
     return (
@@ -169,11 +202,11 @@ class BondingCurveForm extends PureComponent {
             explanation: <span>The amount of ETH you'd like to spend:</span>,
             rate: (
               <div>
-                <span>
+                <small>
                   Estimated amount of PNK you'll get: {this.estimatePNK()}
-                </span>
+                </small>
                 <br />
-                <span>Exchange rate: 1 ETH = {this.buyPrice()} PNK</span>
+                <small>Exchange rate: 1 ETH = {this.buyPrice()} PNK</small>
               </div>
             )
           }}
@@ -194,28 +227,39 @@ class BondingCurveForm extends PureComponent {
             explanation: <span>The amount of PNK you'd like to sell:</span>,
             rate: (
               <div>
-                <span>
+                <small>
                   Estimated amount of ETH you'll get: {this.estimateETH()}
-                </span>
+                </small>
                 <br />
-                <span>Exchange rate: 1 ETH = {this.sellPrice()} PNK</span>
+                <small>Exchange rate: 1 ETH = {this.sellPrice()} PNK</small>
               </div>
             )
           }}
           onSubmit={this.handleSellPNK}
         />
+        <div className="Tokens-form-text">
+          {approveTransactionProgress === 'done' ? (
+            <span>Tokens have been unlocked.</span>
+          ) : !this.isApproveRequired() ? null : approveTransactionProgress ===
+          'pending' ? (
+            <span>Unlocking...</span>
+          ) : approveTransactionProgress === 'confirming' ? (
+            <span>Waiting for confirmation...</span>
+          ) : (
+            <span>
+              Please <a onClick={this.unlock}>Unlock</a> tokens first.
+            </span>
+          )}
+        </div>
         <Button
           onClick={submitSellPNKToBondingCurveForm}
-          disabled={sellPNKToBondingCurveFormIsInvalid}
+          disabled={!this.isSellButtonEnabled()}
           className="Tokens-form-button"
         >
           SELL NOW
         </Button>
-        <div className="Tokens-notes">
-          <small>You will be requested to sign two transactions.</small>
-        </div>
-        <div className="Tokens-modal-footer">
-          <small>
+        <div>
+          <small className="Tokens-form-footer">
             Powered by{' '}
             <a
               href="https://uniswap.exchange"
@@ -247,7 +291,9 @@ export default connect(
     ),
     sellPNKToBondingCurveFormIsInvalid: getSellPNKToBondingCurveFormIsInvalid(
       state
-    )
+    ),
+    approveTransactionProgress:
+      state.bondingCurve.approveTransactionProgress.data
   }),
   {
     getSellPNKToBondingCurveFormIsInvalid,
@@ -255,7 +301,8 @@ export default connect(
     getBuyPNKFromBondingCurveFormIsInvalid,
     submitBuyPNKFromBondingCurveForm,
     buyPNKFromBondingCurve: bondingCurveActions.buyPNKFromBondingCurve,
-    sellPNKToBondingCurve: bondingCurveActions.sellPNKToBondingCurve
+    sellPNKToBondingCurve: bondingCurveActions.sellPNKToBondingCurve,
+    approvePNKToBondingCurve: bondingCurveActions.approvePNKToBondingCurve
   }
 )(BondingCurveForm)
 
