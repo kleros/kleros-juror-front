@@ -332,7 +332,7 @@ class BondingCurveForm extends PureComponent {
 
         <div>
           <small className="Tokens-form-footer">
-            Powered by{' '}
+            PNK exchange is powered by{' '}
             <a
               href="https://uniswap.exchange"
               target="_blank"

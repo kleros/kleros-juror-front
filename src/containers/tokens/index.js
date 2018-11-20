@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { RenderIf } from 'lessdux'
-import ReactModal from 'react-modal'
 
 import { ChainData } from '../../chainstrap'
 import { ARBITRATOR_ADDRESS, networkID } from '../../bootstrap/dapp-api'
@@ -81,10 +80,6 @@ class Tokens extends PureComponent {
     submitPassPeriodForm: PropTypes.func.isRequired
   }
 
-  state = {
-    showBondingCurveForm: false
-  }
-
   componentDidMount() {
     const {
       fetchBalance,
@@ -140,12 +135,6 @@ class Tokens extends PureComponent {
     buyPNK(decimalStringToWeiBN(amount).toString())
   }
 
-  handleToggleBondingCurveForm = event => {
-    const { showBondingCurveForm } = this.state
-    this.setState({ showBondingCurveForm: !showBondingCurveForm })
-    event.preventDefault()
-  }
-
   render() {
     const {
       accounts,
@@ -164,8 +153,6 @@ class Tokens extends PureComponent {
       bondingCurveTotals
     } = this.props
 
-    const { showBondingCurveForm } = this.state
-
     if (!PNKBalance.data || !arbitratorData.data) return null
 
     let withdrawInvalid = true
@@ -177,19 +164,6 @@ class Tokens extends PureComponent {
 
     const forms = [
       <div key={0}>
-        <ReactModal ariaHideApp={false} isOpen={showBondingCurveForm}>
-          <div
-            onClick={this.handleToggleBondingCurveForm}
-            className="Tokens-modal-dismiss"
-          >
-            &times;
-          </div>
-          <RenderIf
-            resource={bondingCurveTotals}
-            loading={<Icosahedron />}
-            done={<BondingCurveForm bondingCurveTotals={bondingCurveTotals} />}
-          />
-        </ReactModal>
         <TransferPNKForm
           enableReinitialize
           keepDirtyOnReinitialize
@@ -202,9 +176,7 @@ class Tokens extends PureComponent {
                 <br />
                 <br />
                 <small>
-                  If you don't have PNK, you can buy some from{' '}
-                  <a onClick={this.handleToggleBondingCurveForm}>here</a> or
-                  from{' '}
+                  If you don't have PNK, you can buy some from from{' '}
                   <a
                     href="https://idex.market/eth/pnk"
                     target="_blank"
@@ -257,12 +229,16 @@ class Tokens extends PureComponent {
         >
           WITHDRAW PNK
         </Button>
+      </div>,
+
+      <div key={1}>
+        <BondingCurveForm bondingCurveTotals={bondingCurveTotals} />
       </div>
     ]
 
     if (Number(networkID) !== ethConstants.MAINNET)
       forms.push(
-        <div key={1}>
+        <div key={2}>
           <BuyPNKForm
             enableReinitialize
             keepDirtyOnReinitialize
@@ -372,7 +348,13 @@ class Tokens extends PureComponent {
                 <RenderIf
                   resource={PNKBalance}
                   loading={<Icosahedron />}
-                  done={forms}
+                  done={
+                    <RenderIf
+                      resource={bondingCurveTotals}
+                      loading={<Icosahedron />}
+                      done={forms}
+                    />
+                  }
                   failedLoading="There was an error fetching your PNK balance."
                 />
               )
