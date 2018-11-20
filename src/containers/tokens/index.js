@@ -172,9 +172,8 @@ class Tokens extends PureComponent {
     if (
       !withdrawPNKFormIsInvalid &&
       PNKBalance.data.activatedTokens.toNumber() === 0
-    ) {
+    )
       withdrawInvalid = false
-    }
 
     const forms = [
       <div key={0}>
@@ -261,7 +260,7 @@ class Tokens extends PureComponent {
       </div>
     ]
 
-    if (Number(networkID) !== ethConstants.MAINNET) {
+    if (Number(networkID) !== ethConstants.MAINNET)
       forms.push(
         <div key={1}>
           <BuyPNKForm
@@ -315,7 +314,6 @@ class Tokens extends PureComponent {
           </Button>
         </div>
       )
-    }
 
     return (
       <div className="Tokens">

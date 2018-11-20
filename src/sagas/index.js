@@ -17,7 +17,7 @@ import bondingCurveSaga from './bonding-curve'
 export function makeRestartable(saga) {
   return function*() {
     // eslint-disable-next-line no-constant-condition
-    while (true) {
+    while (true)
       try {
         yield call(saga)
         throw new Error(
@@ -37,7 +37,6 @@ export function makeRestartable(saga) {
           )
         yield call(delay, 3000)
       }
-    }
   }
 }
 

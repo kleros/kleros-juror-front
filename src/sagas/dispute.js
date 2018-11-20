@@ -2,34 +2,30 @@ import { makePopup } from '@typeform/embed'
 
 import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
-import { addContract } from '../chainstrap'
 import * as disputeActions from '../actions/dispute'
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletSelectors from '../reducers/wallet'
-import { kleros } from '../bootstrap/dapp-api'
+import { kleros, archon, ARBITRATOR_ADDRESS } from '../bootstrap/dapp-api'
 import { lessduxSaga } from '../utils/saga'
 import { action } from '../utils/action'
 import * as disputeConstants from '../constants/dispute'
-import * as chainViewConstants from '../constants/chain-view'
 
 import { fetchArbitratorData } from './arbitrator'
 
 const parseDispute = d => {
-  // Add arbitrable contract to ChainView
-  addContract({
-    name: chainViewConstants.ARBITRABLE_CONTRACT_NAME,
-    address: d.arbitrableContractAddress,
-    color: chainViewConstants.ARBITRABLE_CONTRACT_COLOR
-  })
-
   // Find the latest appeal where the juror is drawn
   let latestAppealForJuror = null
-  for (let i = d.appealJuror.length - 1; i >= 0; i--) {
+  for (let i = d.appealJuror.length - 1; i >= 0; i--)
     if (d.appealJuror[i].canRule) {
       latestAppealForJuror = i
       break
     }
-  }
+
+  // Convert evidence timestamps to dates
+  d.evidence = d.evidence.map(e => {
+    e.submittedAt = new Date(e.submittedAt * 1000)
+    return e
+  })
 
   // Build array of appeals, evidence submissions, and rulings as events
   let events = [
@@ -64,17 +60,14 @@ const parseDispute = d => {
 
   return {
     ...d,
-    appealCreatedAt: d.appealJuror.map(
-      appealJurorData =>
-        appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
+    appealCreatedAt: d.appealJuror.map(appealJurorData =>
+      appealJurorData.createdAt ? new Date(appealJurorData.createdAt) : null
     ),
-    appealDeadlines: d.appealRulings.map(
-      appealRulingData =>
-        appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
+    appealDeadlines: d.appealRulings.map(appealRulingData =>
+      appealRulingData.deadline ? new Date(appealRulingData.deadline) : null
     ),
-    appealRuledAt: d.appealRulings.map(
-      appealRulingData =>
-        appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
+    appealRuledAt: d.appealRulings.map(appealRulingData =>
+      appealRulingData.ruledAt ? new Date(appealRulingData.ruledAt) : null
     ),
     latestAppealForJuror,
     events
@@ -88,28 +81,41 @@ const parseDispute = d => {
 function* fetchDisputes() {
   const account = yield select(walletSelectors.getAccount)
   const [_disputes, arbitratorData] = yield all([
-    call(kleros.arbitrator.getDisputesForUser, account),
+    call(kleros.arbitrator.getDisputesForUserFromStore, account),
     call(fetchArbitratorData)
   ])
+
   yield put(
     action(arbitratorActions.arbitratorData.RECEIVE, { arbitratorData })
   )
   const disputes = []
   for (const d of _disputes)
-    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x') {
-      yield call(
-        kleros.arbitrable.setContractInstance,
-        d.arbitrableContractAddress
-      )
+    if (d.arbitrableContractAddress && d.arbitrableContractAddress !== '0x')
+      // legacy disputes, or disputes that do not follow the standard may not have MetaEvidence
+      try {
+        const disputeData = yield call(
+          archon.arbitrable.getDispute,
+          d.arbitrableContractAddress,
+          ARBITRATOR_ADDRESS,
+          d.disputeID
+        )
+        const metaEvidence = yield call(
+          archon.arbitrable.getMetaEvidence,
+          d.arbitrableContractAddress,
+          disputeData.metaEvidenceID
+        )
+        // TODO handle invalid hashes
 
-      const metaEvidence = yield call(kleros.arbitrable.getMetaEvidence)
-
-      disputes.push({
-        ...d,
-        title: metaEvidence ? metaEvidence.title : null,
-        description: metaEvidence ? metaEvidence.description : null
-      })
-    } else disputes.push(d)
+        disputes.push({
+          ...d,
+          title: metaEvidence.metaEvidenceJSON.title || null,
+          description: metaEvidence.metaEvidenceJSON.description || null
+        })
+      } catch (err) {
+        console.error(err)
+        disputes.push(d)
+      }
+    else disputes.push(d)
 
   return disputes
 }
@@ -130,12 +136,11 @@ function* fetchDisputeDeadlines({ payload: { _disputes } }) {
   )
 
   const disputes = []
-  for (let i = 0; i < _disputes.length; i++) {
+  for (let i = 0; i < _disputes.length; i++)
     disputes.push({
       ..._disputes[i],
       deadline: disputeDeadlines[i] ? new Date(disputeDeadlines[i]) : null
     })
-  }
 
   return disputes
 }
@@ -145,13 +150,125 @@ function* fetchDisputeDeadlines({ payload: { _disputes } }) {
  * @returns {object} - The dispute.
  */
 function* fetchDispute({ payload: { disputeID } }) {
-  return parseDispute(
-    yield call(
-      kleros.disputes.getDataForDispute,
-      disputeID,
-      yield select(walletSelectors.getAccount)
-    )
+  // Fetch extra data from contracts
+  const account = yield select(walletSelectors.getAccount)
+
+  const [disputeData, session, period, jurorStoreData, netPNK] = yield all([
+    call(kleros.arbitrator.getDispute, disputeID, true),
+    call(kleros.arbitrator.getSession),
+    call(kleros.arbitrator.getPeriod),
+    call(kleros.disputes.getDisputeFromStore, account, disputeID),
+    call(kleros.arbitrator.getNetTokensForDispute, disputeID, account)
+  ])
+
+  const disputeLogData = yield call(
+    archon.arbitrable.getDispute,
+    disputeData.arbitrableContractAddress,
+    ARBITRATOR_ADDRESS,
+    disputeID
   )
+
+  // Fetch Evidence and MetaEvidence
+  const [metaEvidence, evidence] = yield all([
+    call(
+      archon.arbitrable.getMetaEvidence,
+      disputeData.arbitrableContractAddress,
+      disputeLogData.metaEvidenceID
+    ),
+    call(
+      archon.arbitrable.getEvidence,
+      disputeData.arbitrableContractAddress,
+      ARBITRATOR_ADDRESS,
+      disputeID
+    )
+  ])
+
+  // fetch extra data needed for juror and ruling
+  const appealJuror = []
+  const appealRulings = []
+  for (let appeal = 0; appeal <= disputeData.numberOfAppeals; appeal++) {
+    // start fetching timestamps ASAP because they take the most time
+    const timestampPromises = [
+      call(kleros.disputes.getAppealCreatedAt, disputeID, account, appeal),
+      call(kleros.disputes.getDisputeDeadline, disputeID, appeal),
+      call(kleros.disputes.getAppealRuledAt, disputeID, appeal)
+    ]
+
+    const lastAppealSession = disputeData.firstSession + appeal
+    const isLastAppeal = lastAppealSession === session
+    // Get appeal data
+    const draws = jurorStoreData.appealDraws
+      ? jurorStoreData.appealDraws[appeal] || []
+      : []
+    let canRule = false
+    let canRepartition = false
+    let canExecute = false
+    let ruling = null
+
+    const rulingPromises = [
+      call(kleros.arbitrator.currentRulingForDispute, disputeID, appeal)
+    ]
+
+    // Extra info for the last appeal
+    if (isLastAppeal) {
+      if (draws.length > 0)
+        rulingPromises.push(
+          call(kleros.arbitrator.canRuleDispute, disputeID, draws, account)
+        )
+
+      if (session && period)
+        canRepartition =
+          lastAppealSession <= session && // Not appealed to the next session
+          period === 4 && // Executable period
+          disputeData.state === 0 // Open dispute
+      canExecute = disputeData.state === 2 // Executable state
+    }
+
+    // Wait for parallel requests to complete
+    ;[ruling, canRule] = yield all(rulingPromises) // es-lint-ignore prefer-const
+
+    let jurorRuling = null // es-lint-ignore prefer-const
+    // if can't rule that means they already did or they missed it
+    if (draws.length > 0 && !canRule)
+      jurorRuling = yield call(
+        kleros.arbitrator.getVoteForJuror,
+        disputeID,
+        appeal,
+        account
+      )
+
+    // wait for all timestamps to be fetched
+    const [appealCreatedAt, appealDeadline, appealRuledAt] = yield all(
+      timestampPromises
+    )
+
+    appealJuror[appeal] = {
+      createdAt: appealCreatedAt,
+      fee: disputeData.arbitrationFeePerJuror.mul(draws.length),
+      draws,
+      jurorRuling,
+      canRule
+    }
+    appealRulings[appeal] = {
+      voteCounter: disputeData.voteCounters[appeal],
+      deadline: appealDeadline,
+      ruledAt: appealRuledAt,
+      ruling,
+      canRepartition,
+      canExecute
+    }
+  }
+
+  const dispute = {
+    ...disputeData,
+    ...metaEvidence,
+    evidence,
+    appealJuror,
+    appealRulings,
+    netPNK
+  }
+
+  return yield call(parseDispute, dispute)
 }
 
 /**

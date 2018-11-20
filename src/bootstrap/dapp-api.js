@@ -1,5 +1,6 @@
 import Eth from 'ethjs'
-import { Kleros } from 'kleros-api'
+import { Kleros } from 'kleros-api-2' // FIXME NPM hack
+import Archon from '@kleros/archon'
 
 import * as ethConstants from '../constants/eth'
 
@@ -10,6 +11,7 @@ const STORE_PROVIDER = process.env[`REACT_APP_${env}_STORE_PROVIDER`]
 let eth
 if (process.env.NODE_ENV === 'test')
   eth = new Eth(require('ganache-cli').provider())
+else if (window.ethereum) eth = new Eth(window.ethereum)
 else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
@@ -39,6 +41,8 @@ const initializeBondingCurve = async () => {
     ]
 }
 
+const archon = new Archon(eth.currentProvider)
+
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
 const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/
 const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
@@ -54,7 +58,8 @@ export {
   ETHAddressRegExp,
   strictETHAddressRegExp,
   networkID,
-  env
+  env,
+  archon
 }
 
 setTimeout(

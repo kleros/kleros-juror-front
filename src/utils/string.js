@@ -21,9 +21,7 @@ export function constantToCamelCase(str, { capitalizeFirst = false } = {}) {
  * @returns {string} - The converted string.
  */
 export function camelToTitleCase(str) {
-  return str.replace(
-    /(^[a-z])|([a-z][A-Z])|([A-Z][a-z])/g,
-    (_m, p1, p2, p3) =>
-      p1 ? p1.toUpperCase() : p2 ? p2[0] + ' ' + p2[1] : ' ' + p3
+  return str.replace(/(^[a-z])|([a-z][A-Z])|([A-Z][a-z])/g, (_m, p1, p2, p3) =>
+    p1 ? p1.toUpperCase() : p2 ? p2[0] + ' ' + p2[1] : ' ' + p3
   )
 }

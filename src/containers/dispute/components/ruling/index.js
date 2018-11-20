@@ -1,41 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { ChainData } from '../../../../chainstrap'
-import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import { weiBNToDecimalString } from '../../../../utils/number'
 import LabelValueGroup from '../../../../components/label-value-group'
-import * as chainViewConstants from '../../../../constants/chain-view'
 
 import './ruling.css'
 
 const Ruling = ({
-  date,
+  ruledAt,
   votesForPartyA,
   votesForPartyB,
   netPNK,
   jurorRuling,
-  disputeID,
-  appeals,
   appealNumber,
-  metaEvidence
+  metaEvidenceJSON
 }) => {
-  const inProgress = date === null
+  const inProgress = ruledAt === null
   const won = netPNK >= 0
   const jurorRulingDisplay =
     jurorRuling === null || jurorRuling === undefined
       ? ''
       : jurorRuling > 0
-        ? `You ruled: ${metaEvidence.rulingOptions.titles[jurorRuling - 1]}`
-        : 'No Ruling'
+      ? `You ruled: ${metaEvidenceJSON.rulingOptions.titles[jurorRuling - 1]}`
+      : 'No Ruling'
+
   return (
     <div className="Ruling">
       <hr />
-      <h4>{metaEvidence.question}</h4>
+      <h4>{metaEvidenceJSON.question}</h4>
       <hr />
       <small>
-        {inProgress ? 'In Progress' : dateToString(date, { withTime: false })}
+        {inProgress
+          ? 'In Progress'
+          : dateToString(ruledAt, { withTime: false })}
       </small>
       <h4>{appealNumber ? `Appeal #${appealNumber}` : ''} Ruling</h4>
       <small>{jurorRulingDisplay}</small>
@@ -50,8 +48,8 @@ const Ruling = ({
               {votesForPartyA === votesForPartyB
                 ? 'No Ruling'
                 : votesForPartyA > votesForPartyB
-                  ? metaEvidence.rulingOptions.titles[0]
-                  : metaEvidence.rulingOptions.titles[1]}
+                ? metaEvidenceJSON.rulingOptions.titles[0]
+                : metaEvidenceJSON.rulingOptions.titles[1]}
             </h4>
           </div>
           <div className="Ruling-outcome-netPNK">
@@ -70,42 +68,12 @@ const Ruling = ({
             ? []
             : [
                 {
-                  label: `Voted ${metaEvidence.rulingOptions.titles[0]}`,
-                  value: (
-                    <ChainData
-                      contractName={chainViewConstants.KLEROS_POC_NAME}
-                      contractAddress={ARBITRATOR_ADDRESS}
-                      functionSignature={
-                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
-                      }
-                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                        disputeID,
-                        appeals,
-                        1
-                      )}
-                    >
-                      {votesForPartyA}
-                    </ChainData>
-                  )
+                  label: `Voted ${metaEvidenceJSON.rulingOptions.titles[0]}`,
+                  value: votesForPartyA
                 },
                 {
-                  label: `Voted ${metaEvidence.rulingOptions.titles[1]}`,
-                  value: (
-                    <ChainData
-                      contractName={chainViewConstants.KLEROS_POC_NAME}
-                      contractAddress={ARBITRATOR_ADDRESS}
-                      functionSignature={
-                        chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_SIG
-                      }
-                      parameters={chainViewConstants.KLEROS_POC_GET_VOTE_COUNT_PARAMS(
-                        disputeID,
-                        appeals,
-                        2
-                      )}
-                    >
-                      {votesForPartyB}
-                    </ChainData>
-                  )
+                  label: `Voted ${metaEvidenceJSON.rulingOptions.titles[1]}`,
+                  value: votesForPartyB
                 },
                 {
                   label: 'PNK Redistribution',
@@ -130,20 +98,18 @@ const Ruling = ({
 
 Ruling.propTypes = {
   // State
-  date: PropTypes.instanceOf(Date),
+  ruledAt: PropTypes.instanceOf(Date),
   votesForPartyA: PropTypes.number.isRequired,
   votesForPartyB: PropTypes.number.isRequired,
   netPNK: PropTypes.number.isRequired,
   jurorRuling: PropTypes.shape,
-  disputeID: PropTypes.number.isRequired,
-  appeals: PropTypes.number.isRequired,
   appealNumber: PropTypes.number.isRequired,
-  metaEvidence: PropTypes.shape.isRequired
+  metaEvidenceJSON: PropTypes.shape.isRequired
 }
 
 Ruling.defaultProps = {
   // State
-  date: null,
+  ruledAt: null,
   jurorRuling: null
 }
 
