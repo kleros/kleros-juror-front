@@ -70,6 +70,53 @@ const {
   }
 })
 
+/**
+ * Convert a fraction to float.
+ * @param {BigNumber} numerator - The numerator.
+ * @param {BigNumber} denominator - The denominator.
+ * @returns {number} - The result.
+ */
+function toFloat(numerator, denominator) {
+  return (
+    numerator
+      .mul(toBN(10000))
+      .div(denominator)
+      .toNumber() / 10000
+  )
+}
+
+/**
+ * Round number to 4 significant figures.
+ * @param {string} n - Input number.
+ * @returns {string} - Rounded number with at least 4 significant figures.
+ */
+function round(n) {
+  // Pad the number so it has at least 4 significant figures.
+  if (n.indexOf('.') === -1) {
+    n += '.'
+  }
+  n += '0000'
+
+  var count = 0
+  var dot = false
+  for (var i = 0; i < n.length; i++) {
+    if (n[i] === '.') {
+      dot = true
+    } else if (n[i] !== '0' || count > 0) {
+      // Past leading zeros.
+      count += 1
+    }
+    if (count >= 4 && dot) {
+      break
+    }
+  }
+  // Remove trailing dot.
+  if (n[i] === '.') {
+    i -= 1
+  }
+  return n.slice(0, i + 1)
+}
+
 class BondingCurveForm extends PureComponent {
   static propTypes = {
     buyPNKFromBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
@@ -90,13 +137,18 @@ class BondingCurveForm extends PureComponent {
 
   estimatePNK() {
     const { inputETH, bondingCurveTotals } = this.props
-    return weiBNToDecimalString(
+    const PNK = weiBNToDecimalString(
       estimatePNK(
         inputETH,
         bondingCurveTotals.data.totalETH,
         bondingCurveTotals.data.totalPNK
       )
     )
+    if (PNK === '0') {
+      return '0'
+    } else {
+      return round(PNK)
+    }
   }
 
   buyPrice() {
@@ -107,23 +159,33 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (PNK === '0') {
-      return '?'
+      return round(
+        toFloat(
+          bondingCurveTotals.data.totalPNK,
+          bondingCurveTotals.data.totalETH
+        ).toString()
+      )
     } else {
-      return toBN(PNK)
-        .div(decimalStringToWeiBN(inputETH))
-        .toString()
+      return round(
+        toFloat(toBN(PNK), decimalStringToWeiBN(inputETH)).toString()
+      )
     }
   }
 
   estimateETH() {
     const { inputPNK, bondingCurveTotals } = this.props
-    return weiBNToDecimalString(
+    const ETH = weiBNToDecimalString(
       estimateETH(
         inputPNK,
         bondingCurveTotals.data.totalETH,
         bondingCurveTotals.data.totalPNK
       )
     )
+    if (ETH === '0') {
+      return '0'
+    } else {
+      return round(ETH)
+    }
   }
 
   sellPrice() {
@@ -134,11 +196,16 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (ETH === '0') {
-      return '?'
+      return round(
+        toFloat(
+          bondingCurveTotals.data.totalPNK,
+          bondingCurveTotals.data.totalETH
+        ).toString()
+      )
     } else {
-      return decimalStringToWeiBN(inputPNK)
-        .div(toBN(ETH))
-        .toString()
+      return round(
+        toFloat(decimalStringToWeiBN(inputPNK), toBN(ETH)).toString()
+      )
     }
   }
 
@@ -217,7 +284,7 @@ class BondingCurveForm extends PureComponent {
           disabled={buyPNKFromBondingCurveFormIsInvalid}
           className="Tokens-form-button"
         >
-          BUY NOW
+          BUY
         </Button>
 
         <SellPNKToBondingCurveForm
@@ -237,27 +304,47 @@ class BondingCurveForm extends PureComponent {
           }}
           onSubmit={this.handleSellPNK}
         />
-        <div className="Tokens-form-text">
-          {approveTransactionProgress === 'done' ? (
-            <span>Tokens have been unlocked.</span>
-          ) : !this.isApproveRequired() ? null : approveTransactionProgress ===
-          'pending' ? (
+
+        {approveTransactionProgress === 'done' ? (
+          <div>
+            <div className="Tokens-form-text">
+              <span>Tokens have been unlocked.</span>
+            </div>
+            <Button
+              onClick={submitSellPNKToBondingCurveForm}
+              disabled={!this.isSellButtonEnabled()}
+              className="Tokens-form-button"
+            >
+              SELL
+            </Button>
+          </div>
+        ) : !this.isApproveRequired() ? (
+          <Button
+            onClick={submitSellPNKToBondingCurveForm}
+            disabled={!this.isSellButtonEnabled()}
+            className="Tokens-form-button"
+          >
+            SELL
+          </Button>
+        ) : approveTransactionProgress === 'pending' ? (
+          <div className="Tokens-form-text">
             <span>Unlocking...</span>
-          ) : approveTransactionProgress === 'confirming' ? (
+          </div>
+        ) : approveTransactionProgress === 'confirming' ? (
+          <div className="Tokens-form-text">
             <span>Waiting for confirmation...</span>
-          ) : (
-            <span>
-              Please <a onClick={this.unlock}>Unlock</a> tokens first.
-            </span>
-          )}
-        </div>
-        <Button
-          onClick={submitSellPNKToBondingCurveForm}
-          disabled={!this.isSellButtonEnabled()}
-          className="Tokens-form-button"
-        >
-          SELL NOW
-        </Button>
+          </div>
+        ) : (
+          <div>
+            <div className="Tokens-form-text">
+              <span>Please unlock tokens first:</span>
+            </div>
+            <Button onClick={this.unlock} className="Tokens-form-button">
+              UNLOCK
+            </Button>
+          </div>
+        )}
+
         <div>
           <small className="Tokens-form-footer">
             Powered by{' '}

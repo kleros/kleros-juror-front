@@ -316,7 +316,7 @@ class BondingCurve extends ContractImplementation {
       })
       event.watch((err, _log) => {
         try {
-          // The should be called according to the doc but it is undefined.
+          // The should be called according to the doc but it throws.
           event.stopWatching()
         } catch (_) {}
         if (err) {
