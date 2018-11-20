@@ -92,28 +92,23 @@ function toFloat(numerator, denominator) {
  */
 function round(n) {
   // Pad the number so it has at least 4 significant figures.
-  if (n.indexOf('.') === -1) {
-    n += '.'
-  }
+  if (n.indexOf('.') === -1) n += '.'
+
   n += '0000'
 
   var count = 0
   var dot = false
   for (var i = 0; i < n.length; i++) {
-    if (n[i] === '.') {
-      dot = true
-    } else if (n[i] !== '0' || count > 0) {
+    if (n[i] === '.') dot = true
+    else if (n[i] !== '0' || count > 0)
       // Past leading zeros.
       count += 1
-    }
-    if (count >= 4 && dot) {
-      break
-    }
+
+    if (count >= 4 && dot) break
   }
   // Remove trailing dot.
-  if (n[i] === '.') {
-    i -= 1
-  }
+  if (n[i] === '.') i -= 1
+
   return n.slice(0, i + 1)
 }
 
@@ -144,11 +139,8 @@ class BondingCurveForm extends PureComponent {
         bondingCurveTotals.data.totalPNK
       )
     )
-    if (PNK === '0') {
-      return '0'
-    } else {
-      return round(PNK)
-    }
+    if (PNK === '0') return '0'
+    else return round(PNK)
   }
 
   buyPrice() {
@@ -158,18 +150,17 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalETH,
       bondingCurveTotals.data.totalPNK
     )
-    if (PNK === '0') {
+    if (PNK === '0')
       return round(
         toFloat(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
         ).toString()
       )
-    } else {
+    else
       return round(
         toFloat(toBN(PNK), decimalStringToWeiBN(inputETH)).toString()
       )
-    }
   }
 
   estimateETH() {
@@ -181,11 +172,8 @@ class BondingCurveForm extends PureComponent {
         bondingCurveTotals.data.totalPNK
       )
     )
-    if (ETH === '0') {
-      return '0'
-    } else {
-      return round(ETH)
-    }
+    if (ETH === '0') return '0'
+    else return round(ETH)
   }
 
   sellPrice() {
@@ -195,18 +183,17 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalETH,
       bondingCurveTotals.data.totalPNK
     )
-    if (ETH === '0') {
+    if (ETH === '0')
       return round(
         toFloat(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
         ).toString()
       )
-    } else {
+    else
       return round(
         toFloat(decimalStringToWeiBN(inputPNK), toBN(ETH)).toString()
       )
-    }
   }
 
   unlock = event => {
@@ -225,9 +212,7 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals,
       approveTransactionProgress
     } = this.props
-    if (approveTransactionProgress === 'done') {
-      return false
-    }
+    if (approveTransactionProgress === 'done') return false
 
     const allowance = bondingCurveTotals.data.allowance
     return (

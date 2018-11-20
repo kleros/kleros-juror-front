@@ -1,4 +1,4 @@
-import ContractImplementation from 'kleros-api/lib/contracts/ContractImplementation'
+import ContractImplementation from 'kleros-api-2/lib/contracts/ContractImplementation'
 
 import { takeLatest, call, select, all, put } from 'redux-saga/effects'
 
@@ -18,12 +18,12 @@ import { lessduxSaga } from '../utils/saga'
 const getBondingCurve = (function() {
   var bondingCurve
   return function() {
-    if (!bondingCurve) {
+    if (!bondingCurve)
       bondingCurve = new BondingCurve(
         eth.currentProvider,
         BONDING_CURVE_ADDRESS
       )
-    }
+
     return bondingCurve
   }
 })()
@@ -174,11 +174,8 @@ class BondingCurve extends ContractImplementation {
       this._Web3Wrapper._web3.eth.getBalance(
         this.contractAddress,
         (err, result) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(result)
-          }
+          if (err) reject(err)
+          else resolve(result)
         }
       )
     )
@@ -193,11 +190,8 @@ class BondingCurve extends ContractImplementation {
 
     return new Promise((resolve, reject) =>
       PNKInstance.balanceOf(this.contractAddress, (err, result) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
+        if (err) reject(err)
+        else resolve(result)
       })
     )
   }
@@ -212,11 +206,8 @@ class BondingCurve extends ContractImplementation {
 
     return new Promise((resolve, reject) =>
       PNKInstance.allowance(account, this.contractAddress, (err, result) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
+        if (err) reject(err)
+        else resolve(result)
       })
     )
   }
@@ -287,11 +278,8 @@ class BondingCurve extends ContractImplementation {
           amount,
           { from: account },
           (err, result) => {
-            if (err) {
-              reject(err)
-            } else {
-              resolve(result)
-            }
+            if (err) reject(err)
+            else resolve(result)
           }
         )
       )
@@ -319,11 +307,8 @@ class BondingCurve extends ContractImplementation {
           // The should be called according to the doc but it throws.
           event.stopWatching()
         } catch (_) {}
-        if (err) {
-          reject(err)
-        } else {
-          resolve()
-        }
+        if (err) reject(err)
+        else resolve()
       })
     })
   }
