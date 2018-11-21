@@ -265,6 +265,7 @@ class BondingCurveForm extends PureComponent {
         />
         <Button
           onClick={submitBuyPNKFromBondingCurveForm}
+          size="small"
           disabled={buyPNKFromBondingCurveFormIsInvalid}
           className="Tokens-form-button"
         >
@@ -308,6 +309,7 @@ class BondingCurveForm extends PureComponent {
         </div>
         <Button
           onClick={submitSellPNKToBondingCurveForm}
+          size="small"
           disabled={!this.isSellButtonEnabled()}
           className="Tokens-form-button"
         >
