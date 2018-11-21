@@ -6,6 +6,8 @@ import uniswapArtifact from '../assets/contracts/Uniswap'
 import ERC20Artifact from '../assets/contracts/ERC20'
 import { eth, BONDING_CURVE_ADDRESS } from '../bootstrap/dapp-api'
 import * as bondingCurveActions from '../actions/bonding-curve'
+import * as arbitratorActions from '../actions/arbitrator'
+import * as walletActions from '../actions/wallet'
 import * as walletSelectors from '../reducers/wallet'
 import { lessduxSaga } from '../utils/saga'
 
@@ -60,7 +62,7 @@ function* fetchBondingCurveTotals() {
 function* buyPNKFromBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
-  yield call(
+  const success = yield call(
     getBondingCurve().buy,
     addr,
     1,
@@ -69,6 +71,14 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
     addr
   )
   yield put(bondingCurveActions.setUpdating(false))
+
+  if (!success) return
+  yield call(getBondingCurve().waitForBuy, addr)
+  yield all([
+    put(arbitratorActions.fetchPNKBalance()),
+    put(bondingCurveActions.fetchBondingCurveData()),
+    put(walletActions.fetchBalance())
+  ])
 }
 
 /**
@@ -78,7 +88,7 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
 function* sellPNKToBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
-  yield call(
+  const success = yield call(
     getBondingCurve().sell,
     amount,
     addr,
@@ -87,6 +97,13 @@ function* sellPNKToBondingCurve({ payload: { amount } }) {
     addr
   )
   yield put(bondingCurveActions.setUpdating(false))
+  if (!success) return
+  yield call(getBondingCurve().waitForSell, addr)
+  yield all([
+    put(arbitratorActions.fetchPNKBalance()),
+    put(bondingCurveActions.fetchBondingCurveData()),
+    put(walletActions.fetchBalance())
+  ])
 }
 
 /**
@@ -213,12 +230,12 @@ class BondingCurve extends ContractImplementation {
    * @param {string} deadline - Transaction deadline timestamp in uint256.
    * @param {string} amount - The amount of ETH to spend.
    * @param {string} account - The address of the buyer.
-   * @returns {object} - The result transaction object.
+   * @returns {bool} Successfulness.
    */
   buy = async (receiver, minTKN, deadline, amount, account) => {
     await this.loadContract()
     try {
-      return await this.contractInstance.ethToTokenTransferInput(
+      await this.contractInstance.ethToTokenTransferInput(
         minTKN,
         deadline,
         receiver,
@@ -227,8 +244,10 @@ class BondingCurve extends ContractImplementation {
           value: amount
         }
       )
+      return true
     } catch (err) {
       console.error('Error when buying PNK:', err)
+      return false
     }
   }
 
@@ -239,6 +258,7 @@ class BondingCurve extends ContractImplementation {
    * @param {string} minETH - The minimum amount of ETH expected in return.
    * @param {string} deadline - Transaction deadline timestamp in uint256.
    * @param {string} account - The address of the seller.
+   * @returns {bool} Successfulness.
    */
   sell = async (amountTKN, receiverAddr, minETH, deadline, account) => {
     await this.loadContract()
@@ -251,8 +271,10 @@ class BondingCurve extends ContractImplementation {
         receiverAddr,
         { from: account }
       )
+      return true
     } catch (err) {
       console.error('Error when selling PNK:', err)
+      return false
     }
   }
 
@@ -291,19 +313,51 @@ class BondingCurve extends ContractImplementation {
   waitForApproval = async owner => {
     const PNKInstance = await this._PNKInstance
 
-    return new Promise((resolve, reject) => {
-      const event = PNKInstance.Approval({
+    return waitForEvent(
+      PNKInstance.Approval({
         owner,
         spender: this.contractAddress
       })
-      event.watch((err, _log) => {
-        try {
-          // The should be called according to the doc but it throws.
-          event.stopWatching()
-        } catch (_) {}
-        if (err) reject(err)
-        else resolve()
-      })
-    })
+    )
   }
+
+  /**
+   * Wait for the selling transaction to be mined.
+   * @param {string} addr - The address of the seller.
+   * @returns {Promise} - A promise to wait for.
+   */
+  waitForSell = async addr => {
+    await this.loadContract()
+
+    return waitForEvent(this.contractInstance.EthPurchase({ buyer: addr }))
+  }
+
+  /**
+   * Wait for the buying transaction to be mined.
+   * @param {string} addr - The address of the buyer.
+   * @returns {Promise} - A promise to wait for.
+   */
+  waitForBuy = async addr => {
+    await this.loadContract()
+
+    return waitForEvent(this.contractInstance.TokenPurchase({ buyer: addr }))
+  }
+}
+
+/**
+ * Wait for an event.
+ * @param {object} event - The event object.
+ * @returns {Promise} - A promise to wait for.
+ */
+function waitForEvent(event) {
+  return new Promise((resolve, reject) => {
+    event.watch((err, _log) => {
+      try {
+        // The should be called according to the doc but it throws.
+        event.stopWatching()
+      } catch (_) {}
+      if (err) reject(err)
+      else resolve()
+    })
+  })
 }
