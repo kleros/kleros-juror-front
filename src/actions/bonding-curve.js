@@ -7,7 +7,8 @@ export const bondingCurve = {
   BUY_PNK: 'BUY_PNK_FROM_BONDING_CURVE',
   SELL_PNK: 'SELL_PNK_FROM_BONDING_CURVE',
   APPROVE_PNK: 'APPROVE_PNK_TO_BONDING_CURVE',
-  APPROVE_PROGRESS: 'RECEIVE_APPROVE_TRANSACTION_PROGRESS'
+  APPROVE_PROGRESS: 'RECEIVE_APPROVE_TRANSACTION_PROGRESS',
+  SET_UPDATING: 'SET_BONDING_CURVE_UPDATING'
 }
 
 /* Action Creators */
@@ -30,4 +31,8 @@ export const approvePNKToBondingCurve = amount => ({
 export const updateApproveTransactionProgress = approveTransactionProgress => ({
   type: bondingCurve.APPROVE_PROGRESS,
   payload: { approveTransactionProgress }
+})
+export const setUpdating = updating => ({
+  type: bondingCurve.SET_UPDATING,
+  payload: { updating }
 })

@@ -56,9 +56,9 @@ function* fetchBondingCurveTotals() {
 /**
  * Buy PNK from the bonding curve.
  * @param {string} amount The amount of ETH the user has input.
- * @returns {object} Updated reserve parameters of the bonding curve.
  */
 function* buyPNKFromBondingCurve({ payload: { amount } }) {
+  yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
   yield call(
     getBondingCurve().buy,
@@ -68,15 +68,15 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
     amount,
     addr
   )
-  return yield call(fetchBondingCurveTotals)
+  yield put(bondingCurveActions.setUpdating(false))
 }
 
 /**
  * Sell PNK to the bonding curve.
  * @param {string} amount The amount of PNK the user has input.
- * @returns {object} Updated reserve parameters of the bonding curve.
  */
 function* sellPNKToBondingCurve({ payload: { amount } }) {
+  yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
   yield call(
     getBondingCurve().sell,
@@ -86,7 +86,7 @@ function* sellPNKToBondingCurve({ payload: { amount } }) {
     '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
     addr
   )
-  return yield call(fetchBondingCurveTotals)
+  yield put(bondingCurveActions.setUpdating(false))
 }
 
 /**
@@ -123,16 +123,10 @@ export default function* bondingCurveSaga() {
   )
   yield takeLatest(
     bondingCurveActions.bondingCurve.BUY_PNK,
-    lessduxSaga,
-    'update',
-    bondingCurveActions.bondingCurve,
     buyPNKFromBondingCurve
   )
   yield takeLatest(
     bondingCurveActions.bondingCurve.SELL_PNK,
-    lessduxSaga,
-    'update',
-    bondingCurveActions.bondingCurve,
     sellPNKToBondingCurve
   )
   yield takeLatest(

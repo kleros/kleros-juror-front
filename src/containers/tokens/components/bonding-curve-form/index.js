@@ -40,7 +40,7 @@ const {
 })
 
 const { Form: SellPNKToBondingCurveFormHeader } = form(
-  'sellPNKToBondingCurveForm',
+  'sellPNKToBondingCurveFormHeader',
   {
     header: {
       type: 'header',
