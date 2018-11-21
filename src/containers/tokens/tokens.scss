@@ -30,31 +30,21 @@
     &-footer {
       float: right;
     }
+  }
 
-    &-text {
-      margin-left: 40px;
-      margin-top: 20px;
+  &-sell {
+    &-form {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-unlock {
+      left: -100px;
+      position: relative;
     }
   }
 
-  &-modal {
-    &-dismiss {
-      $size: 24px;
-
-      border: 1px solid #ccc;
-      font-size: $size;
-      height: $size;
-      line-height: $size; // vertically center
-      position: absolute;
-      right: 12px;
-      text-align: center;
-      top: 10px;
-      width: $size;
-
-      &:hover {
-        background-color: #ccc;
-        cursor: pointer;
-      }
-    }
+  &-unlock-button {
+    height: 45px;
   }
 }

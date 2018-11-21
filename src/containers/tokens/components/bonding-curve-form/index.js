@@ -23,9 +23,6 @@ const {
     type: 'header',
     props: { title: 'BUY PNK' }
   },
-  explanation: {
-    type: 'info'
-  },
   amountOfETH: {
     type: 'text',
     validate: [required, number, positiveNumber],
@@ -42,18 +39,21 @@ const {
   }
 })
 
+const { Form: SellPNKToBondingCurveFormHeader } = form(
+  'sellPNKToBondingCurveForm',
+  {
+    header: {
+      type: 'header',
+      props: { title: 'SELL PNK' }
+    }
+  }
+)
+
 const {
   Form: SellPNKToBondingCurveForm,
   isInvalid: getSellPNKToBondingCurveFormIsInvalid,
   submit: submitSellPNKToBondingCurveForm
 } = form('sellPNKToBondingCurveForm', {
-  header: {
-    type: 'header',
-    props: { title: 'SELL PNK' }
-  },
-  explanation: {
-    type: 'info'
-  },
   amountOfPNK: {
     type: 'text',
     validate: [required, number, positiveNumber],
@@ -251,7 +251,6 @@ class BondingCurveForm extends PureComponent {
           enableReinitialize
           keepDirtyOnReinitialize
           initialValues={{
-            explanation: <span>The amount of ETH you'd like to spend:</span>,
             rate: (
               <div>
                 <small>
@@ -272,67 +271,52 @@ class BondingCurveForm extends PureComponent {
           BUY
         </Button>
 
-        <SellPNKToBondingCurveForm
-          enableReinitialize
-          keepDirtyOnReinitialize
-          initialValues={{
-            explanation: <span>The amount of PNK you'd like to sell:</span>,
-            rate: (
-              <div>
-                <small>
-                  Estimated amount of ETH you'll get: {this.estimateETH()}
-                </small>
-                <br />
-                <small>Exchange rate: 1 ETH = {this.sellPrice()} PNK</small>
-              </div>
-            )
-          }}
-          onSubmit={this.handleSellPNK}
-        />
-
-        {approveTransactionProgress === 'done' ? (
+        <SellPNKToBondingCurveFormHeader />
+        <div className="Tokens-sell-form">
           <div>
-            <div className="Tokens-form-text">
-              <span>Tokens have been unlocked.</span>
-            </div>
-            <Button
-              onClick={submitSellPNKToBondingCurveForm}
-              disabled={!this.isSellButtonEnabled()}
-              className="Tokens-form-button"
-            >
-              SELL
-            </Button>
+            <SellPNKToBondingCurveForm
+              enableReinitialize
+              keepDirtyOnReinitialize
+              initialValues={{
+                rate: (
+                  <div>
+                    <small>
+                      Estimated amount of ETH you'll get: {this.estimateETH()}
+                    </small>
+                    <br />
+                    <small>Exchange rate: 1 ETH = {this.sellPrice()} PNK</small>
+                  </div>
+                )
+              }}
+              onSubmit={this.handleSellPNK}
+              disabled={this.isApproveRequired()}
+            />
           </div>
-        ) : !this.isApproveRequired() ? (
-          <Button
-            onClick={submitSellPNKToBondingCurveForm}
-            disabled={!this.isSellButtonEnabled()}
-            className="Tokens-form-button"
-          >
-            SELL
-          </Button>
-        ) : approveTransactionProgress === 'pending' ? (
-          <div className="Tokens-form-text">
-            <span>Unlocking...</span>
+          <div className="Tokens-sell-unlock">
+            {approveTransactionProgress ===
+            'done' ? null : !this.isApproveRequired() ? null : approveTransactionProgress ===
+              'pending' ? (
+              <span>Unlocking...</span>
+            ) : approveTransactionProgress === 'confirming' ? (
+              <span>Confirming...</span>
+            ) : (
+              <Button onClick={this.unlock} className="Tokens-unlock-button">
+                UNLOCK
+              </Button>
+            )}
           </div>
-        ) : approveTransactionProgress === 'confirming' ? (
-          <div className="Tokens-form-text">
-            <span>Waiting for confirmation...</span>
-          </div>
-        ) : (
-          <div>
-            <div className="Tokens-form-text">
-              <span>Please unlock tokens first:</span>
-            </div>
-            <Button onClick={this.unlock} className="Tokens-form-button">
-              UNLOCK
-            </Button>
-          </div>
-        )}
+        </div>
+        <Button
+          onClick={submitSellPNKToBondingCurveForm}
+          disabled={!this.isSellButtonEnabled()}
+          className="Tokens-form-button"
+        >
+          SELL
+        </Button>
 
         <div>
           <small className="Tokens-form-footer">
-            PNK exchange is powered by{' '}
+            Exchange is powered by{' '}
             <a
               href="https://uniswap.exchange"
               target="_blank"

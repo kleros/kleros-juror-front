@@ -353,6 +353,7 @@ class Tokens extends PureComponent {
                       resource={bondingCurveTotals}
                       loading={<Icosahedron />}
                       done={forms}
+                      failedLoading="There was an error fetching exchange parameters"
                     />
                   }
                   failedLoading="There was an error fetching your PNK balance."
