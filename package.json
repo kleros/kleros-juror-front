@@ -27,7 +27,7 @@
     "start:storybook": "start-storybook -p 9001 -c .storybook",
     "storybook": "run-p start:scss start:storybook",
     "build:scss": "node-sass-chokidar ./src -o ./src",
-    "build:js": "react-scripts build",
+    "build:js": "react-scripts --max_old_space_size=4096 build",
     "start": "run-p start:scss start:js",
     "build": "yarn run build:scss && yarn run build:js",
     "build:analyze": "source-map-explorer build/static/js/main.*"
