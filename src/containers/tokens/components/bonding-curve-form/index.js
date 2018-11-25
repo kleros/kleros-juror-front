@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { toBN } from 'ethjs'
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { formValueSelector } from 'redux-form'
@@ -9,10 +8,14 @@ import { form } from '../../../../utils/form-generator'
 import { required, number, positiveNumber } from '../../../../utils/validation'
 import {
   decimalStringToWeiBN,
-  weiBNToDecimalString
+  weiBNToDecimalString,
+  truncate,
+  fractionToDecimal
 } from '../../../../utils/number'
 import * as bondingCurveSelectors from '../../../../reducers/bonding-curve'
 import * as bondingCurveActions from '../../../../actions/bonding-curve'
+
+import { estimatePNK, estimateETH } from './utils'
 
 const {
   Form: BuyPNKFromBondingCurveForm,
@@ -70,48 +73,6 @@ const {
   }
 })
 
-/**
- * Convert a fraction to float.
- * @param {BigNumber} numerator - The numerator.
- * @param {BigNumber} denominator - The denominator.
- * @returns {number} - The result.
- */
-function toFloat(numerator, denominator) {
-  return (
-    numerator
-      .mul(toBN(10000))
-      .div(denominator)
-      .toNumber() / 10000
-  )
-}
-
-/**
- * Round number to 4 significant figures.
- * @param {string} n - Input number.
- * @returns {string} - Rounded number with at least 4 significant figures.
- */
-function round(n) {
-  // Pad the number so it has at least 4 significant figures.
-  if (n.indexOf('.') === -1) n += '.'
-
-  n += '0000'
-
-  var count = 0
-  var dot = false
-  for (var i = 0; i < n.length; i++) {
-    if (n[i] === '.') dot = true
-    else if (n[i] !== '0' || count > 0)
-      // Past leading zeros.
-      count += 1
-
-    if (count >= 4 && dot) break
-  }
-  // Remove trailing dot.
-  if (n[i] === '.') i -= 1
-
-  return n.slice(0, i + 1)
-}
-
 class BondingCurveForm extends PureComponent {
   static propTypes = {
     buyPNKFromBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
@@ -140,7 +101,7 @@ class BondingCurveForm extends PureComponent {
       )
     )
     if (PNK === '0') return '0'
-    else return round(PNK)
+    else return truncate(PNK)
   }
 
   buyPrice() {
@@ -151,15 +112,15 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (PNK === '0')
-      return round(
-        toFloat(
+      return truncate(
+        fractionToDecimal(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
-        ).toString()
+        )
       )
     else
-      return round(
-        toFloat(toBN(PNK), decimalStringToWeiBN(inputETH)).toString()
+      return truncate(
+        fractionToDecimal(PNK, decimalStringToWeiBN(inputETH).toString())
       )
   }
 
@@ -173,7 +134,7 @@ class BondingCurveForm extends PureComponent {
       )
     )
     if (ETH === '0') return '0'
-    else return round(ETH)
+    else return truncate(ETH)
   }
 
   sellPrice() {
@@ -184,15 +145,15 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (ETH === '0')
-      return round(
-        toFloat(
+      return truncate(
+        fractionToDecimal(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
-        ).toString()
+        )
       )
     else
-      return round(
-        toFloat(decimalStringToWeiBN(inputPNK), toBN(ETH)).toString()
+      return truncate(
+        fractionToDecimal(decimalStringToWeiBN(inputPNK).toString(), ETH)
       )
   }
 
@@ -363,60 +324,3 @@ export default connect(
     approvePNKToBondingCurve: bondingCurveActions.approvePNKToBondingCurve
   }
 )(BondingCurveForm)
-
-const SPREAD_FACTOR = toBN(997)
-const SPREAD_DIVISOR = toBN(1000)
-
-/** Given an input ETH amount and the state values of the bonding curve contract,
- *  compute the amount of PNK that can be brought using the same formula as the
- *  bonding curve contract. Note this duplicates the algorithm from the contract
- *  but we can't call the contract because that way the turnaround would be too
- *  slow for a responsive UI.
- *  @param {string} inputETH User input ETH amount in ETH (not Wei). May not be a valid number.
- *  @param {BigNumber} totalETH 'totalETH' value of the contract.
- *  @param {BigNumber} totalPNK 'totalPNK' value of the contract.
- *  @returns {string} Amount of PNK in wei.
- */
-function estimatePNK(inputETH, totalETH, totalPNK) {
-  try {
-    inputETH = decimalStringToWeiBN(inputETH)
-  } catch (_) {
-    return '0'
-  }
-  // convert all to BN from BigNumber
-  totalETH = toBN(totalETH)
-  totalPNK = toBN(totalPNK)
-
-  return inputETH
-    .mul(totalPNK)
-    .mul(SPREAD_FACTOR)
-    .div(totalETH.mul(SPREAD_DIVISOR).add(inputETH.mul(SPREAD_FACTOR)))
-    .toString()
-}
-
-/** Given an input PNK amount and the state values of the bonding curve contract,
- *  compute the amount of ETH that the PNK is sold for using the same formula as
- *  the bonding curve contract. Note this duplicates the algorithm from the contract
- *  but we can't call the contract because that way the turnaround would be too
- *  slow for a responsive UI.
- *  @param {string} inputPNK User input PNK amount. May not be a valid number.
- *  @param {BigNumber} totalETH 'totalETH' value of the contract.
- *  @param {BigNumber} totalPNK 'totalPNK' value of the contract.
- *  @returns {string} Amount of ETH in wei.
- */
-function estimateETH(inputPNK, totalETH, totalPNK) {
-  try {
-    inputPNK = decimalStringToWeiBN(inputPNK)
-  } catch (_) {
-    return '0'
-  }
-  // convert all to BN from BigNumber
-  totalETH = toBN(totalETH)
-  totalPNK = toBN(totalPNK)
-
-  return inputPNK
-    .mul(totalETH)
-    .mul(SPREAD_FACTOR)
-    .div(totalPNK.mul(SPREAD_DIVISOR).add(inputPNK.mul(SPREAD_FACTOR)))
-    .toString()
-}

@@ -3,6 +3,7 @@ import { Kleros } from 'kleros-api-2' // FIXME NPM hack
 import Archon from '@kleros/archon'
 
 import * as ethConstants from '../constants/eth'
+import { initializeBondingCurve } from '../sagas/bonding-curve'
 
 const env = process.env.NODE_ENV === 'production' ? 'PROD' : 'DEV'
 const ETHEREUM_PROVIDER = process.env[`REACT_APP_${env}_ETHEREUM_PROVIDER`]
@@ -16,7 +17,7 @@ else if (window.web3 && window.web3.currentProvider)
   eth = new Eth(window.web3.currentProvider)
 else eth = new Eth(new Eth.HttpProvider(ETHEREUM_PROVIDER))
 
-let ARBITRATOR_ADDRESS, BONDING_CURVE_ADDRESS
+let ARBITRATOR_ADDRESS
 let kleros
 let networkID
 const initializeKleros = async () => {
@@ -30,15 +31,15 @@ const initializeKleros = async () => {
     ]
 
   kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, ARBITRATOR_ADDRESS)
-}
 
-const initializeBondingCurve = async () => {
-  BONDING_CURVE_ADDRESS =
+  const bondingCurveAddress =
     process.env[
       `REACT_APP_${env}_${
         ethConstants.NETWORK_MAP[networkID]
       }_BONDING_CURVE_ADDRESS`
     ]
+
+  initializeBondingCurve(eth.currentProvider, bondingCurveAddress)
 }
 
 const archon = new Archon(eth.currentProvider)
@@ -50,10 +51,8 @@ const strictETHAddressRegExp = /^0x[a-fA-F0-9]{40}$/
 export {
   eth,
   ARBITRATOR_ADDRESS,
-  BONDING_CURVE_ADDRESS,
   kleros,
   initializeKleros,
-  initializeBondingCurve,
   ETHAddressRegExpCaptureGroup,
   ETHAddressRegExp,
   strictETHAddressRegExp,

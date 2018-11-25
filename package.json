@@ -81,6 +81,7 @@
     "@fortawesome/react-fontawesome": "^0.0.18",
     "@kleros/archon": "^0.3.0",
     "@typeform/embed": "^0.5.12",
+    "bignumber.js": "^8.0.1",
     "create-redux-form": "^0.1.2",
     "eth-archon": "^0.2.0",
     "ethjs": "^0.3.3",

@@ -4,7 +4,6 @@ import { takeLatest, call, select, all, put } from 'redux-saga/effects'
 
 import uniswapArtifact from '../assets/contracts/Uniswap'
 import ERC20Artifact from '../assets/contracts/ERC20'
-import { eth, BONDING_CURVE_ADDRESS } from '../bootstrap/dapp-api'
 import * as bondingCurveActions from '../actions/bonding-curve'
 import * as arbitratorActions from '../actions/arbitrator'
 import * as walletActions from '../actions/wallet'
@@ -12,46 +11,15 @@ import * as walletSelectors from '../reducers/wallet'
 import { lessduxSaga } from '../utils/saga'
 
 /**
- * The factory method for accessing the bonding curve contract. This method is
- * necessary because the contract address is not available until the <Initializer>
- * mounts, so we can't bind a module level variable to a BondingCurve instance.
- * @returns {BondingCurve} The BondingCurve instance.
- */
-const getBondingCurve = (function() {
-  var bondingCurve
-  return function() {
-    if (!bondingCurve)
-      bondingCurve = new BondingCurve(
-        eth.currentProvider,
-        BONDING_CURVE_ADDRESS
-      )
-
-    return bondingCurve
-  }
-})()
-
-/**
  * Fetch reserve parameters of the bonding curve.
  * @returns {object} { totalETH, totalPNK } all keys map to big number objects.
  */
 function* fetchBondingCurveTotals() {
   const [totalETH, totalPNK, allowance] = yield all([
-    call(getBondingCurve().getTotalETH),
-    call(getBondingCurve().getTotalTKN),
-    call(
-      getBondingCurve().getAllowance,
-      yield select(walletSelectors.getAccount)
-    )
+    call(bondingCurve.getTotalETH),
+    call(bondingCurve.getTotalTKN),
+    call(bondingCurve.getAllowance, yield select(walletSelectors.getAccount))
   ])
-  console.info(
-    'totalETH',
-    totalETH.toString(),
-    'totalPNK',
-    totalPNK.toString(),
-    'allowance',
-    allowance.toString()
-  )
-
   return { totalETH, totalPNK, allowance }
 }
 
@@ -63,7 +31,7 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
   const success = yield call(
-    getBondingCurve().buy,
+    bondingCurve.buy,
     addr,
     1,
     '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
@@ -73,7 +41,7 @@ function* buyPNKFromBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.setUpdating(false))
 
   if (!success) return
-  yield call(getBondingCurve().waitForBuy, addr)
+  yield call(bondingCurve.waitForBuy, addr)
   yield all([
     put(arbitratorActions.fetchPNKBalance()),
     put(bondingCurveActions.fetchBondingCurveData()),
@@ -89,7 +57,7 @@ function* sellPNKToBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.setUpdating(true))
   const addr = yield select(walletSelectors.getAccount)
   const success = yield call(
-    getBondingCurve().sell,
+    bondingCurve.sell,
     amount,
     addr,
     1,
@@ -98,7 +66,7 @@ function* sellPNKToBondingCurve({ payload: { amount } }) {
   )
   yield put(bondingCurveActions.setUpdating(false))
   if (!success) return
-  yield call(getBondingCurve().waitForSell, addr)
+  yield call(bondingCurve.waitForSell, addr)
   yield all([
     put(arbitratorActions.fetchPNKBalance()),
     put(bondingCurveActions.fetchBondingCurveData()),
@@ -113,7 +81,7 @@ function* approvePNKToBondingCurve({ payload: { amount } }) {
   yield put(bondingCurveActions.updateApproveTransactionProgress('pending'))
 
   const addr = yield select(walletSelectors.getAccount)
-  const txID = yield call(getBondingCurve().approve, amount, addr)
+  const txID = yield call(bondingCurve.approve, amount, addr)
 
   if (!txID) {
     yield put(bondingCurveActions.updateApproveTransactionProgress(''))
@@ -121,7 +89,7 @@ function* approvePNKToBondingCurve({ payload: { amount } }) {
   }
 
   yield put(bondingCurveActions.updateApproveTransactionProgress('confirming'))
-  yield call(getBondingCurve().waitForApproval, addr)
+  yield call(bondingCurve.waitForApproval, addr)
 
   yield put(bondingCurveActions.updateApproveTransactionProgress('done'))
   yield call(fetchBondingCurveTotals)
@@ -342,6 +310,17 @@ class BondingCurve extends ContractImplementation {
 
     return waitForEvent(this.contractInstance.TokenPurchase({ buyer: addr }))
   }
+}
+
+let bondingCurve
+
+/**
+ * Initialized the bonding curve.
+ * @param {object} web3Provider - The web3 provider.
+ * @param {string} contractAddress - The contract address.
+ */
+export function initializeBondingCurve(web3Provider, contractAddress) {
+  bondingCurve = new BondingCurve(web3Provider, contractAddress)
 }
 
 /**

@@ -10,11 +10,7 @@ import RequiresMetaMask from '../components/requires-meta-mask'
 import MissingArbitrator from '../components/missing-arbitrator'
 import * as chainViewConstants from '../constants/chain-view'
 
-import {
-  ARBITRATOR_ADDRESS,
-  initializeKleros,
-  initializeBondingCurve
-} from './dapp-api'
+import { ARBITRATOR_ADDRESS, initializeKleros } from './dapp-api'
 
 class Initializer extends PureComponent {
   static propTypes = {
@@ -35,8 +31,6 @@ class Initializer extends PureComponent {
 
     await initializeKleros() // Kleros must be initialized before fetchAccounts as accounts trigger notification sagas
     fetchAccounts()
-
-    await initializeBondingCurve()
 
     this.setState({ initialized: true })
   }

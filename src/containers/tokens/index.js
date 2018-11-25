@@ -218,14 +218,14 @@ class Tokens extends PureComponent {
         </Button>
       </div>,
 
-      <div key={1}>
+      <div key="bonding-curve">
         <BondingCurveForm bondingCurveTotals={bondingCurveTotals} />
       </div>
     ]
 
     if (Number(networkID) !== ethConstants.MAINNET)
       forms.push(
-        <div key={2}>
+        <div key={1}>
           <BuyPNKForm
             enableReinitialize
             keepDirtyOnReinitialize
