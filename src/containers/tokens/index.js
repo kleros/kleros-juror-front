@@ -9,6 +9,8 @@ import * as walletSelectors from '../../reducers/wallet'
 import * as walletActions from '../../actions/wallet'
 import * as arbitratorSelectors from '../../reducers/arbitrator'
 import * as arbitratorActions from '../../actions/arbitrator'
+import * as bondingCurveSelectors from '../../reducers/bonding-curve'
+import * as bondingCurveActions from '../../actions/bonding-curve'
 import { camelToTitleCase } from '../../utils/string'
 import { weiBNToDecimalString, decimalStringToWeiBN } from '../../utils/number'
 import Icosahedron from '../../components/icosahedron'
@@ -37,6 +39,7 @@ import {
   WithdrawPNKFormIsInvalid,
   submitWithdrawPNKForm
 } from './components/withdraw-pnk-form'
+import BondingCurveForm from './components/bonding-curve-form'
 
 import './tokens.css'
 
@@ -47,6 +50,8 @@ class Tokens extends PureComponent {
     balance: walletSelectors.balanceShape.isRequired,
     PNKBalance: arbitratorSelectors.PNKBalanceShape.isRequired,
     arbitratorData: arbitratorSelectors.arbitratorDataShape.isRequired,
+    bondingCurveTotals:
+      bondingCurveSelectors.bondingCurveTotalsShape.isRequired,
 
     // Action Dispatchers
     fetchBalance: PropTypes.func.isRequired,
@@ -56,6 +61,7 @@ class Tokens extends PureComponent {
     passPeriod: PropTypes.func.isRequired,
     transferPNK: PropTypes.func.isRequired,
     withdrawPNK: PropTypes.func.isRequired,
+    fetchBondingCurveData: PropTypes.func.isRequired,
 
     // Transfer PNK
     transferPNKFormIsInvalid: PropTypes.bool.isRequired,
@@ -75,10 +81,16 @@ class Tokens extends PureComponent {
   }
 
   componentDidMount() {
-    const { fetchBalance, fetchPNKBalance, fetchArbitratorData } = this.props
+    const {
+      fetchBalance,
+      fetchPNKBalance,
+      fetchArbitratorData,
+      fetchBondingCurveData
+    } = this.props
     fetchBalance()
     fetchPNKBalance()
     fetchArbitratorData()
+    fetchBondingCurveData()
   }
 
   validateTransferPNKForm = values => {
@@ -137,7 +149,8 @@ class Tokens extends PureComponent {
       transferPNKFormIsInvalid,
       submitTransferPNKForm,
       withdrawPNKFormIsInvalid,
-      submitWithdrawPNKForm
+      submitWithdrawPNKForm,
+      bondingCurveTotals
     } = this.props
 
     if (!PNKBalance.data || !arbitratorData.data) return null
@@ -160,19 +173,6 @@ class Tokens extends PureComponent {
                 In order to deposit PNK in a session you must transfer PNK to
                 the Kleros contract. You may withdraw your tokens at any time as
                 long as you have not deposited PNK in the current session.
-                <br />
-                <br />
-                <small>
-                  If you don't have PNK, you can buy some on{' '}
-                  <a
-                    href="https://idex.market/eth/pnk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    IDEX
-                  </a>
-                  .
-                </small>
               </span>
             ),
             amount: weiBNToDecimalString(PNKBalance.data.contractBalance)
@@ -216,6 +216,10 @@ class Tokens extends PureComponent {
         >
           WITHDRAW PNK
         </Button>
+      </div>,
+
+      <div key="bonding-curve">
+        <BondingCurveForm bondingCurveTotals={bondingCurveTotals} />
       </div>
     ]
 
@@ -331,7 +335,14 @@ class Tokens extends PureComponent {
                 <RenderIf
                   resource={PNKBalance}
                   loading={<Icosahedron />}
-                  done={forms}
+                  done={
+                    <RenderIf
+                      resource={bondingCurveTotals}
+                      loading={<Icosahedron />}
+                      done={forms}
+                      failedLoading="There was an error fetching exchange parameters"
+                    />
+                  }
                   failedLoading="There was an error fetching your PNK balance."
                 />
               )
@@ -350,6 +361,7 @@ export default connect(
     balance: state.wallet.balance,
     PNKBalance: state.arbitrator.PNKBalance,
     arbitratorData: state.arbitrator.arbitratorData,
+    bondingCurveTotals: state.bondingCurve.bondingCurveTotals,
     buyPNKFormIsInvalid: getBuyPNKFormIsInvalid(state),
     passPeriodFormIsInvalid: getPassPeriodFormIsInvalid(state),
     transferPNKFormIsInvalid: TransferPNKFormIsInvalid(state),
@@ -363,6 +375,7 @@ export default connect(
     passPeriod: arbitratorActions.passPeriod,
     transferPNK: arbitratorActions.transferPNK,
     withdrawPNK: arbitratorActions.withdrawPNK,
+    fetchBondingCurveData: bondingCurveActions.fetchBondingCurveData,
     submitBuyPNKForm,
     submitPassPeriodForm,
     submitTransferPNKForm,

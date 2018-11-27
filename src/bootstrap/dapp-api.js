@@ -3,6 +3,7 @@ import { Kleros } from 'kleros-api-2' // FIXME NPM hack
 import Archon from '@kleros/archon'
 
 import * as ethConstants from '../constants/eth'
+import { initializeBondingCurve } from '../sagas/bonding-curve'
 
 const env = process.env.NODE_ENV === 'production' ? 'PROD' : 'DEV'
 const ETHEREUM_PROVIDER = process.env[`REACT_APP_${env}_ETHEREUM_PROVIDER`]
@@ -30,6 +31,15 @@ const initializeKleros = async () => {
     ]
 
   kleros = new Kleros(eth.currentProvider, STORE_PROVIDER, ARBITRATOR_ADDRESS)
+
+  const bondingCurveAddress =
+    process.env[
+      `REACT_APP_${env}_${
+        ethConstants.NETWORK_MAP[networkID]
+      }_BONDING_CURVE_ADDRESS`
+    ]
+
+  initializeBondingCurve(eth.currentProvider, bondingCurveAddress)
 }
 
 const archon = new Archon(eth.currentProvider)

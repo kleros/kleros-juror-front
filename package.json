@@ -27,7 +27,7 @@
     "start:storybook": "start-storybook -p 9001 -c .storybook",
     "storybook": "run-p start:scss start:storybook",
     "build:scss": "node-sass-chokidar ./src -o ./src",
-    "build:js": "react-scripts build",
+    "build:js": "react-scripts --max_old_space_size=4096 build",
     "start": "run-p start:scss start:js",
     "build": "yarn run build:scss && yarn run build:js",
     "build:analyze": "source-map-explorer build/static/js/main.*"
@@ -81,6 +81,7 @@
     "@fortawesome/react-fontawesome": "^0.0.18",
     "@kleros/archon": "^0.3.0",
     "@typeform/embed": "^0.5.12",
+    "bignumber.js": "^8.0.1",
     "create-redux-form": "^0.1.2",
     "eth-archon": "^0.2.0",
     "ethjs": "^0.3.3",

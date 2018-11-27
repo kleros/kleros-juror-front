@@ -21,5 +21,30 @@
         margin-top: 25px;
       }
     }
+
+    &-rate {
+      margin-bottom: 0;
+      margin-top: 14px;
+    }
+
+    &-footer {
+      float: right;
+    }
+  }
+
+  &-sell {
+    &-form {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-unlock {
+      left: -100px;
+      position: relative;
+    }
+  }
+
+  &-unlock-button {
+    height: 45px;
   }
 }

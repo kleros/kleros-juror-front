@@ -5,14 +5,14 @@ import './text-input.css'
 
 const TextInput = ({
   input: { value, onChange },
-  meta: { touched, valid, error },
+  meta: { touched, valid, error, pristine },
   placeholder,
   type,
   className
 }) => (
   <div
     className={`TextInput ${
-      error ? 'is-error' : valid ? 'is-valid' : ''
+      pristine ? 'is-pristine' : error ? 'is-error' : valid ? 'is-valid' : ''
     } ${className}`}
   >
     <input
@@ -32,7 +32,7 @@ const TextInput = ({
         {placeholder}
       </div>
     )}
-    {error && <div className="TextInput-error">{error}</div>}
+    {!pristine && error && <div className="TextInput-error">{error}</div>}
   </div>
 )
 
@@ -45,7 +45,8 @@ TextInput.propTypes = {
   meta: PropTypes.shape({
     touched: PropTypes.bool,
     valid: PropTypes.bool,
-    error: PropTypes.string
+    error: PropTypes.string,
+    pristine: PropTypes.bool
   }),
 
   // State
