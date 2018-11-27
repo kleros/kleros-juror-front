@@ -34,31 +34,13 @@ export function decimalStringToWeiBN(amount) {
 }
 
 /**
- * Truncate number to 4 significant figures if its integeral part has less than 4
- * digits. Otherwise truncate to integer.
- * @param {string} n - Input number.
- * @returns {string} - Truncated number with at least 4 significant figures.
+ * Round the input to fixed number of decimal places.
+ * @param {string} n - The input number.
+ * @param {number} dp - Number of decimal places. If dp is 0 the input is rounded to an integer.
+ * @returns {string} - The rounded number.
  */
-export function truncate(n) {
-  // Pad the number so it has at least 4 significant figures.
-  if (n.indexOf('.') === -1) n += '.'
-
-  n += '0000'
-
-  var count = 0
-  var dot = false
-  for (var i = 0; i < n.length; i++) {
-    if (n[i] === '.') dot = true
-    else if (n[i] !== '0' || count > 0)
-      // Past leading zeros.
-      count += 1
-
-    if (count >= 4 && dot) break
-  }
-  // Remove trailing dot.
-  if (n[i] === '.') i -= 1
-
-  return n.slice(0, i + 1)
+export function roundToFixedDecimals(n, dp) {
+  return new BigNumber(n).toFixed(dp)
 }
 
 /**

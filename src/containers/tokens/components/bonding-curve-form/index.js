@@ -9,11 +9,13 @@ import { required, number, positiveNumber } from '../../../../utils/validation'
 import {
   decimalStringToWeiBN,
   weiBNToDecimalString,
-  truncate,
+  roundToFixedDecimals,
   fractionToDecimal
 } from '../../../../utils/number'
 import * as bondingCurveSelectors from '../../../../reducers/bonding-curve'
 import * as bondingCurveActions from '../../../../actions/bonding-curve'
+import { networkID } from '../../../../bootstrap/dapp-api'
+import * as ethConstants from '../../../../constants/eth'
 
 import { estimatePNK, estimateETH } from './utils'
 
@@ -73,6 +75,11 @@ const {
   }
 })
 
+// Normally it's reasonable to use integer to represent the amount of PNK. But
+// on Kovan because the exchange has so few PNKs in it we have to show 4 decimal
+// places otherwise the value is just 0.
+const PNK_DECIMALS = Number(networkID) === ethConstants.MAINNET ? 0 : 4
+
 class BondingCurveForm extends PureComponent {
   static propTypes = {
     buyPNKFromBondingCurveFormIsInvalid: PropTypes.bool.isRequired,
@@ -101,7 +108,7 @@ class BondingCurveForm extends PureComponent {
       )
     )
     if (PNK === '0') return '0'
-    else return truncate(PNK)
+    else return roundToFixedDecimals(PNK, PNK_DECIMALS)
   }
 
   buyPrice() {
@@ -112,15 +119,17 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (PNK === '0')
-      return truncate(
+      return roundToFixedDecimals(
         fractionToDecimal(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
-        )
+        ),
+        PNK_DECIMALS
       )
     else
-      return truncate(
-        fractionToDecimal(PNK, decimalStringToWeiBN(inputETH).toString())
+      return roundToFixedDecimals(
+        fractionToDecimal(PNK, decimalStringToWeiBN(inputETH).toString()),
+        PNK_DECIMALS
       )
   }
 
@@ -134,7 +143,7 @@ class BondingCurveForm extends PureComponent {
       )
     )
     if (ETH === '0') return '0'
-    else return truncate(ETH)
+    else return roundToFixedDecimals(ETH, 4)
   }
 
   sellPrice() {
@@ -145,15 +154,17 @@ class BondingCurveForm extends PureComponent {
       bondingCurveTotals.data.totalPNK
     )
     if (ETH === '0')
-      return truncate(
+      return roundToFixedDecimals(
         fractionToDecimal(
           bondingCurveTotals.data.totalPNK,
           bondingCurveTotals.data.totalETH
-        )
+        ),
+        PNK_DECIMALS
       )
     else
-      return truncate(
-        fractionToDecimal(decimalStringToWeiBN(inputPNK).toString(), ETH)
+      return roundToFixedDecimals(
+        fractionToDecimal(decimalStringToWeiBN(inputPNK).toString(), ETH),
+        PNK_DECIMALS
       )
   }
 
