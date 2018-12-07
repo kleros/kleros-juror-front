@@ -42,7 +42,7 @@ const initializeKleros = async () => {
   initializeBondingCurve(eth.currentProvider, bondingCurveAddress)
 }
 
-const archon = new Archon(eth.currentProvider)
+const archon = new Archon(eth.currentProvider, 'https://ipfs.kleros.io')
 
 const ETHAddressRegExpCaptureGroup = '(0x[a-fA-F0-9]{40})'
 const ETHAddressRegExp = /0x[a-fA-F0-9]{40}/

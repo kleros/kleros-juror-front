@@ -80,8 +80,9 @@ const parseDispute = d => {
  */
 function* fetchDisputes() {
   const account = yield select(walletSelectors.getAccount)
+
   const [_disputes, arbitratorData] = yield all([
-    call(kleros.arbitrator.getDisputesForUserFromStore, account),
+    call(kleros.arbitrator.getDisputesForUser, account),
     call(fetchArbitratorData)
   ])
 

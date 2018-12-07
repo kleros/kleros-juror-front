@@ -79,7 +79,7 @@
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-solid": "^5.0.9",
     "@fortawesome/react-fontawesome": "^0.0.18",
-    "@kleros/archon": "^0.3.0",
+    "@kleros/archon": "^0.5.0",
     "@typeform/embed": "^0.5.12",
     "bignumber.js": "^8.0.1",
     "create-redux-form": "^0.1.2",
