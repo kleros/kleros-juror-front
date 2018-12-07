@@ -1,5 +1,3 @@
-import { makePopup } from '@typeform/embed'
-
 import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
 import * as disputeActions from '../actions/dispute'
