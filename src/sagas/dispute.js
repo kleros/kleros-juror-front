@@ -281,19 +281,6 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
 
   yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
 
-  const popup = makePopup(
-    `https://kleros.typeform.com/to/utoDzJ?address=${account}&disputeid=${disputeID}&vote=${
-      Number(ruling) === 1 ? 'yes' : 'no'
-    }`,
-    {
-      mode: 'drawer_left',
-      autoClose: 2,
-      hideHeaders: true,
-      hideFooter: true
-    }
-  )
-  popup.open()
-
   return yield call(fetchDispute, { payload: { disputeID } })
 }
 
