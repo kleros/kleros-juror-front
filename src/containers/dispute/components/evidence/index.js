@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS, archon } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import LabelValueGroup from '../../../../components/label-value-group'
 
@@ -52,7 +52,12 @@ class Evidence extends Component {
       fileDisplay = (
         <iframe
           title="Evidence Display"
-          src={metaEvidenceJSON.evidenceDisplayInterfaceURL}
+          src={
+            archon.utils.getHttpUri(
+              metaEvidenceJSON.evidenceDisplayInterfaceURL,
+              'https://ipfs.kleros.io'
+            ).uri
+          }
           frameBorder="0"
           height="300"
         />
@@ -73,7 +78,18 @@ class Evidence extends Component {
             { label: 'Description', value: evidenceJSON.description },
             {
               label: 'File',
-              value: <a href={evidenceJSON.url}>{evidenceJSON.url}</a>
+              value: (
+                <a
+                  href={
+                    archon.utils.getHttpUri(
+                      evidenceJSON.fileURI,
+                      'https://ipfs.kleros.io'
+                    ).uri
+                  }
+                >
+                  {evidenceJSON.fileURI}
+                </a>
+              )
             }
           ]}
         />

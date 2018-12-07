@@ -1,5 +1,3 @@
-import { makePopup } from '@typeform/embed'
-
 import { takeLatest, all, call, put, select } from 'redux-saga/effects'
 
 import * as disputeActions from '../actions/dispute'
@@ -80,8 +78,9 @@ const parseDispute = d => {
  */
 function* fetchDisputes() {
   const account = yield select(walletSelectors.getAccount)
+
   const [_disputes, arbitratorData] = yield all([
-    call(kleros.arbitrator.getDisputesForUserFromStore, account),
+    call(kleros.arbitrator.getDisputesForUser, account),
     call(fetchArbitratorData)
   ])
 
@@ -279,19 +278,6 @@ function* voteOnDispute({ payload: { disputeID, votes, ruling } }) {
   const account = yield select(walletSelectors.getAccount)
 
   yield call(kleros.arbitrator.submitVotes, disputeID, ruling, votes, account)
-
-  const popup = makePopup(
-    `https://kleros.typeform.com/to/utoDzJ?address=${account}&disputeid=${disputeID}&vote=${
-      Number(ruling) === 1 ? 'yes' : 'no'
-    }`,
-    {
-      mode: 'drawer_left',
-      autoClose: 2,
-      hideHeaders: true,
-      hideFooter: true
-    }
-  )
-  popup.open()
 
   return yield call(fetchDispute, { payload: { disputeID } })
 }

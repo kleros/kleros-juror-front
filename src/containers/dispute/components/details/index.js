@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { ARBITRATOR_ADDRESS } from '../../../../bootstrap/dapp-api'
+import { ARBITRATOR_ADDRESS, archon } from '../../../../bootstrap/dapp-api'
 import { dateToString } from '../../../../utils/date'
 import { weiBNToDecimalString } from '../../../../utils/number'
 import LabelValueGroup from '../../../../components/label-value-group'
@@ -49,12 +49,18 @@ class Details extends Component {
       appealNumber,
       metaEvidenceJSON
     } = this.props
-
     // Default display of primary document file.
     let fileDisplay = metaEvidenceJSON.fileURI ? (
       <div>
         <h4>File</h4>
-        <LinkBox link={metaEvidenceJSON.fileURI} />
+        <LinkBox
+          link={
+            archon.utils.getHttpUri(
+              metaEvidenceJSON.fileURI,
+              'https://ipfs.kleros.io'
+            ).uri
+          }
+        />
       </div>
     ) : (
       <div />
@@ -65,7 +71,12 @@ class Details extends Component {
       fileDisplay = (
         <iframe
           title="File Display"
-          src={metaEvidenceJSON.evidenceDisplayInterfaceURL}
+          src={
+            archon.utils.getHttpUri(
+              metaEvidenceJSON.evidenceDisplayInterfaceURL,
+              'https://ipfs.kleros.io'
+            ).uri
+          }
           frameBorder="0"
           height="300"
         />
