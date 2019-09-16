@@ -11,6 +11,7 @@ import Disputes from '../containers/disputes'
 import Dispute from '../containers/dispute'
 import Tokens from '../containers/tokens'
 import PageNotFound from '../components/page-not-found'
+import Redirect from '../components/redirect'
 import DogesOnTrialEvidence from '../components/iframes/doges-on-trial-evidence'
 
 import Initializer from './initializer'
@@ -54,15 +55,15 @@ const App = ({ store, history, testElement }) => (
               <Route exact path="*" component={ConnectedNavBar} />
               <div id="scroll-root">
                 <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/cases" component={Disputes} />
-                  <Route exact path="/cases/:disputeID" component={Dispute} />
-                  <Route exact path="/tokens" component={Tokens} />
-                  <Route component={PageNotFound} />
+                  <Route exact path="/" component={Redirect} />
+                  <Route exact path="/cases" component={Redirect} />
+                  <Route exact path="/cases/:disputeID" component={Redirect} />
+                  <Route exact path="/tokens" component={Redirect} />
+                  <Route component={Redirect} />
                 </Switch>
               </div>
               {testElement}
-              <Route exact path="*" component={GlobalComponents} />
+              <Route exact path="*" component={Redirect} />
             </Initializer>
           </Route>
         </Switch>
